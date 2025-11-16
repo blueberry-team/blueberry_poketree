@@ -89,92 +89,92 @@ src/
 │   ├── layout.tsx                # 루트 레이아웃
 │   └── globals.css               # 전역 스타일
 │
-└── features/                     # 기능별 모듈 (Feature-based Architecture)
-    │
-    ├── signup-or-go/                     # Auth 기능
-    │   ├── components/
-    │   │   └── AuthForm.tsx
-    │   ├── usecases/
-    │   │   └── signupOrGo.ts
-    │   ├── repositories/
-    │   │   └── authRepository.ts
-    │   └── models/
-    │       ├── req/
-    │       │   └── AuthRequest.ts
-    │       └── res/
-    │           └── AuthResponse.ts
-    │
-    ├── my-tree/                     # 트리 기능
-    │   ├── components/
-    │   │   ├── ShareLinkModal.tsx
-    │   │   ├── WriteLetterModal.tsx
-    │   │   └── Tree.tsx
-    │   ├── usecases/
-    │   │   ├── getUserTree.ts
-    │   │   ├── getLetter.ts
-    │   │   └── writeLetter.ts
-    │   ├── repositories/
-    │   │   └── treeRepository.ts
-    │   └── models/
-    │       ├── req/
-    │       │   ├── GetUserTreeRequest.ts
-    │       │   └── GetLetterRequest.ts
-    │       │   └── writeLetterRequest.ts
-    │       └── res/
-    │           ├── GetUserTreeResponse.ts
-    │           └── GetLetterResponse.ts
-    │
-    ├── my-poket-message/                  # 메시지 목록 기능
-    │   ├── components/
-    │   │   └── MessageList.tsx
-    │   ├── usecases/
-    │   │   └── getMessages.ts
-    │   ├── repositories/
-    │   │   └── messageRepository.ts
-    │   └── models/
-    │       ├── req/
-    │       │   └── GetMessagesRequest.ts
-    │       └── res/
-    │           └── GetMessagesResponse.ts
-    │
-    ├── my-pokedex/                  # 포켓몬 도감 기능
-    │   ├── components/
-    │   │   ├── PokemonList.tsx
-    │   │   ├── PokemonCard.tsx
-    │   │   └── PokemonDetail.tsx
-    │   ├── usecases/
-    │   │   ├── getMyPokedex.ts
-    │   │   └── getPokemonDetailById.ts
-    │   ├── repositories/
-    │   │   └── pokedexRepository.ts
-    │   └── models/
-    │       ├── req/
-    │       │   ├── GetMyPokedexRequest.ts
-    │       │   └── GetPokemonDetailByIdRequest.ts
-    │       └── res/
-    │           ├── GetMyPokedexResponse.ts
-    │           └── GetPokemonDetailByIdResponse.ts
-    │
-    ├── shared/                   # 공통 컴포넌트 및 유틸리티
-    │   ├── components/
-    │   │   ├── Header/
-    │   │   │   └── Header.tsx
-    │   │   ├── Card/
-    │   │   └── Modals/
-    │   │       ├── LetterModal.ts
-    │   │       ├── TooltipModal.ts
-    │   │       └── LanguegeSettingModal.ts
-    │   ├── hooks/
-    │   │   └── useLanguage.ts
-    │   ├── utils/
-    │   └── models/
-    │
-    └── assets/                   # 정적 리소스
-        ├── images/
-        │   ├── logos/
-        │   ├── background/
-        │   └── pokemon/
-        └── fonts/
+├── features/                     # 기능별 모듈 (Feature-based Architecture)
+│   │
+│   ├── signup-or-go/             # Auth 기능
+│   │   ├── components/
+│   │   │   └── AuthForm.tsx
+│   │   ├── usecases/
+│   │   │   └── signupOrGo.ts
+│   │   ├── repositories/
+│   │   │   └── authRepository.ts
+│   │   └── models/
+│   │       ├── req/
+│   │       │   └── AuthRequest.ts
+│   │       └── res/
+│   │           └── AuthResponse.ts
+│   │
+│   ├── my-tree/                  # 트리 기능
+│   │   ├── components/
+│   │   │   ├── ShareLinkModal.tsx
+│   │   │   ├── WriteLetterModal.tsx
+│   │   │   └── Tree.tsx
+│   │   ├── usecases/
+│   │   │   ├── getUserTree.ts
+│   │   │   ├── getLetter.ts
+│   │   │   └── writeLetter.ts
+│   │   ├── repositories/
+│   │   │   └── treeRepository.ts
+│   │   └── models/
+│   │       ├── req/
+│   │       │   ├── GetUserTreeRequest.ts
+│   │       │   ├── GetLetterRequest.ts
+│   │       │   └── WriteLetterRequest.ts
+│   │       └── res/
+│   │           ├── GetUserTreeResponse.ts
+│   │           └── GetLetterResponse.ts
+│   │
+│   ├── my-poket-message/         # 메시지 목록 기능
+│   │   ├── components/
+│   │   │   └── MessageList.tsx
+│   │   ├── usecases/
+│   │   │   └── getMessages.ts
+│   │   ├── repositories/
+│   │   │   └── messageRepository.ts
+│   │   └── models/
+│   │       ├── req/
+│   │       │   └── GetMessagesRequest.ts
+│   │       └── res/
+│   │           └── GetMessagesResponse.ts
+│   │
+│   ├── my-pokedex/               # 포켓몬 도감 기능
+│   │   ├── components/
+│   │   │   ├── PokemonList.tsx
+│   │   │   ├── PokemonCard.tsx
+│   │   │   └── PokemonDetail.tsx
+│   │   ├── usecases/
+│   │   │   ├── getMyPokedex.ts
+│   │   │   └── getPokemonDetailById.ts
+│   │   ├── repositories/
+│   │   │   └── pokedexRepository.ts
+│   │   └── models/
+│   │       ├── req/
+│   │       │   ├── GetMyPokedexRequest.ts
+│   │       │   └── GetPokemonDetailByIdRequest.ts
+│   │       └── res/
+│   │           ├── GetMyPokedexResponse.ts
+│   │           └── GetPokemonDetailByIdResponse.ts
+│   │
+│   └── shared/                   # 공통 컴포넌트 및 유틸리티
+│       ├── components/
+│       │   ├── Header/
+│       │   │   └── Header.tsx
+│       │   ├── Card/
+│       │   └── Modals/
+│       │       ├── LetterModal.ts
+│       │       ├── TooltipModal.ts
+│       │       └── LanguegeSettingModal.ts
+│       ├── hooks/
+│       │   └── useLanguage.ts
+│       ├── utils/
+│       └── models/
+│
+└── assets/                       # 정적 리소스
+    ├── images/
+    │   ├── logos/
+    │   ├── background/
+    │   └── pokemon/
+    └── fonts/
 ```
 
 ## 스타일링 규칙
