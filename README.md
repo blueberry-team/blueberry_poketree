@@ -167,6 +167,8 @@ src/
 │       ├── hooks/
 │       │   └── useLanguage.ts
 │       ├── utils/
+│       ├── usecases/
+│       ├── repositories/
 │       └── models/
 │
 └── assets/                       # 정적 리소스
