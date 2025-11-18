@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { createContext, useContext, useState, ReactNode } from "react";
 
 export type Language = "ko" | "en" | "ja";
 
@@ -22,20 +22,20 @@ function detectBrowserLanguage(): Language {
   return "en";
 }
 
-export function LanguageProvider({ children }: { children: ReactNode }) {
-  const [language, setLanguageState] = useState<Language>("ko");
+// 초기 언어 설정 함수 (서버/클라이언트 모두 동작)
+function getInitialLanguage(): Language {
+  if (typeof window === "undefined") return "ko";
 
-  // 초기화: localStorage에서 언어 설정 불러오기 또는 브라우저 언어 감지
-  useEffect(() => {
-    const savedLanguage = localStorage.getItem("language") as Language;
-    if (savedLanguage && ["ko", "en", "ja"].includes(savedLanguage)) {
-      setLanguageState(savedLanguage);
-    } else {
-      // localStorage에 저장된 값이 없으면 브라우저 언어 감지
-      const detectedLang = detectBrowserLanguage();
-      setLanguageState(detectedLang);
-    }
-  }, []);
+  const savedLanguage = localStorage.getItem("language") as Language;
+  if (savedLanguage && ["ko", "en", "ja"].includes(savedLanguage)) {
+    return savedLanguage;
+  }
+
+  return detectBrowserLanguage();
+}
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const [language, setLanguageState] = useState<Language>(() => getInitialLanguage());
 
   // 언어 변경 함수
   const setLanguage = (lang: Language) => {
