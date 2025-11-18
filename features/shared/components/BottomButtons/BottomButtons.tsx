@@ -2,6 +2,7 @@
 
 import { useRouter, usePathname } from "next/navigation";
 import { CrossButton } from "./CrossButton";
+import { useTranslation } from "@/features/shared/hooks/useTranslation";
 
 interface BottomButtonsProps {
   onUp?: () => void;
@@ -23,6 +24,7 @@ export function BottomButtons({
   onRight,
   selectedPokemonId
 }: BottomButtonsProps) {
+  const { t } = useTranslation();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -38,7 +40,7 @@ export function BottomButtons({
     }
   };
 
-  const buttonLabel = isMyPokedex ? "자세히 보기" : "포켓몬도감";
+  const buttonLabel = isMyPokedex ? t("pokedex.detail") : t("pokedex.button");
 
   return (
     <>

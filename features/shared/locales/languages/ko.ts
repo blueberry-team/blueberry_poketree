@@ -11,7 +11,7 @@ export const ko = {
   "language.japanese": "日本語",
 
   // My Pokedex
-  "pokedex.title": "My Pokedex",
+  "pokedex.title": "포켓몬 도감",
   "pokedex.button": "포켓몬도감",
   "pokedex.detail": "자세히 보기",
 

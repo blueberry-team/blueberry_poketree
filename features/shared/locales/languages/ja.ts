@@ -11,7 +11,7 @@ export const ja = {
   "language.japanese": "日本語",
 
   // My Pokedex
-  "pokedex.title": "My Pokedex",
+  "pokedex.title": "ポケモン図鑑",
   "pokedex.button": "ポケモン図鑑",
   "pokedex.detail": "詳細を見る",
 

@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react";
 import Link from "next/link";
 import { PokemonInDex } from "@/features/my-pokedex/usecases/getMyPokedex";
+import { useTranslation } from "@/features/shared/hooks/useTranslation";
 
 interface PokedexGridProps {
   pokemons: PokemonInDex[];
@@ -10,6 +11,7 @@ interface PokedexGridProps {
 }
 
 export function PokedexGrid({ pokemons, selectedIndex }: PokedexGridProps) {
+  const { t } = useTranslation();
   const selectedRef = useRef<HTMLDivElement>(null);
 
   // 선택된 항목으로 스크롤
@@ -24,7 +26,7 @@ export function PokedexGrid({ pokemons, selectedIndex }: PokedexGridProps) {
 
   return (
     <div className="flex flex-col px-3 py-1" style={{ height: "100%" }}>
-      <h1 className="text-sm font-bold mb-1">My Pokedex</h1>
+      <h1 className="text-sm font-bold mb-1">{t("pokedex.title")}</h1>
 
       {/* 5x5 그리드 - 최대 5줄까지만 표시 */}
       <div
