@@ -33,7 +33,7 @@ export function LanguageModal({ isOpen, onClose }: LanguageModalProps) {
         className="bg-white rounded-lg p-6 w-[300px]"
         onClick={(e) => e.stopPropagation()}
       >
-        <h2 className="text-lg font-bold mb-4 text-center">
+        <h2 className="text-lg font-bold mb-4 text-center text-black">
           {translate("language.title")}
         </h2>
 
@@ -42,7 +42,7 @@ export function LanguageModal({ isOpen, onClose }: LanguageModalProps) {
             <button
               key={lang.code}
               onClick={() => handleLanguageSelect(lang.code)}
-              className={`px-4 py-3 rounded border transition-all ${
+              className={`px-4 py-3 rounded border transition-all text-black ${
                 language === lang.code
                   ? "bg-[#90EE90] border-[#90EE90] font-bold"
                   : "bg-white border-gray-300 hover:bg-gray-50"
