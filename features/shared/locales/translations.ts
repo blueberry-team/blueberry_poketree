@@ -1,4 +1,4 @@
-import { Language } from "../contexts/LanguageContext";
+import { Language } from "../hooks/useLanguage";
 import { ko } from "./languages/ko";
 import { en } from "./languages/en";
 import { ja } from "./languages/ja";

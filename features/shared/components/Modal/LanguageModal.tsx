@@ -1,6 +1,6 @@
 "use client";
 
-import { Language, useLanguage } from "../../contexts/LanguageContext";
+import { Language, useLanguage } from "../../hooks/useLanguage";
 import { useTranslation } from "../../hooks/useTranslation";
 
 interface LanguageModalProps {
