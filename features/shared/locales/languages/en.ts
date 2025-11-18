@@ -11,8 +11,8 @@ export const en = {
   "language.japanese": "日本語",
 
   // My Pokedex
-  "pokedex.title": "My Pokedex",
-  "pokedex.button": "Pokedex",
+  "pokedex.title": "Pokédex",
+  "pokedex.button": "Pokédex",
   "pokedex.detail": "View Details",
 
   // My Tree
