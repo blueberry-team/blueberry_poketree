@@ -18,7 +18,7 @@ import { useTranslation } from "../../hooks/useTranslation";
 export function Header() {
   const pathname = usePathname();
   const router = useRouter();
-  const { t } = useTranslation();
+  const { translate } = useTranslation();
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
 
   // 경로별 조건 확인
@@ -102,7 +102,7 @@ export function Header() {
               onClick={handleLogin}
               className="w-[60px] h-[27px] bg-[#000000] rounded-[4px] flex items-center justify-center"
             >
-              <span className="text-white text-xs font-bold">{t("header.login")}</span>
+              <span className="text-white text-xs font-bold">{translate("header.login")}</span>
             </button>
           )}
 
@@ -112,7 +112,7 @@ export function Header() {
               onClick={handleLogout}
               className="w-[60px] h-[27px] bg-[#000000] rounded-[4px] flex items-center justify-center"
             >
-              <span className="text-white text-xs font-bold">{t("header.logout")}</span>
+              <span className="text-white text-xs font-bold">{translate("header.logout")}</span>
             </button>
           )}
 

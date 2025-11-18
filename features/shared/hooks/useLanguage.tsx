@@ -11,14 +11,29 @@ interface LanguageContextType {
 
 const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
 
+// 브라우저 언어 감지 함수
+function detectBrowserLanguage(): Language {
+  if (typeof window === "undefined") return "ko";
+
+  const browserLang = navigator.language.toLowerCase();
+
+  if (browserLang.startsWith("ko")) return "ko";
+  if (browserLang.startsWith("ja")) return "ja";
+  return "en";
+}
+
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const [language, setLanguageState] = useState<Language>("ko");
 
-  // 초기화: localStorage에서 언어 설정 불러오기
+  // 초기화: localStorage에서 언어 설정 불러오기 또는 브라우저 언어 감지
   useEffect(() => {
     const savedLanguage = localStorage.getItem("language") as Language;
     if (savedLanguage && ["ko", "en", "ja"].includes(savedLanguage)) {
       setLanguageState(savedLanguage);
+    } else {
+      // localStorage에 저장된 값이 없으면 브라우저 언어 감지
+      const detectedLang = detectBrowserLanguage();
+      setLanguageState(detectedLang);
     }
   }, []);
 

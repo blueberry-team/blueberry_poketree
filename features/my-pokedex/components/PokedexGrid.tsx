@@ -11,7 +11,7 @@ interface PokedexGridProps {
 }
 
 export function PokedexGrid({ pokemons, selectedIndex }: PokedexGridProps) {
-  const { t } = useTranslation();
+  const { translate } = useTranslation();
   const selectedRef = useRef<HTMLDivElement>(null);
 
   // 선택된 항목으로 스크롤
@@ -26,7 +26,7 @@ export function PokedexGrid({ pokemons, selectedIndex }: PokedexGridProps) {
 
   return (
     <div className="flex flex-col px-3 py-1" style={{ height: "100%" }}>
-      <h1 className="text-sm font-bold mb-1">{t("pokedex.title")}</h1>
+      <h1 className="text-sm font-bold mb-1">{translate("pokedex.title")}</h1>
 
       {/* 5x5 그리드 - 최대 5줄까지만 표시 */}
       <div

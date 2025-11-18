@@ -24,7 +24,7 @@ export function BottomButtons({
   onRight,
   selectedPokemonId
 }: BottomButtonsProps) {
-  const { t } = useTranslation();
+  const { translate } = useTranslation();
   const router = useRouter();
   const pathname = usePathname();
 
@@ -40,7 +40,7 @@ export function BottomButtons({
     }
   };
 
-  const buttonLabel = isMyPokedex ? t("pokedex.detail") : t("pokedex.button");
+  const buttonLabel = isMyPokedex ? translate("pokedex.detail") : translate("pokedex.button");
 
   return (
     <>

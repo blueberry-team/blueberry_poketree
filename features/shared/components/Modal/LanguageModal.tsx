@@ -10,14 +10,14 @@ interface LanguageModalProps {
 
 export function LanguageModal({ isOpen, onClose }: LanguageModalProps) {
   const { language, setLanguage } = useLanguage();
-  const { t } = useTranslation();
+  const { translate } = useTranslation();
 
   if (!isOpen) return null;
 
   const languages: { code: Language; label: string }[] = [
-    { code: "ko", label: t("language.korean") },
-    { code: "en", label: t("language.english") },
-    { code: "ja", label: t("language.japanese") },
+    { code: "ko", label: translate("language.korean") },
+    { code: "en", label: translate("language.english") },
+    { code: "ja", label: translate("language.japanese") },
   ];
 
   const handleLanguageSelect = (lang: Language) => {
@@ -35,7 +35,7 @@ export function LanguageModal({ isOpen, onClose }: LanguageModalProps) {
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="text-lg font-bold mb-4 text-center">
-          {t("language.title")}
+          {translate("language.title")}
         </h2>
 
         <div className="flex flex-col gap-2">
