@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
+import { BottomButtons } from "@/shared/components/BottomButtons/BottomButtons";
 import { PokedexGrid } from "@/features/my-pokedex/components/PokedexGrid";
 import { getMyPokedex, PokemonInDex } from "@/features/my-pokedex/usecases/getMyPokedex";
 
