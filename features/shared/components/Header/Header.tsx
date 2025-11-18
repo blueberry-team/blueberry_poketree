@@ -13,7 +13,7 @@ import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import HomeIcon from "@/assets/icon/homeIcon.svg";
 import { LanguageModal } from "../Modal/LanguageModal";
-import { useTranslation } from "../../hooks/useTranslation";
+import { useTranslation } from "../../utils/translate/useTranslation";
 
 export function Header() {
   const pathname = usePathname();

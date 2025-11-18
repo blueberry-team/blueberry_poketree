@@ -3,7 +3,7 @@
 import { useRef, useEffect } from "react";
 import Link from "next/link";
 import { PokemonInDex } from "@/features/my-pokedex/usecases/getMyPokedex";
-import { useTranslation } from "@/features/shared/hooks/useTranslation";
+import { useTranslation } from "@/features/shared/utils/translate/useTranslation";
 
 interface PokedexGridProps {
   pokemons: PokemonInDex[];
