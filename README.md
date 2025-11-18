@@ -137,48 +137,48 @@ src/
 │   │       └── res/
 │   │           └── GetMessagesResponse.ts
 │   │
-│   └── my-pokedex/               # 포켓몬 도감 기능
+│   ├── my-pokedex/               # 포켓몬 도감 기능
+│   │   ├── components/
+│   │   │   ├── PokemonList.tsx
+│   │   │   ├── PokemonCard.tsx
+│   │   │   └── PokemonDetail.tsx
+│   │   ├── usecases/
+│   │   │   ├── getMyPokedex.ts
+│   │   │   └── getPokemonDetailById.ts
+│   │   ├── repositories/
+│   │   │   └── pokedexRepository.ts
+│   │   └── models/
+│   │       ├── req/
+│   │       │   ├── GetMyPokedexRequest.ts
+│   │       │   └── GetPokemonDetailByIdRequest.ts
+│   │       └── res/
+│   │           ├── GetMyPokedexResponse.ts
+│   │           └── GetPokemonDetailByIdResponse.ts
+│   │
+│   └── shared/                   # 공통 컴포넌트 및 유틸리티
 │       ├── components/
-│       │   ├── PokemonList.tsx
-│       │   ├── PokemonCard.tsx
-│       │   └── PokemonDetail.tsx
-│       ├── usecases/
-│       │   ├── getMyPokedex.ts
-│       │   └── getPokemonDetailById.ts
-│       ├── repositories/
-│       │   └── pokedexRepository.ts
+│       │   ├── Header/
+│       │   │   └── Header.tsx
+│       │   ├── Container/
+│       │   │   └── Container.tsx
+│       │   ├── BottomButtons/
+│       │   │   ├── BottomButtons.tsx
+│       │   │   └── CrossButton.tsx
+│       │   ├── Card/
+│       │   └── Modals/
+│       │       ├── LetterModal.ts
+│       │       ├── TooltipModal.ts
+│       │       └── LanguageSettingModal.ts
+│       ├── utils/
+│       │   └── translate/
+│       │       ├── useLanguage.tsx
+│       │       ├── useTranslation.ts
+│       │       ├── translations.ts
+│       │       └── languages/
+│       │           ├── ko.ts
+│       │           ├── en.ts
+│       │           └── ja.ts
 │       └── models/
-│           ├── req/
-│           │   ├── GetMyPokedexRequest.ts
-│           │   └── GetPokemonDetailByIdRequest.ts
-│           └── res/
-│               ├── GetMyPokedexResponse.ts
-│               └── GetPokemonDetailByIdResponse.ts
-│
-├── shared/                       # 공통 컴포넌트 및 유틸리티
-│   ├── components/
-│   │   ├── Header/
-│   │   │   └── Header.tsx
-│   │   ├── Container/
-│   │   │   └── Container.tsx
-│   │   ├── BottomButtons/
-│   │   │   ├── BottomButtons.tsx
-│   │   │   └── CrossButton.tsx
-│   │   ├── Card/
-│   │   └── Modals/
-│   │       ├── LetterModal.ts
-│   │       ├── TooltipModal.ts
-│   │       └── LanguageSettingModal.ts
-│   ├── utils/
-│   │   └── translate/
-│   │       ├── useLanguage.tsx
-│   │       ├── useTranslation.ts
-│   │       ├── translations.ts
-│   │       └── languages/
-│   │           ├── ko.ts
-│   │           ├── en.ts
-│   │           └── ja.ts
-│   └── models/
 │
 └── assets/                       # 정적 리소스
     ├── images/
