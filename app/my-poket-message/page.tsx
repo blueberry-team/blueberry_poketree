@@ -1,9 +1,11 @@
 "use client";
 
 import { PageLayout } from "@/features/shared/components/Layout/PageLayout";
+import { useTranslation } from "@/features/shared/hooks/useTranslation";
 
 // 내 포켓 메시지 페이지
 export default function MyPoketMessagePage() {
+  const { t } = useTranslation();
   const handleUp = () => {
     console.log("이전 메시지");
   };
@@ -27,7 +29,7 @@ export default function MyPoketMessagePage() {
       onLeft={handleLeft}
       onRight={handleRight}
     >
-      <h1>My Poket Message</h1>
+      <h1>{t("message.title")}</h1>
     </PageLayout>
   );
 }

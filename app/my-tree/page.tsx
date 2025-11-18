@@ -1,9 +1,11 @@
 "use client";
 
 import { PageLayout } from "@/features/shared/components/Layout/PageLayout";
+import { useTranslation } from "@/features/shared/hooks/useTranslation";
 
 // 내 트리 페이지
 export default function MyTreePage() {
+  const { t } = useTranslation();
   const handleUp = () => {
     console.log("트리 확대");
   };
@@ -27,7 +29,7 @@ export default function MyTreePage() {
       onLeft={handleLeft}
       onRight={handleRight}
     >
-      <h1>My Tree</h1>
+      <h1>{t("tree.title")}</h1>
     </PageLayout>
   );
 }

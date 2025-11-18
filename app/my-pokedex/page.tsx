@@ -3,9 +3,11 @@
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
 import { PageLayout } from "@/features/shared/components/Layout/PageLayout";
+import { useTranslation } from "@/features/shared/hooks/useTranslation";
 
 // 포켓몬 목록 페이지
 export default function MyPokedexPage() {
+  const { t } = useTranslation();
   const pokemons = [
     { id: 1, name: "Bulbasaur" },
     { id: 2, name: "Ivysaur" },
@@ -114,7 +116,7 @@ export default function MyPokedexPage() {
       selectedPokemonId={selectedPokemon?.id}
     >
       <div className="flex flex-col px-3 py-1" style={{ height: "100%" }}>
-        <h1 className="text-sm font-bold mb-1">My Pokedex</h1>
+        <h1 className="text-sm font-bold mb-1">{t("pokedex.title")}</h1>
 
         {/* 5x5 그리드 - 최대 5줄까지만 표시 */}
         <div

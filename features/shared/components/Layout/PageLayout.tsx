@@ -3,6 +3,7 @@
 import { ReactNode } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { BottomCrossButton } from "../BottomCrossButton/BottomCrossButton";
+import { useTranslation } from "../../hooks/useTranslation";
 
 interface PageLayoutProps {
   children: ReactNode;
@@ -28,6 +29,7 @@ export function PageLayout({
 }: PageLayoutProps) {
   const router = useRouter();
   const pathname = usePathname();
+  const { t } = useTranslation();
 
   const isMyPokedex = pathname === "/my-pokedex";
 
@@ -41,7 +43,7 @@ export function PageLayout({
     }
   };
 
-  const buttonLabel = isMyPokedex ? "자세히 보기" : "포켓몬도감";
+  const buttonLabel = isMyPokedex ? t("pokedex.detail") : t("pokedex.button");
 
   return (
     <>
