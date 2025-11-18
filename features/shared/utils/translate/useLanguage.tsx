@@ -1,0 +1,142 @@
+"use client";
+
+import { createContext, useContext, useState, useEffect, ReactNode } from "react";
+import { usePathname } from "next/navigation";
+import { ko } from "./languages/ko";
+import { en } from "./languages/en";
+import { ja } from "./languages/ja";
+
+export type Language = "ko" | "en" | "ja";
+
+interface LanguageContextType {
+  language: Language;
+  setLanguage: (lang: Language) => void;
+}
+
+const LanguageContext = createContext<LanguageContextType | undefined>(undefined);
+
+// ===== Translation Types & Functions =====
+
+export const translations = {
+  ko,
+  en,
+  ja,
+} as const;
+
+type NestedKeyOf<T> = T extends object
+  ? {
+      [K in keyof T]: K extends string
+        ? T[K] extends object
+          ? `${K}.${NestedKeyOf<T[K]>}`
+          : K
+        : never;
+    }[keyof T]
+  : never;
+
+export type TranslationKey = NestedKeyOf<typeof translations.ko>;
+
+export function getTranslation(language: Language, key: TranslationKey): string {
+  const keys = key.split(".");
+  let value: any = translations[language];
+
+  for (const k of keys) {
+    value = value?.[k];
+  }
+
+  return value || key;
+}
+
+// ===== Language Context & Provider =====
+
+// 브라우저 언어 감지 함수
+function detectBrowserLanguage(): Language {
+  if (typeof window === "undefined") return "ko";
+
+  const browserLang = navigator.language.toLowerCase();
+
+  if (browserLang.startsWith("ko")) return "ko";
+  if (browserLang.startsWith("ja")) return "ja";
+  return "en";
+}
+
+// 초기 언어 설정 함수 (서버/클라이언트 모두 동작)
+function getInitialLanguage(): Language {
+  if (typeof window === "undefined") return "ko";
+
+  const savedLanguage = localStorage.getItem("language") as Language;
+  if (savedLanguage && ["ko", "en", "ja"].includes(savedLanguage)) {
+    return savedLanguage;
+  }
+
+  return detectBrowserLanguage();
+}
+
+export function LanguageProvider({ children }: { children: ReactNode }) {
+  const pathname = usePathname();
+  const [language, setLanguageState] = useState<Language>(() => getInitialLanguage());
+  const [mounted, setMounted] = useState(false);
+
+  // 클라이언트 마운트 확인 및 localStorage 동기화
+  useEffect(() => {
+    setMounted(true);
+    const savedLanguage = localStorage.getItem("language") as Language;
+    if (savedLanguage && ["ko", "en", "ja"].includes(savedLanguage)) {
+      if (savedLanguage !== language) {
+        setLanguageState(savedLanguage);
+      }
+    }
+  }, []);
+
+  // pathname 변경 시 localStorage 재확인 (뒤로가기 대응)
+  useEffect(() => {
+    if (!mounted) return;
+
+    const savedLanguage = localStorage.getItem("language") as Language;
+    if (savedLanguage && ["ko", "en", "ja"].includes(savedLanguage)) {
+      if (savedLanguage !== language) {
+        setLanguageState(savedLanguage);
+      }
+    }
+  }, [pathname, mounted]);
+
+  // 언어 변경 함수
+  const setLanguage = (lang: Language) => {
+    setLanguageState(lang);
+    localStorage.setItem("language", lang);
+  };
+
+  // SSR 중에는 기본값 사용
+  if (!mounted) {
+    return (
+      <LanguageContext.Provider value={{ language, setLanguage }}>
+        {children}
+      </LanguageContext.Provider>
+    );
+  }
+
+  return (
+    <LanguageContext.Provider value={{ language, setLanguage }}>
+      {children}
+    </LanguageContext.Provider>
+  );
+}
+
+export function useLanguage() {
+  const context = useContext(LanguageContext);
+  if (context === undefined) {
+    throw new Error("useLanguage must be used within a LanguageProvider");
+  }
+  return context;
+}
+
+// ===== Translation Hook =====
+
+export function useTranslation() {
+  const { language } = useLanguage();
+
+  const translate = (key: TranslationKey): string => {
+    return getTranslation(language, key);
+  };
+
+  return { translate, language };
+}

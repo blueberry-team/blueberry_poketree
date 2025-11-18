@@ -159,14 +159,23 @@ src/
 │       ├── components/
 │       │   ├── Header/
 │       │   │   └── Header.tsx
+│       │   ├── Container/
+│       │   │   └── Container.tsx
+│       │   ├── BottomButtons/
+│       │   │   ├── BottomButtons.tsx
+│       │   │   └── CrossButton.tsx
 │       │   ├── Card/
 │       │   └── Modals/
 │       │       ├── LetterModal.ts
 │       │       ├── TooltipModal.ts
-│       │       └── LanguegeSettingModal.ts
-│       ├── hooks/
-│       │   └── useLanguage.ts
+│       │       └── LanguageSettingModal.ts
 │       ├── utils/
+│       │   └── translate/
+│       │       ├── useLanguage.tsx
+│       │       └── languages/
+│       │           ├── ko.ts
+│       │           ├── en.ts
+│       │           └── ja.ts
 │       └── models/
 │
 └── assets/                       # 정적 리소스
