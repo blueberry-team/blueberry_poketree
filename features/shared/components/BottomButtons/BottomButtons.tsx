@@ -2,7 +2,7 @@
 
 import { useRouter, usePathname } from "next/navigation";
 import { CrossButton } from "./CrossButton";
-import { useTranslation } from "@/features/shared/utils/translate/useTranslation";
+import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 
 interface BottomButtonsProps {
   onUp?: () => void;

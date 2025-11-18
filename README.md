@@ -172,8 +172,6 @@ src/
 │       ├── utils/
 │       │   └── translate/
 │       │       ├── useLanguage.tsx
-│       │       ├── useTranslation.ts
-│       │       ├── translations.ts
 │       │       └── languages/
 │       │           ├── ko.ts
 │       │           ├── en.ts

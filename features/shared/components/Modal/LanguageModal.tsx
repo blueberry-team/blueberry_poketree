@@ -1,7 +1,6 @@
 "use client";
 
-import { Language, useLanguage } from "../../utils/translate/useLanguage";
-import { useTranslation } from "../../utils/translate/useTranslation";
+import { Language, useLanguage, useTranslation } from "../../utils/translate/useLanguage";
 
 interface LanguageModalProps {
   isOpen: boolean;
