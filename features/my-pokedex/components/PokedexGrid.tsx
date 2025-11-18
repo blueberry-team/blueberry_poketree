@@ -2,10 +2,10 @@
 
 import { useRef, useEffect } from "react";
 import Link from "next/link";
-import { Pokemon } from "@/features/my-pokedex/models/Pokemon";
+import { PokemonInDex } from "@/features/my-pokedex/usecases/getMyPokedex";
 
 interface PokedexGridProps {
-  pokemons: Pokemon[];
+  pokemons: PokemonInDex[];
   selectedIndex: number;
 }
 

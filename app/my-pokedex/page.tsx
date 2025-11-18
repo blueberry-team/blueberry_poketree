@@ -3,14 +3,13 @@
 import { useState, useEffect } from "react";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
 import { PokedexGrid } from "@/features/my-pokedex/components/PokedexGrid";
-import { getMyPokedex } from "@/features/my-pokedex/usecases/getMyPokedex";
-import { Pokemon } from "@/features/my-pokedex/models/Pokemon";
+import { getMyPokedex, PokemonInDex } from "@/features/my-pokedex/usecases/getMyPokedex";
 
 // 포켓몬 목록 페이지
 export default function MyPokedexPage() {
   const COLS = 5; // 가로 5개
   const [selectedIndex, setSelectedIndex] = useState(0);
-  const [pokemons, setPokemons] = useState<Pokemon[]>([]);
+  const [pokemons, setPokemons] = useState<PokemonInDex[]>([]);
 
   useEffect(() => {
     const fetchPokemons = async () => {
