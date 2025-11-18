@@ -2,19 +2,19 @@
 
 import { usePathname } from "next/navigation";
 
-interface BottomCrossButtonProps {
+interface CrossButtonProps {
   onUp?: () => void;
   onDown?: () => void;
   onLeft?: () => void;
   onRight?: () => void;
 }
 
-export function BottomCrossButton({
+export function CrossButton({
   onUp,
   onDown,
   onLeft,
   onRight,
-}: BottomCrossButtonProps) {
+}: CrossButtonProps) {
   const pathname = usePathname();
 
   // 특정 페이지에서만 표시
@@ -26,7 +26,7 @@ export function BottomCrossButton({
 
   if (!shouldShow) return null;
 
-  // 크기 계산: 포켓몬도감 버튼 대비 101:7E0 비율
+  // 크기 계산: 포켓몬도감 버튼 대비 101:70 비율
   // 포켓몬도감 버튼이 70이면, 십자 버튼은 101
   const crossSize = 101; // px
 

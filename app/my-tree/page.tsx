@@ -1,6 +1,6 @@
 "use client";
 
-import { PageLayout } from "@/features/shared/components/Layout/PageLayout";
+import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
 
 // 내 트리 페이지
 export default function MyTreePage() {
@@ -21,13 +21,13 @@ export default function MyTreePage() {
   };
 
   return (
-    <PageLayout
+    <BottomButtons
       onUp={handleUp}
       onDown={handleDown}
       onLeft={handleLeft}
       onRight={handleRight}
     >
       <h1>My Tree</h1>
-    </PageLayout>
+    </BottomButtons>
   );
 }

@@ -2,7 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import Link from "next/link";
-import { PageLayout } from "@/features/shared/components/Layout/PageLayout";
+import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
 
 // 포켓몬 목록 페이지
 export default function MyPokedexPage() {
@@ -106,7 +106,7 @@ export default function MyPokedexPage() {
   const selectedPokemon = pokemons[selectedIndex];
 
   return (
-    <PageLayout
+    <BottomButtons
       onUp={handleUp}
       onDown={handleDown}
       onLeft={handleLeft}
@@ -151,6 +151,6 @@ export default function MyPokedexPage() {
           ))}
         </div>
       </div>
-    </PageLayout>
+    </BottomButtons>
   );
 }

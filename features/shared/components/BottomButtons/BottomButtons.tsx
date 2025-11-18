@@ -2,9 +2,9 @@
 
 import { ReactNode } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { BottomCrossButton } from "../BottomCrossButton/BottomCrossButton";
+import { CrossButton } from "./CrossButton";
 
-interface PageLayoutProps {
+interface BottomButtonsProps {
   children: ReactNode;
   onUp?: () => void;
   onDown?: () => void;
@@ -14,18 +14,18 @@ interface PageLayoutProps {
 }
 
 /**
- * 공통 하단 레이아웃
+ * 하단 버튼 그룹
  * - 포켓몬도감 버튼과 십자 버튼 포함
  * - Container 내부에서 사용
  */
-export function PageLayout({
+export function BottomButtons({
   children,
   onUp,
   onDown,
   onLeft,
   onRight,
   selectedPokemonId
-}: PageLayoutProps) {
+}: BottomButtonsProps) {
   const router = useRouter();
   const pathname = usePathname();
 
@@ -61,7 +61,7 @@ export function PageLayout({
       </button>
 
       {/* 십자 버튼 */}
-      <BottomCrossButton
+      <CrossButton
         onUp={onUp}
         onDown={onDown}
         onLeft={onLeft}
