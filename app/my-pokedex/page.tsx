@@ -106,13 +106,7 @@ export default function MyPokedexPage() {
   const selectedPokemon = pokemons[selectedIndex];
 
   return (
-    <BottomButtons
-      onUp={handleUp}
-      onDown={handleDown}
-      onLeft={handleLeft}
-      onRight={handleRight}
-      selectedPokemonId={selectedPokemon?.id}
-    >
+    <>
       <div className="flex flex-col px-3 py-1" style={{ height: "100%" }}>
         <h1 className="text-sm font-bold mb-1">My Pokedex</h1>
 
@@ -151,6 +145,13 @@ export default function MyPokedexPage() {
           ))}
         </div>
       </div>
-    </BottomButtons>
+      <BottomButtons
+        onUp={handleUp}
+        onDown={handleDown}
+        onLeft={handleLeft}
+        onRight={handleRight}
+        selectedPokemonId={selectedPokemon?.id}
+      />
+    </>
   );
 }

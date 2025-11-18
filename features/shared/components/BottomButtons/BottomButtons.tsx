@@ -1,11 +1,9 @@
 "use client";
 
-import { ReactNode } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import { CrossButton } from "./CrossButton";
 
 interface BottomButtonsProps {
-  children: ReactNode;
   onUp?: () => void;
   onDown?: () => void;
   onLeft?: () => void;
@@ -19,7 +17,6 @@ interface BottomButtonsProps {
  * - Container 내부에서 사용
  */
 export function BottomButtons({
-  children,
   onUp,
   onDown,
   onLeft,
@@ -45,8 +42,6 @@ export function BottomButtons({
 
   return (
     <>
-      {children}
-
       {/* 포켓몬도감/자세히보기 버튼 - 십자 버튼 좌측에 고정, 세로 중심 일치 */}
       <button
         onClick={handleButtonClick}
