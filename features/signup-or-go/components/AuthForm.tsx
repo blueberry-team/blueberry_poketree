@@ -4,15 +4,21 @@ import { useState } from "react";
 import Image from "next/image";
 import HumanIcon from "@/assets/icon/humanIcon.svg";
 import LockIcon from "@/assets/icon/lockIcon.svg";
+import { SignupOrGoRequest } from "../models/req/SignupOrGoRequest";
 
-export function AuthForm() {
+interface AuthFormProps {
+  onSubmit: (req: SignupOrGoRequest) => Promise<void>;
+  isLoading: boolean;
+  error: string | null;
+}
+
+export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // 로그인 로직은 추후 구현
-    console.log({ nickname, password });
+    await onSubmit({ nickname, password });
   };
 
   return (
@@ -60,10 +66,20 @@ export function AuthForm() {
         {/* 로그인 버튼 */}
         <button
           type="submit"
-          className="w-full h-12 bg-[#FF7373] rounded-lg flex items-center justify-center mb-3"
+          disabled={isLoading}
+          className="w-full h-12 bg-[#FF7373] rounded-lg flex items-center justify-center mb-3 disabled:opacity-50"
         >
-          <span className="text-white text-2xl font-normal">로그인</span>
+          <span className="text-white text-2xl font-normal">
+            {isLoading ? "로딩중..." : "로그인"}
+          </span>
         </button>
+        
+        {/* 에러 메시지 */}
+        {error && (
+          <div className="mb-3 p-3 bg-red-100 border border-red-400 rounded">
+            <p className="text-red-700 text-sm">{error}</p>
+          </div>
+        )}
       </form>
     </div>
   );
