@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { Tree } from "@/features/my-tree/components/ChristmasTree/Tree";
+import { Tree } from "@/features/my-tree/components/Tree";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
 import LetterModal from "@/features/shared/components/Modal/LetterModal";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
