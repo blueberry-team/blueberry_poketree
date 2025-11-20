@@ -91,8 +91,11 @@ export function Header() {
             <span className="text-black text-base font-bold">文</span>
           </button>
 
-          {/* 도움말 버튼 */}
-          <button className="w-[27px] h-[27px] bg-[#D9D9D9] rounded-[13.5px] flex items-center justify-center">
+          {/* 도움말 버튼 - 임시로 my-tree로 이동 */}
+          <button
+            onClick={() => router.push("/my-tree")}
+            className="w-[27px] h-[27px] bg-[#D9D9D9] rounded-[13.5px] flex items-center justify-center"
+          >
             <span className="text-black text-base font-bold">?</span>
           </button>
 
