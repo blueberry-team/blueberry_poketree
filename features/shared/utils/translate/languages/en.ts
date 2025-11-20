@@ -17,6 +17,11 @@ export const en = {
   },
   tree: {
     title: "My Poke Tree",
+    userTree: "'s Poke Tree",
+    share: "Share Tree",
+    notice: "Messages can be viewed from Christmas Day!",
+    messageCount: " Poket Messages",
+    checkMessage: "Check Messages",
     level: "Level",
     experience: "EXP",
   },
