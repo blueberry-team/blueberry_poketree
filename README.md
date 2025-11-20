@@ -170,6 +170,8 @@ src/
 │       │       ├── TooltipModal.ts
 │       │       └── LanguageSettingModal.ts
 │       ├── utils/
+│       ├── usecases/
+│       ├── repositories/
 │       │   └── translate/
 │       │       ├── useLanguage.tsx
 │       │       └── languages/
@@ -184,6 +186,82 @@ src/
     │   ├── background/
     │   └── pokemon/
     └── fonts/
+```
+
+## 의존성 관리
+
+프로젝트는 명확한 **단방향 의존성 흐름**을 유지합니다.
+
+### 기본 원칙
+
+#### 페이지 기능 의존성 방향
+```
+[Component] ↔ [Page] ← [UseCase] ← [Repository]
+```
+
+- **Page**: 비즈니스 로직 조율 (usecase 호출, 상태 관리, 라우팅)
+- **Component**: UI 렌더링 및 사용자 이벤트 처리 (Page와 양방향 통신)
+- **UseCase**: 비즈니스 로직 및 검증
+- **Repository**: API 통신 및 데이터 소스 추상화
+
+**규칙**:
+- ✅ Page는 usecase를 직접 import하여 사용
+- ✅ Component는 Page로부터 props(데이터/콜백)를 받아 사용
+- ❌ Component가 직접 usecase를 import하지 않음
+
+#### 공통 컴포넌트 예외 처리
+
+`features/shared/components/`의 전역 컴포넌트(예: Header, Footer)는 예외적으로 **직접 usecase import를 허용**합니다.
+
+```typescript
+// ✅ 허용: shared 컴포넌트에서 usecase 직접 사용
+// features/shared/components/Header/Header.tsx
+import { logout } from "@/features/shared/usecases/logout";
+
+export function Header() {
+  const handleLogout = () => {
+    logout();
+    router.push("/");
+  };
+  // ...
+}
+```
+
+**이유**:
+- Header/Footer는 layout에서 사용되며 중간 Page가 없음
+- 여러 페이지에서 공유되는 전역 UI이므로 직접 로직 접근 필요
+
+### 예시: 로그인 기능
+
+```typescript
+// ✅ 올바른 구조
+// app/signup-or-go/page.tsx
+import { signupOrGo } from "@/features/signup-or-go/usecases/signupOrGo";
+import { AuthForm } from "@/features/signup-or-go/components/AuthForm";
+
+export default function SignupOrGoPage() {
+  const handleSubmit = async (data) => {
+    const result = await signupOrGo(data);  // usecase 호출
+    if (result.success) router.push("/my-tree");
+  };
+
+  return <AuthForm onSubmit={handleSubmit} />;  // Component에 콜백 전달
+}
+
+// features/signup-or-go/components/AuthForm.tsx
+export function AuthForm({ onSubmit }) {
+  return <form onSubmit={onSubmit}>...</form>;  // Page로부터 받은 콜백 사용
+}
+```
+
+```typescript
+// ❌ 잘못된 예시
+// features/signup-or-go/components/AuthForm.tsx
+import { signupOrGo } from "../usecases/signupOrGo";  // Component가 직접 usecase import
+
+export function AuthForm() {
+  const handleSubmit = () => signupOrGo();  // ❌ 의존성 방향 위반
+}
 ```
 
 ## 스타일링 규칙

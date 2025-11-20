@@ -12,6 +12,7 @@ import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import HomeIcon from "@/assets/icon/homeIcon.svg";
+import { logout } from "../../usecases/logout";
 import { LanguageModal } from "../Modal/LanguageModal";
 import { useTranslation } from "../../utils/translate/useLanguage";
 
@@ -55,8 +56,7 @@ export function Header() {
   };
 
   const handleLogout = () => {
-    // TODO: 로그아웃 로직은 추후 구현
-    console.log("로그아웃");
+    logout();
     router.push("/");
   };
 
