@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import Link from "next/link";
+import Image from "next/image";
 import { PokemonInDex } from "@/features/my-pokedex/usecases/getMyPokedex";
 
 interface PokedexGridProps {
@@ -37,7 +37,7 @@ export function PokedexGrid({ pokemons, selectedIndex }: PokedexGridProps) {
           // 카드 높이: 너비 * 6/5 (aspect ratio 5:6)
           // 5줄 높이: 카드높이 * 5 (세로 간격 없음)
           height: "calc(((100vw - 24px) / 5) * (6/5) * 5)",
-          maxHeight: "calc(((390px - 24px) / 5) * (6/5) * 5)", // 390px는 컨테이너 최대 너비
+          maxHeight: "calc(((410px - 24px) / 5) * (6/5) * 5)", // 390px는 컨테이너 최대 너비
           scrollbarWidth: "none", // Firefox
           msOverflowStyle: "none", // IE and Edge
         }}
@@ -45,23 +45,39 @@ export function PokedexGrid({ pokemons, selectedIndex }: PokedexGridProps) {
         {pokemons.map((pokemon, index) => {
           const row = Math.floor(index / 5);
           const isNotFirstRow = row > 0;
+          const isSelected = index === selectedIndex;
+          const isOwned = pokemon.isOwned;
 
           return (
             <div
               key={pokemon.id}
-              ref={index === selectedIndex ? selectedRef : null}
-              className="flex items-center justify-center transition-all"
+              ref={isSelected ? selectedRef : null}
+              className="flex flex-col transition-all "
               style={{
                 aspectRatio: "5 / 6",
                 fontSize: "9px",
                 fontWeight: "500",
-                backgroundColor: index === selectedIndex ? "#90EE90" : "white",
+                backgroundColor: isSelected ? "#90EE90" : "white",
                 marginTop: isNotFirstRow ? "-1px" : "0",
+                opacity: isOwned ? 1 : 0.4,
               }}
             >
-              <Link href={`/my-pokedex/${pokemon.id}`} className="w-full h-full flex items-center justify-center">
-                #{pokemon.id}
-              </Link>
+              {/* NO.001 형식의 이름표 */}
+              <div className="w-full flex items-center justify-center pt-1 pointer-events-none">
+                <span className="text-black text-xs font-bold">
+                  No. {String(pokemon.id).padStart(3, "0")}
+                </span>
+              </div>
+              {/* 포켓몬 이미지 */}
+              <div className="flex-1 flex items-center justify-center pointer-events-none relative">
+                <Image
+                  src={isOwned ? pokemon.imageActive : pokemon.imageInactive}
+                  alt={isOwned ? pokemon.name : "???"}
+                  className="object-contain"
+                  fill
+                  sizes="(max-width: 410px) 20vw, 82px"
+                />
+              </div>
             </div>
           );
         })}

@@ -10,6 +10,7 @@ interface BottomButtonsProps {
   onLeft?: () => void;
   onRight?: () => void;
   selectedPokemonId?: number; // 포켓몬 도감에서 현재 선택된 포켓몬 ID
+  selectedIndex?: number; // 포켓몬 도감에서 현재 선택된 인덱스
 }
 
 /**
@@ -22,18 +23,23 @@ export function BottomButtons({
   onDown,
   onLeft,
   onRight,
-  selectedPokemonId
+  selectedPokemonId,
+  selectedIndex
 }: BottomButtonsProps) {
   const { translate } = useTranslation();
   const router = useRouter();
   const pathname = usePathname();
 
   const isMyPokedex = pathname === "/my-pokedex";
+  const isPokedexDetail = pathname.startsWith("/my-pokedex/");
 
   const handleButtonClick = () => {
     if (isMyPokedex && selectedPokemonId) {
-      // 포켓몬 도감 페이지에서는 선택된 포켓몬 상세로 이동
-      router.push(`/my-pokedex/${selectedPokemonId}`);
+      // 포켓몬 도감 페이지에서는 선택된 포켓몬 상세로 이동 (선택된 인덱스도 함께 전달)
+      router.push(`/my-pokedex/${selectedPokemonId}?selectedIndex=${selectedIndex ?? 0}`);
+    } else if (isPokedexDetail) {
+      // 포켓몬 상세 페이지에서는 포켓몬 도감으로 돌아가기 (선택된 인덱스 유지)
+      router.push(`/my-pokedex?selectedIndex=${selectedIndex ?? 0}`);
     } else {
       // 다른 페이지에서는 포켓몬 도감으로 이동
       router.push("/my-pokedex");
