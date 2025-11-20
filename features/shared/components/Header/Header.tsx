@@ -8,14 +8,19 @@
 
 "use client";
 
+import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import HomeIcon from "@/assets/icon/homeIcon.svg";
 import { logout } from "../../usecases/logout";
+import { LanguageModal } from "../Modal/LanguageModal";
+import { useTranslation } from "../../utils/translate/useLanguage";
 
 export function Header() {
   const pathname = usePathname();
   const router = useRouter();
+  const { translate } = useTranslation();
+  const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
 
   // 경로별 조건 확인
   const isHome = pathname === "/";
@@ -79,7 +84,10 @@ export function Header() {
         {/* 우측 버튼 그룹 */}
         <div className="absolute right-4 top-[18px] flex items-center gap-2.5">
           {/* 언어 설정 버튼 */}
-          <button className="w-[27px] h-[27px] bg-[#D9D9D9] rounded-[13.5px] flex items-center justify-center">
+          <button
+            onClick={() => setIsLanguageModalOpen(true)}
+            className="w-[27px] h-[27px] bg-[#D9D9D9] rounded-[13.5px] flex items-center justify-center"
+          >
             <span className="text-black text-base font-bold">文</span>
           </button>
 
@@ -94,7 +102,7 @@ export function Header() {
               onClick={handleLogin}
               className="w-[60px] h-[27px] bg-[#000000] rounded-[4px] flex items-center justify-center"
             >
-              <span className="text-white text-xs font-bold">로그인</span>
+              <span className="text-white text-xs font-bold">{translate("header.login")}</span>
             </button>
           )}
 
@@ -104,7 +112,7 @@ export function Header() {
               onClick={handleLogout}
               className="w-[60px] h-[27px] bg-[#000000] rounded-[4px] flex items-center justify-center"
             >
-              <span className="text-white text-xs font-bold">로그아웃</span>
+              <span className="text-white text-xs font-bold">{translate("header.logout")}</span>
             </button>
           )}
 
@@ -119,6 +127,12 @@ export function Header() {
           )}
         </div>
       </div>
+
+      {/* 언어 선택 모달 */}
+      <LanguageModal
+        isOpen={isLanguageModalOpen}
+        onClose={() => setIsLanguageModalOpen(false)}
+      />
     </header>
   );
 }
