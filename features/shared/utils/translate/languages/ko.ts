@@ -14,6 +14,8 @@ export const ko = {
     title: "포켓몬 도감",
     button: "포켓몬도감",
     detail: "자세히 보기",
+    userPokedex: "님의 포켓몬 도감",
+    masterBadge: "포켓몬 마스터",
   },
   tree: {
     title: "나의 포켓트리",

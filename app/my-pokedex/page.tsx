@@ -4,9 +4,11 @@ import { useState, useEffect } from "react";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
 import { PokedexGrid } from "@/features/my-pokedex/components/PokedexGrid";
 import { getMyPokedex, PokemonInDex } from "@/features/my-pokedex/usecases/getMyPokedex";
+import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 
 // 포켓몬 목록 페이지
 export default function MyPokedexPage() {
+  const { translate } = useTranslation();
   const COLS = 5; // 가로 5개
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [pokemons, setPokemons] = useState<PokemonInDex[]>([]);
@@ -56,9 +58,31 @@ export default function MyPokedexPage() {
 
   const selectedPokemon = pokemons[selectedIndex];
 
+  // 사용자 이름 (하드코딩)
+  const userName = "상화";
+
   return (
-    <>
-      <PokedexGrid pokemons={pokemons} selectedIndex={selectedIndex} />
+    <div className="flex-1 flex flex-col">
+      {/* 헤더 영역 */}
+      <div className="px-4 py-3 shrink-0">
+        <div className="flex items-center justify-between mb-2">
+          <h1 className="text-black text-xl font-bold">
+            {userName} {translate("pokedex.userPokedex")}
+          </h1>
+          {/* 포켓몬 마스터 배지 */}
+          <button className="flex items-center gap-1 px-3 py-2 bg-black text-white text-sm font-bold" style={{ borderRadius: "8px" }}>
+            <span>⭐</span>
+            <span>{translate("pokedex.masterBadge")}</span>
+          </button>
+        </div>
+      </div>
+
+      {/* 그리드 영역 */}
+      <div className="flex-1">
+        <PokedexGrid pokemons={pokemons} selectedIndex={selectedIndex} />
+      </div>
+
+      {/* 버튼 영역 */}
       <BottomButtons
         onUp={handleUp}
         onDown={handleDown}
@@ -66,6 +90,6 @@ export default function MyPokedexPage() {
         onRight={handleRight}
         selectedPokemonId={selectedPokemon?.id}
       />
-    </>
+    </div>
   );
 }

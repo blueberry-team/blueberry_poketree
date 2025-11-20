@@ -14,6 +14,8 @@ export const ja = {
     title: "ポケモン図鑑",
     button: "ポケモン図鑑",
     detail: "詳細を見る",
+    userPokedex: "のポケモン図鑑",
+    masterBadge: "ポケモンマスター",
   },
   tree: {
     title: "マイポケツリー",

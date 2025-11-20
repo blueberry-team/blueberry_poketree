@@ -14,6 +14,8 @@ export const en = {
     title: "Pokédex",
     button: "Pokédex",
     detail: "View Details",
+    userPokedex: "'s Pokédex",
+    masterBadge: "Pokémon Master",
   },
   tree: {
     title: "My Poke Tree",
