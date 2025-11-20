@@ -11,8 +11,6 @@ import BackgroundImage from "@/assets/images/background/background.png";
  */
 
 interface TreeProps {
-  // 현재 표시할 포켓몬 인덱스 (획득한 포켓몬 중)
-  currentPokemonIndex: number;
   // 획득한 포켓몬 목록
   obtainedPokemons: StaticImageData[];
   // 전체 편지 개수
@@ -24,7 +22,6 @@ interface TreeProps {
 }
 
 export function Tree({
-  currentPokemonIndex,
   obtainedPokemons,
   totalMessageCount,
   currentPage,
@@ -107,23 +104,20 @@ export function Tree({
       {obtainedPokemons.map((pokemon, index) => {
         // 6마리 포켓몬 위치
         const pokemonPositions = [
-          { bottom: "60%", left: "2%", scaleX: -1 },    // 왼쪽 상단 (오른쪽 바라봄)
-          { bottom: "40%", left: "2%", scaleX: -1 },    // 왼쪽 중단 (오른쪽 바라봄)
-          { bottom: "20%", left: "2%", scaleX: -1 },    // 왼쪽 하단 (오른쪽 바라봄)
-          { bottom: "60%", right: "2%", scaleX: 1 },  // 오른쪽 상단 (왼쪽 바라봄)
-          { bottom: "40%", right: "2%", scaleX: 1 },  // 오른쪽 중단 (왼쪽 바라봄)
-          { bottom: "20%", right: "2%", scaleX: 1 },  // 오른쪽 하단 (왼쪽 바라봄)
+          { bottom: "60%", left: "2%", scaleX: -1 },  // 왼쪽 상단
+          { bottom: "40%", left: "2%", scaleX: -1 },  // 왼쪽 중단
+          { bottom: "20%", left: "2%", scaleX: -1 },  // 왼쪽 하단
+          { bottom: "60%", right: "2%", scaleX: 1 },  // 오른쪽 상단
+          { bottom: "40%", right: "2%", scaleX: 1 },  // 오른쪽 중단
+          { bottom: "20%", right: "2%", scaleX: 1 },  // 오른쪽 하단 
         ];
         const pos = pokemonPositions[index];
         if (!pos) return null;
 
-        // 선택된 포켓몬 하이라이트
-        const isSelected = index === currentPokemonIndex;
-
         return (
           <div
             key={index}
-            className={`absolute w-12 h-12 ${isSelected ? "ring-2 ring-yellow-400 rounded-full" : ""}`}
+            className="absolute w-12 h-12"
             style={{
               bottom: pos.bottom,
               left: pos.left,

@@ -23,7 +23,7 @@ import Pokemon6 from "@/assets/images/pokemon/pokemon6.webp";
  * - 트리에 몬스터볼(편지) 표시 (페이지당 6개)
  * - 포켓메시지 확인하기 버튼
  * - 도감 버튼
- * - 십자 버튼 (좌우: 페이지 전환, 상하: 포켓몬 Refresh)
+ * - 십자 버튼
  */
 
 // 샘플 메시지 데이터 (총 15개 - 3페이지)
@@ -45,7 +45,7 @@ const SAMPLE_MESSAGES = [
   { id: 15, content: "2025년에도 좋은 일만 가득하길!" },
 ];
 
-// 전체 포켓몬 목록 (151마리 중 랜덤 6마리 표시)
+// 전체 포켓몬 목록 (랜덤 6마리 표시)
 const ALL_POKEMONS = [
   Pokemon1,
   Pokemon2,
@@ -71,7 +71,7 @@ export default function MyTreePage() {
   const [currentPage, setCurrentPage] = useState(0);
 
   // 현재 표시할 포켓몬 목록 (상하 버튼으로 Refresh)
-  // 초기값은 고정 배열로 설정 (hydration 불일치 방지)
+  // 초기값은 고정 배열로 설정
   const [displayedPokemons, setDisplayedPokemons] = useState(ALL_POKEMONS);
 
   // 편지 모달 상태
@@ -135,7 +135,7 @@ export default function MyTreePage() {
 
   return (
     <div className="flex-1 bg-[#E7E9EB] flex flex-col">
-      {/* 헤더 영역 - 고정 */}
+      {/* 헤더 영역 */}
       <div className="px-4 py-3 shrink-0">
         {/* 사용자 트리 제목 + 공유하기 버튼 */}
         <div className="flex items-center justify-between mb-2">
@@ -165,9 +165,8 @@ export default function MyTreePage() {
         </div>
       </div>
 
-      {/* 바디 영역 - 트리 표시 */}
+      {/* 바디 영역 */}
       <Tree
-        currentPokemonIndex={0}
         obtainedPokemons={displayedPokemons}
         totalMessageCount={totalMessageCount}
         currentPage={currentPage}
