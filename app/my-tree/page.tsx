@@ -6,12 +6,10 @@ import { Tree } from "@/features/my-tree/components/Tree";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
 import LetterModal from "@/features/shared/components/Modal/LetterModal";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
-import Pokemon1 from "@/assets/images/pokemon/pokemon1.webp";
-import Pokemon2 from "@/assets/images/pokemon/pokemon2.webp";
-import Pokemon3 from "@/assets/images/pokemon/pokemon3.webp";
-import Pokemon4 from "@/assets/images/pokemon/pokemon4.webp";
-import Pokemon5 from "@/assets/images/pokemon/pokemon5.webp";
-import Pokemon6 from "@/assets/images/pokemon/pokemon6.webp";
+import {
+  ALL_POKEMON_IMAGES,
+  getRandomPokemonImages
+} from "@/features/shared/data/pokemonData";
 
 /**
  * MyTreePage - 내 트리 페이지
@@ -27,41 +25,24 @@ import Pokemon6 from "@/assets/images/pokemon/pokemon6.webp";
  */
 
 // 샘플 메시지 데이터 (총 15개 - 3페이지)
+// pokemonIndex는 1~151 사이의 값 (pokemon_{pokemonIndex}.webp로 호출)
 const SAMPLE_MESSAGES = [
-  { id: 1, content: "메리 크리스마스! 올해도 행복한 연말 보내세요." },
-  { id: 2, content: "행복한 연말 보내세요! 새해에도 좋은 일만 가득하길 바랍니다." },
-  { id: 3, content: "새해 복 많이 받으세요! 항상 건강하고 행복하세요." },
-  { id: 4, content: "따뜻한 크리스마스 보내세요! 사랑하는 사람들과 함께요." },
-  { id: 5, content: "즐거운 연말연시 되세요! 2025년에도 파이팅!" },
-  { id: 6, content: "포켓트리와 함께하는 특별한 크리스마스! 모든 소원이 이루어지길!" },
-  { id: 7, content: "항상 응원하고 있어요! 좋은 하루 되세요." },
-  { id: 8, content: "올 한 해도 수고 많았어요! 푹 쉬세요." },
-  { id: 9, content: "따뜻한 연말 보내세요! 사랑합니다." },
-  { id: 10, content: "새해에도 건강하고 행복하세요!" },
-  { id: 11, content: "좋은 일만 가득한 크리스마스 되세요!" },
-  { id: 12, content: "힘내세요! 항상 응원합니다." },
-  { id: 13, content: "메리 크리스마스! 새해 복 많이 받으세요." },
-  { id: 14, content: "즐거운 연말 보내세요!" },
-  { id: 15, content: "2025년에도 좋은 일만 가득하길!" },
+  { id: 1, content: "메리 크리스마스! 올해도 행복한 연말 보내세요.", senderName: "익명의 산타", pokemonIndex: 25 },
+  { id: 2, content: "행복한 연말 보내세요! 새해에도 좋은 일만 가득하길 바랍니다.", senderName: "친구A", pokemonIndex: 1 },
+  { id: 3, content: "새해 복 많이 받으세요! 항상 건강하고 행복하세요.", senderName: "가족", pokemonIndex: 4 },
+  { id: 4, content: "따뜻한 크리스마스 보내세요! 사랑하는 사람들과 함께요.", senderName: "동료", pokemonIndex: 7 },
+  { id: 5, content: "즐거운 연말연시 되세요! 2025년에도 파이팅!", senderName: "선배", pokemonIndex: 150 },
+  { id: 6, content: "포켓트리와 함께하는 특별한 크리스마스! 모든 소원이 이루어지길!", senderName: "후배", pokemonIndex: 151 },
+  { id: 7, content: "항상 응원하고 있어요! 좋은 하루 되세요.", senderName: "친구B", pokemonIndex: 39 },
+  { id: 8, content: "올 한 해도 수고 많았어요! 푹 쉬세요.", senderName: "익명", pokemonIndex: 52 },
+  { id: 9, content: "따뜻한 연말 보내세요! 사랑합니다.", senderName: "소중한 사람", pokemonIndex: 6 },
+  { id: 10, content: "새해에도 건강하고 행복하세요!", senderName: "이웃", pokemonIndex: 143 },
+  { id: 11, content: "좋은 일만 가득한 크리스마스 되세요!", senderName: "친구C", pokemonIndex: 94 },
+  { id: 12, content: "힘내세요! 항상 응원합니다.", senderName: "멘토", pokemonIndex: 131 },
+  { id: 13, content: "메리 크리스마스! 새해 복 많이 받으세요.", senderName: "팀원", pokemonIndex: 3 },
+  { id: 14, content: "즐거운 연말 보내세요!", senderName: "지인", pokemonIndex: 9 },
+  { id: 15, content: "2025년에도 좋은 일만 가득하길!", senderName: "익명의 친구", pokemonIndex: 133 },
 ];
-
-// 전체 포켓몬 목록 (랜덤 6마리 표시)
-const ALL_POKEMONS = [
-  Pokemon1,
-  Pokemon2,
-  Pokemon3,
-  Pokemon4,
-  Pokemon5,
-  Pokemon6,
-];
-
-/**
- * 랜덤하게 6마리 포켓몬 선택
- */
-const getRandomPokemons = () => {
-  const shuffled = [...ALL_POKEMONS].sort(() => Math.random() - 0.5);
-  return shuffled.slice(0, 6);
-};
 
 export default function MyTreePage() {
   const router = useRouter();
@@ -71,11 +52,12 @@ export default function MyTreePage() {
   const [currentPage, setCurrentPage] = useState(0);
 
   // 현재 표시할 포켓몬 목록 (상하 버튼으로 Refresh)
-  // 초기값은 고정 배열로 설정
-  const [displayedPokemons, setDisplayedPokemons] = useState(ALL_POKEMONS);
+  // 초기값은 처음 6마리로 설정 (hydration 불일치 방지)
+  const [displayedPokemons, setDisplayedPokemons] = useState(ALL_POKEMON_IMAGES.slice(0, 6));
 
-  // 편지 모달 상태
+  // 편지 열린 상태
   const [isLetterModalOpen, setIsLetterModalOpen] = useState(false);
+  // 선택 편지 인덱스
   const [selectedLetterIndex, setSelectedLetterIndex] = useState(0);
 
   // 사용자 이름 (하드코딩)
@@ -93,7 +75,7 @@ export default function MyTreePage() {
    */
   const handleLeft = () => {
     setCurrentPage((prev) => (prev > 0 ? prev - 1 : totalPages - 1));
-    setDisplayedPokemons(getRandomPokemons());
+    setDisplayedPokemons(getRandomPokemonImages(6));
   };
 
   /**
@@ -101,21 +83,21 @@ export default function MyTreePage() {
    */
   const handleRight = () => {
     setCurrentPage((prev) => (prev < totalPages - 1 ? prev + 1 : 0));
-    setDisplayedPokemons(getRandomPokemons());
+    setDisplayedPokemons(getRandomPokemonImages(6));
   };
 
   /**
    * 포켓몬 Refresh (상 버튼)
    */
   const handleUp = () => {
-    setDisplayedPokemons(getRandomPokemons());
+    setDisplayedPokemons(getRandomPokemonImages(6));
   };
 
   /**
    * 포켓몬 Refresh (하 버튼)
    */
   const handleDown = () => {
-    setDisplayedPokemons(getRandomPokemons());
+    setDisplayedPokemons(getRandomPokemonImages(6));
   };
 
   /**
@@ -200,6 +182,8 @@ export default function MyTreePage() {
         onClose={() => setIsLetterModalOpen(false)}
         letterIndex={selectedLetterIndex}
         letterContent={SAMPLE_MESSAGES[selectedLetterIndex]?.content || ""}
+        senderName={SAMPLE_MESSAGES[selectedLetterIndex]?.senderName || ""}
+        pokemonIndex={SAMPLE_MESSAGES[selectedLetterIndex]?.pokemonIndex || 1}
       />
     </div>
   );
