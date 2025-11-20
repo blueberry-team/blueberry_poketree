@@ -11,6 +11,7 @@
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import HomeIcon from "@/assets/icon/homeIcon.svg";
+import { logout } from "../../usecases/logout";
 
 export function Header() {
   const pathname = usePathname();
@@ -50,8 +51,7 @@ export function Header() {
   };
 
   const handleLogout = () => {
-    // TODO: 로그아웃 로직은 추후 구현
-    console.log("로그아웃");
+    logout();
     router.push("/");
   };
 
