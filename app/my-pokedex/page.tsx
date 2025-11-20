@@ -20,6 +20,15 @@ export default function MyPokedexPage() {
   const [isMaster, setIsMaster] = useState(false);  // 👈 포켓몬 마스터 여부
 
   useEffect(() => {
+
+    //도감에서 방향키 조작한 위치 할당작업.
+    const savedIndex = localStorage.getItem("selectedIndex");
+    if (savedIndex !== null) {
+      setSelectedIndex(Number(savedIndex));
+    } else {
+      setSelectedIndex(0);  // 기본값
+    }
+
     const fetchPokemons = async () => {
       const data = await getMyPokedex();
       setPokemons(data);

@@ -35,11 +35,10 @@ export function BottomButtons({
 
   const handleButtonClick = () => {
     if (isMyPokedex && selectedPokemonId) {
+      //도감에서 방향키 위치한 값 저장
+      localStorage.setItem("selectedIndex", String(selectedIndex ?? 0));
       // 포켓몬 도감 페이지에서는 선택된 포켓몬 상세로 이동 (선택된 인덱스도 함께 전달)
       router.push(`/my-pokedex/${selectedPokemonId}?selectedIndex=${selectedIndex ?? 0}`);
-    } else if (isPokedexDetail) {
-      // 포켓몬 상세 페이지에서는 포켓몬 도감으로 돌아가기 (선택된 인덱스 유지)
-      router.push(`/my-pokedex?selectedIndex=${selectedIndex ?? 0}`);
     } else {
       // 다른 페이지에서는 포켓몬 도감으로 이동
       router.push("/my-pokedex");
