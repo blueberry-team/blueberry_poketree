@@ -35,9 +35,9 @@ export function PokedexGrid({ pokemons, selectedIndex }: PokedexGridProps) {
           alignContent: "start",
           // 카드 너비 기준: (컨테이너 - 패딩) / 5
           // 카드 높이: 너비 * 6/5 (aspect ratio 5:6)
-          // 5줄 높이: 카드높이 * 5 (세로 간격 없음)
+          // 5줄 높이: 카드높이 * 5 (rowGap은 계산에 미포함)
           height: "calc(((100vw - 24px) / 5) * (6/5) * 5)",
-          maxHeight: "calc(((410px - 24px) / 5) * (6/5) * 5)", // 390px는 컨테이너 최대 너비
+          maxHeight: "calc(((410px - 24px) / 5) * (6/5) * 5)", // 410px는 컨테이너 최대 너비
         }}
       >
         {pokemons.map((pokemon, index) => {
