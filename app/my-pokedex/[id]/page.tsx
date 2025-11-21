@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { getMyPokedex, PokemonInDex } from "@/features/my-pokedex/usecases/getMyPokedex";
 
@@ -11,17 +11,19 @@ interface PageProps {
 export default function PokemonDetailPage({ params }: PageProps) {
   const [pokemon, setPokemon] = useState<PokemonInDex | null>(null);
 
-  useEffect(() => {
-    const init = async () => {
-      const { id } = await params;
+  // useEffect 밖으로 함수 분리 + useCallback 사용
+  const fetchPokemonData = useCallback(async () => {
+    const { id } = await params;
 
-      // 포켓몬 데이터 가져오기
-      const pokemons = await getMyPokedex();
-      const found = pokemons.find((p) => p.id === Number(id));
-      setPokemon(found || null);
-    };
-    init();
+    // 포켓몬 데이터 가져오기
+    const pokemons = await getMyPokedex();
+    const found = pokemons.find((p) => p.id === Number(id));
+    setPokemon(found || null);
   }, [params]);
+
+  useEffect(() => {
+    fetchPokemonData();
+  }, [fetchPokemonData]);
 
   if (!pokemon) {
     return <div>Loading...</div>;
