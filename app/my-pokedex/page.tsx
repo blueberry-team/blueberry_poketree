@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
 import { PokedexGrid } from "@/features/my-pokedex/components/PokedexGrid";
 import { getMyPokedex, PokemonInDex } from "@/features/my-pokedex/usecases/getMyPokedex";
@@ -10,23 +9,17 @@ import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 // 포켓몬 목록 페이지
 export default function MyPokedexPage() {
   const { translate } = useTranslation();
-  const searchParams = useSearchParams();
   const COLS = 5; // 가로 5개
 
-  // URL에서 선택된 인덱스 복원
-  const initialIndex = parseInt(searchParams.get("selectedIndex") || "0", 10);
-  const [selectedIndex, setSelectedIndex] = useState(initialIndex);
+  const [selectedIndex, setSelectedIndex] = useState(0);
   const [pokemons, setPokemons] = useState<PokemonInDex[]>([]);
-  const [isMaster, setIsMaster] = useState(false);  // 👈 포켓몬 마스터 여부
+  const [isMaster, setIsMaster] = useState(false);  //  포켓몬 마스터 여부
 
   useEffect(() => {
-
-    //도감에서 방향키 조작한 위치 할당작업.
+    // localStorage에서 선택된 인덱스 복원
     const savedIndex = localStorage.getItem("selectedIndex");
     if (savedIndex !== null) {
       setSelectedIndex(Number(savedIndex));
-    } else {
-      setSelectedIndex(0);  // 기본값
     }
 
     const fetchPokemons = async () => {
