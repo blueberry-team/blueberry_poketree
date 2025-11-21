@@ -31,7 +31,6 @@ export function BottomButtons({
   const pathname = usePathname();
 
   const isMyPokedex = pathname === "/my-pokedex";
-  const isPokedexDetail = pathname.startsWith("/my-pokedex/");
 
   const handleButtonClick = () => {
     if (isMyPokedex && selectedPokemonId) {

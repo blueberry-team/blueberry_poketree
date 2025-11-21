@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useSearchParams } from "next/navigation";
 import Image from "next/image";
 import { getMyPokedex, PokemonInDex } from "@/features/my-pokedex/usecases/getMyPokedex";
 
@@ -10,9 +9,7 @@ interface PageProps {
 }
 
 export default function PokemonDetailPage({ params }: PageProps) {
-  const searchParams = useSearchParams();
   const [pokemon, setPokemon] = useState<PokemonInDex | null>(null);
-  const selectedIndex = parseInt(searchParams.get("selectedIndex") || "0", 10);
 
   useEffect(() => {
     const init = async () => {

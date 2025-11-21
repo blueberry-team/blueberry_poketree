@@ -26,7 +26,7 @@ export function PokedexGrid({ pokemons, selectedIndex }: PokedexGridProps) {
     <div className="flex flex-col px-3 py-1" style={{ height: "100%" }}>
       {/* 5x5 그리드 - 최대 5줄까지만 표시 */}
       <div
-        className="overflow-y-auto overflow-x-hidden scrollbar-hide"
+        className="overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:hidden [scrollbar-width:none] [-ms-overflow-style:none]"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(5, 1fr)",
@@ -38,8 +38,6 @@ export function PokedexGrid({ pokemons, selectedIndex }: PokedexGridProps) {
           // 5줄 높이: 카드높이 * 5 (세로 간격 없음)
           height: "calc(((100vw - 24px) / 5) * (6/5) * 5)",
           maxHeight: "calc(((410px - 24px) / 5) * (6/5) * 5)", // 390px는 컨테이너 최대 너비
-          scrollbarWidth: "none", // Firefox
-          msOverflowStyle: "none", // IE and Edge
         }}
       >
         {pokemons.map((pokemon, index) => {
@@ -57,9 +55,9 @@ export function PokedexGrid({ pokemons, selectedIndex }: PokedexGridProps) {
                 aspectRatio: "5 / 6",
                 fontSize: "9px",
                 fontWeight: "500",
-                backgroundColor: isSelected ? "#90EE90" : "white",
+                backgroundColor: "white",
+                border: isSelected ? "3px solid #FF3D00" : "3px solid transparent",
                 marginTop: isNotFirstRow ? "-1px" : "0",
-                opacity: isOwned ? 1 : 0.4,
               }}
             >
               {/* NO.001 형식의 이름표 */}
