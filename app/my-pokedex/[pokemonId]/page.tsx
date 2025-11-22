@@ -4,20 +4,20 @@ import { useEffect, useState, useCallback } from "react";
 import Image from "next/image";
 import { getMyPokedex, PokemonInDex } from "@/features/my-pokedex/usecases/getMyPokedex";
 
-interface PageProps {
-  params: Promise<{ id: string }>;
+interface PokemonDetailPageProps {
+  params: Promise<{ pokemonId: string }>;
 }
 
-export default function PokemonDetailPage({ params }: PageProps) {
+export default function PokemonDetailPage({ params }: PokemonDetailPageProps) {
   const [pokemon, setPokemon] = useState<PokemonInDex | null>(null);
 
-  // useEffect 밖으로 함수 분리 + useCallback 사용
+  // URL params에서 포켓몬 ID를 추출하여 데이터를 가져오는 함수 (useCallback으로 params 변경 시에만 재생성)
   const fetchPokemonData = useCallback(async () => {
-    const { id } = await params;
+    const { pokemonId } = await params;
 
     // 포켓몬 데이터 가져오기
     const pokemons = await getMyPokedex();
-    const found = pokemons.find((p) => p.id === Number(id));
+    const found = pokemons.find((p) => p.id === Number(pokemonId));
     setPokemon(found || null);
   }, [params]);
 
