@@ -5,7 +5,7 @@ export default function Container({ children }: { children: React.ReactNode }) {
       <div className="hidden md:block absolute w-[calc(390px+8rem)] h-[calc(845px+5rem)] bg-[#DC0A2D]"></div>
 
       {/* 실제 컨텐츠 컨테이너 - 모바일 뷰 사이즈 고정 */}
-      <div className="w-full md:w-[390px] h-screen md:h-[845px] flex flex-col overflow-hidden relative z-10">
+      <div className="w-full md:w-[390px] h-screen md:h-[845px] flex flex-col overflow-hidden relative z-10 bg-[#E7E9EB]">
         {children}
       </div>
     </div>

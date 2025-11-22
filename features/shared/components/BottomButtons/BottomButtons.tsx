@@ -10,6 +10,7 @@ interface BottomButtonsProps {
   onLeft?: () => void;
   onRight?: () => void;
   selectedPokemonId?: number; // 포켓몬 도감에서 현재 선택된 포켓몬 ID
+  selectedIndex?: number; // 포켓몬 도감에서 현재 선택된 인덱스
 }
 
 /**
@@ -22,7 +23,8 @@ export function BottomButtons({
   onDown,
   onLeft,
   onRight,
-  selectedPokemonId
+  selectedPokemonId,
+  selectedIndex
 }: BottomButtonsProps) {
   const { translate } = useTranslation();
   const router = useRouter();
@@ -32,6 +34,8 @@ export function BottomButtons({
 
   const handleButtonClick = () => {
     if (isMyPokedex && selectedPokemonId) {
+      // localStorage에 선택된 인덱스 저장
+      localStorage.setItem("selectedIndex", String(selectedIndex ?? 0));
       // 포켓몬 도감 페이지에서는 선택된 포켓몬 상세로 이동
       router.push(`/my-pokedex/${selectedPokemonId}`);
     } else {

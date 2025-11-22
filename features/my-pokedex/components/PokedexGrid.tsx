@@ -1,9 +1,8 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import Link from "next/link";
+import Image from "next/image";
 import { PokemonInDex } from "@/features/my-pokedex/usecases/getMyPokedex";
-import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 
 interface PokedexGridProps {
   pokemons: PokemonInDex[];
@@ -11,7 +10,6 @@ interface PokedexGridProps {
 }
 
 export function PokedexGrid({ pokemons, selectedIndex }: PokedexGridProps) {
-  const { translate } = useTranslation();
   const selectedRef = useRef<HTMLDivElement>(null);
 
   // 선택된 항목으로 스크롤
@@ -26,41 +24,61 @@ export function PokedexGrid({ pokemons, selectedIndex }: PokedexGridProps) {
 
   return (
     <div className="flex flex-col px-3 py-1" style={{ height: "100%" }}>
-      <h1 className="text-sm font-bold mb-1">{translate("pokedex.title")}</h1>
-
       {/* 5x5 그리드 - 최대 5줄까지만 표시 */}
       <div
-        className="overflow-y-auto overflow-x-hidden"
+        className="overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:hidden [scrollbar-width:none] [-ms-overflow-style:none]"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(5, 1fr)",
-          gap: "3px",
+          columnGap: "0px",
+          rowGap: "6px",
           alignContent: "start",
           // 카드 너비 기준: (컨테이너 - 패딩) / 5
           // 카드 높이: 너비 * 6/5 (aspect ratio 5:6)
-          // 5줄 높이: 카드높이 * 5 + 갭(3px) * 4
-          height: "calc(((100vw - 24px) / 5) * (6/5) * 5 + 12px)",
-          maxHeight: "calc(((390px - 24px) / 5) * (6/5) * 5 + 12px)", // 390px는 컨테이너 최대 너비
+          // 5줄 높이: 카드높이 * 5 (rowGap은 계산에 미포함)
+          height: "calc(((100vw - 24px) / 5) * (6/5) * 5)",
+          maxHeight: "calc(((410px - 24px) / 5) * (6/5) * 5)", // 410px는 컨테이너 최대 너비
         }}
       >
-        {pokemons.map((pokemon, index) => (
-          <div
-            key={pokemon.id}
-            ref={index === selectedIndex ? selectedRef : null}
-            className="border rounded flex items-center justify-center transition-all"
-            style={{
-              aspectRatio: "5 / 6",
-              fontSize: "9px",
-              fontWeight: "500",
-              borderColor: index === selectedIndex ? "#90EE90" : "#ccc",
-              backgroundColor: index === selectedIndex ? "#90EE90" : "white",
-            }}
-          >
-            <Link href={`/my-pokedex/${pokemon.id}`} className="w-full h-full flex items-center justify-center">
-              #{pokemon.id}
-            </Link>
-          </div>
-        ))}
+        {pokemons.map((pokemon, index) => {
+          const row = Math.floor(index / 5);
+          const isNotFirstRow = row > 0;
+          const isSelected = index === selectedIndex;
+          const isOwned = pokemon.isOwned;
+
+          return (
+            <div
+              key={pokemon.id}
+              ref={isSelected ? selectedRef : null}
+              className="flex flex-col transition-all "
+              style={{
+                aspectRatio: "5 / 6",
+                fontSize: "9px",
+                fontWeight: "500",
+                backgroundColor: "white",
+                border: isSelected ? "3px solid #FF3D00" : "3px solid transparent",
+                marginTop: isNotFirstRow ? "-1px" : "0",
+              }}
+            >
+              {/* NO.001 형식의 이름표 */}
+              <div className="w-full flex items-center justify-center pt-1 pointer-events-none">
+                <span className="text-black text-xs font-bold">
+                  No. {String(pokemon.id).padStart(3, "0")}
+                </span>
+              </div>
+              {/* 포켓몬 이미지 */}
+              <div className="flex-1 flex items-center justify-center pointer-events-none relative">
+                <Image
+                  src={isOwned ? pokemon.imageActive : pokemon.imageInactive}
+                  alt={isOwned ? pokemon.name : "???"}
+                  className="object-contain"
+                  fill
+                  sizes="(max-width: 410px) 20vw, 82px"
+                />
+              </div>
+            </div>
+          );
+        })}
       </div>
     </div>
   );

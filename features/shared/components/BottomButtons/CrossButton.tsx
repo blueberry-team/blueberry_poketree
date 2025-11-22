@@ -66,80 +66,80 @@ export function CrossButton({
         />
 
         {/* 상단 화살표 (위쪽 방향) ^^ */}
-        <g transform={`translate(${crossSize / 2}, 15)`}>
+        <g transform={`translate(${crossSize / 2}, 12)`}>
           <polyline
-            points="-3,3 0,0 3,3"
+            points="-7,7 0,0 7,7"
             fill="none"
             stroke="white"
-            strokeWidth="1.5"
+            strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
           <polyline
-            points="-3,7 0,4 3,7"
+            points="-7,14 0,7 7,14"
             fill="none"
             stroke="white"
-            strokeWidth="1.5"
+            strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
         </g>
 
         {/* 하단 화살표 (아래쪽 방향) vv */}
-        <g transform={`translate(${crossSize / 2}, ${crossSize - 15})`}>
+        <g transform={`translate(${crossSize / 2}, ${crossSize - 12})`}>
           <polyline
-            points="-3,-3 0,0 3,-3"
+            points="-7,-7 0,0 7,-7"
             fill="none"
             stroke="white"
-            strokeWidth="1.5"
+            strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
           <polyline
-            points="-3,-7 0,-4 3,-7"
+            points="-7,-14 0,-7 7,-14"
             fill="none"
             stroke="white"
-            strokeWidth="1.5"
+            strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
         </g>
 
         {/* 좌측 화살표 (왼쪽 방향) << */}
-        <g transform={`translate(15, ${crossSize / 2})`}>
+        <g transform={`translate(12, ${crossSize / 2})`}>
           <polyline
-            points="3,-3 0,0 3,3"
+            points="7,-7 0,0 7,7"
             fill="none"
             stroke="white"
-            strokeWidth="1.5"
+            strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
           <polyline
-            points="7,-3 4,0 7,3"
+            points="14,-7 7,0 14,7"
             fill="none"
             stroke="white"
-            strokeWidth="1.5"
+            strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
         </g>
 
         {/* 우측 화살표 (오른쪽 방향) >> */}
-        <g transform={`translate(${crossSize - 15}, ${crossSize / 2})`}>
+        <g transform={`translate(${crossSize - 12}, ${crossSize / 2})`}>
           <polyline
-            points="-3,-3 0,0 -3,3"
+            points="-7,-7 0,0 -7,7"
             fill="none"
             stroke="white"
-            strokeWidth="1.5"
+            strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"
           />
           <polyline
-            points="-7,-3 -4,0 -7,3"
+            points="-14,-7 -7,0 -14,7"
             fill="none"
             stroke="white"
-            strokeWidth="1.5"
+            strokeWidth="3"
             strokeLinecap="round"
             strokeLinejoin="round"
           />

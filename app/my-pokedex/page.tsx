@@ -4,20 +4,37 @@ import { useState, useEffect } from "react";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
 import { PokedexGrid } from "@/features/my-pokedex/components/PokedexGrid";
 import { getMyPokedex, PokemonInDex } from "@/features/my-pokedex/usecases/getMyPokedex";
+import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 
 // 포켓몬 목록 페이지
 export default function MyPokedexPage() {
+  const { translate } = useTranslation();
   const COLS = 5; // 가로 5개
+
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [pokemons, setPokemons] = useState<PokemonInDex[]>([]);
+  const [isMaster, setIsMaster] = useState(false);  //  포켓몬 마스터 여부
 
   useEffect(() => {
+    // localStorage에서 선택된 인덱스 복원
+    const savedIndex = localStorage.getItem("selectedIndex");
+    if (savedIndex !== null) {
+      setSelectedIndex(Number(savedIndex));
+    }
+
     const fetchPokemons = async () => {
       const data = await getMyPokedex();
       setPokemons(data);
+
+      // 🔥 여기서 마스터 여부 체크
+      const ownedCount = data.filter((p) => p.isOwned).length;
+      const totalCount = data.length;
+      setIsMaster(ownedCount === totalCount);
     };
+
     fetchPokemons();
   }, []);
+
 
   const handleUp = () => {
     // 위로 이동 (같은 열의 이전 행)
@@ -55,17 +72,44 @@ export default function MyPokedexPage() {
   };
 
   const selectedPokemon = pokemons[selectedIndex];
+  // 선택된 포켓몬의 ID 전달 (보유 여부와 관계없이)
+  const selectedPokemonId = selectedPokemon?.id;
+
+  // 사용자 이름 (하드코딩)
+  const userName = "상화";
 
   return (
-    <>
-      <PokedexGrid pokemons={pokemons} selectedIndex={selectedIndex} />
+    <div className="flex-1 flex flex-col">
+      {/* 헤더 영역 */}
+      <div className="px-4 py-3 shrink-0">
+        <div className="flex items-center justify-between mb-2">
+          <h1 className="text-black text-xl font-bold">
+            {userName} {translate("pokedex.userPokedex")}
+          </h1>
+          {/* 포켓몬 마스터 배지 */}
+          {isMaster && (
+            <button className="flex items-center gap-1 px-3 py-2 bg-black text-white text-sm font-bold" style={{ borderRadius: "8px" }}>
+              <span>⭐</span>
+              <span>{translate("pokedex.masterBadge")}</span>
+            </button>
+          )}
+        </div>
+      </div>
+
+      {/* 그리드 영역 */}
+      <div className="flex-1">
+        <PokedexGrid pokemons={pokemons} selectedIndex={selectedIndex} />
+      </div>
+
+      {/* 버튼 영역 */}
       <BottomButtons
         onUp={handleUp}
         onDown={handleDown}
         onLeft={handleLeft}
         onRight={handleRight}
-        selectedPokemonId={selectedPokemon?.id}
+        selectedPokemonId={selectedPokemonId}
+        selectedIndex={selectedIndex}
       />
-    </>
+    </div>
   );
 }
