@@ -12,6 +12,8 @@ import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import HomeIcon from "@/assets/icon/homeIcon.svg";
+import LogoIcon from "@/assets/icon/logo.png";
+import HeaderBackground from "@/assets/images/background/header_background.png";
 import { logout } from "../../usecases/logout";
 import { LanguageModal } from "../Modal/LanguageModal";
 import { useTranslation } from "../../utils/translate/useLanguage";
@@ -61,10 +63,17 @@ export function Header() {
   };
 
   return (
-    <header className="w-full h-[60px] bg-[#828282] sticky top-0 z-50">
+    <header className="w-full h-[60px] sticky top-0 z-50 overflow-hidden">
+      {/* 헤더 배경 이미지 */}
+      <Image
+        src={HeaderBackground}
+        alt="헤더 배경"
+        fill
+        className="object-cover"
+      />
       <div className="relative w-full h-full">
         {/* 좌측: 뒤로가기 버튼 또는 로고 그룹 */}
-        <div className="absolute left-4 top-3 flex items-center gap-4">
+        <div className="absolute left-4 top-3 flex items-center gap-2">
           {showBackButton && (
             <button
               onClick={handleBack}
@@ -74,11 +83,15 @@ export function Header() {
             </button>
           )}
           {!showBackButton && (
-            <div className="w-9 h-9 bg-[#B5B5B5] flex items-center justify-center">
-              <span className="text-black text-base font-normal">로고</span>
-            </div>
+            <Image
+              src={LogoIcon}
+              alt="로고"
+              width={36}
+              height={36}
+              className="object-contain"
+            />
           )}
-          <span className="text-black text-xl font-normal">PokeTree</span>
+          <span className="text-black text-xl font-bold">Poke Tree</span>
         </div>
 
         {/* 우측 버튼 그룹 */}

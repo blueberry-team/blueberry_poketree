@@ -38,7 +38,7 @@ export function Tree({
   const [hoveredIndex, setHoveredIndex] = useState<number>(-1);
 
   // 페이지 계산
-  const messagesPerPage = 6;
+  const messagesPerPage = 7;
   const totalPages = Math.ceil(totalMessageCount / messagesPerPage);
   // 현재 페이지에 표시할 편지 개수
   const currentPageMessageCount = Math.min(
@@ -75,14 +75,15 @@ export function Tree({
             <>
               {/* 몬스터볼 위치 - 6개 표시 */}
               {Array.from({ length: currentPageMessageCount }).map((_, index) => {
-                // 6개 몬스터볼 위치
+                // 7개 몬스터볼 위치
                 const positions = [
-                  { top: "24%", left: "60%", transform: "translateX(-50%)" },  // 꼭대기
-                  { top: "30%", left: "42%", transform: "translateX(-50%)" },  // 2층 왼쪽
-                  { top: "38%", left: "70%", transform: "translateX(-50%)" },  // 2층 오른쪽
-                  { top: "45%", left: "30%", transform: "translateX(-50%)" },  // 3층 왼쪽
-                  { top: "50%", left: "55%", transform: "translateX(-50%)" },  // 3층 가운데
-                  { top: "55%", left: "75%", transform: "translateX(-50%)" },  // 3층 오른쪽
+                  { top: "20%", left: "50%", transform: "translateX(-50%)" },  // 꼭대기
+                  { top: "30%", left: "60%", transform: "translateX(-50%)" },  // 2층 오른쪽
+                  { top: "35%", left: "41%", transform: "translateX(-50%)" },  // 2층 왼쪽
+                  { top: "40%", left: "72%", transform: "translateX(-50%)" },  // 3층 오른쪽
+                  { top: "50%", left: "34%", transform: "translateX(-50%)" },  // 3층 왼쪽
+                  { top: "45%", left: "54%", transform: "translateX(-50%)" },  // 4층 가운데
+                  { top: "52%", left: "70%", transform: "translateX(-50%)" },  // 4층 오른쪽
                 ];
                 const pos = positions[index];
                 // 실제 메시지 인덱스 계산 (페이지 * 6 + 현재 인덱스)
@@ -98,7 +99,7 @@ export function Tree({
                     onClick={() => onLetterClick?.(actualMessageIndex)}
                     onMouseEnter={() => setHoveredIndex(actualMessageIndex)}
                     onMouseLeave={() => setHoveredIndex(-1)}
-                    className="absolute w-8 h-8 cursor-pointer hover:scale-110 transition-transform"
+                    className="absolute w-10 h-10 cursor-pointer hover:scale-110 transition-transform"
                     style={{
                       top: pos.top,
                       left: pos.left,
@@ -109,8 +110,8 @@ export function Tree({
                     <Image
                       src={isOpen ? MonsterBallOpen : MonsterBallClose}
                       alt="몬스터볼"
-                      width={32}
-                      height={32}
+                      width={48}
+                      height={48}
                       className="object-contain"
                     />
                   </button>
@@ -121,16 +122,17 @@ export function Tree({
         </div>
       </div>
 
-      {/* 획득한 포켓몬 6마리 표시 */}
+      {/* 획득한 포켓몬 7마리 표시 */}
       {obtainedPokemons.map((pokemon, index) => {
-        // 6마리 포켓몬 위치
+        // 7마리 포켓몬 위치
         const pokemonPositions = [
-          { bottom: "60%", left: "2%", scaleX: -1 },  // 왼쪽 상단
-          { bottom: "40%", left: "2%", scaleX: -1 },  // 왼쪽 중단
+          { bottom: "70%", left: "10%", scaleX: -1 },  // 왼쪽 상단
+          { bottom: "52%", left: "1%", scaleX: -1 },  // 왼쪽 중단
           { bottom: "20%", left: "2%", scaleX: -1 },  // 왼쪽 하단
-          { bottom: "60%", right: "2%", scaleX: 1 },  // 오른쪽 상단
-          { bottom: "40%", right: "2%", scaleX: 1 },  // 오른쪽 중단
-          { bottom: "20%", right: "2%", scaleX: 1 },  // 오른쪽 하단 
+          { bottom: "60%", right: "0%", scaleX: 1 },  // 오른쪽 상단
+          { bottom: "25%", left: "80%", scaleX: 1 },  // 오른쪽 중상단
+          { bottom: "8%", right: "45%", scaleX: 1 },  // 오른쪽 중하단
+          { bottom: "8%", right: "10%", scaleX: 1 },  // 오른쪽 하단
         ];
         const pos = pokemonPositions[index];
         if (!pos) return null;
@@ -138,7 +140,7 @@ export function Tree({
         return (
           <div
             key={index}
-            className="absolute w-12 h-12"
+            className="absolute w-22 h-22"
             style={{
               bottom: pos.bottom,
               left: pos.left,
@@ -149,8 +151,8 @@ export function Tree({
             <Image
               src={pokemon}
               alt={`포켓몬 ${index + 1}`}
-              width={48}
-              height={48}
+              width={80}
+              height={80}
               className="object-contain"
             />
           </div>
