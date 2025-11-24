@@ -14,6 +14,8 @@ import Image from "next/image";
 import HomeIcon from "@/assets/icon/homeIcon.svg";
 import LogoIcon from "@/assets/icon/logo.png";
 import HeaderBackground from "@/assets/images/background/header_background.png";
+import ButtonSmallBlue from "@/assets/images/components/button_small_blue.png";
+import ButtonBigGreen from "@/assets/images/components/button_big_green.png";
 import { logout } from "../../usecases/logout";
 import { LanguageModal } from "../Modal/LanguageModal";
 import { useTranslation } from "../../utils/translate/useLanguage";
@@ -27,7 +29,6 @@ export function Header() {
   // 경로별 조건 확인
   const isHome = pathname === "/";
   const isSignupOrGo = pathname === "/signup-or-go";
-  const isMyTree = pathname === "/my-tree";
   const isMyPoketMessage = pathname === "/my-poket-message";
   const isMyPokedex = pathname?.startsWith("/my-pokedex");
 
@@ -37,8 +38,8 @@ export function Header() {
   // 로그인 버튼 표시 (홈에서만)
   const showLoginButton = isHome;
 
-  // 로그아웃 버튼 표시 (my-tree, my-poket-message에서만)
-  const showLogoutButton = isMyTree || isMyPoketMessage;
+  // 로그아웃 버튼 표시 (my-poket-message에서만)
+  const showLogoutButton = isMyPoketMessage;
 
   // 홈 버튼 표시 (my-pokedex에서만)
   const showHomeButton = isMyPokedex;
@@ -63,7 +64,7 @@ export function Header() {
   };
 
   return (
-    <header className="w-full h-[60px] sticky top-0 z-50 overflow-hidden">
+    <header className="w-full h-[60px] sticky top-0 z-50 overflow-hidden bg-primary-red">
       {/* 헤더 배경 이미지 */}
       <Image
         src={HeaderBackground}
@@ -91,32 +92,34 @@ export function Header() {
               className="object-contain"
             />
           )}
-          <span className="text-black text-xl font-bold">Poke Tree</span>
+          <span className="text-white text-xl" style={{ fontFamily: 'var(--font-press-start)' }}>Pokétree</span>
         </div>
 
         {/* 우측 버튼 그룹 */}
-        <div className="absolute right-4 top-[18px] flex items-center gap-2.5">
+        <div className="absolute right-0 top-[18px] flex items-center ">
           {/* 언어 설정 버튼 */}
           <button
             onClick={() => setIsLanguageModalOpen(true)}
-            className="w-[27px] h-[27px] bg-[#D9D9D9] rounded-[13.5px] flex items-center justify-center"
+            className="relative w-20 h-10 flex items-center justify-center"
           >
-            <span className="text-black text-base font-bold">文</span>
+            <Image src={ButtonSmallBlue} alt="언어" fill className="object-contain absolute inset-0" />
+            <span className="relative z-10 text-black text-12 font-bold">언어</span>
           </button>
 
-          {/* 도움말 버튼 - 임시로 my-tree로 이동 */}
+          {/* 도움말 버튼 */}
           <button
             onClick={() => router.push("/my-tree")}
-            className="w-[27px] h-[27px] bg-[#D9D9D9] rounded-[13.5px] flex items-center justify-center"
+            className="relative w-20 h-10 flex items-center justify-center"
           >
-            <span className="text-black text-base font-bold">?</span>
+            <Image src={ButtonSmallBlue} alt="도움말" fill className="object-contain absolute inset-0" />
+            <span className="relative z-10 text-black text-12 font-bold">도움말</span>
           </button>
 
           {/* 로그인 버튼 */}
           {showLoginButton && (
             <button
               onClick={handleLogin}
-              className="w-[60px] h-[27px] bg-[#000000] rounded-[4px] flex items-center justify-center"
+              className="w-[60px] h-[27px] bg-[#000000] rounded-sm flex items-center justify-center"
             >
               <span className="text-white text-xs font-bold">{translate("header.login")}</span>
             </button>
@@ -126,7 +129,7 @@ export function Header() {
           {showLogoutButton && (
             <button
               onClick={handleLogout}
-              className="w-[60px] h-[27px] bg-[#000000] rounded-[4px] flex items-center justify-center"
+              className="w-[60px] h-[27px] bg-[#000000] rounded-sm flex items-center justify-center"
             >
               <span className="text-white text-xs font-bold">{translate("header.logout")}</span>
             </button>

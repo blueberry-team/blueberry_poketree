@@ -4,8 +4,8 @@ import { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import BackgroundImage from "@/assets/images/background/background.png";
 import TreeImage from "@/assets/images/background/tree.png";
-import MonsterBallOpen from "@/assets/images/background/monster_ball_open.png";
-import MonsterBallClose from "@/assets/images/background/monster_ball_close.png";
+import MonsterBallOpen from "@/assets/images/components/monster_ball_open.png";
+import MonsterBallClose from "@/assets/images/components/monster_ball_close.png";
 
 /**
  * Tree 컴포넌트

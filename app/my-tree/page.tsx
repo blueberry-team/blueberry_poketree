@@ -7,12 +7,11 @@ import { Tree } from "@/features/my-tree/components/Tree";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
 import LetterModal from "@/features/shared/components/Modal/LetterModal";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
-import { logout } from "@/features/shared/usecases/logout";
 import {
   ALL_POKEMON_IMAGES,
   getRandomPokemonImages
 } from "@/features/shared/data/pokemonData";
-import MonsterBallClose from "@/assets/images/background/monster_ball_close.png";
+import MonsterBallClose from "@/assets/images/components/monster_ball_close.png";
 
 /**
  * MyTreePage - 내 트리 페이지
@@ -121,7 +120,7 @@ export default function MyTreePage() {
   return (
     <div className="flex-1 bg-[#E7E9EB] flex flex-col overflow-y-auto">
       {/* 포켓메시지 획득 개수 표시 */}
-      <div className="px-4 py-3 shrink-0">
+      <div className="px-4 py-3 shrink-0 bg-primary-red">
         <div className="flex items-center gap-2 bg-black/50 rounded-lg px-3 py-2 w-fit">
           <Image
             src={MonsterBallClose}
