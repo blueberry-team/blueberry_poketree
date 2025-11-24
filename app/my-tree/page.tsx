@@ -2,14 +2,17 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 import { Tree } from "@/features/my-tree/components/Tree";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
 import LetterModal from "@/features/shared/components/Modal/LetterModal";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
+import { logout } from "@/features/shared/usecases/logout";
 import {
   ALL_POKEMON_IMAGES,
   getRandomPokemonImages
 } from "@/features/shared/data/pokemonData";
+import MonsterBallClose from "@/assets/images/background/monster_ball_close.png";
 
 /**
  * MyTreePage - 내 트리 페이지
@@ -53,7 +56,7 @@ export default function MyTreePage() {
 
   // 현재 표시할 포켓몬 목록 (상하 버튼으로 Refresh)
   // 초기값은 처음 6마리로 설정 (hydration 불일치 방지)
-  const [displayedPokemons, setDisplayedPokemons] = useState(ALL_POKEMON_IMAGES.slice(0, 6));
+  const [displayedPokemons, setDisplayedPokemons] = useState(ALL_POKEMON_IMAGES.slice(0, 7));
 
   // 편지 열린 상태
   const [isLetterModalOpen, setIsLetterModalOpen] = useState(false);
@@ -75,7 +78,7 @@ export default function MyTreePage() {
    */
   const handleLeft = () => {
     setCurrentPage((prev) => (prev > 0 ? prev - 1 : totalPages - 1));
-    setDisplayedPokemons(getRandomPokemonImages(6));
+    setDisplayedPokemons(getRandomPokemonImages(7));
   };
 
   /**
@@ -83,21 +86,21 @@ export default function MyTreePage() {
    */
   const handleRight = () => {
     setCurrentPage((prev) => (prev < totalPages - 1 ? prev + 1 : 0));
-    setDisplayedPokemons(getRandomPokemonImages(6));
+    setDisplayedPokemons(getRandomPokemonImages(7));
   };
 
   /**
    * 포켓몬 Refresh (상 버튼)
    */
   const handleUp = () => {
-    setDisplayedPokemons(getRandomPokemonImages(6));
+    setDisplayedPokemons(getRandomPokemonImages(7));
   };
 
   /**
    * 포켓몬 Refresh (하 버튼)
    */
   const handleDown = () => {
-    setDisplayedPokemons(getRandomPokemonImages(6));
+    setDisplayedPokemons(getRandomPokemonImages(7));
   };
 
   /**
@@ -116,32 +119,18 @@ export default function MyTreePage() {
   };
 
   return (
-    <div className="flex-1 bg-[#E7E9EB] flex flex-col">
-      {/* 헤더 영역 */}
+    <div className="flex-1 bg-[#E7E9EB] flex flex-col overflow-y-auto">
+      {/* 포켓메시지 획득 개수 표시 */}
       <div className="px-4 py-3 shrink-0">
-        {/* 사용자 트리 제목 + 공유하기 버튼 */}
-        <div className="flex items-center justify-between mb-2">
-          <h1 className="text-black text-xl font-bold">
-            {userName} {translate("tree.userTree")}
-          </h1>
-          {/* 공유하기 버튼 */}
-          <button className="flex items-center gap-1 px-3 py-1.5 bg-[#4ECDC4] rounded-lg text-white text-sm font-bold">
-            <span>{"<"}</span>
-            <span>{translate("tree.share")}</span>
-          </button>
-        </div>
-
-        {/* 안내 메시지 */}
-        <div className="w-full bg-[#3B82F6] text-white text-center py-2 rounded text-sm">
-          {translate("tree.notice")}
-        </div>
-
-        {/* 포켓메시지 획득 개수 표시 */}
-        <div className="mt-2 flex items-center gap-2">
-          <div className="w-5 h-5 rounded-full bg-red-500 border-2 border-black flex items-center justify-center">
-            <div className="w-1.5 h-1.5 rounded-full bg-white" />
-          </div>
-          <span className="text-black text-sm font-bold">
+        <div className="flex items-center gap-2 bg-black/50 rounded-lg px-3 py-2 w-fit">
+          <Image
+            src={MonsterBallClose}
+            alt="몬스터볼"
+            width={20}
+            height={20}
+            className="object-contain"
+          />
+          <span className="text-white text-sm font-bold">
             {totalMessageCount}{translate("tree.messageCount")}
           </span>
         </div>
