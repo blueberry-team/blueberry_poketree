@@ -18,8 +18,9 @@ export default function SignupOrGoPage() {
         try {
             const res = await signupOrGo(req);
 
-            if (res.message == "success") {
-                router.push("/my-tree");
+            if (res.message == "success" && res.data) {
+                // public_id를 query params로 전달
+                router.push(`/my-tree?publicId=${res.data.public_id}`);
             }
         } catch (err) {
             if (err instanceof Error) {
