@@ -35,4 +35,14 @@ export const ja = {
     cancel: "キャンセル",
     confirm: "確認",
   },
+  landing: {
+    countdown: "クリスマスまで",
+    days: "日",
+    hours: "時間",
+    minutes: "分",
+    description1: "クリスマス当日にアクセスするとサプライズプレゼントがもらえます！",
+    description2: "お友達のツリーを飾るためにお手紙を書きましょう！",
+    description3: "お手紙はクリスマス当日に公開されます！",
+    makeTree: "ポケツリーを作る",
+  },
 } as const;

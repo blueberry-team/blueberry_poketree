@@ -35,4 +35,14 @@ export const en = {
     cancel: "Cancel",
     confirm: "Confirm",
   },
+  landing: {
+    countdown: "Until Christmas",
+    days: "Days",
+    hours: "Hours",
+    minutes: "Min",
+    description1: "Log in on Christmas Day to receive a surprise gift!",
+    description2: "Write letters to decorate your friend's tree!",
+    description3: "Letters will be revealed on Christmas Day!",
+    makeTree: "Make PokeTree",
+  },
 } as const;
