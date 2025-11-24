@@ -153,6 +153,7 @@ export default function MyTreePage() {
         totalMessageCount={totalMessageCount}
         currentPage={currentPage}
         onLetterClick={handleLetterClick}
+        openedLetterIndex={isLetterModalOpen ? selectedLetterIndex : -1}
       />
 
       {/* 푸터 영역 */}

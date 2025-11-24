@@ -1,7 +1,11 @@
 "use client";
 
+import { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import BackgroundImage from "@/assets/images/background/background.png";
+import TreeImage from "@/assets/images/background/tree.png";
+import MonsterBallOpen from "@/assets/images/background/monster_ball_open.png";
+import MonsterBallClose from "@/assets/images/background/monster_ball_close.png";
 
 /**
  * Tree 컴포넌트
@@ -19,6 +23,8 @@ interface TreeProps {
   currentPage: number;
   // 편지 클릭 핸들러
   onLetterClick?: (index: number) => void;
+  // 현재 열린 편지 인덱스 (-1이면 없음)
+  openedLetterIndex?: number;
 }
 
 export function Tree({
@@ -26,7 +32,11 @@ export function Tree({
   totalMessageCount,
   currentPage,
   onLetterClick,
+  openedLetterIndex = -1,
 }: TreeProps) {
+  // 호버 상태 관리
+  const [hoveredIndex, setHoveredIndex] = useState<number>(-1);
+
   // 페이지 계산
   const messagesPerPage = 6;
   const totalPages = Math.ceil(totalMessageCount / messagesPerPage);
@@ -50,48 +60,59 @@ export function Tree({
 
       {/* 트리 이미지 */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative w-[280px] h-[400px]">
+        <div className="relative" style={{ width: "min(350px, 80vw)", height: "min(500px, 70vh)" }}>
           {/* 트리 이미지 */}
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="w-[250px] h-[350px] bg-green-600 rounded-lg opacity-80 flex items-center justify-center">
-              <span className="text-white text-sm">트리 이미지</span>
-            </div>
-          </div>
+          <Image
+            src={TreeImage}
+            alt="크리스마스 트리"
+            fill
+            className="object-contain"
+            priority
+          />
 
           {/* 트리 위의 몬스터볼(편지) 표시 */}
-          {/* 편지 위치는 하드코딩 */}
           {currentPageMessageCount > 0 && (
             <>
               {/* 몬스터볼 위치 - 6개 표시 */}
               {Array.from({ length: currentPageMessageCount }).map((_, index) => {
-                // 6개 몬스터볼 위치 (트리 피라미드 형태)
+                // 6개 몬스터볼 위치
                 const positions = [
-                  { top: "15%", left: "45%" },  // 꼭대기
-                  { top: "35%", left: "30%" },  // 2층 왼쪽
-                  { top: "35%", left: "60%" },  // 2층 오른쪽
-                  { top: "55%", left: "20%" },  // 3층 왼쪽
-                  { top: "55%", left: "50%" },  // 3층 가운데
-                  { top: "55%", left: "75%" },  // 3층 오른쪽
+                  { top: "24%", left: "60%", transform: "translateX(-50%)" },  // 꼭대기
+                  { top: "30%", left: "42%", transform: "translateX(-50%)" },  // 2층 왼쪽
+                  { top: "38%", left: "70%", transform: "translateX(-50%)" },  // 2층 오른쪽
+                  { top: "45%", left: "30%", transform: "translateX(-50%)" },  // 3층 왼쪽
+                  { top: "50%", left: "55%", transform: "translateX(-50%)" },  // 3층 가운데
+                  { top: "55%", left: "75%", transform: "translateX(-50%)" },  // 3층 오른쪽
                 ];
                 const pos = positions[index];
                 // 실제 메시지 인덱스 계산 (페이지 * 6 + 현재 인덱스)
                 const actualMessageIndex = currentPage * messagesPerPage + index;
+
+                // 열린 상태 또는 호버 상태인지 확인
+                const isOpen = actualMessageIndex === openedLetterIndex || actualMessageIndex === hoveredIndex;
 
                 return (
                   // 몬스터볼 편지 버튼
                   <button
                     key={index}
                     onClick={() => onLetterClick?.(actualMessageIndex)}
-                    className="absolute w-6 h-6 rounded-full bg-red-500 border-2 border-black flex items-center justify-center cursor-pointer hover:scale-110 transition-transform"
+                    onMouseEnter={() => setHoveredIndex(actualMessageIndex)}
+                    onMouseLeave={() => setHoveredIndex(-1)}
+                    className="absolute w-8 h-8 cursor-pointer hover:scale-110 transition-transform"
                     style={{
                       top: pos.top,
                       left: pos.left,
+                      transform: pos.transform,
                     }}
                     aria-label={`편지 ${actualMessageIndex + 1}`}
                   >
-                    {/* 몬스터볼 디자인 (임시임) */}
-                    <div className="absolute w-full h-0.5 bg-black top-1/2 -translate-y-1/2" />
-                    <div className="absolute w-2 h-2 rounded-full bg-white border border-black z-10" />
+                    <Image
+                      src={isOpen ? MonsterBallOpen : MonsterBallClose}
+                      alt="몬스터볼"
+                      width={32}
+                      height={32}
+                      className="object-contain"
+                    />
                   </button>
                 );
               })}
