@@ -118,9 +118,6 @@ export default function LandingPage() {
         <p className="text-center font-semibold text-[18px]">
           {translate("landing.description2")}
         </p>
-        <p className="text-center font-semibold text-[18px]">
-          {translate("landing.description3")}
-        </p>
 
         {/* 포켓몬 이미지와 아이콘 */}
         <div className="flex gap-4 mt-4 items-center">

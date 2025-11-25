@@ -42,7 +42,6 @@ export const ko = {
     minutes: "분",
     description1: "크리스마스 당일 접속하면 깜짝 선물을 받을 수 있어요!",
     description2: "친구에게 편지를 써서 친구의 트리를 꾸며주세요!",
-    description3: "편지는 크리스마스 당일 공개됩니다!",
     makeTree: "포케트리 만들기",
   },
 } as const;
