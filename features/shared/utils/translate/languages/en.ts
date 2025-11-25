@@ -3,6 +3,8 @@ export const en = {
     login: "Login",
     logout: "Logout",
     logo: "Logo",
+    language: "Lang",
+    help: "Help",
   },
   language: {
     title: "Select Language",
@@ -19,16 +21,16 @@ export const en = {
   },
   tree: {
     title: "My Poke Tree",
-    userTree: "'s Poke Tree",
-    share: "Share Tree",
+    userTree: "'s Pokétree",
+    share: "Share Pokétree",
     notice: "Messages can be viewed from Christmas Day!",
-    messageCount: " Poket Messages",
+    messageCount: " Pockét Messages",
     checkMessage: "Check Messages",
     level: "Level",
     experience: "EXP",
   },
   message: {
-    title: "Poket Message",
+    title: "Pockét Message",
     placeholder: "Enter message",
   },
   common: {

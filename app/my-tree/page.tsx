@@ -11,7 +11,7 @@ import {
   ALL_POKEMON_IMAGES,
   getRandomPokemonImages
 } from "@/features/shared/data/pokemonData";
-import MonsterBallClose from "@/assets/images/components/monster_ball_close.png";
+import ButtonBigGreen from "@/assets/images/components/button_big_green.png";
 
 /**
  * MyTreePage - 내 트리 페이지
@@ -119,20 +119,18 @@ export default function MyTreePage() {
 
   return (
     <div className="flex-1 bg-[#E7E9EB] flex flex-col overflow-y-auto">
-      {/* 포켓메시지 획득 개수 표시 */}
-      <div className="px-4 py-3 shrink-0 bg-primary-red">
-        <div className="flex items-center gap-2 bg-black/50 rounded-lg px-3 py-2 w-fit">
+      {/* ~님의 포케트리 텍스트, 공유하기 버튼 */}
+      <div className="px-4 py-3 shrink-0 bg-primary-red flex items-center justify-between gap-2">
+        <span className="text-white text-xl font-bold whitespace-nowrap">{userName}{translate("tree.userTree")}</span>
+        <button className="relative w-36 h-10 flex items-center justify-center shrink-0">
           <Image
-            src={MonsterBallClose}
-            alt="몬스터볼"
-            width={20}
-            height={20}
-            className="object-contain"
+            src={ButtonBigGreen}
+            alt={translate("tree.share")}
+            fill
+            className="object-fill"
           />
-          <span className="text-white text-sm font-bold">
-            {totalMessageCount}{translate("tree.messageCount")}
-          </span>
-        </div>
+          <span className="relative z-10 text-black text-12 font-bold">{translate("tree.share")}</span>
+        </button>
       </div>
 
       {/* 바디 영역 */}
@@ -142,6 +140,10 @@ export default function MyTreePage() {
         currentPage={currentPage}
         onLetterClick={handleLetterClick}
         openedLetterIndex={isLetterModalOpen ? selectedLetterIndex : -1}
+        onPageChange={(page) => {
+          setCurrentPage(page);
+          setDisplayedPokemons(getRandomPokemonImages(7));
+        }}
       />
 
       {/* 푸터 영역 */}

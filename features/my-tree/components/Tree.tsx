@@ -6,6 +6,7 @@ import BackgroundImage from "@/assets/images/background/background.png";
 import TreeImage from "@/assets/images/background/tree.png";
 import MonsterBallOpen from "@/assets/images/components/monster_ball_open.png";
 import MonsterBallClose from "@/assets/images/components/monster_ball_close.png";
+import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 
 /**
  * Tree 컴포넌트
@@ -25,6 +26,8 @@ interface TreeProps {
   onLetterClick?: (index: number) => void;
   // 현재 열린 편지 인덱스 (-1이면 없음)
   openedLetterIndex?: number;
+  // 페이지 이동 핸들러
+  onPageChange?: (page: number) => void;
 }
 
 export function Tree({
@@ -33,7 +36,9 @@ export function Tree({
   currentPage,
   onLetterClick,
   openedLetterIndex = -1,
+  onPageChange,
 }: TreeProps) {
+  const { translate } = useTranslation();
   // 호버 상태 관리
   const [hoveredIndex, setHoveredIndex] = useState<number>(-1);
 
@@ -56,6 +61,22 @@ export function Tree({
           className="object-cover"
           priority
         />
+      </div>
+
+      {/* 메시지 획득 개수 */}
+      <div className="absolute top-4 left-4 z-10">
+        <div className="flex items-center gap-2 bg-black/50 rounded-lg px-3 py-2">
+          <Image
+            src={MonsterBallClose}
+            alt="몬스터볼"
+            width={20}
+            height={20}
+            className="object-contain"
+          />
+          <span className="text-white text-sm font-bold">
+            {totalMessageCount}{translate("tree.messageCount")}
+          </span>
+        </div>
       </div>
 
       {/* 트리 이미지 */}
@@ -160,10 +181,24 @@ export function Tree({
       })}
 
       {/* 페이지 인디케이터 */}
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center bg-white/80 px-3 py-1 rounded-full">
-        <span className="text-black font-bold">
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-[#8E8E8E] px-4 py-2 rounded-full">
+        <button
+          onClick={() => onPageChange?.(currentPage > 0 ? currentPage - 1 : totalPages - 1)}
+          className="text-white font-bold text-lg hover:opacity-70 transition-opacity"
+          aria-label="이전 페이지"
+        >
+          {"<"}
+        </button>
+        <span className="text-white font-bold text-sm">
           {currentPage + 1}/{totalPages}
         </span>
+        <button
+          onClick={() => onPageChange?.(currentPage < totalPages - 1 ? currentPage + 1 : 0)}
+          className="text-white font-bold text-lg hover:opacity-70 transition-opacity"
+          aria-label="다음 페이지"
+        >
+          {">"}
+        </button>
       </div>
     </div>
   );
