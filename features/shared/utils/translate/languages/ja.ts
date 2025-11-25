@@ -3,6 +3,8 @@ export const ja = {
     login: "ログイン",
     logout: "ログアウト",
     logo: "ロゴ",
+    language: "言語",
+    help: "ヘルプ",
   },
   language: {
     title: "言語を選択",
@@ -20,7 +22,7 @@ export const ja = {
   tree: {
     title: "マイポケツリー",
     userTree: "のポケツリー",
-    share: "ツリーを共有",
+    share: "ポケツリーを共有",
     notice: "メッセージはクリスマス当日から確認できます!",
     messageCount: "個のポケットメッセージ獲得",
     checkMessage: "メッセージを確認",

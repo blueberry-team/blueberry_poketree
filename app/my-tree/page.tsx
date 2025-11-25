@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Tree } from "@/features/my-tree/components/Tree";
@@ -10,6 +11,7 @@ import {
   ALL_POKEMON_IMAGES,
   getRandomPokemonImages
 } from "@/features/shared/data/pokemonData";
+import ButtonBigGreen from "@/assets/images/components/button_big_green.png";
 import { getUserTree } from "@/features/my-tree/usecases/getUserTree";
 import { UserTreeData } from "@/features/my-tree/models/res/GetUserTreeResponse";
 import { isApiError } from "@/features/shared/utils/api/apiClient";
@@ -67,7 +69,7 @@ export default function MyTreePage() {
 
   // 현재 표시할 포켓몬 목록 (상하 버튼으로 Refresh)
   // 초기값은 처음 6마리로 설정 (hydration 불일치 방지)
-  const [displayedPokemons, setDisplayedPokemons] = useState(ALL_POKEMON_IMAGES.slice(0, 6));
+  const [displayedPokemons, setDisplayedPokemons] = useState(ALL_POKEMON_IMAGES.slice(0, 7));
 
   // 편지 열린 상태
   const [isLetterModalOpen, setIsLetterModalOpen] = useState(false);
@@ -147,7 +149,7 @@ export default function MyTreePage() {
    */
   const handleLeft = () => {
     setCurrentPage((prev) => (prev > 0 ? prev - 1 : totalPages - 1));
-    setDisplayedPokemons(getRandomPokemonImages(6));
+    setDisplayedPokemons(getRandomPokemonImages(7));
   };
 
   /**
@@ -155,21 +157,21 @@ export default function MyTreePage() {
    */
   const handleRight = () => {
     setCurrentPage((prev) => (prev < totalPages - 1 ? prev + 1 : 0));
-    setDisplayedPokemons(getRandomPokemonImages(6));
+    setDisplayedPokemons(getRandomPokemonImages(7));
   };
 
   /**
    * 포켓몬 Refresh (상 버튼)
    */
   const handleUp = () => {
-    setDisplayedPokemons(getRandomPokemonImages(6));
+    setDisplayedPokemons(getRandomPokemonImages(7));
   };
 
   /**
    * 포켓몬 Refresh (하 버튼)
    */
   const handleDown = () => {
-    setDisplayedPokemons(getRandomPokemonImages(6));
+    setDisplayedPokemons(getRandomPokemonImages(7));
   };
 
   /**
@@ -188,35 +190,19 @@ export default function MyTreePage() {
   };
 
   return (
-    <div className="flex-1 bg-[#E7E9EB] flex flex-col">
-      {/* 헤더 영역 */}
-      <div className="px-4 py-3 shrink-0">
-        {/* 사용자 트리 제목 + 공유하기 버튼 */}
-        <div className="flex items-center justify-between mb-2">
-          <h1 className="text-black text-xl font-bold">
-            {userName} {translate("tree.userTree")}
-          </h1>
-          {/* 공유하기 버튼 */}
-          <button className="flex items-center gap-1 px-3 py-1.5 bg-[#4ECDC4] rounded-lg text-white text-sm font-bold">
-            <span>{"<"}</span>
-            <span>{translate("tree.share")}</span>
-          </button>
-        </div>
-
-        {/* 안내 메시지 */}
-        <div className="w-full bg-[#3B82F6] text-white text-center py-2 rounded text-sm">
-          {translate("tree.notice")}
-        </div>
-
-        {/* 포켓메시지 획득 개수 표시 */}
-        <div className="mt-2 flex items-center gap-2">
-          <div className="w-5 h-5 rounded-full bg-red-500 border-2 border-black flex items-center justify-center">
-            <div className="w-1.5 h-1.5 rounded-full bg-white" />
-          </div>
-          <span className="text-black text-sm font-bold">
-            {totalMessageCount}{translate("tree.messageCount")}
-          </span>
-        </div>
+    <div className="flex-1 bg-[#E7E9EB] flex flex-col overflow-y-auto">
+      {/* ~님의 포케트리 텍스트, 공유하기 버튼 */}
+      <div className="px-4 py-3 shrink-0 bg-primary-red flex items-center justify-between gap-2">
+        <span className="text-white text-xl font-bold whitespace-nowrap">{userName}{translate("tree.userTree")}</span>
+        <button className="relative w-36 h-10 flex items-center justify-center shrink-0">
+          <Image
+            src={ButtonBigGreen}
+            alt={translate("tree.share")}
+            fill
+            className="object-fill"
+          />
+          <span className="relative z-10 text-black text-12 font-bold">{translate("tree.share")}</span>
+        </button>
       </div>
 
       {/* 바디 영역 */}
@@ -225,6 +211,11 @@ export default function MyTreePage() {
         totalMessageCount={totalMessageCount}
         currentPage={currentPage}
         onLetterClick={handleLetterClick}
+        openedLetterIndex={isLetterModalOpen ? selectedLetterIndex : -1}
+        onPageChange={(page) => {
+          setCurrentPage(page);
+          setDisplayedPokemons(getRandomPokemonImages(7));
+        }}
       />
 
       {/* 푸터 영역 */}
