@@ -181,13 +181,13 @@ export function Tree({
       })}
 
       {/* 페이지 인디케이터 */}
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-[#8E8E8E] px-4 py-2 rounded-full">
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-[#8E8E8E]/80 px-4 py-2 rounded-xl">
         <button
           onClick={() => onPageChange?.(currentPage > 0 ? currentPage - 1 : totalPages - 1)}
           className="text-white font-bold text-lg hover:opacity-70 transition-opacity"
           aria-label="이전 페이지"
         >
-          {"<"}
+          {"<<"}
         </button>
         <span className="text-white font-bold text-sm">
           {currentPage + 1}/{totalPages}
@@ -197,7 +197,7 @@ export function Tree({
           className="text-white font-bold text-lg hover:opacity-70 transition-opacity"
           aria-label="다음 페이지"
         >
-          {">"}
+          {">>"}
         </button>
       </div>
     </div>
