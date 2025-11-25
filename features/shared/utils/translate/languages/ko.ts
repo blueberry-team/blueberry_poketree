@@ -37,4 +37,13 @@ export const ko = {
     cancel: "취소",
     confirm: "확인",
   },
+  landing: {
+    countdown: "크리스마스까지",
+    days: "일",
+    hours: "시",
+    minutes: "분",
+    description1: "크리스마스 당일 접속하면 깜짝 선물을 받을 수 있어요!",
+    description2: "친구에게 편지를 써서 친구의 트리를 꾸며주세요!",
+    makeTree: "포케트리 만들기",
+  },
 } as const;
