@@ -46,4 +46,23 @@ export const ja = {
     description2: "お友達のツリーを飾るためにお手紙を書きましょう！",
     makeTree: "ポケツリーを作る",
   },
+  help: {
+    title: "使い方",
+    section1: {
+      title: "友達と共有する",
+      description: "共有ボタンを使って、自分のツリーのアドレスを友達に共有しましょう。",
+    },
+    section2: {
+      title: "手紙とポケモンを集める",
+      description: "友達からの手紙を開くと、ランダムでポケモンをもらえます！",
+    },
+    section3: {
+      title: "図鑑を確認する",
+      description: "ポケモン図鑑で今まで集めたポケモンを確認できます！",
+    },
+    tip: {
+      title: "特別なポケモンを集めよう！",
+      description: "もっと多くの友達と共有して手紙を受け取るほど、レアなポケモンに出会う確率が高くなります！",
+    },
+  },
 } as const;
