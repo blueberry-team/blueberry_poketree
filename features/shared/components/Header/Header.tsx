@@ -15,7 +15,6 @@ import HomeIcon from "@/assets/icon/homeIcon.svg";
 import LogoIcon from "@/assets/icon/logo.png";
 import HeaderBackground from "@/assets/images/background/header_background.png";
 import ButtonSmallBlue from "@/assets/images/components/button_small_blue.png";
-import ButtonBigGreen from "@/assets/images/components/button_big_green.png";
 import { logout } from "../../usecases/logout";
 import { LanguageModal } from "../Modal/LanguageModal";
 import { useTranslation } from "../../utils/translate/useLanguage";
@@ -102,8 +101,8 @@ export function Header() {
             onClick={() => setIsLanguageModalOpen(true)}
             className="relative w-20 h-10 flex items-center justify-center"
           >
-            <Image src={ButtonSmallBlue} alt={translate("header.language")} fill className="object-contain absolute inset-0" />
-            <span className="relative z-10 text-black text-12 font-bold" suppressHydrationWarning>{translate("header.language")}</span>
+            <Image src={ButtonSmallBlue} alt="언어 버튼" fill className="object-contain absolute inset-0" />
+            <span className="relative z-10 text-black text-12 font-bold">{translate("header.language")}</span>
           </button>
 
           {/* 도움말 버튼 */}
@@ -111,8 +110,8 @@ export function Header() {
             onClick={() => router.push("/my-tree")}
             className="relative w-20 h-10 flex items-center justify-center"
           >
-            <Image src={ButtonSmallBlue} alt={translate("header.help")} fill className="object-contain absolute inset-0" />
-            <span className="relative z-10 text-black text-12 font-bold" suppressHydrationWarning>{translate("header.help")}</span>
+            <Image src={ButtonSmallBlue} alt="도움말 버튼" fill className="object-contain absolute inset-0" />
+            <span className="relative z-10 text-black text-12 font-bold">{translate("header.help")}</span>
           </button>
 
           {/* 로그인 버튼 */}
