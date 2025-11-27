@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Tree } from "@/features/my-tree/components/Tree";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
+import { SocialMediaButton } from "@/features/shared/components/SocialMediaButton/SocialMediaButton";
 import LetterModal from "@/features/shared/components/Modal/LetterModal";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import {
@@ -57,7 +58,7 @@ export default function MyTreePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { translate } = useTranslation();
-  const publicId = searchParams.get('publicId');
+  const publicId = searchParams.get('publicId')||"1";
 
   // API 상태
   const [treeData, setTreeData] = useState<UserTreeData | null>(null);
@@ -252,6 +253,9 @@ export default function MyTreePage() {
           onRight={handleRight}
         />
       </div>
+
+      {/* 소셜미디어 버튼 */}
+      <SocialMediaButton />
 
       {/* 편지 모달 */}
       <LetterModal
