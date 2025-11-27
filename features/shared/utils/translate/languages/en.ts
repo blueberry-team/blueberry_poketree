@@ -12,6 +12,10 @@ export const en = {
     english: "English",
     japanese: "日本語",
   },
+   share: {
+    title: "Share your PokéTree!",
+    copy: "Copy Link",
+  },
   pokedex: {
     title: "Pokédex",
     button: "Pokédex",

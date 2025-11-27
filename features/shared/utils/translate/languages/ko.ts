@@ -12,6 +12,10 @@ export const ko = {
     english: "English",
     japanese: "日本語",
   },
+  share: {
+    title: "친구들에게 포켓트리를 공유해주세요!",
+    copy: "링크 복사"
+  },
   pokedex: {
     title: "포켓몬 도감",
     button: "포켓몬도감",
