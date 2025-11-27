@@ -24,6 +24,16 @@ export function ShareLinkModel({
 
   if (!isOpen) return null;
 
+  const shareUrl = SHARE_BASE_URL + publicId;
+
+  const handleCopy = async () => {
+    try {
+      await navigator.clipboard.writeText(shareUrl);
+    } catch (e) {
+      console.error("링크 복사 실패", e);
+    }
+  };
+
   return (
     <div
       className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
@@ -42,12 +52,12 @@ export function ShareLinkModel({
         <div className="px-4 py-4 rounded transition-all flex bg-[#f5f5f5] items-center">
           <Image src={ShareIcon} alt="ShareIcon" width={24} height={24} />
           <p className="font-semibold text-[16px] text-black ml-2 whitespace-nowrap overflow-hidden text-ellipsis">
-            {SHARE_BASE_URL + publicId}
+            {shareUrl}
           </p>
         </div>
 
         {/* 링크 복사 버튼*/}
-        <button className="relative w-full h-[60px] mt-6">
+        <button className="relative w-full h-[60px] mt-6" onClick={handleCopy}>
           <Image
             src={ButtonBigGreen}
             alt={translate("share.copy")}
