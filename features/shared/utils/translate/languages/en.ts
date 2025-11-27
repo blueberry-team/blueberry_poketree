@@ -45,6 +45,9 @@ export const en = {
     description1: "Log in on Christmas Day to receive a surprise gift!",
     description2: "Write letters to decorate your friend's tree!",
     makeTree: "Make PokeTree",
+    visitSocial: "Visit our Instagram",
+    socialName: "Instagram",
+    socialId: "@poketree_official",
   },
   help: {
     title: "How to Use",

@@ -45,6 +45,9 @@ export const ja = {
     description1: "クリスマス当日にアクセスするとサプライズプレゼントがもらえます！",
     description2: "お友達のツリーを飾るためにお手紙を書きましょう！",
     makeTree: "ポケツリーを作る",
+    visitSocial: "Twitterを見る",
+    socialName: "Twitter",
+    socialId: "@oketree_jp",
   },
   help: {
     title: "使い方",
