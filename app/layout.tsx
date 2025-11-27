@@ -25,17 +25,17 @@ const pressStart2P = Press_Start_2P({
 const pfStardust = localFont({
   src: [
     {
-      path: "../assets/fonts/PF스타더스트 3.0.ttf",
+      path: "../assets/fonts/PFStardust3.0.ttf",
       weight: "400",
       style: "normal",
     },
     {
-      path: "../assets/fonts/PF스타더스트 3.0 Bold.ttf",
+      path: "../assets/fonts/PFStardust3.0Bold.ttf",
       weight: "700",
       style: "normal",
     },
     {
-      path: "../assets/fonts/PF스타더스트 3.0 ExtraBold.ttf",
+      path: "../assets/fonts/PFStardust3.0ExtraBold.ttf",
       weight: "800",
       style: "normal",
     },
