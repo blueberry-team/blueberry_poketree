@@ -57,7 +57,7 @@ export default function MyTreePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { translate } = useTranslation();
-  const publicId = searchParams.get('publicId');
+  const publicId = searchParams.get('publicId')||"1";
 
   // API 상태
   const [treeData, setTreeData] = useState<UserTreeData | null>(null);
