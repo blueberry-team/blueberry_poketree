@@ -1,4 +1,3 @@
-@import url("https://cdn.jsdelivr.net/gh/orioncactus/pretendard/dist/web/static/pretendard.css");
 @import "tailwindcss";
 
 :root {
@@ -14,6 +13,7 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-press-start: var(--font-press-start);
+  --font-pf-stardust: var(--font-pf-stardust);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -26,5 +26,5 @@
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: "Pretendard", -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  font-family: var(--font-pf-stardust), -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
 }
