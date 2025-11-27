@@ -6,6 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Tree } from "@/features/my-tree/components/Tree";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
 import LetterModal from "@/features/shared/components/Modal/LetterModal";
+import { ShareLinkModel } from "@/features/shared/components/Modal/ShareLinkModal";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import {
   ALL_POKEMON_IMAGES,
@@ -73,6 +74,8 @@ export default function MyTreePage() {
 
   // 편지 열린 상태
   const [isLetterModalOpen, setIsLetterModalOpen] = useState(false);
+  // 공유 링크 열린 상태
+  const [isShareLinkModalOpen, setIsShareLinkModalOpen] = useState(false);
   // 선택 편지 인덱스
   const [selectedLetterIndex, setSelectedLetterIndex] = useState(0);
 
@@ -189,12 +192,19 @@ export default function MyTreePage() {
     setIsLetterModalOpen(true);
   };
 
+  const handleShareLinkClick = () => {
+    setIsShareLinkModalOpen(true);
+  }
+
   return (
     <div className="flex-1 bg-[#E7E9EB] flex flex-col overflow-y-auto">
       {/* ~님의 포케트리 텍스트, 공유하기 버튼 */}
       <div className="px-4 py-3 shrink-0 bg-primary-red flex items-center justify-between gap-2">
         <span className="text-white text-xl font-bold whitespace-nowrap">{userName}{translate("tree.userTree")}</span>
-        <button className="relative w-36 h-10 flex items-center justify-center shrink-0">
+        <button 
+          onClick={() => handleShareLinkClick()}
+          className="relative w-36 h-10 flex items-center justify-center shrink-0"
+        >
           <Image
             src={ButtonBigGreen}
             alt={translate("tree.share")}
@@ -252,6 +262,13 @@ export default function MyTreePage() {
           onRight={handleRight}
         />
       </div>
+
+      {/* 공유 링크 모달 */} 
+      <ShareLinkModel
+        isOpen={isShareLinkModalOpen}
+        onClose={() => setIsShareLinkModalOpen(false)}
+        publicId={publicId}
+      />
 
       {/* 편지 모달 */}
       <LetterModal
