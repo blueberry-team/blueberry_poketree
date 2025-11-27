@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import ShareIcon from "@/assets/icon/shareIcon.svg";
+import ButtonBigGreen from "@/assets/images/components/button_big_green.png";
 
 interface ShareLinkModalProps {
   isOpen: boolean;
@@ -30,7 +31,7 @@ export function ShareLinkModel({
         onClick={(e) => e.stopPropagation()}
       >
         {/* 모달 헤더 */}
-        <h2 className="whitespace-pre-line text-lg font-bold text-black">
+        <h2 className="whitespace-pre-line text-lg font-bold text-center text-black pb-4">
           {translate("share.title")}
         </h2>
 
@@ -43,6 +44,20 @@ export function ShareLinkModel({
         </div>
 
         {/* 링크 복사 버튼*/}
+        <button className="relative w-full h-[60px] mt-6">
+          <Image
+            src={ButtonBigGreen}
+            alt={translate("share.copy")}
+            fill
+            unoptimized
+            className="object-fill"
+          />
+          <span className="absolute inset-0 flex items-center justify-center">
+            <span className="font-semibold text-[20px] text-black">
+              {translate("share.copy")}
+            </span>
+          </span>
+        </button>
       </div>
     </div>
   );
