@@ -5,6 +5,9 @@ import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import ShareIcon from "@/assets/icon/shareIcon.svg";
 import ButtonBigGreen from "@/assets/images/components/button_big_green.png";
 
+// 공유 베이스 url
+const SHARE_BASE_URL = "https://poketree.com/";
+
 interface ShareLinkModalProps {
   isOpen: boolean;
   onClose: () => void;
@@ -39,7 +42,7 @@ export function ShareLinkModel({
         <div className="px-4 py-4 rounded transition-all flex bg-[#f5f5f5] items-center">
           <Image src={ShareIcon} alt="ShareIcon" width={24} height={24} />
           <p className="font-semibold text-[16px] text-black ml-2 whitespace-nowrap overflow-hidden text-ellipsis">
-            {"https://poketree.com/" + publicId}
+            {SHARE_BASE_URL + publicId}
           </p>
         </div>
 
