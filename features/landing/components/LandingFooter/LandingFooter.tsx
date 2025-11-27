@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { ALL_POKEMON_IMAGES } from "@/features/shared/data/pokemonData";
-import MakePokeTreeIcon from "@/assets/icon/makePokeTreeIcon.svg";
+import MakePokeTreeIcon from "@/assets/images/components/button_large_green.png";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 
 export function LandingFooter() {

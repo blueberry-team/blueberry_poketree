@@ -26,31 +26,40 @@ export function LanguageModal({ isOpen, onClose }: LanguageModalProps) {
 
   return (
     <div
-      className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50"
+      className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
       onClick={onClose}
     >
-      <div
-        className="bg-white rounded-lg p-6 w-[300px]"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <h2 className="text-lg font-bold mb-4 text-center text-black">
-          {translate("language.title")}
-        </h2>
+      {/* 모달 컨테이너 */}
+      <div className="relative">
+        {/* 닫기 버튼 - 모달 바깥 우측 상단 */}
+        <button
+          onClick={onClose}
+          className="absolute bottom-[calc(100%+15px)] right-0 w-8 h-8 bg-black rounded flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors z-10"
+          aria-label="닫기"
+        >
+          <span className="text-white font-bold text-xl">×</span>
+        </button>
 
-        <div className="flex flex-col gap-2">
-          {languages.map((lang) => (
-            <button
-              key={lang.code}
-              onClick={() => handleLanguageSelect(lang.code)}
-              className={`px-4 py-3 rounded border transition-all text-black ${
-                language === lang.code
-                  ? "bg-[#90EE90] border-[#90EE90] font-bold"
-                  : "bg-white border-gray-300 hover:bg-gray-50"
-              }`}
-            >
-              {lang.label}
-            </button>
-          ))}
+        {/* 모달 내용 */}
+        <div
+          className="bg-white rounded-3xl px-6 pt-10 pb-16 w-[360px]"
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div className="flex flex-col gap-3">
+            {languages.map((lang) => (
+              <button
+                key={lang.code}
+                onClick={() => handleLanguageSelect(lang.code)}
+                className={`px-4 py-3 rounded border transition-all text-black ${
+                  language === lang.code
+                    ? "bg-[#90EE90] border-[#90EE90] font-bold"
+                    : "bg-white border-gray-300 hover:bg-gray-50"
+                }`}
+              >
+                {lang.label}
+              </button>
+            ))}
+          </div>
         </div>
       </div>
     </div>
