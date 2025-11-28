@@ -16,7 +16,7 @@ interface ShareLinkModalProps {
   publicId: string;
 }
 
-export function ShareLinkModel({
+export function ShareLinkModal({
   isOpen,
   onClose,
   publicId,

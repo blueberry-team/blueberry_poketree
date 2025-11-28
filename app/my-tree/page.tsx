@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { Tree } from "@/features/my-tree/components/Tree";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
 import LetterModal from "@/features/shared/components/Modal/LetterModal";
-import { ShareLinkModel } from "@/features/shared/components/Modal/ShareLinkModal";
+import { ShareLinkModal } from "@/features/shared/components/Modal/ShareLinkModal";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import {
   ALL_POKEMON_IMAGES,
@@ -264,7 +264,7 @@ export default function MyTreePage() {
       </div>
 
       {/* 공유 링크 모달 */} 
-      <ShareLinkModel
+      <ShareLinkModal
         isOpen={isShareLinkModalOpen}
         onClose={() => setIsShareLinkModalOpen(false)}
         publicId={publicId}
