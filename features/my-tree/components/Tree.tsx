@@ -51,7 +51,7 @@ export function Tree({
     totalMessageCount - currentPage * messagesPerPage
   );
   return (
-    <div className="relative w-full flex-1 overflow-hidden">
+    <div className="relative w-full min-h-[500px] overflow-hidden">
       {/* 배경 이미지 */}
       <div className="absolute inset-0">
         <Image

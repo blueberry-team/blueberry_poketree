@@ -57,8 +57,8 @@ const SAMPLE_MESSAGE_CONTENTS: Record<string, { content: string; pokemonIndex: n
 export default function MyTreePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { translate } = useTranslation();
-  const publicId = searchParams.get('publicId');
+  const { translate, language } = useTranslation();
+  const publicId = searchParams.get('publicId')||"1";
 
   // API 상태
   const [treeData, setTreeData] = useState<UserTreeData | null>(null);
@@ -191,7 +191,7 @@ export default function MyTreePage() {
   };
 
   return (
-    <div className="flex-1 bg-[#E7E9EB] flex flex-col overflow-y-auto">
+    <div className="bg-[#E7E9EB] flex flex-col">
       {/* ~님의 포케트리 텍스트, 공유하기 버튼 */}
       <div className="px-4 py-3 shrink-0 bg-primary-red flex items-center justify-between gap-2">
         <span className="text-white text-xl font-bold whitespace-nowrap">{userName}{translate("tree.userTree")}</span>
@@ -202,7 +202,7 @@ export default function MyTreePage() {
             fill
             className="object-fill"
           />
-          <span className="relative z-10 text-black text-12 font-bold">{translate("tree.share")}</span>
+          <span className={`relative z-10 text-black font-bold ${language === "en" ? "text-[12px]" : "text-12"}`}>{translate("tree.share")}</span>
         </button>
       </div>
 

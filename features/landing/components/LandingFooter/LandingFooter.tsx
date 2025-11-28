@@ -53,7 +53,7 @@ export function LandingFooter() {
         />
       </div>
 
-      {/* <SocialMediaButton /> */}
+      <SocialMediaButton />
     </div>
   );
 }
