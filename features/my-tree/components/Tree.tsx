@@ -7,6 +7,7 @@ import TreeImage from "@/assets/images/background/tree.png";
 import MonsterBallOpen from "@/assets/images/components/monster_ball_open.png";
 import MonsterBallClose from "@/assets/images/components/monster_ball_close.png";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
+import { ChristmasGift } from "./ChristmasGift";
 
 /**
  * Tree 컴포넌트
@@ -78,6 +79,12 @@ export function Tree({
           </span>
         </div>
       </div>
+
+      {/* 크리스마스 선물 (우상단) */}
+      <ChristmasGift onClick={() => {
+        // TODO: 크리스마스 선물 동작 구현
+        console.log("크리스마스 선물 클릭");
+      }} />
 
       {/* 트리 이미지 */}
       <div className="absolute inset-0 flex items-center justify-center">
