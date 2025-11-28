@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import InstagramIcon from "@/assets/icon/instagramIcon.svg";
+import XIcon from "@/assets/icon/xIcon.svg";
 import RightArrowIcon from "@/assets/icon/rightArrowIcon.svg";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 
@@ -23,6 +24,12 @@ export function SocialMediaButton() {
     window.open(socialUrls[language], "_blank");
   };
 
+  // 언어별 아이콘 선택
+  const socialIcon = language === "ja" ? XIcon : InstagramIcon;
+
+  // 언어별 폰트 크기 (영어는 텍스트가 길어서 작게)
+  const fontSize = language === "en" ? { name: "14px", id: "12px" } : { name: "16px", id: "14px" };
+
   return (
     <div className="w-full bg-[#DC0A2D] py-8">
       <div className="mx-auto flex max-w-[320px] flex-col items-center gap-4 px-4">
@@ -38,9 +45,9 @@ export function SocialMediaButton() {
         >
           {/* 왼쪽: 아이콘 + 텍스트 */}
           <div className="flex items-center gap-[19.738px]">
-            {/* 인스타 아이콘 */}
+            {/* 소셜미디어 아이콘 */}
             <Image
-              src={InstagramIcon}
+              src={socialIcon}
               alt="Social Icon"
               width={72.374}
               height={72.374}
@@ -49,10 +56,16 @@ export function SocialMediaButton() {
 
             {/* 텍스트 영역 */}
             <div className="flex flex-col items-start gap-[4.785px]">
-              <span className="font-pf-stardust font-bold text-left text-[20px] leading-[135%] tracking-[-0.598px] text-black">
+              <span
+                className="font-pf-stardust font-bold text-left leading-[135%] tracking-[-0.598px] text-black"
+                style={{ fontSize: fontSize.name }}
+              >
                 {translate("landing.socialName")}
               </span>
-              <span className="font-pf-stardust text-left text-[18px] font-extrabold leading-[135%] tracking-[-0.538px] text-[#DC0A2D]">
+              <span
+                className="font-pf-stardust text-left font-extrabold leading-[135%] tracking-[-0.538px] text-[#DC0A2D]"
+                style={{ fontSize: fontSize.id }}
+              >
                 {translate("landing.socialId")}
               </span>
             </div>
