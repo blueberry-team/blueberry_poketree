@@ -1,4 +1,3 @@
-
 // 기본구성 : 로고, poketree, 다국어버튼, 툴팁버튼
 // / :  [기본구성], 로그인 버튼
 // /signup-or-go : "<" 버튼, [기본구성]
@@ -8,7 +7,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import HomeIcon from "@/assets/icon/homeIcon.svg";
@@ -26,11 +25,18 @@ export function Header() {
   const { translate } = useTranslation();
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   // 경로별 조건 확인
   const isSignupOrGo = pathname === "/signup-or-go";
   const isMyPoketMessage = pathname === "/my-poket-message";
   const isMyPokedex = pathname?.startsWith("/my-pokedex");
+
+  const isFullScrollPage = isMounted && (pathname === '/' || pathname === '/my-tree');
 
   // 뒤로가기 버튼 표시 여부
   const showBackButton = isSignupOrGo || isMyPoketMessage || isMyPokedex;
@@ -40,7 +46,11 @@ export function Header() {
   };
 
   return (
-    <header className="w-full h-[60px] sticky top-0 z-50 overflow-hidden bg-primary-red">
+    <header
+      className={`w-full h-[60px] bg-primary-red ${
+        isFullScrollPage ? 'relative' : 'sticky top-0 z-50 overflow-hidden'
+      }`}
+    >
       {/* 헤더 배경 이미지 */}
       <Image
         src={HeaderBackground}
