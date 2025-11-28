@@ -29,6 +29,8 @@ export function Header() {
   const isMyPoketMessage = pathname === "/my-poket-message";
   const isMyPokedex = pathname?.startsWith("/my-pokedex");
 
+  const isFullScrollPage = pathname === '/' || pathname === '/my-tree';
+
   // 뒤로가기 버튼 표시 여부
   const showBackButton = isSignupOrGo || isMyPoketMessage || isMyPokedex;
 
@@ -37,7 +39,11 @@ export function Header() {
   };
 
   return (
-    <header className="w-full h-[60px] sticky top-0 z-50 overflow-hidden bg-primary-red">
+    <header
+      className={`w-full h-[60px] shrink-0 bg-primary-red overflow-hidden relative ${
+        isFullScrollPage ? '' : 'sticky top-0 z-50'
+      }`}
+    >
       {/* 헤더 배경 이미지 */}
       <Image
         src={HeaderBackground}
@@ -45,7 +51,7 @@ export function Header() {
         fill
         className="object-cover"
       />
-      <div className="relative w-full h-full">
+      <div className="relative z-10 w-full h-full">
         {/* 좌측: 뒤로가기 버튼 또는 로고 그룹 */}
         <div className="absolute left-4 top-3 flex items-center gap-2">
           {showBackButton && (

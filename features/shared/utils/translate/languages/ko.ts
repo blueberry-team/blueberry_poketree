@@ -13,6 +13,17 @@ export const ko = {
     english: "English",
     japanese: "日本語",
   },
+  auth: {
+    yourTree: "당신의 트리 이름은?",
+    password: "비밀번호 (4자리)",
+    confirmInput: "입력 완료",
+  },
+  share: {
+    title: "친구들에게 포케트리를 공유해주세요!",
+    copy: "링크 복사",
+    copySuccess: "링크가 복사되었어요!",
+    copyError: "링크 복사에 실패했습니다. 다시 시도해주세요.",
+  },
   pokedex: {
     title: "포켓몬 도감",
     button: "포켓몬도감",
@@ -40,9 +51,9 @@ export const ko = {
   },
   landing: {
     countdown: "크리스마스까지",
-    days: "일",
-    hours: "시",
-    minutes: "분",
+    days: "D",
+    hours: "H",
+    minutes: "M",
     description1: "크리스마스 당일 접속하면 깜짝 선물을 받을 수 있어요!",
     description2: "친구에게 편지를 써서 친구의 트리를 꾸며주세요!",
     makeTree: "포케트리 만들기",
