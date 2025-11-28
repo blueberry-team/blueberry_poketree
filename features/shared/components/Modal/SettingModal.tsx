@@ -4,6 +4,7 @@ import { useTranslation } from "../../utils/translate/useLanguage";
 import { logout } from "../../usecases/logout";
 import { HelpModal } from "./HelpModal";
 import { useState } from "react";
+import router from "next/router";
 
 interface SettingModalProps {
   isOpen: boolean;
@@ -19,6 +20,7 @@ export function SettingModal({ isOpen, onClose }: SettingModalProps) {
   const handleLogout = () => {
     logout();
     onClose();
+    router.push("/");
   };
 
   const handleHelp = () => {

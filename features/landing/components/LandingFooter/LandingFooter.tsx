@@ -24,7 +24,7 @@ export function LandingFooter() {
       {/* 포켓몬 이미지와 아이콘 */}
       <div className="flex gap-4 mt-4 items-center">
         <Image
-          src={ALL_POKEMON_IMAGES[0]}
+          src={ALL_POKEMON_IMAGES[1]}
           alt="Pokemon 1"
           width={80}
           height={80}
@@ -46,8 +46,8 @@ export function LandingFooter() {
         </div>
 
         <Image
-          src={ALL_POKEMON_IMAGES[142]}
-          alt="Pokemon 143"
+          src={ALL_POKEMON_IMAGES[73]}
+          alt="Pokemon 73"
           width={80}
           height={80}
         />

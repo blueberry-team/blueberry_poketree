@@ -1,6 +1,8 @@
 import { StaticImageData } from "next/image";
 
 // 포켓몬 base 이미지 import
+// 인덱스 딜레이를 위해 0번 포켓몬 추가 0 번 포켓몬은 없으므로 1번 이미지 사용
+import Pokemon0 from "@/assets/images/pokemon/base/1-pokemon.png";
 import Pokemon1 from "@/assets/images/pokemon/base/1-pokemon.png";
 import Pokemon2 from "@/assets/images/pokemon/base/2-pokemon.png";
 import Pokemon3 from "@/assets/images/pokemon/base/3-pokemon.png";
@@ -96,7 +98,7 @@ import Pokemon151 from "@/assets/images/pokemonWebp/pokemon/pokemon151.webp";
  * 전체 포켓몬 이미지 배열 (인덱스 0 = 포켓몬 1번)
  */
 export const ALL_POKEMON_IMAGES: StaticImageData[] = [
-  Pokemon1, Pokemon2, Pokemon3, Pokemon4, Pokemon5, Pokemon6, Pokemon7, Pokemon8, Pokemon9, Pokemon10,
+  Pokemon0, Pokemon1, Pokemon2, Pokemon3, Pokemon4, Pokemon5, Pokemon6, Pokemon7, Pokemon8, Pokemon9, Pokemon10,
   Pokemon11, Pokemon12, Pokemon13, Pokemon14, Pokemon15, Pokemon16, Pokemon17, Pokemon18, Pokemon19, Pokemon20,
   Pokemon21, Pokemon22, Pokemon23, Pokemon24, Pokemon25, Pokemon26, Pokemon27, Pokemon28, Pokemon29, Pokemon30,
   Pokemon31, Pokemon32, Pokemon33, Pokemon34, Pokemon35, Pokemon36, Pokemon37, Pokemon38, Pokemon39, Pokemon40,
