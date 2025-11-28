@@ -12,6 +12,12 @@ export const en = {
     english: "English",
     japanese: "日本語",
   },
+   share: {
+    title: "Share your PokéTree!",
+    copy: "Copy Link",
+    copySuccess: "Link copied!",
+    copyError: "Failed to copy the link. Please try again.",
+  },
   pokedex: {
     title: "Pokédex",
     button: "Pokédex",
