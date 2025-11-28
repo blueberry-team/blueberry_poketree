@@ -1,4 +1,3 @@
-
 // 기본구성 : 로고, poketree, 다국어버튼, 툴팁버튼
 // / :  [기본구성], 로그인 버튼
 // /signup-or-go : "<" 버튼, [기본구성]
@@ -11,13 +10,11 @@
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
-import HomeIcon from "@/assets/icon/homeIcon.svg";
 import LogoIcon from "@/assets/icon/logo.png";
 import HeaderBackground from "@/assets/images/background/header_background.png";
 import ButtonSmallBlue from "@/assets/images/components/button_small_blue.png";
-import ButtonBigGreen from "@/assets/images/components/button_big_green.png";
-import { logout } from "../../usecases/logout";
 import { LanguageModal } from "../Modal/LanguageModal";
+import { HelpModal } from "../Modal/HelpModal";
 import { useTranslation } from "../../utils/translate/useLanguage";
 
 export function Header() {
@@ -25,9 +22,9 @@ export function Header() {
   const router = useRouter();
   const { translate } = useTranslation();
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
+  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
 
   // 경로별 조건 확인
-  const isHome = pathname === "/";
   const isSignupOrGo = pathname === "/signup-or-go";
   const isMyPoketMessage = pathname === "/my-poket-message";
   const isMyPokedex = pathname?.startsWith("/my-pokedex");
@@ -35,32 +32,8 @@ export function Header() {
   // 뒤로가기 버튼 표시 여부
   const showBackButton = isSignupOrGo || isMyPoketMessage || isMyPokedex;
 
-  // 로그인 버튼 표시 (홈에서만)
-  const showLoginButton = isHome;
-
-  // 로그아웃 버튼 표시 (my-poket-message에서만)
-  const showLogoutButton = isMyPoketMessage;
-
-  // 홈 버튼 표시 (my-pokedex에서만)
-  const showHomeButton = isMyPokedex;
-
   const handleBack = () => {
     router.back();
-  };
-
-  const handleHome = () => {
-    // TODO: 유저의 my-tree 페이지로 이동, 유저 id 삽입
-    router.push("/my-tree");
-  };
-
-  const handleLogin = () => {
-    // 로그인 페이지로 이동
-    router.push("/signup-or-go");
-  };
-
-  const handleLogout = () => {
-    logout();
-    router.push("/");
   };
 
   return (
@@ -102,48 +75,18 @@ export function Header() {
             onClick={() => setIsLanguageModalOpen(true)}
             className="relative w-20 h-10 flex items-center justify-center"
           >
-            <Image src={ButtonSmallBlue} alt={translate("header.language")} fill className="object-contain absolute inset-0" />
-            <span className="relative z-10 text-black text-12 font-bold" suppressHydrationWarning>{translate("header.language")}</span>
+            <Image src={ButtonSmallBlue} alt="언어 버튼" fill className="object-contain absolute inset-0" />
+            <span className="relative z-10 text-black text-12 font-bold">{translate("header.language")}</span>
           </button>
 
           {/* 도움말 버튼 */}
           <button
-            onClick={() => router.push("/my-tree")}
+            onClick={() => setIsHelpModalOpen(true)}
             className="relative w-20 h-10 flex items-center justify-center"
           >
-            <Image src={ButtonSmallBlue} alt={translate("header.help")} fill className="object-contain absolute inset-0" />
-            <span className="relative z-10 text-black text-12 font-bold" suppressHydrationWarning>{translate("header.help")}</span>
+            <Image src={ButtonSmallBlue} alt="도움말 버튼" fill className="object-contain absolute inset-0" />
+            <span className="relative z-10 text-black text-12 font-bold">{translate("header.help")}</span>
           </button>
-
-          {/* 로그인 버튼 */}
-          {showLoginButton && (
-            <button
-              onClick={handleLogin}
-              className="w-[60px] h-[27px] bg-[#000000] rounded-sm flex items-center justify-center"
-            >
-              <span className="text-white text-xs font-bold">{translate("header.login")}</span>
-            </button>
-          )}
-
-          {/* 로그아웃 버튼 */}
-          {showLogoutButton && (
-            <button
-              onClick={handleLogout}
-              className="w-[60px] h-[27px] bg-[#000000] rounded-sm flex items-center justify-center"
-            >
-              <span className="text-white text-xs font-bold">{translate("header.logout")}</span>
-            </button>
-          )}
-
-          {/* 홈 버튼 */}
-          {showHomeButton && (
-            <button
-              onClick={handleHome}
-              className="w-[27px] h-[27px] bg-[#D9D9D9] rounded-[13.5px] flex items-center justify-center"
-            >
-              <Image src={HomeIcon} alt="홈" width={13} height={14} />
-            </button>
-          )}
         </div>
       </div>
 
@@ -151,6 +94,12 @@ export function Header() {
       <LanguageModal
         isOpen={isLanguageModalOpen}
         onClose={() => setIsLanguageModalOpen(false)}
+      />
+
+      {/* 도움말 모달 */}
+      <HelpModal
+        isOpen={isHelpModalOpen}
+        onClose={() => setIsHelpModalOpen(false)}
       />
     </header>
   );

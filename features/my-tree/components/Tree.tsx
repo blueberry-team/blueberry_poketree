@@ -94,7 +94,7 @@ export function Tree({
           {/* 트리 위의 몬스터볼(편지) 표시 */}
           {currentPageMessageCount > 0 && (
             <>
-              {/* 몬스터볼 위치 - 6개 표시 */}
+              {/* 몬스터볼 위치 - 7개 표시 */}
               {Array.from({ length: currentPageMessageCount }).map((_, index) => {
                 // 7개 몬스터볼 위치
                 const positions = [
@@ -107,7 +107,7 @@ export function Tree({
                   { top: "52%", left: "70%", transform: "translateX(-50%)" },  // 4층 오른쪽
                 ];
                 const pos = positions[index];
-                // 실제 메시지 인덱스 계산 (페이지 * 6 + 현재 인덱스)
+                // 실제 메시지 인덱스 계산 (페이지 * 7 + 현재 인덱스)
                 const actualMessageIndex = currentPage * messagesPerPage + index;
 
                 // 열린 상태 또는 호버 상태인지 확인

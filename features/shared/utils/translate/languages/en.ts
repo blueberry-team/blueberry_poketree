@@ -45,5 +45,27 @@ export const en = {
     description1: "Log in on Christmas Day to receive a surprise gift!",
     description2: "Write letters to decorate your friend's tree!",
     makeTree: "Make PokeTree",
+    visitSocial: "Visit our Instagram",
+    socialName: "Instagram",
+    socialId: "@poketree_official",
+  },
+  help: {
+    title: "How to Use",
+    section1: {
+      title: "Share with Friends",
+      description: "Share your tree address with friends using the share button.",
+    },
+    section2: {
+      title: "Collect Letters & Pokémon",
+      description: "Open letters from friends to randomly receive Pokémon!",
+    },
+    section3: {
+      title: "Check Your Pokédex",
+      description: "View all the Pokémon you've collected in your Pokédex!",
+    },
+    tip: {
+      title: "Collect Rare Pokémon!",
+      description: "The more you share and receive letters, the higher your chance of encountering rare Pokémon!",
+    },
   },
 } as const;
