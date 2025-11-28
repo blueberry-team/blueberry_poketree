@@ -7,7 +7,7 @@ import { LandingFooter } from "@/features/landing/components/LandingFooter/Landi
 // 랜딩 페이지
 export default function LandingPage() {
   return (
-    <div className="flex flex-col">
+    <div className="flex-1 flex flex-col">
       <div className="px-4 py-3 shrink-0">
         {/* 헤더 영역 */}
         <ChristmasCountdown />
