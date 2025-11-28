@@ -69,7 +69,7 @@ export function ShareLinkModel({
         {/* 링크 내용 */}
         <div className="px-4 py-4 rounded transition-all flex bg-[#f5f5f5] items-center">
           <Image src={ShareIcon} alt="ShareIcon" width={24} height={24} />
-          <p className="font-semibold text-[16px] text-black ml-2 whitespace-nowrap overflow-hidden text-ellipsis">
+          <p className="font-[system-ui] font-semibold text-[16px] text-black ml-2 whitespace-nowrap overflow-hidden text-ellipsis">
             {shareUrl}
           </p>
         </div>
