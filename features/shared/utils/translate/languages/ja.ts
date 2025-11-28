@@ -13,7 +13,7 @@ export const ja = {
     japanese: "日本語",
   },
   share: {
-    title: "友だちに「PokéTree」を\nシェアしましょう！",
+    title: "ともだちに「PokéTree」を\nシェアしましょう！",
     copy: "リンクをコピー",
     copySuccess: "リンクをコピーしたよ！",
     copyError: "リンクのコピーに失敗しちゃった…もう一度試してね。",
