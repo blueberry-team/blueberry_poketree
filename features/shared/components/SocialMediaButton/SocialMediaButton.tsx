@@ -38,21 +38,21 @@ export function SocialMediaButton() {
         {/* 소셜미디어 카드 */}
         <div
           onClick={handleSocialClick}
-          className="flex h-[110px] w-[320px] items-center gap-[19.738px] rounded-[11.963px] border-[2.393px] border-[#EEF2F6] bg-white p-[19.14px] shadow-[5.981px_5.981px_14.355px_2.991px_rgba(0,0,0,0.10)] cursor-pointer hover:opacity-90 transition-opacity"
+          className="flex h-[110px] w-[320px] items-center gap-5 rounded-xl border-2 border-[#EEF2F6] bg-white p-5 shadow-[6px_6px_14px_3px_rgba(0,0,0,0.10)] cursor-pointer hover:opacity-90 transition-opacity"
         >
           {/* 왼쪽: 아이콘 + 텍스트 */}
-          <div className="flex items-center gap-[19.738px]">
+          <div className="flex items-center gap-5">
             {/* 소셜미디어 아이콘 */}
             <Image
               src={socialIcon}
               alt="Social Icon"
-              width={72.374}
-              height={72.374}
+              width={72}
+              height={72}
               className="aspect-square"
             />
 
             {/* 텍스트 영역 */}
-            <div className="flex flex-col items-start gap-[4.785px]">
+            <div className="flex flex-col items-start gap-1">
               <span
                 className={`font-pf-stardust font-bold text-left leading-[135%] tracking-[-0.598px] text-black ${
                   language === "en" ? "text-[14px]" : "text-[16px]"
@@ -74,8 +74,8 @@ export function SocialMediaButton() {
           <Image
             src={RightArrowIcon}
             alt="Arrow"
-            width={9.6}
-            height={17.13}
+            width={10}
+            height={17}
           />
         </div>
       </div>
