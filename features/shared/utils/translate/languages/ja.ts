@@ -15,6 +15,8 @@ export const ja = {
   share: {
     title: "友だちに「PokéTree」を\nシェアしましょう！",
     copy: "リンクをコピー",
+    copySuccess: "リンクをコピーしたよ！",
+    copyError: "リンクのコピーに失敗しちゃった…もう一度試してね。",
   },
   pokedex: {
     title: "ポケモン図鑑",

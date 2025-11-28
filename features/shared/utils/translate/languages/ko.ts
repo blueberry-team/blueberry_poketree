@@ -14,7 +14,9 @@ export const ko = {
   },
   share: {
     title: "친구들에게 포켓트리를 공유해주세요!",
-    copy: "링크 복사"
+    copy: "링크 복사",
+    copySuccess: "링크가 복사되었어요!",
+    copyError: "링크 복사에 실패했습니다. 다시 시도해주세요.",
   },
   pokedex: {
     title: "포켓몬 도감",
