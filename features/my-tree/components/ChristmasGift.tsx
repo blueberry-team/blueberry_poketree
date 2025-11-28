@@ -1,12 +1,12 @@
 "use client";
 
 import Image from "next/image";
-import MonsterBallClose from "@/assets/images/components/monster_ball_close.png";
+import GiftBox from "@/assets/images/components/gift_box.png";
 
 /**
  * ChristmasGift 컴포넌트
  * - 트리 화면 우상단에 닫혀있는 몬스터볼을 표시
- * - 추후 크리스마스 선물 주는 동작을 추가할 예정
+ * - 당일에 크리스마스 선물 주는 동작을 추가할 예정
  */
 
 interface ChristmasGiftProps {
@@ -21,7 +21,7 @@ export function ChristmasGift({ onClick }: ChristmasGiftProps) {
       aria-label="크리스마스 선물"
     >
       <Image
-        src={MonsterBallClose}
+        src={GiftBox}
         alt="크리스마스 선물"
         width={64}
         height={64}

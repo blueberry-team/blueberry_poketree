@@ -18,6 +18,7 @@ interface LetterModalProps {
   letterContent: string;
   senderName: string;
   pokemonIndex: number;
+  letterId?: string;
 }
 
 export default function LetterModal({
@@ -27,6 +28,7 @@ export default function LetterModal({
   letterContent,
   senderName,
   pokemonIndex,
+  letterId,
 }: LetterModalProps) {
   const { translate } = useTranslation();
 

@@ -1,13 +1,16 @@
 import type { ApiResponse } from "@/features/shared/utils/api/apiClient";
 
 export interface Letter {
-  letter_id: string;
-  letter_sender: string;
-  letter_isOpen: boolean;
+  letter_jd: string;
+  sender_name: string;
+  is_open: string;
+  is_read: string;
+  letter_pokemon: number;
+  content?: string;
 }
 
 export interface UserTreeData {
-  user_name: string;
+  nickname: string;
   is_owner: boolean;
   letters: Letter[];
   pokemon_list: number[];
