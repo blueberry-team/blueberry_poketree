@@ -59,21 +59,10 @@ function detectBrowserLanguage(): Language {
   return "en";
 }
 
-// 초기 언어 설정 함수 (서버/클라이언트 모두 동작)
-function getInitialLanguage(): Language {
-  if (typeof window === "undefined") return "ko";
-
-  const savedLanguage = localStorage.getItem("language") as Language;
-  if (savedLanguage && ["ko", "en", "ja"].includes(savedLanguage)) {
-    return savedLanguage;
-  }
-
-  return detectBrowserLanguage();
-}
-
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  const [language, setLanguageState] = useState<Language>(() => getInitialLanguage());
+  // 서버/클라이언트 초기값을 동일하게 "ko"로 설정하여 hydration 불일치 방지
+  const [language, setLanguageState] = useState<Language>("ko");
   const [mounted, setMounted] = useState(false);
 
   // 클라이언트 마운트 확인 및 localStorage 동기화
@@ -81,9 +70,11 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     setMounted(true);
     const savedLanguage = localStorage.getItem("language") as Language;
     if (savedLanguage && ["ko", "en", "ja"].includes(savedLanguage)) {
-      if (savedLanguage !== language) {
-        setLanguageState(savedLanguage);
-      }
+      setLanguageState(savedLanguage);
+    } else {
+      // localStorage에 저장된 언어가 없으면 브라우저 언어 감지
+      const detectedLang = detectBrowserLanguage();
+      setLanguageState(detectedLang);
     }
   }, []);
 

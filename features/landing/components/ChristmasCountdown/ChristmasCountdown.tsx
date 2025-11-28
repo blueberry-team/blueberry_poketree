@@ -37,43 +37,55 @@ export function ChristmasCountdown() {
   const minutesStr = String(timeLeft.minutes).padStart(2, "0");
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center w-full overflow-hidden">
       {/* 크리스마스 카운트다운 */}
-      <div className="flex items-center gap-1 text-[18px]">
+      <div className="flex items-center gap-2 text-[18px] flex-wrap justify-center">
         <span className="font-bold">{translate("landing.countdown")}</span>
-        <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
-          <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
-            {daysStr[0]}
-          </span>
+
+        {/* Days 그룹 */}
+        <div className="flex items-center gap-0.5 shrink-0">
+          <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
+            <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
+              {daysStr[0]}
+            </span>
+          </div>
+          <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
+            <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
+              {daysStr[1]}
+            </span>
+          </div>
+          <span className="font-bold">{translate("landing.days")}</span>
         </div>
-        <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
-          <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
-            {daysStr[1]}
-          </span>
+
+        {/* Hours 그룹 */}
+        <div className="flex items-center gap-0.5 shrink-0">
+          <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
+            <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
+              {hoursStr[0]}
+            </span>
+          </div>
+          <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
+            <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
+              {hoursStr[1]}
+            </span>
+          </div>
+          <span className="font-bold">{translate("landing.hours")}</span>
         </div>
-        <span className="font-bold">{translate("landing.days")}</span>
-        <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
-          <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
-            {hoursStr[0]}
-          </span>
+
+        {/* Minutes 그룹 */}
+        <div className="flex items-center gap-0.5 shrink-0">
+          <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
+            <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
+              {minutesStr[0]}
+            </span>
+          </div>
+          <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
+            <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
+              {minutesStr[1]}
+            </span>
+          </div>
+          <span className="font-bold">{translate("landing.minutes")}</span>
         </div>
-        <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
-          <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
-            {hoursStr[1]}
-          </span>
-        </div>
-        <span className="font-bold">{translate("landing.hours")}</span>
-        <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
-          <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
-            {minutesStr[0]}
-          </span>
-        </div>
-        <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
-          <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
-            {minutesStr[1]}
-          </span>
-        </div>
-        <span className="font-bold">{translate("landing.minutes")}</span>
       </div>
 
       {/* 선물 메시지 */}

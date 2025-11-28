@@ -15,7 +15,7 @@ import HeaderBackground from "@/assets/images/background/header_background.png";
 import ButtonSmallBlue from "@/assets/images/components/button_small_blue.png";
 import PokedexDot from "@/assets/images/background/pokedex_dot.png";
 import { LanguageModal } from "../Modal/LanguageModal";
-import { HelpModal } from "../Modal/HelpModal";
+import { SettingModal } from "../Modal/SettingModal";
 import { useTranslation } from "../../utils/translate/useLanguage";
 
 export function Header() {
@@ -23,12 +23,14 @@ export function Header() {
   const router = useRouter();
   const { translate } = useTranslation();
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
-  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+  const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
 
   // 경로별 조건 확인
   const isSignupOrGo = pathname === "/signup-or-go";
   const isMyPoketMessage = pathname === "/my-poket-message";
   const isMyPokedex = pathname?.startsWith("/my-pokedex");
+
+  const isFullScrollPage = pathname === '/' || pathname === '/my-tree';
 
   // 뒤로가기 버튼 표시 여부
   const showBackButton = isSignupOrGo || isMyPoketMessage || isMyPokedex;
@@ -38,7 +40,11 @@ export function Header() {
   };
 
   return (
-    <header className="w-full h-[60px] sticky top-0 z-50 overflow-hidden bg-primary-red">
+    <header
+      className={`w-full h-[60px] shrink-0 bg-primary-red overflow-hidden relative ${
+        isFullScrollPage ? '' : 'sticky top-0 z-50'
+      }`}
+    >
       {/* 헤더 배경 이미지 */}
       <Image
         src={HeaderBackground}
@@ -46,7 +52,7 @@ export function Header() {
         fill
         className="object-cover"
       />
-      <div className="relative w-full h-full">
+      <div className="relative z-10 w-full h-full">
         {/* 좌측: 뒤로가기 버튼 또는 로고 그룹 */}
         <div className="absolute left-4 top-3 flex items-center gap-2">
           {showBackButton && (
@@ -89,13 +95,13 @@ export function Header() {
             <span className="relative z-10 text-black text-12 font-bold">{translate("header.language")}</span>
           </button>
 
-          {/* 도움말 버튼 */}
+          {/* 설정 버튼 */}
           <button
-            onClick={() => setIsHelpModalOpen(true)}
+            onClick={() => setIsSettingModalOpen(true)}
             className="relative w-20 h-10 flex items-center justify-center"
           >
-            <Image src={ButtonSmallBlue} alt="도움말 버튼" fill className="object-contain absolute inset-0" />
-            <span className="relative z-10 text-black text-12 font-bold">{translate("header.help")}</span>
+            <Image src={ButtonSmallBlue} alt="설정 버튼" fill className="object-contain absolute inset-0" />
+            <span className="relative z-10 text-black text-12 font-bold">{translate("header.options")}</span>
           </button>
         </div>
       </div>
@@ -106,10 +112,10 @@ export function Header() {
         onClose={() => setIsLanguageModalOpen(false)}
       />
 
-      {/* 도움말 모달 */}
-      <HelpModal
-        isOpen={isHelpModalOpen}
-        onClose={() => setIsHelpModalOpen(false)}
+      {/* 설정 모달 */}
+      <SettingModal
+        isOpen={isSettingModalOpen}
+        onClose={() => setIsSettingModalOpen(false)}
       />
     </header>
   );

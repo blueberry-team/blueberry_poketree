@@ -7,6 +7,7 @@ import { Tree } from "@/features/my-tree/components/Tree";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
 import { SocialMediaButton } from "@/features/shared/components/SocialMediaButton/SocialMediaButton";
 import LetterModal from "@/features/shared/components/Modal/LetterModal";
+import { ShareLinkModal } from "@/features/shared/components/Modal/ShareLinkModal";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import {
   ALL_POKEMON_IMAGES,
@@ -57,8 +58,8 @@ const SAMPLE_MESSAGE_CONTENTS: Record<string, { content: string; pokemonIndex: n
 export default function MyTreePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { translate } = useTranslation();
-  const publicId = searchParams.get('publicId') || "1";
+  const { translate, language } = useTranslation();
+  const publicId = searchParams.get('publicId');
 
   // API 상태
   const [treeData, setTreeData] = useState<UserTreeData | null>(null);
@@ -74,6 +75,8 @@ export default function MyTreePage() {
 
   // 편지 열린 상태
   const [isLetterModalOpen, setIsLetterModalOpen] = useState(false);
+  // 공유 링크 열린 상태
+  const [isShareLinkModalOpen, setIsShareLinkModalOpen] = useState(false);
   // 선택 편지 인덱스
   const [selectedLetterIndex, setSelectedLetterIndex] = useState(0);
 
@@ -190,19 +193,26 @@ export default function MyTreePage() {
     setIsLetterModalOpen(true);
   };
 
+  const handleShareLinkClick = () => {
+    setIsShareLinkModalOpen(true);
+  }
+
   return (
-    <div className="flex-1 bg-[#E7E9EB] flex flex-col overflow-y-auto">
+    <div className="bg-[#E7E9EB] flex flex-col">
       {/* ~님의 포케트리 텍스트, 공유하기 버튼 */}
       <div className="px-4 py-3 shrink-0 bg-primary-red flex items-center justify-between gap-2">
         <span className="text-white text-xl font-bold whitespace-nowrap">{userName}{translate("tree.userTree")}</span>
-        <button className="relative w-36 h-10 flex items-center justify-center shrink-0">
+        <button 
+          onClick={() => handleShareLinkClick()}
+          className="relative w-36 h-10 flex items-center justify-center shrink-0"
+        >
           <Image
             src={ButtonBigGreen}
             alt={translate("tree.share")}
             fill
             className="object-fill"
           />
-          <span className="relative z-10 text-black text-12 font-bold">{translate("tree.share")}</span>
+          <span className={`relative z-10 text-black font-bold ${language === "en" ? "text-[12px]" : "text-12"}`}>{translate("tree.share")}</span>
         </button>
       </div>
 
@@ -254,8 +264,17 @@ export default function MyTreePage() {
         />
       </div>
 
+      {/* 공유 링크 모달 */}
+      {publicId && (
+        <ShareLinkModal
+          isOpen={isShareLinkModalOpen}
+          onClose={() => setIsShareLinkModalOpen(false)}
+          publicId={publicId}
+        />
+      )}
+
       {/* 소셜미디어 버튼 */}
-      {/* <SocialMediaButton /> */}
+      <SocialMediaButton />
 
       {/* 편지 모달 */}
       <LetterModal

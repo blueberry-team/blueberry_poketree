@@ -5,12 +5,24 @@ export const ja = {
     logo: "ロゴ",
     language: "言語",
     help: "ヘルプ",
+    options: "設定",
   },
   language: {
     title: "言語を選択",
     korean: "한국어",
     english: "English",
     japanese: "日本語",
+  },
+  auth: {
+    yourTree: "あなたのツリーの名前は？",
+    password: "パスワード (4桁)",
+    confirmInput: "入力完了",
+  },
+  share: {
+    title: "ともだちに「PokéTree」を\nシェアしましょう！",
+    copy: "リンクをコピー",
+    copySuccess: "リンクをコピーしたよ！",
+    copyError: "リンクのコピーにしっぱいしちゃった、、もういちどためしてね",
   },
   pokedex: {
     title: "ポケモン図鑑",
@@ -39,9 +51,9 @@ export const ja = {
   },
   landing: {
     countdown: "クリスマスまで",
-    days: "日",
-    hours: "時間",
-    minutes: "分",
+    days: "D",
+    hours: "H",
+    minutes: "M",
     description1: "クリスマス当日にアクセスするとサプライズプレゼントがもらえます！",
     description2: "お友達のツリーを飾るためにお手紙を書きましょう！",
     makeTree: "ポケツリーを作る",
