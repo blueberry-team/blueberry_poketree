@@ -5,6 +5,7 @@ export const ja = {
     logo: "ロゴ",
     language: "言語",
     help: "ヘルプ",
+    setting: "設定",
   },
   language: {
     title: "言語を選択",

@@ -79,13 +79,13 @@ export function Header() {
             <span className="relative z-10 text-black text-12 font-bold">{translate("header.language")}</span>
           </button>
 
-          {/* 도움말 버튼 */}
+          {/* 설정 버튼 */}
           <button
             onClick={() => setIsHelpModalOpen(true)}
             className="relative w-20 h-10 flex items-center justify-center"
           >
-            <Image src={ButtonSmallBlue} alt="도움말 버튼" fill className="object-contain absolute inset-0" />
-            <span className="relative z-10 text-black text-12 font-bold">{translate("header.help")}</span>
+            <Image src={ButtonSmallBlue} alt="설정 버튼" fill className="object-contain absolute inset-0" />
+            <span className="relative z-10 text-black text-12 font-bold">{translate("header.setting")}</span>
           </button>
         </div>
       </div>

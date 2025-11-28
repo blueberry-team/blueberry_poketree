@@ -5,6 +5,7 @@ export const ko = {
     logo: "로고",
     language: "언어",
     help: "도움말",
+    setting: "설정",
   },
   language: {
     title: "언어 선택",
