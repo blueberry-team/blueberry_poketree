@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Tree } from "@/features/my-tree/components/Tree";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
+import { SocialMediaButton } from "@/features/shared/components/SocialMediaButton/SocialMediaButton";
 import LetterModal from "@/features/shared/components/Modal/LetterModal";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import {
@@ -190,7 +191,7 @@ export default function MyTreePage() {
   };
 
   return (
-    <div className="flex-1 bg-[#E7E9EB] flex flex-col overflow-y-auto">
+    <div className="bg-[#E7E9EB] flex flex-col">
       {/* ~님의 포케트리 텍스트, 공유하기 버튼 */}
       <div className="px-4 py-3 shrink-0 bg-primary-red flex items-center justify-between gap-2">
         <span className="text-white text-xl font-bold whitespace-nowrap">{userName}{translate("tree.userTree")}</span>
@@ -252,6 +253,9 @@ export default function MyTreePage() {
           onRight={handleRight}
         />
       </div>
+
+      {/* 소셜미디어 버튼 */}
+      <SocialMediaButton />
 
       {/* 편지 모달 */}
       <LetterModal
