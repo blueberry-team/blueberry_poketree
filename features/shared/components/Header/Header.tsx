@@ -7,14 +7,12 @@
 
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
-import HomeIcon from "@/assets/icon/homeIcon.svg";
 import LogoIcon from "@/assets/icon/logo.png";
 import HeaderBackground from "@/assets/images/background/header_background.png";
 import ButtonSmallBlue from "@/assets/images/components/button_small_blue.png";
-import { logout } from "../../usecases/logout";
 import { LanguageModal } from "../Modal/LanguageModal";
 import { HelpModal } from "../Modal/HelpModal";
 import { useTranslation } from "../../utils/translate/useLanguage";
@@ -25,18 +23,11 @@ export function Header() {
   const { translate } = useTranslation();
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
-  const [isMounted, setIsMounted] = useState(false);
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
 
   // 경로별 조건 확인
   const isSignupOrGo = pathname === "/signup-or-go";
   const isMyPoketMessage = pathname === "/my-poket-message";
   const isMyPokedex = pathname?.startsWith("/my-pokedex");
-
-  const isFullScrollPage = isMounted && (pathname === '/' || pathname === '/my-tree');
 
   // 뒤로가기 버튼 표시 여부
   const showBackButton = isSignupOrGo || isMyPoketMessage || isMyPokedex;
@@ -46,11 +37,7 @@ export function Header() {
   };
 
   return (
-    <header
-      className={`w-full h-[60px] bg-primary-red ${
-        isFullScrollPage ? 'relative' : 'sticky top-0 z-50 overflow-hidden'
-      }`}
-    >
+    <header className="w-full h-[60px] sticky top-0 z-50 overflow-hidden bg-primary-red">
       {/* 헤더 배경 이미지 */}
       <Image
         src={HeaderBackground}
