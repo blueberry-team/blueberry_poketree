@@ -38,7 +38,7 @@ export function SocialMediaButton() {
         {/* 소셜미디어 카드 */}
         <div
           onClick={handleSocialClick}
-          className="flex h-[110px] items-center justify-between gap-[19.738px] self-stretch rounded-[11.963px] border-[2.393px] border-[#EEF2F6] bg-white p-[19.14px] shadow-[5.981px_5.981px_14.355px_2.991px_rgba(0,0,0,0.10)] cursor-pointer hover:opacity-90 transition-opacity"
+          className="flex h-[110px] w-[320px] items-center gap-[19.738px] rounded-[11.963px] border-[2.393px] border-[#EEF2F6] bg-white p-[19.14px] shadow-[5.981px_5.981px_14.355px_2.991px_rgba(0,0,0,0.10)] cursor-pointer hover:opacity-90 transition-opacity"
         >
           {/* 왼쪽: 아이콘 + 텍스트 */}
           <div className="flex items-center gap-[19.738px]">
@@ -62,7 +62,7 @@ export function SocialMediaButton() {
               </span>
               <span
                 className={`font-pf-stardust text-left font-extrabold leading-[135%] tracking-[-0.538px] text-[#DC0A2D] ${
-                  language === "en" ? "text-[12px]" : "text-[14px]"
+                  language === "en" ? "text-[16px]" : "text-[18px]"
                 }`}
               >
                 {translate("landing.socialId")}
@@ -74,8 +74,8 @@ export function SocialMediaButton() {
           <Image
             src={RightArrowIcon}
             alt="Arrow"
-            width={16}
-            height={32}
+            width={9.6}
+            height={17.13}
           />
         </div>
       </div>
