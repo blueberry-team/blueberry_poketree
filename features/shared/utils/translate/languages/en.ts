@@ -12,7 +12,11 @@ export const en = {
     english: "English",
     japanese: "日本語",
   },
-   share: {
+  auth: {
+    yourTree: "What's your tree name?",
+    password: "Password (6 digits)",
+    confirmInput: "Confirm",
+  share: {
     title: "Share your PokéTree!",
     copy: "Copy Link",
     copySuccess: "Link copied!",

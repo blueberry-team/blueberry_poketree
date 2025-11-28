@@ -12,6 +12,10 @@ export const ko = {
     english: "English",
     japanese: "日本語",
   },
+  auth: {
+    yourTree: "당신의 트리 이름은?",
+    password: "비밀번호 (4자리)",
+    confirmInput: "입력 완료",
   share: {
     title: "친구들에게 포케트리를 공유해주세요!",
     copy: "링크 복사",
