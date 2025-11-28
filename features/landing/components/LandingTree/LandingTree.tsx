@@ -14,8 +14,8 @@ import { ALL_POKEMON_IMAGES } from "@/features/shared/data/pokemonData";
  * - 획득한 포켓몬을 트리 옆에 표시
  */
 
-// 랜딩 페이지에 표시할 포켓몬 인덱스 (실제 도감번호에서 -1로, 원하는 포켓몬 번호 선택)
-const DISPLAYED_POKEMON_INDICES = [6, 78, 53, 24, 131, 132, 3];
+// 랜딩 페이지에 표시할 포켓몬 인덱스 (0-80 범위, 원하는 포켓몬 번호 선택)
+const DISPLAYED_POKEMON_INDICES = [2, 32, 22, 9, 1, 67, 66];
 
 export function LandingTree() {
   // 선택된 포켓몬 이미지
@@ -91,9 +91,9 @@ export function LandingTree() {
       {displayedPokemons.map((pokemon, index) => {
         // 7마리 포켓몬 위치
         const pokemonPositions = [
-          { bottom: "70%", left: "10%", scaleX: -1 },  // 왼쪽 상단
-          { bottom: "52%", left: "1%", scaleX: -1 },  // 왼쪽 중단
-          { bottom: "20%", left: "2%", scaleX: -1 },  // 왼쪽 하단
+          { bottom: "70%", left: "10%", scaleX: 1 },  // 왼쪽 상단
+          { bottom: "52%", left: "1%", scaleX: 1 },  // 왼쪽 중단
+          { bottom: "20%", left: "2%", scaleX: 1 },  // 왼쪽 하단
           { bottom: "60%", right: "0%", scaleX: 1 },  // 오른쪽 상단
           { bottom: "25%", left: "80%", scaleX: 1 },  // 오른쪽 중상단
           { bottom: "8%", right: "45%", scaleX: 1 },  // 오른쪽 중하단
