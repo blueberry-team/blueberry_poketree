@@ -11,17 +11,19 @@ export default function MyPokedexPage() {
   const { translate } = useTranslation();
   const COLS = 5; // 가로 5개
 
-  const [selectedIndex, setSelectedIndex] = useState(0);
+  const [selectedIndex, setSelectedIndex] = useState(() => {
+    if (typeof window !== 'undefined') {
+      const savedIndex = localStorage.getItem("selectedIndex");
+      if (savedIndex !== null) {
+        return Number(savedIndex);
+      }
+    }
+    return 0;
+  });
   const [pokemons, setPokemons] = useState<PokemonInDex[]>([]);
   const [isMaster, setIsMaster] = useState(false);  //  포켓몬 마스터 여부
 
   useEffect(() => {
-    // localStorage에서 선택된 인덱스 복원
-    const savedIndex = localStorage.getItem("selectedIndex");
-    if (savedIndex !== null) {
-      setSelectedIndex(Number(savedIndex));
-    }
-
     const fetchPokemons = async () => {
       const data = await getMyPokedex();
       setPokemons(data);

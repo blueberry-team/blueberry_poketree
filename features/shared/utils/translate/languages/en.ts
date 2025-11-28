@@ -16,6 +16,11 @@ export const en = {
     yourTree: "What's your tree name?",
     password: "Password (6 digits)",
     confirmInput: "Confirm",
+  share: {
+    title: "Share your PokéTree!",
+    copy: "Copy Link",
+    copySuccess: "Link copied!",
+    copyError: "Failed to copy the link. Please try again.",
   },
   pokedex: {
     title: "Pokédex",
@@ -43,10 +48,10 @@ export const en = {
     confirm: "Confirm",
   },
   landing: {
-    countdown: "Until Christmas",
-    days: "Days",
-    hours: "Hours",
-    minutes: "Min",
+    countdown: "Christmas",
+    days: "D",
+    hours: "H",
+    minutes: "M",
     description1: "Log in on Christmas Day to receive a surprise gift!",
     description2: "Write letters to decorate your friend's tree!",
     makeTree: "Make PokeTree",
