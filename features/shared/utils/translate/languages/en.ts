@@ -16,6 +16,7 @@ export const en = {
     yourTree: "What's your tree name?",
     password: "Password (6 digits)",
     confirmInput: "Confirm",
+  },
   share: {
     title: "Share your PokéTree!",
     copy: "Copy Link",

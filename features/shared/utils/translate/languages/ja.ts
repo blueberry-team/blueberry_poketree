@@ -16,6 +16,7 @@ export const ja = {
     yourTree: "あなたのツリーの名前は？",
     password: "パスワード (4桁)",
     confirmInput: "入力完了",
+  },
   share: {
     title: "ともだちに「PokéTree」を\nシェアしましょう！",
     copy: "リンクをコピー",
