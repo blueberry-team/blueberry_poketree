@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Tree } from "@/features/my-tree/components/Tree";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
+import { SocialMediaButton } from "@/features/shared/components/SocialMediaButton/SocialMediaButton";
 import LetterModal from "@/features/shared/components/Modal/LetterModal";
 import { ShareLinkModal } from "@/features/shared/components/Modal/ShareLinkModal";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
@@ -263,12 +264,17 @@ export default function MyTreePage() {
         />
       </div>
 
-      {/* 공유 링크 모달 */} 
-      <ShareLinkModal
-        isOpen={isShareLinkModalOpen}
-        onClose={() => setIsShareLinkModalOpen(false)}
-        publicId={publicId}
-      />
+      {/* 공유 링크 모달 */}
+      {publicId && (
+        <ShareLinkModal
+          isOpen={isShareLinkModalOpen}
+          onClose={() => setIsShareLinkModalOpen(false)}
+          publicId={publicId}
+        />
+      )}
+
+      {/* 소셜미디어 버튼 */}
+      {/* <SocialMediaButton /> */}
 
       {/* 편지 모달 */}
       <LetterModal

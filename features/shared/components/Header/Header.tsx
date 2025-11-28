@@ -1,4 +1,3 @@
-
 // 기본구성 : 로고, poketree, 다국어버튼, 툴팁버튼
 // / :  [기본구성], 로그인 버튼
 // /signup-or-go : "<" 버튼, [기본구성]
@@ -11,11 +10,9 @@
 import { useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
-import HomeIcon from "@/assets/icon/homeIcon.svg";
 import LogoIcon from "@/assets/icon/logo.png";
 import HeaderBackground from "@/assets/images/background/header_background.png";
 import ButtonSmallBlue from "@/assets/images/components/button_small_blue.png";
-import { logout } from "../../usecases/logout";
 import { LanguageModal } from "../Modal/LanguageModal";
 import { HelpModal } from "../Modal/HelpModal";
 import { useTranslation } from "../../utils/translate/useLanguage";
