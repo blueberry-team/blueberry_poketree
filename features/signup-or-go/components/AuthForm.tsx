@@ -3,8 +3,9 @@
 import { useState } from "react";
 import Image from "next/image";
 import { SignupOrGoRequest } from "../models/req/SignupOrGoRequest";
-import DoctorOhImage from "@/assets/images/doctor_oh.png";
-import ButtonBigBlue from "@/assets/images/button_big_blue.png";
+import DoctorOhImage from "@/assets/images/signuporgo/doctor_oh.png";
+import ButtonBigBlue from "@/assets/images/components/button_big_blue.png";
+import PixelInputField from "@/assets/images/signuporgo/pixel_inputfield.svg";
 
 interface AuthFormProps {
   onSubmit: (req: SignupOrGoRequest) => Promise<void>;
@@ -20,21 +21,6 @@ export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
     e.preventDefault();
     await onSubmit({ nickname, password });
   };
-
-  // 픽셀 아트 스타일 입력 필드 SVG
-  const InputFieldSVG = () => (
-    <svg width="100%" height="49" viewBox="0 0 202 49" fill="none" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none">
-      <path d="M6.07815 0H195.261V3.03907H6.07815V0Z" fill="black"/>
-      <path d="M3.03907 3.03907H6.07815V6.07815H3.03907V3.03907Z" fill="black"/>
-      <path d="M195.261 3.03907H198.3V6.07815H195.261V3.03907Z" fill="black"/>
-      <path d="M3.03907 42.5471H6.07815V45.5861H3.03907V42.5471Z" fill="black"/>
-      <path d="M195.261 42.5471H198.3V45.5861H195.261V42.5471Z" fill="black"/>
-      <path d="M6.07815 45.5861H195.261V48.6252H6.07815V45.5861Z" fill="black"/>
-      <path d="M0 6.07815H3.03907V42.5471H0V6.07815Z" fill="black"/>
-      <path d="M198.3 6.07815H201.339V42.5471H198.3V6.07815Z" fill="black"/>
-      <rect x="13.1563" y="36.4689" width="22.7931" height="3.03907" fill="black"/>
-    </svg>
-  );
 
   return (
     <div className="flex-1 bg-[#F7F7F7] flex flex-col items-center px-[94px]">
@@ -57,7 +43,14 @@ export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
             당신의 트리 이름은?
           </p>
           <div className="relative w-full">
-            <InputFieldSVG />
+            <Image
+              src={PixelInputField}
+              
+              alt="input field"
+              width={202}
+              height={49}
+              className="w-full h-[49px]"
+            />
             <input
               type="text"
               value={nickname}
@@ -74,7 +67,13 @@ export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
             비밀번호 (4자리)
           </p>
           <div className="relative w-full">
-            <InputFieldSVG />
+            <Image
+              src={PixelInputField}
+              alt="input field"
+              width={202}
+              height={49}
+              className="w-full h-[49px]"
+            />
             <input
               type="password"
               value={password}
