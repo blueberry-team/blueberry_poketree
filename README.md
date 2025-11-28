@@ -5,12 +5,14 @@
 ## 프로젝트 소개
 
 ### 핵심 컨셉
+
 PokeTree는 익명 메시지 플랫폼과 수집 게임을 결합한 크리스마스 시즌 이벤트 서비스입니다. 사용자는 자신의 포켓트리를 만들고 공유하여 친구들로부터 익명의 편지를 받을 수 있으며, 편지를 받을 때마다 랜덤 포켓몬을 획득합니다.
 
 ## 기술 스택
 
 **버전**: 0.1.0
 **브랜치**: release/blueberry_poketree_2025
+
 - Next.js 16.0.3 (App Router)
 - React 19.2.0
 - TypeScript 5
@@ -28,14 +30,14 @@ PokeTree는 익명 메시지 플랫폼과 수집 게임을 결합한 크리스�
 
 ### 페이지 구조
 
-| 경로 | 설명 |
-|------|------|
-| `/` | 랜딩 페이지 |
-| `/signup-or-go` | 회원가입/로그인 |
-| `/my-tree` | 내 트리 페이지 |
-| `/my-poket-message` | 포켓 메시지 |
-| `/my-pokedex` | 포켓몬 도감 목록 |
-| `/my-pokedex/[id]` | 포켓몬 상세 페이지 |
+| 경로                | 설명               |
+| ------------------- | ------------------ |
+| `/`                 | 랜딩 페이지        |
+| `/signup-or-go`     | 회원가입/로그인    |
+| `/my-tree`          | 내 트리 페이지     |
+| `/my-poket-message` | 포켓 메시지        |
+| `/my-pokedex`       | 포켓몬 도감 목록   |
+| `/my-pokedex/[id]`  | 포켓몬 상세 페이지 |
 
 ### 구현 세부사항
 
@@ -195,6 +197,7 @@ src/
 ### 기본 원칙
 
 #### 페이지 기능 의존성 방향
+
 ```
 [Component] ↔ [Page] ← [UseCase] ← [Repository]
 ```
@@ -205,6 +208,7 @@ src/
 - **Repository**: API 통신 및 데이터 소스 추상화
 
 **규칙**:
+
 - ✅ Page는 usecase를 직접 import하여 사용
 - ✅ Component는 Page로부터 props(데이터/콜백)를 받아 사용
 - ❌ Component가 직접 usecase를 import하지 않음
@@ -228,6 +232,7 @@ export function Header() {
 ```
 
 **이유**:
+
 - Header/Footer는 layout에서 사용되며 중간 Page가 없음
 - 여러 페이지에서 공유되는 전역 UI이므로 직접 로직 접근 필요
 
@@ -241,26 +246,26 @@ import { AuthForm } from "@/features/signup-or-go/components/AuthForm";
 
 export default function SignupOrGoPage() {
   const handleSubmit = async (data) => {
-    const result = await signupOrGo(data);  // usecase 호출
+    const result = await signupOrGo(data); // usecase 호출
     if (result.success) router.push("/my-tree");
   };
 
-  return <AuthForm onSubmit={handleSubmit} />;  // Component에 콜백 전달
+  return <AuthForm onSubmit={handleSubmit} />; // Component에 콜백 전달
 }
 
 // features/signup-or-go/components/AuthForm.tsx
 export function AuthForm({ onSubmit }) {
-  return <form onSubmit={onSubmit}>...</form>;  // Page로부터 받은 콜백 사용
+  return <form onSubmit={onSubmit}>...</form>; // Page로부터 받은 콜백 사용
 }
 ```
 
 ```typescript
 // ❌ 잘못된 예시
 // features/signup-or-go/components/AuthForm.tsx
-import { signupOrGo } from "../usecases/signupOrGo";  // Component가 직접 usecase import
+import { signupOrGo } from "../usecases/signupOrGo"; // Component가 직접 usecase import
 
 export function AuthForm() {
-  const handleSubmit = () => signupOrGo();  // ❌ 의존성 방향 위반
+  const handleSubmit = () => signupOrGo(); // ❌ 의존성 방향 위반
 }
 ```
 
@@ -271,24 +276,32 @@ export function AuthForm() {
 프로젝트는 **Utility-First 접근 방식**을 채택합니다:
 
 #### 1. 공통 스타일 → `globals.css`
+
 다음과 같은 전역 스타일을 `app/globals.css`에 작성합니다:
 
 - **디자인 토큰** (CSS Variables)
+
   ```css
   :root {
-    --color-primary: #FF6B6B;
-    --color-secondary: #4ECDC4;
+    --color-primary: #ff6b6b;
+    --color-secondary: #4ecdc4;
     --spacing-unit: 8px;
   }
   ```
 
 - **기본 리셋 및 베이스 스타일**
+
   ```css
-  * { box-sizing: border-box; }
-  body { font-family: 'Pretendard', sans-serif; }
+  * {
+    box-sizing: border-box;
+  }
+  body {
+    font-family: "Pretendard", sans-serif;
+  }
   ```
 
 - **재사용되는 공통 패턴**
+
   ```css
   .christmas-gradient {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
@@ -298,11 +311,14 @@ export function AuthForm() {
 - **Tailwind @layer 확장**
   ```css
   @layer components {
-    .btn-primary { @apply px-4 py-2 bg-blue-500 text-white rounded-lg; }
+    .btn-primary {
+      @apply px-4 py-2 bg-blue-500 text-white rounded-lg;
+    }
   }
   ```
 
 #### 2. 개별 스타일 → Tailwind 인라인 클래스
+
 컴포넌트별 고유한 스타일은 Tailwind 유틸리티 클래스로 작성합니다:
 
 ```tsx
@@ -318,6 +334,7 @@ export function AuthForm() {
 ```
 
 #### 3. 조건부 스타일링
+
 복잡한 조건부 스타일은 `clsx` 또는 `cn` 유틸리티 사용:
 
 ```tsx
@@ -336,31 +353,34 @@ import { cn } from '@/shared/utils/cn';
 
 ### 파일명 규칙
 
-| 파일 유형 | 컨벤션 | 예시 |
-|-----------|--------|------|
-| React 컴포넌트 | **PascalCase** | `Button.tsx`, `PokemonCard.tsx`, `Tree.tsx` |
-| 함수/유틸리티 | **camelCase** | `getUserTree.ts`, `formatDate.ts` |
-| Custom Hooks | **camelCase** (use prefix) | `useAuth.ts`, `useFetch.ts` |
-| 타입/모델 파일 | **PascalCase** | `AuthRequest.ts`, `UserResponse.ts` |
-| Repository | **camelCase** | `authRepository.ts`, `treeRepository.ts` |
-| Next.js 라우트 폴더 | **kebab-case** | `signup-or-go/`, `my-tree/`, `my-pokedex/` |
-| Next.js 예약 파일 | **소문자** | `page.tsx`, `layout.tsx`, `loading.tsx` |
+| 파일 유형           | 컨벤션                     | 예시                                        |
+| ------------------- | -------------------------- | ------------------------------------------- |
+| React 컴포넌트      | **PascalCase**             | `Button.tsx`, `PokemonCard.tsx`, `Tree.tsx` |
+| 함수/유틸리티       | **camelCase**              | `getUserTree.ts`, `formatDate.ts`           |
+| Custom Hooks        | **camelCase** (use prefix) | `useAuth.ts`, `useFetch.ts`                 |
+| 타입/모델 파일      | **PascalCase**             | `AuthRequest.ts`, `UserResponse.ts`         |
+| Repository          | **camelCase**              | `authRepository.ts`, `treeRepository.ts`    |
+| Next.js 라우트 폴더 | **kebab-case**             | `signup-or-go/`, `my-tree/`, `my-pokedex/`  |
+| Next.js 예약 파일   | **소문자**                 | `page.tsx`, `layout.tsx`, `loading.tsx`     |
 
 ### 코드 내부 규칙
 
 ```typescript
 // ✅ 컴포넌트 - PascalCase
-export function PokemonCard() { }
-export const UserProfile = () => { }
+export function PokemonCard() {}
+export const UserProfile = () => {};
 
 // ✅ 타입 - PascalCase
-type User = { id: string; name: string; }
-interface AuthRequest { email: string; password: string; }
+type User = { id: string; name: string };
+interface AuthRequest {
+  email: string;
+  password: string;
+}
 
 // ✅ 변수/함수 - camelCase
 const userName = "John";
 const isAuthenticated = true;
-function getUserTree() { }
+function getUserTree() {}
 
 // ✅ 전역 상수 - UPPER_SNAKE_CASE
 const MAX_RETRY_COUNT = 3;
@@ -387,6 +407,110 @@ features/
 │       └── res/
 │           └── GetMyPokedexResponse.ts   # PascalCase (타입)
 ```
+
+## 커밋 컨벤션
+
+프로젝트는 **기능 구현 단위로 커밋을 작성**하며, 다음 타입만 사용합니다:
+
+### 커밋 메시지 형식
+
+```
+<type>: <subject>
+```
+
+### 커밋 타입
+
+| 타입       | 설명                           | 예시                                 |
+| ---------- | ------------------------------ | ------------------------------------ |
+| `feat`     | 새로운 기능 추가               | `feat: 로그인 폼 컴포넌트 구현`      |
+| `fix`      | 버그 수정                      | `fix: 포켓몬 이미지 로딩 오류 수정`  |
+| `refactor` | 코드 리팩토링 (기능 변경 없음) | `refactor: authRepository 코드 정리` |
+
+### 커밋 작성 규칙
+
+1. **기능 단위로 커밋 분리**
+
+   - 하나의 기능 구현이 완료되면 즉시 커밋
+   - 너무 큰 단위로 묶지 않기
+
+2. **제목 작성 규칙**
+
+   - 제목은 50자 이내로 작성
+   - 명령문 형태 사용 (예: "추가한다" ❌ → "추가" ✅)
+   - 마침표 사용하지 않음
+
+3. **예시**
+   ```bash
+   git commit -m "feat: 회원가입 API 연동"
+   git commit -m "fix: 트리 이미지 렌더링 버그 수정"
+   git commit -m "refactor: 포켓몬 데이터 구조 개선"
+   ```
+
+## Pull Request 가이드
+
+### PR 작성 규칙
+
+모든 Pull Request는 다음 정보를 **필수**로 포함해야 합니다:
+
+#### 1. 구현한 기능 설명
+
+```markdown
+## 구현 내용
+
+- 로그인/회원가입 폼 UI 구현
+- AuthForm 컴포넌트 작성
+- 입력 필드 validation 추가
+
+## 변경 사항
+
+- `features/signup-or-go/components/AuthForm.tsx` 생성
+- 로그인 API 연동 (`signupOrGo` usecase)
+- 에러 핸들링 추가
+```
+
+#### 2. 스크린샷 첨부 (필수)
+
+UI 변경이 있는 경우 **반드시** 스크린샷을 첨부해야 합니다:
+
+```markdown
+## 스크린샷
+
+### 로그인 화면
+
+![로그인 화면](https://...)
+
+### 에러 처리
+
+![에러 메시지](https://...)
+
+### 반응형 (모바일)
+
+![모바일 화면](https://...)
+```
+
+### PR 템플릿 예시
+
+```markdown
+## 구현 내용
+
+간단한 기능 설명 작성
+
+## 변경 사항
+
+- 변경된 파일 및 주요 로직 설명
+
+## 스크린샷
+
+(필수) UI 변경 사항 이미지 첨부
+
+```
+
+### PR 리뷰 프로세스
+
+1. PR 생성 시 위 정보를 모두 포함
+2. 코드 리뷰 진행
+3. 수정 사항 반영
+4. Approve 후 main/release 브랜치에 머지
 
 ## 참고 자료
 
