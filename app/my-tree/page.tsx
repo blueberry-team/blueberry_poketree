@@ -59,7 +59,7 @@ export default function MyTreePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { translate, language } = useTranslation();
-  const publicId = searchParams.get('publicId');
+  const publicId = searchParams.get('publicId')||"1";
 
   // API 상태
   const [treeData, setTreeData] = useState<UserTreeData | null>(null);
@@ -202,7 +202,7 @@ export default function MyTreePage() {
       {/* ~님의 포케트리 텍스트, 공유하기 버튼 */}
       <div className="px-4 py-3 shrink-0 bg-primary-red flex items-center justify-between gap-2">
         <span className="text-white text-xl font-bold whitespace-nowrap">{userName}{translate("tree.userTree")}</span>
-        <button 
+        <button
           onClick={() => handleShareLinkClick()}
           className="relative w-36 h-10 flex items-center justify-center shrink-0"
         >
