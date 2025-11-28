@@ -31,14 +31,14 @@ export function SocialMediaButton() {
     <div className="w-full bg-[#DC0A2D] py-8">
       <div className="mx-auto flex max-w-[320px] flex-col items-center gap-4 px-4">
         {/* 상단 텍스트 */}
-        <p className="font-pf-stardust font-bold text-center text-[24px] leading-[1.34] tracking-[-0.6px] text-white">
+        <p className="font-pf-stardust font-bold text-center text-[24px] leading-normal tracking-tight text-white">
           {translate("landing.visitSocial")}
         </p>
 
         {/* 소셜미디어 카드 */}
         <div
           onClick={handleSocialClick}
-          className="flex h-[110px] w-[320px] items-center gap-5 rounded-xl border-2 border-[#EEF2F6] bg-white p-5 shadow-[6px_6px_14px_3px_rgba(0,0,0,0.10)] cursor-pointer hover:opacity-90 transition-opacity"
+          className="flex h-[110px] w-[320px] items-center gap-5 rounded-xl border-2 border-[#EEF2F6] bg-white p-5 shadow-[6px_6px_14px_3px_#0000001A] cursor-pointer hover:opacity-90 transition-opacity"
         >
           {/* 왼쪽: 아이콘 + 텍스트 */}
           <div className="flex items-center gap-5">
@@ -54,14 +54,14 @@ export function SocialMediaButton() {
             {/* 텍스트 영역 */}
             <div className="flex flex-col items-start gap-1">
               <span
-                className={`font-pf-stardust font-bold text-left leading-[135%] tracking-[-0.598px] text-black ${
+                className={`font-pf-stardust font-bold text-left leading-snug tracking-tight text-black ${
                   language === "en" ? "text-[14px]" : "text-[16px]"
                 }`}
               >
                 {translate("landing.socialName")}
               </span>
               <span
-                className={`font-pf-stardust text-left font-extrabold leading-[135%] tracking-[-0.538px] text-[#DC0A2D] ${
+                className={`font-pf-stardust text-left font-extrabold leading-snug tracking-tight text-[#DC0A2D] ${
                   language === "en" ? "text-[16px]" : "text-[18px]"
                 }`}
               >
