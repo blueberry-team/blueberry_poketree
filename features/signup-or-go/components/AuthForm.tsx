@@ -6,6 +6,7 @@ import { SignupOrGoRequest } from "../models/req/SignupOrGoRequest";
 import DoctorOhImage from "@/assets/images/signuporgo/doctor_oh.png";
 import ButtonBigBlue from "@/assets/images/components/button_big_blue.png";
 import PixelInputField from "@/assets/images/signuporgo/pixel_inputfield.svg";
+import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 
 interface AuthFormProps {
   onSubmit: (req: SignupOrGoRequest) => Promise<void>;
@@ -16,6 +17,8 @@ interface AuthFormProps {
 export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
+  const { translate } = useTranslation();
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -40,12 +43,12 @@ export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
         {/* 아이디 입력 */}
         <div className="mb-[15px]">
           <p className="text-black text-base font-bold mb-2 text-center">
-            당신의 트리 이름은?
+            {translate("auth.yourTree")}
           </p>
           <div className="relative w-full">
             <Image
               src={PixelInputField}
-              
+
               alt="input field"
               width={202}
               height={49}
@@ -64,7 +67,7 @@ export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
         {/* 비밀번호 입력 */}
         <div className="mb-[26px]">
           <p className="text-black text-base font-bold mb-2 text-center">
-            비밀번호 (4자리)
+            {translate("auth.password")}
           </p>
           <div className="relative w-full">
             <Image
@@ -105,7 +108,7 @@ export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
             className="w-full h-[70px]"
           />
           <span className="absolute inset-0 flex items-center justify-center text-black text-2xl font-bold">
-            {isLoading ? "로딩중..." : "입력 완료"}
+            {isLoading ? "로딩중 .." : translate("auth.confirmInput")}
           </span>
         </button>
       </form>

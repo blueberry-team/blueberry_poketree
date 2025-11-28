@@ -12,6 +12,11 @@ export const en = {
     english: "English",
     japanese: "日本語",
   },
+  auth: {
+    yourTree: "What's your tree name?",
+    password: "Password (6 digits)",
+    confirmInput: "Confirm",
+  },
   pokedex: {
     title: "Pokédex",
     button: "Pokédex",
