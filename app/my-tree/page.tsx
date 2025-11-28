@@ -58,7 +58,7 @@ export default function MyTreePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { translate } = useTranslation();
-  const publicId = searchParams.get('publicId');
+  const publicId = searchParams.get('publicId') || "1";
 
   // API 상태
   const [treeData, setTreeData] = useState<UserTreeData | null>(null);
@@ -69,7 +69,7 @@ export default function MyTreePage() {
   const [currentPage, setCurrentPage] = useState(0);
 
   // 현재 표시할 포켓몬 목록 (상하 버튼으로 Refresh)
-  // 초기값은 처음 6마리로 설정 (hydration 불일치 방지)
+  // 초기값은 처음 7마리로 설정 (hydration 불일치 방지)
   const [displayedPokemons, setDisplayedPokemons] = useState(ALL_POKEMON_IMAGES.slice(0, 7));
 
   // 편지 열린 상태
