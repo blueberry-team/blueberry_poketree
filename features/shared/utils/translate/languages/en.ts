@@ -5,6 +5,7 @@ export const en = {
     logo: "Logo",
     language: "Lang",
     help: "Help",
+    options: "Opts",
   },
   language: {
     title: "Select Language",
