@@ -255,7 +255,7 @@ export default function MyTreePage() {
       </div>
 
       {/* 소셜미디어 버튼 */}
-      {/* <SocialMediaButton /> */}
+      <SocialMediaButton />
 
       {/* 편지 모달 */}
       <LetterModal
