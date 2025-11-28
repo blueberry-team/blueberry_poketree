@@ -14,7 +14,7 @@ import LogoIcon from "@/assets/icon/logo.png";
 import HeaderBackground from "@/assets/images/background/header_background.png";
 import ButtonSmallBlue from "@/assets/images/components/button_small_blue.png";
 import { LanguageModal } from "../Modal/LanguageModal";
-import { HelpModal } from "../Modal/HelpModal";
+import { SettingModal } from "../Modal/SettingModal";
 import { useTranslation } from "../../utils/translate/useLanguage";
 
 export function Header() {
@@ -22,7 +22,7 @@ export function Header() {
   const router = useRouter();
   const { translate } = useTranslation();
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
-  const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+  const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
 
   // 경로별 조건 확인
   const isSignupOrGo = pathname === "/signup-or-go";
@@ -81,7 +81,7 @@ export function Header() {
 
           {/* 설정 버튼 */}
           <button
-            onClick={() => setIsHelpModalOpen(true)}
+            onClick={() => setIsSettingModalOpen(true)}
             className="relative w-20 h-10 flex items-center justify-center"
           >
             <Image src={ButtonSmallBlue} alt="설정 버튼" fill className="object-contain absolute inset-0" />
@@ -96,10 +96,10 @@ export function Header() {
         onClose={() => setIsLanguageModalOpen(false)}
       />
 
-      {/* 도움말 모달 */}
-      <HelpModal
-        isOpen={isHelpModalOpen}
-        onClose={() => setIsHelpModalOpen(false)}
+      {/* 설정 모달 */}
+      <SettingModal
+        isOpen={isSettingModalOpen}
+        onClose={() => setIsSettingModalOpen(false)}
       />
     </header>
   );
