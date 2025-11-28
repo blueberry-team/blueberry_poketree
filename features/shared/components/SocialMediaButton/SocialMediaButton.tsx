@@ -54,16 +54,12 @@ export function SocialMediaButton() {
             {/* 텍스트 영역 */}
             <div className="flex flex-col items-start gap-1">
               <span
-                className={`font-pf-stardust font-bold text-left leading-snug tracking-tight text-black ${
-                  language === "en" ? "text-[14px]" : "text-[16px]"
-                }`}
+                className="font-pf-stardust font-bold text-left leading-snug tracking-tight text-black text-[20px]"
               >
                 {translate("landing.socialName")}
               </span>
               <span
-                className={`font-pf-stardust text-left font-extrabold leading-snug tracking-tight text-[#DC0A2D] ${
-                  language === "en" ? "text-[16px]" : "text-[18px]"
-                }`}
+                className="font-pf-stardust text-left font-extrabold leading-snug tracking-tight text-[#DC0A2D] text-[16px]"
               >
                 {translate("landing.socialId")}
               </span>
