@@ -16,7 +16,7 @@ export const ja = {
     title: "ともだちに「PokéTree」を\nシェアしましょう！",
     copy: "リンクをコピー",
     copySuccess: "リンクをコピーしたよ！",
-    copyError: "リンクのコピーに失敗しちゃった…もう一度試してね。",
+    copyError: "リンクのコピーにしっぱいしやった、、もういちとためしてね",
   },
   pokedex: {
     title: "ポケモン図鑑",
