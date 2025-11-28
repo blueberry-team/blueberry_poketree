@@ -47,7 +47,7 @@ export const ja = {
     makeTree: "ポケツリーを作る",
     visitSocial: "Twitterを見る",
     socialName: "Twitter",
-    socialId: "@oketree_jp",
+    socialId: "@poketree_jp",
   },
   help: {
     title: "使い方",
