@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
+import { useState, useEffect } from "react";
 import ShareIcon from "@/assets/icon/shareIcon.svg";
 import ButtonBigGreen from "@/assets/images/components/button_big_green.png";
 
@@ -21,16 +22,33 @@ export function ShareLinkModel({
   publicId,
 }: ShareLinkModalProps) {
   const { translate } = useTranslation();
+  // 복사 상태 관리
+  const [copyStatus, setCopyStatus] = useState<"idle" | "success" | "error">(
+    "idle"
+  );
+
+  // 링크 복사 성공이든 실패든 2초 후에는 안내 메시지가 종료되도록 설정
+  useEffect(() => {
+    if (copyStatus === "idle") return;
+
+    const timer = setTimeout(() => {
+      setCopyStatus("idle");
+    }, 2000);
+
+    return () => clearTimeout(timer);
+  }, [copyStatus]);
+  // 공유 URL
+  const shareUrl = SHARE_BASE_URL + publicId;
 
   if (!isOpen) return null;
-
-  const shareUrl = SHARE_BASE_URL + publicId;
 
   const handleCopy = async () => {
     try {
       await navigator.clipboard.writeText(shareUrl);
+      setCopyStatus("success");
     } catch (e) {
       console.error("링크 복사 실패", e);
+      setCopyStatus("error");
     }
   };
 
@@ -71,6 +89,15 @@ export function ShareLinkModel({
             </span>
           </span>
         </button>
+
+        {/* 안내 메시지 */}
+        {copyStatus !== "idle" && (
+          <div className="fixed bottom-16 left-1/2 -translate-x-1/2 px-4 py-2 bg-black text-white text-sm rounded-lg shadow-lg">
+            {copyStatus === "success"
+              ? translate("share.copySuccess")
+              : translate("share.copyError")}
+          </div>
+        )}
       </div>
     </div>
   );
