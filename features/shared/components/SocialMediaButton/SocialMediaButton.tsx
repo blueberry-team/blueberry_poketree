@@ -27,9 +27,6 @@ export function SocialMediaButton() {
   // 언어별 아이콘 선택
   const socialIcon = language === "ja" ? XIcon : InstagramIcon;
 
-  // 언어별 폰트 크기 (영어는 텍스트가 길어서 작게)
-  const fontSize = language === "en" ? { name: "14px", id: "12px" } : { name: "16px", id: "14px" };
-
   return (
     <div className="w-full bg-[#DC0A2D] py-8">
       <div className="mx-auto flex max-w-[320px] flex-col items-center gap-4 px-4">
@@ -57,14 +54,16 @@ export function SocialMediaButton() {
             {/* 텍스트 영역 */}
             <div className="flex flex-col items-start gap-[4.785px]">
               <span
-                className="font-pf-stardust font-bold text-left leading-[135%] tracking-[-0.598px] text-black"
-                style={{ fontSize: fontSize.name }}
+                className={`font-pf-stardust font-bold text-left leading-[135%] tracking-[-0.598px] text-black ${
+                  language === "en" ? "text-[14px]" : "text-[16px]"
+                }`}
               >
                 {translate("landing.socialName")}
               </span>
               <span
-                className="font-pf-stardust text-left font-extrabold leading-[135%] tracking-[-0.538px] text-[#DC0A2D]"
-                style={{ fontSize: fontSize.id }}
+                className={`font-pf-stardust text-left font-extrabold leading-[135%] tracking-[-0.538px] text-[#DC0A2D] ${
+                  language === "en" ? "text-[12px]" : "text-[14px]"
+                }`}
               >
                 {translate("landing.socialId")}
               </span>
