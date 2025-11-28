@@ -85,7 +85,7 @@ export function Header() {
             className="relative w-20 h-10 flex items-center justify-center"
           >
             <Image src={ButtonSmallBlue} alt="설정 버튼" fill className="object-contain absolute inset-0" />
-            <span className="relative z-10 text-black text-12 font-bold">{translate("header.setting")}</span>
+            <span className="relative z-10 text-black text-12 font-bold">{translate("header.options")}</span>
           </button>
         </div>
       </div>
