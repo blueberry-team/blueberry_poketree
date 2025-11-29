@@ -1,10 +1,12 @@
 "use client";
 
+import Image from "next/image";
 import { useTranslation } from "../../utils/translate/useLanguage";
 import { logout } from "../../usecases/logout";
 import { HelpModal } from "./HelpModal";
 import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
+import CloseIcon from "@/assets/icon/closeIcon.png";
 
 interface SettingModalProps {
   isOpen: boolean;
@@ -46,7 +48,13 @@ export function SettingModal({ isOpen, onClose }: SettingModalProps) {
               className="absolute bottom-[calc(100%+15px)] right-0 w-8 h-8 bg-black rounded flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors z-10"
               aria-label="닫기"
             >
-              <span className="text-white font-bold text-xl">×</span>
+              <Image
+                src={CloseIcon}
+                alt="닫기"
+                width={20}
+                height={20}
+                className="object-contain"
+              />
             </button>
             {/* 모달 내용 */}
             <div

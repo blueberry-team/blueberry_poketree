@@ -6,6 +6,7 @@ import MonsterBall1 from "@/assets/icon/tooltip/monsterBall1.svg";
 import MonsterBall2 from "@/assets/icon/tooltip/monsterBall2.svg";
 import MonsterBall3 from "@/assets/icon/tooltip/monsterBall3.svg";
 import ElectricBulb from "@/assets/icon/tooltip/electricBulb.svg";
+import CloseIcon from "@/assets/icon/closeIcon.png";
 
 interface HelpModalProps {
   isOpen: boolean;
@@ -30,7 +31,13 @@ export function HelpModal({ isOpen, onClose }: HelpModalProps) {
           className="absolute bottom-[calc(100%+15px)] right-0 w-8 h-8 bg-black rounded flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors z-10"
           aria-label="닫기"
         >
-          <span className="text-white font-bold text-xl">×</span>
+          <Image
+            src={CloseIcon}
+            alt="닫기"
+            width={20}
+            height={20}
+            className="object-contain"
+          />
         </button>
 
         {/* 모달 내용 */}

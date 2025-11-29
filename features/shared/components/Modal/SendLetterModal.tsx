@@ -1,8 +1,10 @@
 "use client";
 
+import Image from "next/image";
 import { useState } from "react";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { sendLetter } from "@/features/my-tree/usecases/sendLetter";
+import CloseIcon from "@/assets/icon/closeIcon.png";
 
 const MAX_CONTENT_LENGTH = 300;
 
@@ -84,9 +86,15 @@ export default function SendLetterModal({
           {/* 닫기 버튼 */}
           <button
             onClick={handleClose}
-            className="text-gray-500 hover:text-gray-700 text-xl font-bold"
+            className="text-gray-500 hover:text-gray-700"
           >
-            ×
+            <Image
+              src={CloseIcon}
+              alt="닫기"
+              width={20}
+              height={20}
+              className="object-contain"
+            />
           </button>
         </div>
 

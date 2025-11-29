@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Tree } from "@/features/my-tree/components/Tree";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
@@ -63,45 +63,45 @@ export default function MyTreePage() {
   const [selectedLetterIndex, setSelectedLetterIndex] = useState(0);
 
   // API로부터 데이터 가져오기
-  useEffect(() => {
+  const fetchTreeData = useCallback(async () => {
     if (!publicId) {
       setError('잘못된 접근입니다. 올바른 링크를 통해 접근해주세요.');
       setIsLoading(false);
       return;
     }
 
-    const fetchTreeData = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
+    try {
+      setIsLoading(true);
+      setError(null);
 
-        const response = await getUserTree({ user_id: publicId });
+      const response = await getUserTree({ user_id: publicId });
 
-        if (response.message === 'success' && response.data) {
-          setTreeData(response.data);
-          // pokemon_list에서 포켓몬 이미지 설정
-          if (response.data.pokemon_list && response.data.pokemon_list.length > 0) {
-            const pokemonImages = response.data.pokemon_list.map(index =>
-              ALL_POKEMON_IMAGES[index - 1] || ALL_POKEMON_IMAGES[0]
-            );
-            setDisplayedPokemons(pokemonImages);
-          }
+      if (response.message === 'success' && response.data) {
+        setTreeData(response.data);
+        // pokemon_list에서 포켓몬 이미지 설정
+        if (response.data.pokemon_list && response.data.pokemon_list.length > 0) {
+          const pokemonImages = response.data.pokemon_list.map(index =>
+            ALL_POKEMON_IMAGES[index - 1] || ALL_POKEMON_IMAGES[0]
+          );
+          setDisplayedPokemons(pokemonImages);
         }
-      } catch (err) {
-        if (isApiError(err)) {
-          setError(err.message || '트리 정보를 불러올 수 없습니다.');
-        } else if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError('알 수 없는 오류가 발생했습니다.');
-        }
-      } finally {
-        setIsLoading(false);
       }
-    };
-
-    fetchTreeData();
+    } catch (err) {
+      if (isApiError(err)) {
+        setError(err.message || '트리 정보를 불러올 수 없습니다.');
+      } else if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('알 수 없는 오류가 발생했습니다.');
+      }
+    } finally {
+      setIsLoading(false);
+    }
   }, [publicId]);
+
+  useEffect(() => {
+    fetchTreeData();
+  }, [fetchTreeData]);
 
   // 로딩 중
   if (isLoading) {
@@ -268,6 +268,10 @@ export default function MyTreePage() {
         onClose={() => setIsLetterModalOpen(false)}
         letterIndex={selectedLetterIndex}
         letterId={letters[selectedLetterIndex]?.letter_jd || null}
+        onDelete={() => {
+          // 편지 삭제 후 트리 데이터 새로고침
+          fetchTreeData();
+        }}
       />
 
       {/* 편지 보내기 모달 */}

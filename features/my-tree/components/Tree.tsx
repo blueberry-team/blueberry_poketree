@@ -5,6 +5,7 @@ import BackgroundImage from "@/assets/images/background/background.png";
 import TreeImage from "@/assets/images/background/tree.png";
 import MonsterBallOpen from "@/assets/images/components/monster_ball_open.png";
 import MonsterBallClose from "@/assets/images/components/monster_ball_close.png";
+import LockIcon from "@/assets/icon/lockIcon.svg";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { ChristmasGift } from "./ChristmasGift";
 import { Letter } from "../models/res/GetUserTreeResponse";
@@ -131,9 +132,18 @@ export function Tree({
                     }}
                   >
                     {/* 보낸 사람 이름 */}
-                    <div className="mb-1 bg-black/70 rounded px-2 py-0.5 whitespace-nowrap">
+                    <div className="mb-1 bg-black/70 rounded px-2 py-0.5 whitespace-nowrap flex items-center gap-1">
+                      {!isPublic && (
+                        <Image
+                          src={LockIcon}
+                          alt="비공개"
+                          width={10}
+                          height={10}
+                          className="object-contain"
+                        />
+                      )}
                       <span className="text-white text-xs font-bold">
-                        {!isPublic && "🔒 "}{letter?.sender_name || ""}
+                        {letter?.sender_name || ""}
                       </span>
                     </div>
                     {/* 몬스터볼 편지 버튼 */}
