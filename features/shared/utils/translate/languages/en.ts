@@ -45,6 +45,7 @@ export const en = {
   visitor: {
     makeMessage: "Send a message",
     makeTree: "Create my PokéTree",
+    send: "send Message"
   },
   message: {
     title: "Pockét Message",
