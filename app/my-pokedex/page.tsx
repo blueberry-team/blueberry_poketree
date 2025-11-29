@@ -102,16 +102,6 @@ export default function MyPokedexPage() {
       <div className="flex-1">
         <PokedexGrid pokemons={pokemons} selectedIndex={selectedIndex} />
       </div>
-
-      {/* 버튼 영역 */}
-      <BottomButtons
-        onUp={handleUp}
-        onDown={handleDown}
-        onLeft={handleLeft}
-        onRight={handleRight}
-        selectedPokemonId={selectedPokemonId}
-        selectedIndex={selectedIndex}
-      />
     </div>
   );
 }
