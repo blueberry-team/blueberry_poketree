@@ -75,7 +75,7 @@ export default function MyTreePage() {
         setIsLoading(true);
         setError(null);
 
-        const response = await getUserTree({ userId: publicId });
+        const response = await getUserTree({ user_id: publicId });
 
         if (response.message === 'success' && response.data) {
           setTreeData(response.data);

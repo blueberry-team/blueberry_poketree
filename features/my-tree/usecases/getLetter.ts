@@ -4,12 +4,12 @@ import { getLetterById } from "../repositories/letterRepository";
 
 /**
  * 편지의 상세 정보를 조회합니다
- * @param req - letterId를 포함한 요청
+ * @param req - letter_id를 포함한 요청
  * @returns 편지 상세 데이터 (발신자, 내용, 포켓몬 등)
  */
 export async function getLetter(req: GetLetterRequest): Promise<GetLetterResponse> {
   // validation
-  if (!req.letterId) {
+  if (!req.letter_id) {
     throw new Error("Letter ID is required");
   }
 

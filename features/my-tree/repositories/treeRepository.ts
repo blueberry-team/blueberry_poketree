@@ -3,13 +3,13 @@ import type { GetUserTreeResponse } from '../models/res/GetUserTreeResponse';
 
 /**
  * 유저의 트리 정보를 가져옵니다
- * @param req - userId를 포함한 요청 데이터
+ * @param req - user_id를 포함한 요청 데이터
  * @returns 트리 정보 (닉네임, 본인여부, 편지 목록, 포켓몬 목록)
  */
 export async function getUserTreeGet(req: GetUserTreeRequest): Promise<GetUserTreeResponse> {
   // TODO: 서버 구현 후 주석 해제
   // return apiClient.get<GetUserTreeResponse>(
-  //   `/tree/get-my-tree?userId=${req.userId}`,
+  //   `/tree/get-my-tree?user_id=${req.user_id}`,
   //   true  // 토큰이 있으면 헤더에 포함 (서버에서 is_owner 판별용)
   // );
 

@@ -1,4 +1,4 @@
 export interface GetUserTreeRequest {
-  userId: string;
+  user_id: string;
 }
 

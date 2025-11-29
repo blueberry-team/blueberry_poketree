@@ -1,3 +1,3 @@
 export interface GetLetterRequest {
-  letterId: string;
+  letter_id: string;
 }

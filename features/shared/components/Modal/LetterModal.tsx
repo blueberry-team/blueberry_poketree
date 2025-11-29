@@ -40,7 +40,7 @@ export default function LetterModal({
         setIsLoading(true);
         setError(null);
 
-        const response = await getLetter({ letterId });
+        const response = await getLetter({ letter_id: letterId });
 
         if (response.message === "success" && response.data) {
           setLetterData(response.data);
