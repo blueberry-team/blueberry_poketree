@@ -5,6 +5,7 @@ import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { useState, useEffect } from "react";
 import ShareIcon from "@/assets/icon/shareIcon.svg";
 import ButtonBigGreen from "@/assets/images/components/button_big_green.png";
+import CloseIcon from "@/assets/icon/closeIcon.png";
 
 // 공유 베이스 url
 const SHARE_BASE_URL = "https://poketree.com/";
@@ -65,7 +66,13 @@ export function ShareLinkModal({
           className="absolute bottom-[calc(100%+15px)] right-0 w-8 h-8 bg-black rounded flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors z-10"
           aria-label="닫기"
         >
-          <span className="text-white font-bold text-xl">×</span>
+          <Image
+            src={CloseIcon}
+            alt="닫기"
+            width={20}
+            height={20}
+            className="object-contain"
+          />
         </button>
 
         <div

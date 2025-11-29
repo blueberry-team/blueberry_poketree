@@ -13,6 +13,7 @@ import Image from "next/image";
 import LogoIcon from "@/assets/icon/logo.png";
 import HeaderBackground from "@/assets/images/background/header_background.png";
 import ButtonSmallBlue from "@/assets/images/components/button_small_blue.png";
+import PokedexDot from "@/assets/images/background/pokedex_dot.png";
 import { LanguageModal } from "../Modal/LanguageModal";
 import { SettingModal } from "../Modal/SettingModal";
 import { useTranslation } from "../../utils/translate/useLanguage";
@@ -71,7 +72,16 @@ export function Header() {
               className="object-contain"
             />
           )}
-          <span className="text-white text-xl" style={{ fontFamily: 'var(--font-press-start)' }}>Pokétree</span>
+          <div className="relative flex items-center">
+            <Image
+              src={PokedexDot}
+              alt="도감 신호등"
+              width={36}
+              height={24}
+              className="object-contain absolute -top-2 left-0"
+            />
+            <span className="text-white text-lg" style={{ fontFamily: 'var(--font-press-start)' }}>PokéTree</span>
+          </div>
         </div>
 
         {/* 우측 버튼 그룹 */}

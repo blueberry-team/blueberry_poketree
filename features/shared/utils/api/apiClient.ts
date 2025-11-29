@@ -50,9 +50,10 @@ export class ApiClient {
   /**
    * HTTP 요청 헤더를 구성합니다
    * @param requiresAuth - 인증이 필요한 요청인지 여부
+   * @param customHeaders - 추가 커스텀 헤더 (선택)
    * @returns 구성된 HTTP 헤더
    */
-  private buildHeaders(requiresAuth: boolean): HeadersInit {
+  private buildHeaders(requiresAuth: boolean, customHeaders?: Record<string, string>): HeadersInit {
     const headers: Record<string, string> = {
       'Content-Type': 'application/json',
     };
@@ -62,6 +63,11 @@ export class ApiClient {
       if (token) {
         headers['Authorization'] = `Bearer ${token}`;
       }
+    }
+
+    // 커스텀 헤더 병합
+    if (customHeaders) {
+      Object.assign(headers, customHeaders);
     }
 
     return headers;
@@ -97,17 +103,19 @@ export class ApiClient {
    * @param method - HTTP 메서드
    * @param requiresAuth - 인증이 필요한지 여부
    * @param body - 요청 본문 (선택)
+   * @param customHeaders - 추가 커스텀 헤더 (선택)
    * @returns 응답 데이터
    */
   private async request<T>(
     endpoint: string,
     method: string,
     requiresAuth: boolean,
-    body?: unknown
+    body?: unknown,
+    customHeaders?: Record<string, string>
   ): Promise<T> {
     const response = await fetch(`${BASE_API_URL}${endpoint}`, {
       method,
-      headers: this.buildHeaders(requiresAuth),
+      headers: this.buildHeaders(requiresAuth, customHeaders),
       // TODO: 쿠키 전송 필요 여부 확인 분기처리
       credentials: 'include',
       body: body ? JSON.stringify(body) : undefined,
@@ -120,10 +128,11 @@ export class ApiClient {
    * GET 요청을 수행합니다
    * @param endpoint - API 엔드포인트 경로
    * @param requiresAuth - 인증이 필요한지 여부 (기본값: false)
+   * @param customHeaders - 추가 커스텀 헤더 (선택)
    * @returns 응답 데이터
    */
-  async get<T>(endpoint: string, requiresAuth = false): Promise<T> {
-    return this.request<T>(endpoint, 'GET', requiresAuth);
+  async get<T>(endpoint: string, requiresAuth = false, customHeaders?: Record<string, string>): Promise<T> {
+    return this.request<T>(endpoint, 'GET', requiresAuth, undefined, customHeaders);
   }
 
   /**

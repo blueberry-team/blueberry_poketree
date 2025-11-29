@@ -1,18 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Tree } from "@/features/my-tree/components/Tree";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
 import { SocialMediaButton } from "@/features/shared/components/SocialMediaButton/SocialMediaButton";
 import LetterModal from "@/features/shared/components/Modal/LetterModal";
+import SendLetterModal from "@/features/shared/components/Modal/SendLetterModal";
 import { VisitorButtons } from "@/features/shared/components/VisitorButtons/VisitorButtons";
 import { ShareLinkModal } from "@/features/shared/components/Modal/ShareLinkModal";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import {
-  ALL_POKEMON_IMAGES,
-  getRandomPokemonImages
+  ALL_POKEMON_IMAGES
 } from "@/features/shared/data/pokemonData";
 import ButtonBigGreen from "@/assets/images/components/button_big_green.png";
 import { getUserTree } from "@/features/my-tree/usecases/getUserTree";
@@ -30,31 +30,11 @@ import { isApiError } from "@/features/shared/utils/api/apiClient";
  * - 사용자 이름 표시
  * - 트리 공유하기 버튼
  * - 포켓메시지 획득 개수 표시
- * - 트리에 몬스터볼(편지) 표시 (페이지당 6개)
+ * - 트리에 몬스터볼(편지) 표시 (페이지당 7개)
  * - 포켓메시지 확인하기 버튼 (본인일 때만)
  * - 도감 버튼
  * - 십자 버튼
  */
-
-// 샘플 메시지 데이터 (편지 내용용 - letter_id로 매칭)
-// TODO: 서버 구현 후 편지 내용도 API로 가져오기
-const SAMPLE_MESSAGE_CONTENTS: Record<string, { content: string; pokemonIndex: number }> = {
-  "1": { content: "메리 크리스마스! 올해도 행복한 연말 보내세요.", pokemonIndex: 25 },
-  "2": { content: "행복한 연말 보내세요! 새해에도 좋은 일만 가득하길 바랍니다.", pokemonIndex: 1 },
-  "3": { content: "새해 복 많이 받으세요! 항상 건강하고 행복하세요.", pokemonIndex: 4 },
-  "4": { content: "따뜻한 크리스마스 보내세요! 사랑하는 사람들과 함께요.", pokemonIndex: 7 },
-  "5": { content: "즐거운 연말연시 되세요! 2025년에도 파이팅!", pokemonIndex: 150 },
-  "6": { content: "포켓트리와 함께하는 특별한 크리스마스! 모든 소원이 이루어지길!", pokemonIndex: 151 },
-  "7": { content: "항상 응원하고 있어요! 좋은 하루 되세요.", pokemonIndex: 39 },
-  "8": { content: "올 한 해도 수고 많았어요! 푹 쉬세요.", pokemonIndex: 52 },
-  "9": { content: "따뜻한 연말 보내세요! 사랑합니다.", pokemonIndex: 6 },
-  "10": { content: "새해에도 건강하고 행복하세요!", pokemonIndex: 143 },
-  "11": { content: "좋은 일만 가득한 크리스마스 되세요!", pokemonIndex: 94 },
-  "12": { content: "힘내세요! 항상 응원합니다.", pokemonIndex: 131 },
-  "13": { content: "메리 크리스마스! 새해 복 많이 받으세요.", pokemonIndex: 3 },
-  "14": { content: "즐거운 연말 보내세요!", pokemonIndex: 9 },
-  "15": { content: "2025년에도 좋은 일만 가득하길!", pokemonIndex: 133 },
-};
 
 export default function MyTreePage() {
   const router = useRouter();
@@ -70,50 +50,58 @@ export default function MyTreePage() {
   // 현재 페이지 (좌우 페이징)
   const [currentPage, setCurrentPage] = useState(0);
 
-  // 현재 표시할 포켓몬 목록 (상하 버튼으로 Refresh)
-  // 초기값은 처음 6마리로 설정 (hydration 불일치 방지)
+  // 현재 표시할 포켓몬 목록 (pokemon_list에서 가져옴)
   const [displayedPokemons, setDisplayedPokemons] = useState(ALL_POKEMON_IMAGES.slice(0, 7));
 
   // 편지 열린 상태
   const [isLetterModalOpen, setIsLetterModalOpen] = useState(false);
   // 공유 링크 열린 상태
   const [isShareLinkModalOpen, setIsShareLinkModalOpen] = useState(false);
+  // 편지 보내기 모달 상태
+  const [isSendLetterModalOpen, setIsSendLetterModalOpen] = useState(false);
   // 선택 편지 인덱스
   const [selectedLetterIndex, setSelectedLetterIndex] = useState(0);
 
   // API로부터 데이터 가져오기
-  useEffect(() => {
+  const fetchTreeData = useCallback(async () => {
     if (!publicId) {
       setError('잘못된 접근입니다. 올바른 링크를 통해 접근해주세요.');
       setIsLoading(false);
       return;
     }
 
-    const fetchTreeData = async () => {
-      try {
-        setIsLoading(true);
-        setError(null);
+    try {
+      setIsLoading(true);
+      setError(null);
 
-        const response = await getUserTree({ public_id: publicId });
+      const response = await getUserTree({ user_id: publicId });
 
-        if (response.message === 'success' && response.data) {
-          setTreeData(response.data);
+      if (response.message === 'success' && response.data) {
+        setTreeData(response.data);
+        // pokemon_list에서 포켓몬 이미지 설정
+        if (response.data.pokemon_list && response.data.pokemon_list.length > 0) {
+          const pokemonImages = response.data.pokemon_list.map(index =>
+            ALL_POKEMON_IMAGES[index - 1] || ALL_POKEMON_IMAGES[0]
+          );
+          setDisplayedPokemons(pokemonImages);
         }
-      } catch (err) {
-        if (isApiError(err)) {
-          setError(err.message || '트리 정보를 불러올 수 없습니다.');
-        } else if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError('알 수 없는 오류가 발생했습니다.');
-        }
-      } finally {
-        setIsLoading(false);
       }
-    };
-
-    fetchTreeData();
+    } catch (err) {
+      if (isApiError(err)) {
+        setError(err.message || '트리 정보를 불러올 수 없습니다.');
+      } else if (err instanceof Error) {
+        setError(err.message);
+      } else {
+        setError('알 수 없는 오류가 발생했습니다.');
+      }
+    } finally {
+      setIsLoading(false);
+    }
   }, [publicId]);
+
+  useEffect(() => {
+    fetchTreeData();
+  }, [fetchTreeData]);
 
   // 로딩 중
   if (isLoading) {
@@ -141,42 +129,52 @@ export default function MyTreePage() {
   }
 
   // API에서 받은 데이터 사용
-  const userName = treeData.user_name;
+  const userName = treeData.nickname;
   const isOwner = treeData.is_owner;
-  const totalMessageCount = treeData.letters.length;
-
-  // 페이지 계산
-  const messagesPerPage = 6;
-  const totalPages = Math.ceil(totalMessageCount / messagesPerPage);
+  const letters = treeData.letters;
 
   /**
-   * 이전 페이지로 이동 + 포켓몬 셔플
+   * 이전 페이지로 이동
    */
   const handleLeft = () => {
+    const totalPages = Math.ceil(letters.length / 7);
     setCurrentPage((prev) => (prev > 0 ? prev - 1 : totalPages - 1));
-    setDisplayedPokemons(getRandomPokemonImages(7));
   };
 
   /**
-   * 다음 페이지로 이동 + 포켓몬 셔플
+   * 다음 페이지로 이동
    */
   const handleRight = () => {
+    const totalPages = Math.ceil(letters.length / 7);
     setCurrentPage((prev) => (prev < totalPages - 1 ? prev + 1 : 0));
-    setDisplayedPokemons(getRandomPokemonImages(7));
   };
 
   /**
-   * 포켓몬 Refresh (상 버튼)
+   * 포켓몬 Refresh (상 버튼) - pokemon_list에서 랜덤으로 표시
    */
   const handleUp = () => {
-    setDisplayedPokemons(getRandomPokemonImages(7));
+    if (treeData.pokemon_list && treeData.pokemon_list.length > 0) {
+      // pokemon_list를 셔플해서 표시
+      const shuffled = [...treeData.pokemon_list].sort(() => Math.random() - 0.5);
+      const pokemonImages = shuffled.map(index =>
+        ALL_POKEMON_IMAGES[index - 1] || ALL_POKEMON_IMAGES[0]
+      );
+      setDisplayedPokemons(pokemonImages);
+    }
   };
 
   /**
-   * 포켓몬 Refresh (하 버튼)
+   * 포켓몬 Refresh (하 버튼) - pokemon_list에서 랜덤으로 표시
    */
   const handleDown = () => {
-    setDisplayedPokemons(getRandomPokemonImages(7));
+    if (treeData.pokemon_list && treeData.pokemon_list.length > 0) {
+      // pokemon_list를 셔플해서 표시
+      const shuffled = [...treeData.pokemon_list].sort(() => Math.random() - 0.5);
+      const pokemonImages = shuffled.map(index =>
+        ALL_POKEMON_IMAGES[index - 1] || ALL_POKEMON_IMAGES[0]
+      );
+      setDisplayedPokemons(pokemonImages);
+    }
   };
 
   /**
@@ -224,13 +222,11 @@ export default function MyTreePage() {
       {/* 바디 영역 */}
       <Tree
         obtainedPokemons={displayedPokemons}
-        totalMessageCount={totalMessageCount}
+        letters={letters}
         currentPage={currentPage}
         onLetterClick={handleLetterClick}
-        openedLetterIndex={isLetterModalOpen ? selectedLetterIndex : -1}
         onPageChange={(page) => {
           setCurrentPage(page);
-          setDisplayedPokemons(getRandomPokemonImages(7));
         }}
       />
 
@@ -248,9 +244,7 @@ export default function MyTreePage() {
           />
         ) : (
           <VisitorButtons
-            onSendMessage={() => {
-              alert('포켓 메시지 보내기 (구현 예정)');
-            }}
+            onSendMessage={() => setIsSendLetterModalOpen(true)}
             onMakeTree={handleMakePokeTree}
           />
         )}
@@ -273,9 +267,18 @@ export default function MyTreePage() {
         isOpen={isLetterModalOpen}
         onClose={() => setIsLetterModalOpen(false)}
         letterIndex={selectedLetterIndex}
-        letterContent={SAMPLE_MESSAGE_CONTENTS[treeData.letters[selectedLetterIndex].letter_id]?.content}
-        senderName={treeData.letters[selectedLetterIndex]?.letter_sender || ""}
-        pokemonIndex={SAMPLE_MESSAGE_CONTENTS[treeData.letters[selectedLetterIndex].letter_id]?.pokemonIndex}
+        letterId={letters[selectedLetterIndex]?.letter_id || null}
+        onDelete={() => {
+          // 편지 삭제 후 트리 데이터 새로고침
+          fetchTreeData();
+        }}
+      />
+
+      {/* 편지 보내기 모달 */}
+      <SendLetterModal
+        isOpen={isSendLetterModalOpen}
+        onClose={() => setIsSendLetterModalOpen(false)}
+        receiverId={publicId!}
       />
     </div>
   );
