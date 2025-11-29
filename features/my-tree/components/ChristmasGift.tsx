@@ -23,8 +23,8 @@ export function ChristmasGift({ onClick }: ChristmasGiftProps) {
       <Image
         src={GiftBox}
         alt="크리스마스 선물"
-        width={64}
-        height={64}
+        width={96}
+        height={96}
         className="object-contain"
       />
     </button>

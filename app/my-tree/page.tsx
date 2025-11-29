@@ -39,7 +39,7 @@ export default function MyTreePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { translate, language } = useTranslation();
-  const publicId = searchParams.get('id');
+  const publicId = searchParams.get('id') || "1";
 
   // API 상태
   const [treeData, setTreeData] = useState<UserTreeData | null>(null);
@@ -61,7 +61,7 @@ export default function MyTreePage() {
 
   // API로부터 데이터 가져오기
   useEffect(() => {
-    if (!userId) {
+    if (!publicId) {
       setError('잘못된 접근입니다. 올바른 링크를 통해 접근해주세요.');
       setIsLoading(false);
       return;
@@ -72,7 +72,7 @@ export default function MyTreePage() {
         setIsLoading(true);
         setError(null);
 
-        const response = await getUserTree({ userId });
+        const response = await getUserTree({ userId: publicId });
 
         if (response.message === 'success' && response.data) {
           setTreeData(response.data);
@@ -98,7 +98,7 @@ export default function MyTreePage() {
     };
 
     fetchTreeData();
-  }, [userId]);
+  }, [publicId]);
 
   // 로딩 중
   if (isLoading) {
@@ -250,11 +250,11 @@ export default function MyTreePage() {
       </div>
 
       {/* 공유 링크 모달 */}
-      {userId && (
+      {publicId && (
         <ShareLinkModal
           isOpen={isShareLinkModalOpen}
           onClose={() => setIsShareLinkModalOpen(false)}
-          publicId={userId}
+          publicId={publicId}
         />
       )}
 

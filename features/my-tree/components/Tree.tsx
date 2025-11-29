@@ -83,7 +83,7 @@ export function Tree({
       }} />
 
       {/* 트리 이미지 */}
-      <div className="absolute inset-0 flex items-center justify-center pt-16">
+      <div className="absolute inset-0 flex items-center justify-center pt-24">
         <div className="relative" style={{ width: "min(500px, 85vw)", height: "min(700px, 75vh)" }}>
           {/* 트리 이미지 */}
           <Image
@@ -165,10 +165,10 @@ export function Tree({
           { bottom: "70%", left: "10%", scaleX: -1 },  // 왼쪽 상단
           { bottom: "52%", left: "1%", scaleX: -1 },  // 왼쪽 중단
           { bottom: "20%", left: "2%", scaleX: -1 },  // 왼쪽 하단
-          { bottom: "60%", right: "0%", scaleX: 1 },  // 오른쪽 상단
+          { bottom: "60%", right: "10%", scaleX: -1 },  // 오른쪽 상단
           { bottom: "25%", left: "80%", scaleX: 1 },  // 오른쪽 중상단
-          { bottom: "8%", right: "45%", scaleX: 1 },  // 오른쪽 중하단
-          { bottom: "8%", right: "10%", scaleX: 1 },  // 오른쪽 하단
+          { bottom: "2%", right: "55%", scaleX: 1 },  // 오른쪽 중하단
+          { bottom: "4%", right: "10%", scaleX: -1 },  // 오른쪽 하단
         ];
         const pos = pokemonPositions[index];
         if (!pos) return null;
