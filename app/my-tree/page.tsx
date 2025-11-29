@@ -7,6 +7,7 @@ import { Tree } from "@/features/my-tree/components/Tree";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
 import { SocialMediaButton } from "@/features/shared/components/SocialMediaButton/SocialMediaButton";
 import LetterModal from "@/features/shared/components/Modal/LetterModal";
+import SendLetterModal from "@/features/shared/components/Modal/SendLetterModal";
 import { VisitorButtons } from "@/features/shared/components/VisitorButtons/VisitorButtons";
 import { ShareLinkModal } from "@/features/shared/components/Modal/ShareLinkModal";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
@@ -29,7 +30,7 @@ import { isApiError } from "@/features/shared/utils/api/apiClient";
  * - 사용자 이름 표시
  * - 트리 공유하기 버튼
  * - 포켓메시지 획득 개수 표시
- * - 트리에 몬스터볼(편지) 표시 (페이지당 6개)
+ * - 트리에 몬스터볼(편지) 표시 (페이지당 7개)
  * - 포켓메시지 확인하기 버튼 (본인일 때만)
  * - 도감 버튼
  * - 십자 버튼
@@ -56,6 +57,8 @@ export default function MyTreePage() {
   const [isLetterModalOpen, setIsLetterModalOpen] = useState(false);
   // 공유 링크 열린 상태
   const [isShareLinkModalOpen, setIsShareLinkModalOpen] = useState(false);
+  // 편지 보내기 모달 상태
+  const [isSendLetterModalOpen, setIsSendLetterModalOpen] = useState(false);
   // 선택 편지 인덱스
   const [selectedLetterIndex, setSelectedLetterIndex] = useState(0);
 
@@ -241,9 +244,7 @@ export default function MyTreePage() {
           />
         ) : (
           <VisitorButtons
-            onSendMessage={() => {
-              alert('포켓 메시지 보내기 (구현 예정)');
-            }}
+            onSendMessage={() => setIsSendLetterModalOpen(true)}
             onMakeTree={handleMakePokeTree}
           />
         )}
@@ -267,6 +268,13 @@ export default function MyTreePage() {
         onClose={() => setIsLetterModalOpen(false)}
         letterIndex={selectedLetterIndex}
         letterId={letters[selectedLetterIndex]?.letter_jd || null}
+      />
+
+      {/* 편지 보내기 모달 */}
+      <SendLetterModal
+        isOpen={isSendLetterModalOpen}
+        onClose={() => setIsSendLetterModalOpen(false)}
+        receiverId={publicId}
       />
     </div>
   );
