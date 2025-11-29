@@ -81,7 +81,8 @@ import Pokemon77Active from "@/assets/images/pokemon/active/77-active.png";
 import Pokemon78Active from "@/assets/images/pokemon/active/78-active.png";
 import Pokemon79Active from "@/assets/images/pokemon/active/79-active.png";
 import Pokemon80Active from "@/assets/images/pokemon/active/80-active.png";
-import Pokemon81Active from "@/assets/images/pokemon/active/81-active.png";
+// TODO: 추후 오픈 예정
+// import Pokemon81Active from "@/assets/images/pokemon/active/81-active.png";
 
 import Pokemon1Inactive from "@/assets/images/pokemon/inactive/1-inactive.png";
 import Pokemon2Inactive from "@/assets/images/pokemon/inactive/2-inactive.png";
@@ -163,7 +164,8 @@ import Pokemon77Inactive from "@/assets/images/pokemon/inactive/77-inactive.png"
 import Pokemon78Inactive from "@/assets/images/pokemon/inactive/78-inactive.png";
 import Pokemon79Inactive from "@/assets/images/pokemon/inactive/79-inactive.png";
 import Pokemon80Inactive from "@/assets/images/pokemon/inactive/80-inactive.png";
-import Pokemon81Inactive from "@/assets/images/pokemon/inactive/81-inactive.png";
+// TODO: 추후 오픈 예정
+// import Pokemon81Inactive from "@/assets/images/pokemon/inactive/81-inactive.png";
 
 // 클라이언트에서 관리하는 포켓몬 기본 정보 타입
 export interface PokemonInfo {
@@ -254,5 +256,6 @@ export const POKEMON_DATA: PokemonInfo[] = [
   { id: 78, imageActive: Pokemon78Active, imageInactive: Pokemon78Inactive },
   { id: 79, imageActive: Pokemon79Active, imageInactive: Pokemon79Inactive },
   { id: 80, imageActive: Pokemon80Active, imageInactive: Pokemon80Inactive },
-  { id: 81, imageActive: Pokemon81Active, imageInactive: Pokemon81Inactive },
+  // TODO: 추후 오픈 예정
+  // { id: 81, imageActive: Pokemon81Active, imageInactive: Pokemon81Inactive },
 ];
