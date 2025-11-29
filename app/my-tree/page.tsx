@@ -232,7 +232,7 @@ export default function MyTreePage() {
       {/* 하단 영역 */}
       <div className="px-4 py-4 shrink-0 relative min-h-[200px]">
         {/* 도감 버튼과 십자 버튼 (메시지 버튼 포함) */}
-        //is_owner에 따라 바텀컴포넌트 구분
+        {/*is_owner에 따라 바텀컴포넌트 구분*/}
         {isOwner ? (
           <BottomButtons
             onUp={handleUp}
