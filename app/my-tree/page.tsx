@@ -266,10 +266,7 @@ export default function MyTreePage() {
         isOpen={isLetterModalOpen}
         onClose={() => setIsLetterModalOpen(false)}
         letterIndex={selectedLetterIndex}
-        letterContent={letters[selectedLetterIndex]?.content || ""}
-        senderName={letters[selectedLetterIndex]?.sender_name || ""}
-        pokemonIndex={letters[selectedLetterIndex]?.letter_pokemon}
-        letterId={letters[selectedLetterIndex]?.letter_jd}
+        letterId={letters[selectedLetterIndex]?.letter_jd || null}
       />
     </div>
   );

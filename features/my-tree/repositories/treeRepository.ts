@@ -1,4 +1,3 @@
-import { apiClient } from '@/features/shared/utils/api/apiClient';
 import type { GetUserTreeRequest } from '../models/req/GetUserTreeRequest';
 import type { GetUserTreeResponse } from '../models/res/GetUserTreeResponse';
 
