@@ -42,7 +42,7 @@ export const en = {
     experience: "EXP",
   },
   visitor: {
-    makeMessage: "Write a message",
+    makeMessage: "Send a message",
     makeTree: "Create my PokéTree",
   },
   message: {
