@@ -198,7 +198,7 @@ export default function MyTreePage() {
   }
 
   return (
-    <div className="bg-[#E7E9EB] flex flex-col">
+    <div className="flex flex-col">
       {/* ~님의 포케트리 텍스트, 공유하기 버튼 */}
       <div className="px-4 py-3 shrink-0 bg-primary-red flex items-center justify-between gap-2">
         <span className="text-white text-xl font-bold whitespace-nowrap">{userName}{translate("tree.userTree")}</span>
@@ -229,39 +229,32 @@ export default function MyTreePage() {
         }}
       />
 
-      {/* 푸터 영역 */}
+      {/* 하단 영역 */}
       <div className="px-4 py-4 shrink-0 relative min-h-[200px]">
-        {/* 포켓메시지 확인하기/보내기 버튼 - is_owner에 따라 다르게 표시 */}
+        {/* 도감 버튼과 십자 버튼 (메시지 버튼 포함) */}
+        {/*is_owner에 따라 바텀컴포넌트 구분*/}
         {isOwner ? (
-          <button
-            onClick={handleViewAllMessages}
-            className="w-full h-12 bg-[#FF7373] rounded-lg flex items-center justify-center mb-3"
-          >
-            <span className="text-white text-xl font-bold">
-              {translate("tree.checkMessage")}
-            </span>
-          </button>
+          <BottomButtons
+            onUp={handleUp}
+            onDown={handleDown}
+            onLeft={handleLeft}
+            onRight={handleRight}
+            onCheckMessage={handleViewAllMessages}
+          />
         ) : (
-          <button
-            onClick={() => {
-              // TODO: 편지 보내기 기능 구현
+          /* TODO:아래의 BottomButtons 대신
+          이슈에 올라와있는 버튼두개를
+          하나로 묶은 컴포넌트를 추가하면 됩니다!*/
+          <BottomButtons
+            onUp={handleUp}
+            onDown={handleDown}
+            onLeft={handleLeft}
+            onRight={handleRight}
+            onSendMessage={() => {
               alert('포켓 메시지 보내기 (구현 예정)');
             }}
-            className="w-full h-12 bg-[#4ECDC4] rounded-lg flex items-center justify-center mb-3"
-          >
-            <span className="text-white text-xl font-bold">
-              포켓 메시지 보내기
-            </span>
-          </button>
+          />
         )}
-
-        {/* 도감 버튼과 십자 버튼 */}
-        <BottomButtons
-          onUp={handleUp}
-          onDown={handleDown}
-          onLeft={handleLeft}
-          onRight={handleRight}
-        />
       </div>
 
       {/* 공유 링크 모달 */}
