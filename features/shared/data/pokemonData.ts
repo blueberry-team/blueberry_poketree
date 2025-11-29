@@ -106,7 +106,6 @@ export const ALL_POKEMON_IMAGES: StaticImageData[] = [
   Pokemon51, Pokemon52, Pokemon53, Pokemon54, Pokemon55, Pokemon56, Pokemon57, Pokemon58, Pokemon59, Pokemon60,
   Pokemon61, Pokemon62, Pokemon63, Pokemon64, Pokemon65, Pokemon66, Pokemon67, Pokemon68, Pokemon69, Pokemon70,
   Pokemon71, Pokemon72, Pokemon73, Pokemon74, Pokemon75, Pokemon76, Pokemon77, Pokemon78, Pokemon79, Pokemon80,
-  Pokemon81,
 ];
 
 /**
