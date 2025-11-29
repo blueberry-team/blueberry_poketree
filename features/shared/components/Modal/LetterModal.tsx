@@ -7,8 +7,11 @@ import { getPokemonImage } from "@/features/shared/data/pokemonData";
 import { getLetter } from "@/features/my-tree/usecases/getLetter";
 import { deleteLetter } from "@/features/my-tree/usecases/deleteLetter";
 import { LetterData } from "@/features/my-tree/models/res/GetLetterResponse";
+import DeleteConfirmModal from "@/features/shared/components/Modal/DeleteConfirmModal";
 import LockIcon from "@/assets/icon/lockIcon.svg";
 import CloseIcon from "@/assets/icon/closeIcon.png";
+import ButtonLetterPublic from "@/assets/images/components/button_letter_public.png";
+import ButtonLetterUnpublic from "@/assets/images/components/button_letter_unpublic.png";
 
 /**
  * LetterModal - 편지 내용을 보여주는 모달
@@ -20,7 +23,6 @@ interface LetterModalProps {
   isOpen: boolean;
   onClose: () => void;
   letterId: string | null;
-  letterIndex: number;
   onDelete?: () => void;
 }
 
@@ -28,7 +30,6 @@ export default function LetterModal({
   isOpen,
   onClose,
   letterId,
-  letterIndex,
   onDelete,
 }: LetterModalProps) {
   const { translate } = useTranslation();
@@ -36,6 +37,7 @@ export default function LetterModal({
   const [isLoading, setIsLoading] = useState(false);
   const [isDeleting, setIsDeleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   // 편지 데이터 가져오기
   useEffect(() => {
@@ -55,7 +57,7 @@ export default function LetterModal({
         if (err instanceof Error) {
           setError(err.message);
         } else {
-          setError("편지를 불러올 수 없습니다.");
+          setError(translate("letterModal.loadError"));
         }
       } finally {
         setIsLoading(false);
@@ -63,20 +65,25 @@ export default function LetterModal({
     };
 
     fetchLetter();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isOpen, letterId]);
 
-  // 편지 삭제
-  const handleDelete = async () => {
-    if (!letterId || !letterData) return;
+  // 편지 삭제 확인 모달 열기
+  const handleDeleteClick = () => {
+    setShowConfirmModal(true);
+  };
 
-    if (!confirm("정말 이 편지를 삭제하시겠습니까?")) return;
+  // 편지 삭제 실행
+  const handleConfirmDelete = async () => {
+    if (!letterId || !letterData) return;
 
     try {
       setIsDeleting(true);
+      setShowConfirmModal(false);
       const response = await deleteLetter({ letter_id: letterData.letter_id });
 
       if (response.message === "success") {
-        alert("편지가 삭제되었습니다.");
+        alert(translate("letterModal.deleteSuccess"));
         onDelete?.();
         onClose();
       }
@@ -84,7 +91,7 @@ export default function LetterModal({
       if (err instanceof Error) {
         alert(err.message);
       } else {
-        alert("편지 삭제에 실패했습니다.");
+        alert(translate("letterModal.deleteError"));
       }
     } finally {
       setIsDeleting(false);
@@ -122,21 +129,23 @@ export default function LetterModal({
           />
         </button>
 
-        {/* 자물쇠 아이콘 (우상단) */}
-        <div className="absolute top-6 right-6">
-          <Image
-            src={LockIcon}
-            alt="비공개"
-            width={32}
-            height={32}
-            className="object-contain"
-          />
-        </div>
+        {/* 자물쇠 아이콘 (우상단) - is_opened가 true일 때만 표시 */}
+        {!letterData?.is_opened && (
+          <div className="absolute top-6 right-6">
+            <Image
+              src={LockIcon}
+              alt="비공개"
+              width={32}
+              height={32}
+              className="object-contain"
+            />
+          </div>
+        )}
 
         {/* 로딩 중 */}
         {isLoading && (
           <div className="flex justify-center items-center min-h-[500px]">
-            <p className="text-white">로딩 중...</p>
+            <p className="text-white">{translate("letterModal.loading")}</p>
           </div>
         )}
 
@@ -148,7 +157,7 @@ export default function LetterModal({
               onClick={onClose}
               className="px-6 py-3 bg-gray-500 text-white rounded-lg"
             >
-              닫기
+              {translate("letterModal.close")}
             </button>
           </div>
         )}
@@ -167,7 +176,7 @@ export default function LetterModal({
                 unoptimized
               />
               <h2 className="text-white text-3xl font-bold">
-                누구게 님의 포켓 메세지
+                {translate("letterModal.title").replace("{name}", letterData.sender_name)}
               </h2>
             </div>
 
@@ -179,24 +188,57 @@ export default function LetterModal({
             </div>
 
             {/* 버튼 그룹 */}
-            <div className="flex gap-4">
+            <div className="flex justify-between items-center">
+              {/* 삭제 버튼 */}
               <button
-                onClick={handleDelete}
+                onClick={handleDeleteClick}
                 disabled={isDeleting}
-                className="px-8 py-4 bg-transparent border-2 border-white text-white rounded-xl font-bold hover:bg-white hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-24 h-14 px-8 py-2 bg-transparent border-2 border-white text-white rounded-sm font-bold hover:bg-white hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isDeleting ? "삭제 중..." : "삭제"}
+                {isDeleting ? translate("letterModal.deleting") : translate("letterModal.delete")}
               </button>
-              <button
+
+              {/* 메세지 공개/비공개 버튼 */}
+              <div
+                className="relative cursor-pointer h-14 flex items-center justify-center"
                 onClick={handlePublish}
-                className="flex-1 py-4 bg-[#4CAF50] text-white rounded-xl font-bold text-xl hover:bg-[#45a049] transition-colors"
+                style={{ width: '200px' }}
               >
-                메세지 공개하기
-              </button>
+                <Image
+                  src={letterData.is_opened ? ButtonLetterUnpublic : ButtonLetterPublic}
+                  alt={letterData.is_opened ? translate("letterModal.publish") : translate("letterModal.unpublish")}
+                  width={200}
+                  height={56}
+                  className="h-full w-auto object-contain"
+                />
+                <div className="absolute inset-0 flex items-center justify-center gap-2 pointer-events-none">
+                  {letterData.is_opened && (
+                    <Image
+                      src={LockIcon}
+                      alt="자물쇠"
+                      width={16}
+                      height={16}
+                      className="object-contain"
+                    />
+                  )}
+                  <span className="text-black font-bold text-center text-base">
+                    {letterData.is_opened ? translate("letterModal.unpublish") : translate("letterModal.publish")}
+                  </span>
+                </div>
+              </div>
             </div>
           </div>
         )}
       </div>
+
+      {/* 삭제 확인 모달 */}
+      <DeleteConfirmModal
+        isOpen={showConfirmModal}
+        onClose={() => setShowConfirmModal(false)}
+        onConfirm={handleConfirmDelete}
+        title={translate("letterModal.deleteConfirm").replace("{name}", letterData?.sender_name || "")}
+        confirmText={translate("letterModal.deleteButton")}
+      />
     </div>
   );
 }

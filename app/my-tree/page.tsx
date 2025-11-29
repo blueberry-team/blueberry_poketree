@@ -266,7 +266,6 @@ export default function MyTreePage() {
       <LetterModal
         isOpen={isLetterModalOpen}
         onClose={() => setIsLetterModalOpen(false)}
-        letterIndex={selectedLetterIndex}
         letterId={letters[selectedLetterIndex]?.letter_id || null}
         onDelete={() => {
           // 편지 삭제 후 트리 데이터 새로고침

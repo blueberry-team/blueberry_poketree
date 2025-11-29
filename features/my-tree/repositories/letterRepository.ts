@@ -26,7 +26,7 @@ export async function getLetterById(req: GetLetterRequest): Promise<GetLetterRes
         data: {
           letter_id: req.letter_id,
           sender_name: "아구몬",
-          is_opened: false,
+          is_opened: true,
           letter_pokemon: 49,
           content: "디지몬이 짱임",
         },
