@@ -50,6 +50,14 @@ export const ja = {
     cancel: "キャンセル",
     confirm: "確認",
   },
+  error: {
+    title: "エラー",
+    defaultMessage: "情報が見つかりません。",
+    goHome: "ホームに戻る",
+    pokedexNotFound: "図鑑情報が見つかりません。",
+    treeNotFound: "ツリー情報が見つかりません。",
+    loadFailed: "データの読み込みに失敗しました。",
+  },
   landing: {
     countdown: "クリスマスまで",
     days: "D",

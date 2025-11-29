@@ -1,16 +1,15 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { useSearchParams } from "next/navigation";
-import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
+import { useRouter, useSearchParams } from "next/navigation";
 import { PokedexGrid } from "@/features/my-pokedex/components/PokedexGrid";
-import { ErrorPage } from "@/features/shared/components/ErrorPage/ErrorPage";
 import { getMyPokedex, PokemonInDex } from "@/features/my-pokedex/usecases/getMyPokedex";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 
 // 포켓몬 목록 페이지
 export default function MyPokedexPage() {
   const { translate } = useTranslation();
+  const router = useRouter();
   const searchParams = useSearchParams();
   const publicId = searchParams.get('id');
 
@@ -25,10 +24,13 @@ export default function MyPokedexPage() {
   });
   const [pokemons, setPokemons] = useState<PokemonInDex[]>([]);
   const [isMaster, setIsMaster] = useState(false);
-  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!publicId) return;
+    // publicId가 없으면 에러 페이지로 리다이렉트
+    if (!publicId) {
+      router.replace("/error?type=pokedex");
+      return;
+    }
 
     const fetchPokemons = async () => {
       try {
@@ -40,12 +42,13 @@ export default function MyPokedexPage() {
         const totalCount = data.length;
         setIsMaster(ownedCount === totalCount);
       } catch (err) {
-        setError("포켓몬 도감을 불러오는데 실패했습니다.");
+        // 에러 발생 시 에러 페이지로 리다이렉트
+        router.replace("/error?type=load");
       }
     };
 
     fetchPokemons();
-  }, []);
+  }, [publicId, router]);
 
   // 사용자 이름 (하드코딩)
   const userName = "상화";

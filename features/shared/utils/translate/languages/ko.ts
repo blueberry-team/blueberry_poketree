@@ -50,6 +50,14 @@ export const ko = {
     cancel: "취소",
     confirm: "확인",
   },
+  error: {
+    title: "오류",
+    defaultMessage: "정보를 찾을 수 없습니다.",
+    goHome: "홈으로 돌아가기",
+    pokedexNotFound: "도감 정보를 찾을 수 없습니다.",
+    treeNotFound: "트리 정보를 찾을 수 없습니다.",
+    loadFailed: "데이터를 불러오는데 실패했습니다.",
+  },
   landing: {
     countdown: "크리스마스까지",
     days: "D",

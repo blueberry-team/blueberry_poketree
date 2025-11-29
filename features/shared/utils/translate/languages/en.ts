@@ -50,6 +50,14 @@ export const en = {
     cancel: "Cancel",
     confirm: "Confirm",
   },
+  error: {
+    title: "Error",
+    defaultMessage: "Information not found.",
+    goHome: "Go to Home",
+    pokedexNotFound: "Pokédex information not found.",
+    treeNotFound: "Tree information not found.",
+    loadFailed: "Failed to load data.",
+  },
   landing: {
     countdown: "Christmas",
     days: "D",
