@@ -40,7 +40,7 @@ export default function MyTreePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { translate, language } = useTranslation();
-  const publicId = searchParams.get('id');
+  const publicId = searchParams.get('id') || "1";
 
   // API 상태
   const [treeData, setTreeData] = useState<UserTreeData | null>(null);
@@ -234,7 +234,7 @@ export default function MyTreePage() {
       <div className="px-4 py-4 shrink-0 relative min-h-[200px]">
         {/* 도감 버튼과 십자 버튼 (메시지 버튼 포함) */}
         {/*is_owner에 따라 바텀컴포넌트 구분*/}
-        {isOwner ? (
+        {!isOwner ? (
           <BottomButtons
             onUp={handleUp}
             onDown={handleDown}
@@ -266,7 +266,6 @@ export default function MyTreePage() {
       <LetterModal
         isOpen={isLetterModalOpen}
         onClose={() => setIsLetterModalOpen(false)}
-        letterIndex={selectedLetterIndex}
         letterId={letters[selectedLetterIndex]?.letter_id || null}
         onDelete={() => {
           // 편지 삭제 후 트리 데이터 새로고침
