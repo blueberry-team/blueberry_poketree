@@ -7,6 +7,7 @@ import { Tree } from "@/features/my-tree/components/Tree";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
 import { SocialMediaButton } from "@/features/shared/components/SocialMediaButton/SocialMediaButton";
 import LetterModal from "@/features/shared/components/Modal/LetterModal";
+import { VisitorButtons } from "@/features/shared/components/VisitorButtons/VisitorButtons";
 import { ShareLinkModal } from "@/features/shared/components/Modal/ShareLinkModal";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import {
@@ -197,6 +198,10 @@ export default function MyTreePage() {
     setIsShareLinkModalOpen(true);
   }
 
+  const handleMakePokeTree = () => {
+    router.push("/signup-or-go");
+  };
+
   return (
     <div className="flex flex-col">
       {/* ~님의 포케트리 텍스트, 공유하기 버튼 */}
@@ -242,17 +247,11 @@ export default function MyTreePage() {
             onCheckMessage={handleViewAllMessages}
           />
         ) : (
-          /* TODO:아래의 BottomButtons 대신
-          이슈에 올라와있는 버튼두개를
-          하나로 묶은 컴포넌트를 추가하면 됩니다!*/
-          <BottomButtons
-            onUp={handleUp}
-            onDown={handleDown}
-            onLeft={handleLeft}
-            onRight={handleRight}
+          <VisitorButtons
             onSendMessage={() => {
               alert('포켓 메시지 보내기 (구현 예정)');
             }}
+            onMakeTree={handleMakePokeTree}
           />
         )}
       </div>

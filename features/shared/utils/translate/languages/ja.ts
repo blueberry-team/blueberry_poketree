@@ -41,6 +41,10 @@ export const ja = {
     level: "レベル",
     experience: "経験値",
   },
+  visitor: {
+    makeMessage: "メッセージをかく",
+    makeTree: "マイポケツリーをつくる",
+  },
   message: {
     title: "ポケットメッセージ",
     placeholder: "メッセージを入力",

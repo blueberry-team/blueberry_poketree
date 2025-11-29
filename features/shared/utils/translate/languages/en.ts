@@ -41,6 +41,10 @@ export const en = {
     level: "Level",
     experience: "EXP",
   },
+  visitor: {
+    makeMessage: "Send a message",
+    makeTree: "Create my PokéTree",
+  },
   message: {
     title: "Pockét Message",
     placeholder: "Enter message",
