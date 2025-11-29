@@ -38,7 +38,7 @@ export function ShareLinkModal({
     return () => clearTimeout(timer);
   }, [copyStatus]);
   // 공유 URL
-  const shareUrl = SHARE_BASE_URL + publicId;
+  const shareUrl = SHARE_BASE_URL + 'mytree?id=' + publicId;
 
   if (!isOpen) return null;
 
