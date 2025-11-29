@@ -30,6 +30,7 @@ export const ja = {
     detail: "詳細を見る",
     userPokedex: "のポケモン図鑑",
     masterBadge: "ポケモンマスター",
+    ownedStatus: "{total}匹中{owned}匹獲得",
   },
   tree: {
     title: "マイポケツリー",

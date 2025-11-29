@@ -30,6 +30,7 @@ export const en = {
     detail: "View Details",
     userPokedex: "'s Pokédex",
     masterBadge: "Pokémon Master",
+    ownedStatus: "{owned} of {total} collected",
   },
   tree: {
     title: "My Poke Tree",

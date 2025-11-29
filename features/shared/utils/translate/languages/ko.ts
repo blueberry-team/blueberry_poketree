@@ -30,6 +30,7 @@ export const ko = {
     detail: "자세히 보기",
     userPokedex: "님의 포켓몬 도감",
     masterBadge: "포켓몬 마스터",
+    ownedStatus: "{total}마리 중 {owned}마리 획득",
   },
   tree: {
     title: "나의 포켓트리",
