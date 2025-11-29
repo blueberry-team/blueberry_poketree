@@ -12,8 +12,6 @@ interface BottomButtonsProps {
   onDown?: () => void;
   onLeft?: () => void;
   onRight?: () => void;
-  selectedPokemonId?: number; // 포켓몬 도감에서 현재 선택된 포켓몬 ID
-  selectedIndex?: number; // 포켓몬 도감에서 현재 선택된 인덱스
   // 메시지 버튼 관련 props (전달된 callback에 따라 버튼 표시)
   onCheckMessage?: () => void;
   onSendMessage?: () => void;
@@ -29,8 +27,6 @@ export function BottomButtons({
   onDown,
   onLeft,
   onRight,
-  selectedPokemonId,
-  selectedIndex,
   onCheckMessage,
   onSendMessage
 }: BottomButtonsProps) {
@@ -38,21 +34,13 @@ export function BottomButtons({
   const router = useRouter();
   const pathname = usePathname();
 
-  const isMyPokedex = pathname === "/my-pokedex";
+  // const isMyPokedex = pathname === "/my-pokedex";
 
   const handleButtonClick = () => {
-    if (isMyPokedex && selectedPokemonId) {
-      // localStorage에 선택된 인덱스 저장
-      localStorage.setItem("selectedIndex", String(selectedIndex ?? 0));
-      // 포켓몬 도감 페이지에서는 선택된 포켓몬 상세로 이동
-      router.push(`/my-pokedex/${selectedPokemonId}`);
-    } else {
-      // 다른 페이지에서는 포켓몬 도감으로 이동
       router.push("/my-pokedex");
-    }
   };
 
-  const buttonLabel = isMyPokedex ? translate("pokedex.detail") : translate("pokedex.button");
+  const buttonLabel = translate("pokedex.button");
 
   return (
     <div className="flex justify-between items-end">
