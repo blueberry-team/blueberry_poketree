@@ -1,12 +1,12 @@
 import type { StaticImageData } from "next/image";
 
 // 포켓몬 이미지 동적 import - 테스트용 (1번만)
-import Pokemon1Active from "@/assets/images/pokedex/active/1-active.png";
-import Pokemon2Active from "@/assets/images/pokedex/active/2-active.png";
-import Pokemon3Active from "@/assets/images/pokedex/active/3-active.png";
-import Pokemon1Inactive from "@/assets/images/pokedex/inactive/1-inactive.png";
-import Pokemon2Inactive from "@/assets/images/pokedex/inactive/2-inactive.png";
-import Pokemon3Inactive from "@/assets/images/pokedex/inactive/3-inactive.png";
+import Pokemon1Active from "@/assets/images/pokemon/active/1-active.png";
+import Pokemon2Active from "@/assets/images/pokemon/active/2-active.png";
+import Pokemon3Active from "@/assets/images/pokemon/active/3-active.png";
+import Pokemon1Inactive from "@/assets/images/pokemon/inactive/1-inactive.png";
+import Pokemon2Inactive from "@/assets/images/pokemon/inactive/2-inactive.png";
+import Pokemon3Inactive from "@/assets/images/pokemon/inactive/3-inactive.png";
 
 // 클라이언트에서 관리하는 포켓몬 기본 정보 타입
 export interface PokemonInfo {
