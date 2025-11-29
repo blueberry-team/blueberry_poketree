@@ -30,6 +30,7 @@ export const ja = {
     detail: "詳細を見る",
     userPokedex: "のポケモン図鑑",
     masterBadge: "ポケモンマスター",
+    ownedStatus: "{total}匹中{owned}匹獲得",
   },
   tree: {
     title: "マイポケツリー",
@@ -41,6 +42,10 @@ export const ja = {
     level: "レベル",
     experience: "経験値",
   },
+  visitor: {
+    makeMessage: "メッセージをかく",
+    makeTree: "マイポケツリーをつくる",
+  },
   message: {
     title: "ポケットメッセージ",
     placeholder: "メッセージを入力",
@@ -48,6 +53,14 @@ export const ja = {
   common: {
     cancel: "キャンセル",
     confirm: "確認",
+  },
+  error: {
+    title: "エラー",
+    defaultMessage: "情報が見つかりません。",
+    goHome: "ホームに戻る",
+    pokedexNotFound: "図鑑情報が見つかりません。",
+    treeNotFound: "ツリー情報が見つかりません。",
+    loadFailed: "データの読み込みに失敗しました。",
   },
   landing: {
     countdown: "クリスマスまで",

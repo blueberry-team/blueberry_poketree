@@ -30,6 +30,7 @@ export const en = {
     detail: "View Details",
     userPokedex: "'s Pokédex",
     masterBadge: "Pokémon Master",
+    ownedStatus: "{owned} of {total} collected",
   },
   tree: {
     title: "My Poke Tree",
@@ -41,6 +42,10 @@ export const en = {
     level: "Level",
     experience: "EXP",
   },
+  visitor: {
+    makeMessage: "Send a message",
+    makeTree: "Create my PokéTree",
+  },
   message: {
     title: "Pockét Message",
     placeholder: "Enter message",
@@ -48,6 +53,14 @@ export const en = {
   common: {
     cancel: "Cancel",
     confirm: "Confirm",
+  },
+  error: {
+    title: "Error",
+    defaultMessage: "Information not found.",
+    goHome: "Go to Home",
+    pokedexNotFound: "Pokédex information not found.",
+    treeNotFound: "Tree information not found.",
+    loadFailed: "Failed to load data.",
   },
   landing: {
     countdown: "Christmas",

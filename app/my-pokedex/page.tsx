@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
+import { useRouter, useSearchParams } from "next/navigation";
 import { PokedexGrid } from "@/features/my-pokedex/components/PokedexGrid";
 import { getMyPokedex, PokemonInDex } from "@/features/my-pokedex/usecases/getMyPokedex";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
@@ -9,7 +9,9 @@ import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 // 포켓몬 목록 페이지
 export default function MyPokedexPage() {
   const { translate } = useTranslation();
-  const COLS = 5; // 가로 5개
+  const router = useRouter();
+  const searchParams = useSearchParams();
+  const publicId = searchParams.get('id');
 
   const [selectedIndex, setSelectedIndex] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -21,97 +23,69 @@ export default function MyPokedexPage() {
     return 0;
   });
   const [pokemons, setPokemons] = useState<PokemonInDex[]>([]);
-  const [isMaster, setIsMaster] = useState(false);  //  포켓몬 마스터 여부
+  const [isMaster, setIsMaster] = useState(false);
 
   useEffect(() => {
-    const fetchPokemons = async () => {
-      const data = await getMyPokedex();
-      setPokemons(data);
+    // publicId가 없으면 에러 페이지로 리다이렉트
+    if (!publicId) {
+      router.replace("/error?type=pokedex");
+      return;
+    }
 
-      // 🔥 여기서 마스터 여부 체크
-      const ownedCount = data.filter((p) => p.isOwned).length;
-      const totalCount = data.length;
-      setIsMaster(ownedCount === totalCount);
+    const fetchPokemons = async () => {
+      try {
+        const data = await getMyPokedex({ publicId });
+        setPokemons(data);
+
+        // 마스터 여부 체크
+        const ownedCount = data.filter((p) => p.isOwned).length;
+        const totalCount = data.length;
+        setIsMaster(ownedCount === totalCount);
+      } catch (err) {
+        // 에러 발생 시 에러 페이지로 리다이렉트
+        router.replace("/error?type=load");
+      }
     };
 
     fetchPokemons();
-  }, []);
-
-
-  const handleUp = () => {
-    // 위로 이동 (같은 열의 이전 행)
-    setSelectedIndex((prev) => {
-      const newIndex = prev - COLS;
-      return newIndex >= 0 ? newIndex : prev;
-    });
-  };
-
-  const handleDown = () => {
-    // 아래로 이동 (같은 열의 다음 행)
-    setSelectedIndex((prev) => {
-      const newIndex = prev + COLS;
-      return newIndex < pokemons.length ? newIndex : prev;
-    });
-  };
-
-  const handleLeft = () => {
-    // 왼쪽으로 이동
-    setSelectedIndex((prev) => {
-      const col = prev % COLS;
-      // 같은 행에서 왼쪽으로
-      return col > 0 ? prev - 1 : prev;
-    });
-  };
-
-  const handleRight = () => {
-    // 오른쪽으로 이동
-    setSelectedIndex((prev) => {
-      const col = prev % COLS;
-      const newIndex = prev + 1;
-      // 같은 행에서 오른쪽으로, 다음 행의 첫 번째가 아닌지 확인
-      return col < COLS - 1 && newIndex < pokemons.length ? newIndex : prev;
-    });
-  };
-
-  const selectedPokemon = pokemons[selectedIndex];
-  // 선택된 포켓몬의 ID 전달 (보유 여부와 관계없이)
-  const selectedPokemonId = selectedPokemon?.id;
+  }, [publicId, router]);
 
   // 사용자 이름 (하드코딩)
   const userName = "상화";
 
+  // 획득한 포켓몬 수 계산
+  const ownedCount = pokemons.filter((p) => p.isOwned).length;
+  const totalCount = pokemons.length;
+
   return (
-    <div className="flex-1 flex flex-col">
+    <div className="flex-1 flex flex-col bg-[#BF0120] overflow-hidden">
       {/* 헤더 영역 */}
       <div className="px-4 py-3 shrink-0">
-        <div className="flex items-center justify-between mb-2">
-          <h1 className="text-black text-xl font-bold">
+        <div className="flex flex-col gap-2 mb-2">
+          <h1 className="text-white text-xl font-bold">
             {userName} {translate("pokedex.userPokedex")}
           </h1>
           {/* 포켓몬 마스터 배지 */}
-          {isMaster && (
-            <button className="flex items-center gap-1 px-3 py-2 bg-black text-white text-sm font-bold" style={{ borderRadius: "8px" }}>
+          {isMaster ? (
+            <button className="flex items-center gap-1 px-3 py-2 bg-black/60 text-white text-sm font-bold w-fit rounded-lg">
               <span>⭐</span>
               <span>{translate("pokedex.masterBadge")}</span>
+            </button>
+          ) : (
+            <button className="flex items-center gap-1 px-3 py-2 bg-black/60 text-white text-sm font-bold w-fit rounded-lg">
+              <span>{translate("pokedex.ownedStatus").replace("{total}", String(totalCount)).replace("{owned}", String(ownedCount))}</span>
             </button>
           )}
         </div>
       </div>
 
-      {/* 그리드 영역 */}
-      <div className="flex-1">
+      {/* 그리드 영역 - 컨테이너 높이에서 헤더(110px)와 하단여백(10px)을 뺀 높이 */}
+      <div className="h-[calc(100vh-120px)] md:h-[660px] overflow-hidden">
         <PokedexGrid pokemons={pokemons} selectedIndex={selectedIndex} />
       </div>
 
-      {/* 버튼 영역 */}
-      <BottomButtons
-        onUp={handleUp}
-        onDown={handleDown}
-        onLeft={handleLeft}
-        onRight={handleRight}
-        selectedPokemonId={selectedPokemonId}
-        selectedIndex={selectedIndex}
-      />
+      {/* 하단 여백 */}
+      <div className="h-[10px] shrink-0"></div>
     </div>
   );
 }

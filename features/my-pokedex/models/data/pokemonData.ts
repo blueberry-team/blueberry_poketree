@@ -1,337 +1,261 @@
 import type { StaticImageData } from "next/image";
 
-// 포켓몬 이미지 동적 import - 테스트용 (1번만)
-import Pokemon1Active from "@/assets/images/pokedex/active/1-active.png";
-import Pokemon2Active from "@/assets/images/pokedex/active/2-active.png";
-import Pokemon3Active from "@/assets/images/pokedex/active/3-active.png";
-import Pokemon1Inactive from "@/assets/images/pokedex/inactive/1-inactive.png";
-import Pokemon2Inactive from "@/assets/images/pokedex/inactive/2-inactive.png";
-import Pokemon3Inactive from "@/assets/images/pokedex/inactive/3-inactive.png";
+// 포켓몬 이미지 import (1-51)
+import Pokemon1Active from "@/assets/images/pokemon/active/1-active.png";
+import Pokemon2Active from "@/assets/images/pokemon/active/2-active.png";
+import Pokemon3Active from "@/assets/images/pokemon/active/3-active.png";
+import Pokemon4Active from "@/assets/images/pokemon/active/4-active.png";
+import Pokemon5Active from "@/assets/images/pokemon/active/5-active.png";
+import Pokemon6Active from "@/assets/images/pokemon/active/6-active.png";
+import Pokemon7Active from "@/assets/images/pokemon/active/7-active.png";
+import Pokemon8Active from "@/assets/images/pokemon/active/8-active.png";
+import Pokemon9Active from "@/assets/images/pokemon/active/9-active.png";
+import Pokemon10Active from "@/assets/images/pokemon/active/10-active.png";
+import Pokemon11Active from "@/assets/images/pokemon/active/11-active.png";
+import Pokemon12Active from "@/assets/images/pokemon/active/12-active.png";
+import Pokemon13Active from "@/assets/images/pokemon/active/13-active.png";
+import Pokemon14Active from "@/assets/images/pokemon/active/14-active.png";
+import Pokemon15Active from "@/assets/images/pokemon/active/15-active.png";
+import Pokemon16Active from "@/assets/images/pokemon/active/16-active.png";
+import Pokemon17Active from "@/assets/images/pokemon/active/17-active.png";
+import Pokemon18Active from "@/assets/images/pokemon/active/18-active.png";
+import Pokemon19Active from "@/assets/images/pokemon/active/19-active.png";
+import Pokemon20Active from "@/assets/images/pokemon/active/20-active.png";
+import Pokemon21Active from "@/assets/images/pokemon/active/21-active.png";
+import Pokemon22Active from "@/assets/images/pokemon/active/22-active.png";
+import Pokemon23Active from "@/assets/images/pokemon/active/23-active.png";
+import Pokemon24Active from "@/assets/images/pokemon/active/24-active.png";
+import Pokemon25Active from "@/assets/images/pokemon/active/25-active.png";
+import Pokemon26Active from "@/assets/images/pokemon/active/26-active.png";
+import Pokemon27Active from "@/assets/images/pokemon/active/27-active.png";
+import Pokemon28Active from "@/assets/images/pokemon/active/28-active.png";
+import Pokemon29Active from "@/assets/images/pokemon/active/29-active.png";
+import Pokemon30Active from "@/assets/images/pokemon/active/30-active.png";
+import Pokemon31Active from "@/assets/images/pokemon/active/31-active.png";
+import Pokemon32Active from "@/assets/images/pokemon/active/32-active.png";
+import Pokemon33Active from "@/assets/images/pokemon/active/33-active.png";
+import Pokemon34Active from "@/assets/images/pokemon/active/34-active.png";
+import Pokemon35Active from "@/assets/images/pokemon/active/35-active.png";
+import Pokemon36Active from "@/assets/images/pokemon/active/36-active.png";
+import Pokemon37Active from "@/assets/images/pokemon/active/37-active.png";
+import Pokemon38Active from "@/assets/images/pokemon/active/38-active.png";
+import Pokemon39Active from "@/assets/images/pokemon/active/39-active.png";
+import Pokemon40Active from "@/assets/images/pokemon/active/40-active.png";
+import Pokemon41Active from "@/assets/images/pokemon/active/41-active.png";
+import Pokemon42Active from "@/assets/images/pokemon/active/42-active.png";
+import Pokemon43Active from "@/assets/images/pokemon/active/43-active.png";
+import Pokemon44Active from "@/assets/images/pokemon/active/44-active.png";
+import Pokemon45Active from "@/assets/images/pokemon/active/45-active.png";
+import Pokemon46Active from "@/assets/images/pokemon/active/46-active.png";
+import Pokemon47Active from "@/assets/images/pokemon/active/47-active.png";
+import Pokemon48Active from "@/assets/images/pokemon/active/48-active.png";
+import Pokemon49Active from "@/assets/images/pokemon/active/49-active.png";
+import Pokemon50Active from "@/assets/images/pokemon/active/50-active.png";
+import Pokemon51Active from "@/assets/images/pokemon/active/51-active.png";
+import Pokemon52Active from "@/assets/images/pokemon/active/52-active.png";
+import Pokemon53Active from "@/assets/images/pokemon/active/53-active.png";
+import Pokemon54Active from "@/assets/images/pokemon/active/54-active.png";
+import Pokemon55Active from "@/assets/images/pokemon/active/55-active.png";
+import Pokemon56Active from "@/assets/images/pokemon/active/56-active.png";
+import Pokemon57Active from "@/assets/images/pokemon/active/57-active.png";
+import Pokemon58Active from "@/assets/images/pokemon/active/58-active.png";
+import Pokemon59Active from "@/assets/images/pokemon/active/59-active.png";
+import Pokemon60Active from "@/assets/images/pokemon/active/60-active.png";
+import Pokemon61Active from "@/assets/images/pokemon/active/61-active.png";
+import Pokemon62Active from "@/assets/images/pokemon/active/62-active.png";
+import Pokemon63Active from "@/assets/images/pokemon/active/63-active.png";
+import Pokemon64Active from "@/assets/images/pokemon/active/64-active.png";
+import Pokemon65Active from "@/assets/images/pokemon/active/65-active.png";
+import Pokemon66Active from "@/assets/images/pokemon/active/66-active.png";
+import Pokemon67Active from "@/assets/images/pokemon/active/67-active.png";
+import Pokemon68Active from "@/assets/images/pokemon/active/68-active.png";
+import Pokemon69Active from "@/assets/images/pokemon/active/69-active.png";
+import Pokemon70Active from "@/assets/images/pokemon/active/70-active.png";
+import Pokemon71Active from "@/assets/images/pokemon/active/71-active.png";
+import Pokemon72Active from "@/assets/images/pokemon/active/72-active.png";
+import Pokemon73Active from "@/assets/images/pokemon/active/73-active.png";
+import Pokemon74Active from "@/assets/images/pokemon/active/74-active.png";
+import Pokemon75Active from "@/assets/images/pokemon/active/75-active.png";
+import Pokemon76Active from "@/assets/images/pokemon/active/76-active.png";
+import Pokemon77Active from "@/assets/images/pokemon/active/77-active.png";
+import Pokemon78Active from "@/assets/images/pokemon/active/78-active.png";
+import Pokemon79Active from "@/assets/images/pokemon/active/79-active.png";
+import Pokemon80Active from "@/assets/images/pokemon/active/80-active.png";
+// TODO: 추후 오픈 예정
+// import Pokemon81Active from "@/assets/images/pokemon/active/81-active.png";
+
+import Pokemon1Inactive from "@/assets/images/pokemon/inactive/1-inactive.png";
+import Pokemon2Inactive from "@/assets/images/pokemon/inactive/2-inactive.png";
+import Pokemon3Inactive from "@/assets/images/pokemon/inactive/3-inactive.png";
+import Pokemon4Inactive from "@/assets/images/pokemon/inactive/4-inactive.png";
+import Pokemon5Inactive from "@/assets/images/pokemon/inactive/5-inactive.png";
+import Pokemon6Inactive from "@/assets/images/pokemon/inactive/6-inactive.png";
+import Pokemon7Inactive from "@/assets/images/pokemon/inactive/7-inactive.png";
+import Pokemon8Inactive from "@/assets/images/pokemon/inactive/8-inactive.png";
+import Pokemon9Inactive from "@/assets/images/pokemon/inactive/9-inactive.png";
+import Pokemon10Inactive from "@/assets/images/pokemon/inactive/10-inactive.png";
+import Pokemon11Inactive from "@/assets/images/pokemon/inactive/11-inactive.png";
+import Pokemon12Inactive from "@/assets/images/pokemon/inactive/12-inactive.png";
+import Pokemon13Inactive from "@/assets/images/pokemon/inactive/13-inactive.png";
+import Pokemon14Inactive from "@/assets/images/pokemon/inactive/14-inactive.png";
+import Pokemon15Inactive from "@/assets/images/pokemon/inactive/15-inactive.png";
+import Pokemon16Inactive from "@/assets/images/pokemon/inactive/16-inactive.png";
+import Pokemon17Inactive from "@/assets/images/pokemon/inactive/17-inactive.png";
+import Pokemon18Inactive from "@/assets/images/pokemon/inactive/18-inactive.png";
+import Pokemon19Inactive from "@/assets/images/pokemon/inactive/19-inactive.png";
+import Pokemon20Inactive from "@/assets/images/pokemon/inactive/20-inactive.png";
+import Pokemon21Inactive from "@/assets/images/pokemon/inactive/21-inactive.png";
+import Pokemon22Inactive from "@/assets/images/pokemon/inactive/22-inactive.png";
+import Pokemon23Inactive from "@/assets/images/pokemon/inactive/23-inactive.png";
+import Pokemon24Inactive from "@/assets/images/pokemon/inactive/24-inactive.png";
+import Pokemon25Inactive from "@/assets/images/pokemon/inactive/25-inactive.png";
+import Pokemon26Inactive from "@/assets/images/pokemon/inactive/26-inactive.png";
+import Pokemon27Inactive from "@/assets/images/pokemon/inactive/27-inactive.png";
+import Pokemon28Inactive from "@/assets/images/pokemon/inactive/28-inactive.png";
+import Pokemon29Inactive from "@/assets/images/pokemon/inactive/29-inactive.png";
+import Pokemon30Inactive from "@/assets/images/pokemon/inactive/30-inactive.png";
+import Pokemon31Inactive from "@/assets/images/pokemon/inactive/31-inactive.png";
+import Pokemon32Inactive from "@/assets/images/pokemon/inactive/32-inactive.png";
+import Pokemon33Inactive from "@/assets/images/pokemon/inactive/33-inactive.png";
+import Pokemon34Inactive from "@/assets/images/pokemon/inactive/34-inactive.png";
+import Pokemon35Inactive from "@/assets/images/pokemon/inactive/35-inactive.png";
+import Pokemon36Inactive from "@/assets/images/pokemon/inactive/36-inactive.png";
+import Pokemon37Inactive from "@/assets/images/pokemon/inactive/37-inactive.png";
+import Pokemon38Inactive from "@/assets/images/pokemon/inactive/38-inactive.png";
+import Pokemon39Inactive from "@/assets/images/pokemon/inactive/39-inactive.png";
+import Pokemon40Inactive from "@/assets/images/pokemon/inactive/40-inactive.png";
+import Pokemon41Inactive from "@/assets/images/pokemon/inactive/41-inactive.png";
+import Pokemon42Inactive from "@/assets/images/pokemon/inactive/42-inactive.png";
+import Pokemon43Inactive from "@/assets/images/pokemon/inactive/43-inactive.png";
+import Pokemon44Inactive from "@/assets/images/pokemon/inactive/44-inactive.png";
+import Pokemon45Inactive from "@/assets/images/pokemon/inactive/45-inactive.png";
+import Pokemon46Inactive from "@/assets/images/pokemon/inactive/46-inactive.png";
+import Pokemon47Inactive from "@/assets/images/pokemon/inactive/47-inactive.png";
+import Pokemon48Inactive from "@/assets/images/pokemon/inactive/48-inactive.png";
+import Pokemon49Inactive from "@/assets/images/pokemon/inactive/49-inactive.png";
+import Pokemon50Inactive from "@/assets/images/pokemon/inactive/50-inactive.png";
+import Pokemon51Inactive from "@/assets/images/pokemon/inactive/51-inactive.png";
+import Pokemon52Inactive from "@/assets/images/pokemon/inactive/52-inactive.png";
+import Pokemon53Inactive from "@/assets/images/pokemon/inactive/53-inactive.png";
+import Pokemon54Inactive from "@/assets/images/pokemon/inactive/54-inactive.png";
+import Pokemon55Inactive from "@/assets/images/pokemon/inactive/55-inactive.png";
+import Pokemon56Inactive from "@/assets/images/pokemon/inactive/56-inactive.png";
+import Pokemon57Inactive from "@/assets/images/pokemon/inactive/57-inactive.png";
+import Pokemon58Inactive from "@/assets/images/pokemon/inactive/58-inactive.png";
+import Pokemon59Inactive from "@/assets/images/pokemon/inactive/59-inactive.png";
+import Pokemon60Inactive from "@/assets/images/pokemon/inactive/60-inactive.png";
+import Pokemon61Inactive from "@/assets/images/pokemon/inactive/61-inactive.png";
+import Pokemon62Inactive from "@/assets/images/pokemon/inactive/62-inactive.png";
+import Pokemon63Inactive from "@/assets/images/pokemon/inactive/63-inactive.png";
+import Pokemon64Inactive from "@/assets/images/pokemon/inactive/64-inactive.png";
+import Pokemon65Inactive from "@/assets/images/pokemon/inactive/65-inactive.png";
+import Pokemon66Inactive from "@/assets/images/pokemon/inactive/66-inactive.png";
+import Pokemon67Inactive from "@/assets/images/pokemon/inactive/67-inactive.png";
+import Pokemon68Inactive from "@/assets/images/pokemon/inactive/68-inactive.png";
+import Pokemon69Inactive from "@/assets/images/pokemon/inactive/69-inactive.png";
+import Pokemon70Inactive from "@/assets/images/pokemon/inactive/70-inactive.png";
+import Pokemon71Inactive from "@/assets/images/pokemon/inactive/71-inactive.png";
+import Pokemon72Inactive from "@/assets/images/pokemon/inactive/72-inactive.png";
+import Pokemon73Inactive from "@/assets/images/pokemon/inactive/73-inactive.png";
+import Pokemon74Inactive from "@/assets/images/pokemon/inactive/74-inactive.png";
+import Pokemon75Inactive from "@/assets/images/pokemon/inactive/75-inactive.png";
+import Pokemon76Inactive from "@/assets/images/pokemon/inactive/76-inactive.png";
+import Pokemon77Inactive from "@/assets/images/pokemon/inactive/77-inactive.png";
+import Pokemon78Inactive from "@/assets/images/pokemon/inactive/78-inactive.png";
+import Pokemon79Inactive from "@/assets/images/pokemon/inactive/79-inactive.png";
+import Pokemon80Inactive from "@/assets/images/pokemon/inactive/80-inactive.png";
+// TODO: 추후 오픈 예정
+// import Pokemon81Inactive from "@/assets/images/pokemon/inactive/81-inactive.png";
 
 // 클라이언트에서 관리하는 포켓몬 기본 정보 타입
 export interface PokemonInfo {
   id: number;
-  name: string;
-  description: string;
   imageActive: string | StaticImageData;
   imageInactive: string | StaticImageData;
 }
 
 // 모든 포켓몬의 정보 (클라이언트에서 관리)
 export const POKEMON_DATA: PokemonInfo[] = [
-  {
-    id: 1,
-    name: "Bulbasaur",
-    description: "A strange seed was planted on its back at birth. The plant sprouts and grows with this Pokémon.",
-    imageActive: Pokemon1Active,
-    imageInactive: Pokemon1Inactive,
-  },
-  {
-    id: 2,
-    name: "Ivysaur",
-    description: "When the bulb on its back grows large, it appears to lose the ability to stand on its hind legs. The bulb absorbs nutrients to prepare for evolution.",
-    imageActive: Pokemon2Active,
-    imageInactive: Pokemon2Inactive,
-  },
-  {
-    id: 3,
-    name: "Venusaur",
-    description: "The flower on its back catches the sun's rays and converts them into energy. Its flower is said to take on vivid colors if it gets plenty of nutrition and sunlight.",
-    imageActive: Pokemon3Active,
-    imageInactive: Pokemon3Inactive,
-  },
-  {
-    id: 4,
-    name: "Charmander",
-    description: "The flame that burns at the tip of its tail is an indication of its emotions. The flame wavers when it is happy and blazes when it is enraged.",
-    imageActive: "/assets/images/pokedex/active/4-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/4-inactive.png",
-  },
-  {
-    id: 5,
-    name: "Charmeleon",
-    description: "It has a barbaric nature and will mercilessly beat down foes with its sharp claws. When it swings its burning tail, the temperature rises higher and higher.",
-    imageActive: "/assets/images/pokedex/active/5-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/5-inactive.png",
-  },
-  {
-    id: 6,
-    name: "Charizard",
-    description: "It spits fire that is hot enough to melt boulders. Known to cause forest fires unintentionally by breathing flames from its mouth.",
-    imageActive: "/assets/images/pokedex/active/6-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/6-inactive.png",
-  },
-  {
-    id: 7,
-    name: "Squirtle",
-    description: "After birth, its back swells and hardens into a shell. Powerfully sprays foam from its mouth to fight enemies.",
-    imageActive: "/assets/images/pokedex/active/7-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/7-inactive.png",
-  },
-  {
-    id: 8,
-    name: "Wartortle",
-    description: "Its tail is large and covered with rich, thick fur that deepens in color with age. It is considered a symbol of longevity.",
-    imageActive: "/assets/images/pokedex/active/8-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/8-inactive.png",
-  },
-  {
-    id: 9,
-    name: "Blastoise",
-    description: "The rocket cannons on its shell fire jets of water capable of punching holes through thick steel. It crushes its foes under its heavy body.",
-    imageActive: "/assets/images/pokedex/active/9-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/9-inactive.png",
-  },
-  {
-    id: 10,
-    name: "Caterpie",
-    description: "Its short feet are tipped with suction pads that enable it to climb steep surfaces. It releases a stench from its antenna to repel enemies.",
-    imageActive: "/assets/images/pokedex/active/10-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/10-inactive.png",
-  },
-  {
-    id: 11,
-    name: "Metapod",
-    description: "This is its pre-evolved form. A steel-hard shell protects its tender body while it prepares to evolve inside.",
-    imageActive: "/assets/images/pokedex/active/11-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/11-inactive.png",
-  },
-  {
-    id: 12,
-    name: "Butterfree",
-    description: "In battle, it flaps its wings at great speed to release highly toxic dust into the air. Its wings are covered with poisonous powders.",
-    imageActive: "/assets/images/pokedex/active/12-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/12-inactive.png",
-  },
-  {
-    id: 13,
-    name: "Weedle",
-    description: "Often found in forests, eating leaves. It has a sharp venomous stinger on its head to defend against enemies.",
-    imageActive: "/assets/images/pokedex/active/13-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/13-inactive.png",
-  },
-  {
-    id: 14,
-    name: "Kakuna",
-    description: "Almost incapable of moving, this Pokemon can only harden its shell to protect itself from predators. It waits motionless inside its hard shell.",
-    imageActive: "/assets/images/pokedex/active/14-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/14-inactive.png",
-  },
-  {
-    id: 15,
-    name: "Beedrill",
-    description: "Flies at high speed and attacks using its large venomous stingers on its forelegs and tail. It is extremely territorial and aggressive.",
-    imageActive: "/assets/images/pokedex/active/15-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/15-inactive.png",
-  },
-  {
-    id: 16,
-    name: "Pidgey",
-    description: "A common sight in forests and woods. It flaps its wings at ground level to kick up blinding sand and evade predators.",
-    imageActive: "/assets/images/pokedex/active/16-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/16-inactive.png",
-  },
-  {
-    id: 17,
-    name: "Pidgeotto",
-    description: "Very protective of its sprawling territory, this Pokemon will fiercely peck at any intruder. It has outstanding vision for spotting prey.",
-    imageActive: "/assets/images/pokedex/active/17-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/17-inactive.png",
-  },
-  {
-    id: 18,
-    name: "Pidgeot",
-    description: "When hunting, it skims the surface of water at high speed to pick off unwary prey. This Pokemon has a dazzling plumage of beautifully glossy feathers.",
-    imageActive: "/assets/images/pokedex/active/18-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/18-inactive.png",
-  },
-  {
-    id: 19,
-    name: "Rattata",
-    description: "Bites anything when it attacks. Small and very quick, it is a common sight in many places where it gnaws on hard objects.",
-    imageActive: "/assets/images/pokedex/active/19-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/19-inactive.png",
-  },
-  {
-    id: 20,
-    name: "Raticate",
-    description: "It uses its whiskers to maintain balance and will slow down if they are cut off. Its fangs never stop growing, so it gnaws to keep them in check.",
-    imageActive: "/assets/images/pokedex/active/20-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/20-inactive.png",
-  },
-  {
-    id: 21,
-    name: "Spearow",
-    description: "Eats bugs in grassy areas. It has to flap its short wings at high speed to stay airborne and is very aggressive.",
-    imageActive: "/assets/images/pokedex/active/21-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/21-inactive.png",
-  },
-  {
-    id: 22,
-    name: "Fearow",
-    description: "With its huge and magnificent wings, it can keep aloft without ever having to land. A Pokemon that dates back many years and is known for its sharp beak.",
-    imageActive: "/assets/images/pokedex/active/22-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/22-inactive.png",
-  },
-  {
-    id: 23,
-    name: "Ekans",
-    description: "Moves silently and stealthily. Eats the eggs of birds, such as Pidgey and Spearow, whole by unhinging its jaw.",
-    imageActive: "/assets/images/pokedex/active/23-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/23-inactive.png",
-  },
-  {
-    id: 24,
-    name: "Arbok",
-    description: "The pattern on its belly appears to be a frightening face that intimidates weak foes. It is rumored to have several different patterns.",
-    imageActive: "/assets/images/pokedex/active/24-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/24-inactive.png",
-  },
-  {
-    id: 25,
-    name: "Pikachu",
-    description: "When several of these Pokemon gather, their electricity can build and cause lightning storms. It raises its tail to check its surroundings.",
-    imageActive: "/assets/images/pokedex/active/25-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/25-inactive.png",
-  },
-  {
-    id: 26,
-    name: "Raichu",
-    description: "Its long tail serves as a ground to protect itself from its own high voltage power. It can unleash electric shocks exceeding 100,000 volts.",
-    imageActive: "/assets/images/pokedex/active/26-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/26-inactive.png",
-  },
-  {
-    id: 27,
-    name: "Sandshrew",
-    description: "Burrows deep underground in arid locations far from water. It only emerges to hunt for food and curls into a ball to protect itself.",
-    imageActive: "/assets/images/pokedex/active/27-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/27-inactive.png",
-  },
-  {
-    id: 28,
-    name: "Sandslash",
-    description: "Curls up into a spiny ball when threatened. The spikes on its back are harder than steel and can shred anything that touches it.",
-    imageActive: "/assets/images/pokedex/active/28-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/28-inactive.png",
-  },
-  {
-    id: 29,
-    name: "Nidoran♀",
-    description: "Although small, its venomous barbs render this Pokemon dangerous. The female has smaller horns but is better at defending and nurturing its young.",
-    imageActive: "/assets/images/pokedex/active/29-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/29-inactive.png",
-  },
-  {
-    id: 30,
-    name: "Nidorina",
-    description: "The female's horn develops slowly. Prefers physical attacks such as clawing and biting and emits ultrasonic cries to confuse enemies.",
-    imageActive: "/assets/images/pokedex/active/30-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/30-inactive.png",
-  },
-  {
-    id: 31,
-    name: "Nidoqueen",
-    description: "Its hard scales provide strong protection. It uses its powerful body to execute dynamic attacks and protect its young at all costs.",
-    imageActive: "/assets/images/pokedex/active/31-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/31-inactive.png",
-  },
-  {
-    id: 32,
-    name: "Nidoran♂",
-    description: "Stiffens its ears to sense danger. The larger its horns, the more powerful its secreted venom and the male is more aggressive than the female.",
-    imageActive: "/assets/images/pokedex/active/32-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/32-inactive.png",
-  },
-  {
-    id: 33,
-    name: "Nidorino",
-    description: "An aggressive Pokemon that is quick to attack. The horn on its head secretes a powerful venom that can pierce through diamond-hard objects.",
-    imageActive: "/assets/images/pokedex/active/33-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/33-inactive.png",
-  },
-  {
-    id: 34,
-    name: "Nidoking",
-    description: "It uses its powerful tail in battle to smash, constrict, then break the prey's bones. One swing of its mighty tail can snap a telephone pole in two.",
-    imageActive: "/assets/images/pokedex/active/34-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/34-inactive.png",
-  },
-  {
-    id: 35,
-    name: "Clefairy",
-    description: "Its magical and cute appeal has many admirers. It is rare and found only in certain areas and gathers on moonlit nights to dance.",
-    imageActive: "/assets/images/pokedex/active/35-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/35-inactive.png",
-  },
-  {
-    id: 36,
-    name: "Clefable",
-    description: "A timid fairy Pokemon that is rarely seen. It runs and hides the moment it senses people and has acute hearing that lets it hear a pin drop.",
-    imageActive: "/assets/images/pokedex/active/36-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/36-inactive.png",
-  },
-  {
-    id: 37,
-    name: "Vulpix",
-    description: "At the time of birth, it has just one tail. The tail splits from its tip as it grows older and can control balls of fire.",
-    imageActive: "/assets/images/pokedex/active/37-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/37-inactive.png",
-  },
-  {
-    id: 38,
-    name: "Ninetales",
-    description: "Very smart and vengeful, it is said to live for 1,000 years. Grabbing one of its many tails could result in a 1,000-year curse.",
-    imageActive: "/assets/images/pokedex/active/38-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/38-inactive.png",
-  },
-  {
-    id: 39,
-    name: "Jigglypuff",
-    description: "When its huge eyes light up, it sings a mysteriously soothing melody that lulls its enemies to sleep. Its vocal cords can freely adjust the wavelength of its voice.",
-    imageActive: "/assets/images/pokedex/active/39-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/39-inactive.png",
-  },
-  {
-    id: 40,
-    name: "Wigglytuff",
-    description: "The body is soft and rubbery. When angered, it will suck in air and inflate itself to an enormous size to intimidate opponents.",
-    imageActive: "/assets/images/pokedex/active/40-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/40-inactive.png",
-  },
-  {
-    id: 41,
-    name: "Zubat",
-    description: "Forms colonies in perpetually dark places. Uses ultrasonic waves to identify and approach targets even in total darkness.",
-    imageActive: "/assets/images/pokedex/active/41-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/41-inactive.png",
-  },
-  {
-    id: 42,
-    name: "Golbat",
-    description: "Once it strikes, it will not stop draining energy from the victim even if it gets too heavy to fly. Its fangs are hollow like straws.",
-    imageActive: "/assets/images/pokedex/active/42-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/42-inactive.png",
-  },
-  {
-    id: 43,
-    name: "Oddish",
-    description: "During the day, it keeps its face buried in the ground. At night, it wanders around sowing its seeds and absorbs moonlight to grow.",
-    imageActive: "/assets/images/pokedex/active/43-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/43-inactive.png",
-  },
-  {
-    id: 44,
-    name: "Gloom",
-    description: "The fluid that oozes from its mouth isn't drool. It is a nectar that is used to attract prey and smells incredibly foul.",
-    imageActive: "/assets/images/pokedex/active/44-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/44-inactive.png",
-  },
-  {
-    id: 45,
-    name: "Vileplume",
-    description: "The larger its petals, the more toxic pollen it contains. Its big head is heavy and hard to hold up causing it to stagger.",
-    imageActive: "/assets/images/pokedex/active/45-active.png",
-    imageInactive: "/assets/images/pokedex/inactive/45-inactive.png",
-  },
+  { id: 1, imageActive: Pokemon1Active, imageInactive: Pokemon1Inactive },
+  { id: 2, imageActive: Pokemon2Active, imageInactive: Pokemon2Inactive },
+  { id: 3, imageActive: Pokemon3Active, imageInactive: Pokemon3Inactive },
+  { id: 4, imageActive: Pokemon4Active, imageInactive: Pokemon4Inactive },
+  { id: 5, imageActive: Pokemon5Active, imageInactive: Pokemon5Inactive },
+  { id: 6, imageActive: Pokemon6Active, imageInactive: Pokemon6Inactive },
+  { id: 7, imageActive: Pokemon7Active, imageInactive: Pokemon7Inactive },
+  { id: 8, imageActive: Pokemon8Active, imageInactive: Pokemon8Inactive },
+  { id: 9, imageActive: Pokemon9Active, imageInactive: Pokemon9Inactive },
+  { id: 10, imageActive: Pokemon10Active, imageInactive: Pokemon10Inactive },
+  { id: 11, imageActive: Pokemon11Active, imageInactive: Pokemon11Inactive },
+  { id: 12, imageActive: Pokemon12Active, imageInactive: Pokemon12Inactive },
+  { id: 13, imageActive: Pokemon13Active, imageInactive: Pokemon13Inactive },
+  { id: 14, imageActive: Pokemon14Active, imageInactive: Pokemon14Inactive },
+  { id: 15, imageActive: Pokemon15Active, imageInactive: Pokemon15Inactive },
+  { id: 16, imageActive: Pokemon16Active, imageInactive: Pokemon16Inactive },
+  { id: 17, imageActive: Pokemon17Active, imageInactive: Pokemon17Inactive },
+  { id: 18, imageActive: Pokemon18Active, imageInactive: Pokemon18Inactive },
+  { id: 19, imageActive: Pokemon19Active, imageInactive: Pokemon19Inactive },
+  { id: 20, imageActive: Pokemon20Active, imageInactive: Pokemon20Inactive },
+  { id: 21, imageActive: Pokemon21Active, imageInactive: Pokemon21Inactive },
+  { id: 22, imageActive: Pokemon22Active, imageInactive: Pokemon22Inactive },
+  { id: 23, imageActive: Pokemon23Active, imageInactive: Pokemon23Inactive },
+  { id: 24, imageActive: Pokemon24Active, imageInactive: Pokemon24Inactive },
+  { id: 25, imageActive: Pokemon25Active, imageInactive: Pokemon25Inactive },
+  { id: 26, imageActive: Pokemon26Active, imageInactive: Pokemon26Inactive },
+  { id: 27, imageActive: Pokemon27Active, imageInactive: Pokemon27Inactive },
+  { id: 28, imageActive: Pokemon28Active, imageInactive: Pokemon28Inactive },
+  { id: 29, imageActive: Pokemon29Active, imageInactive: Pokemon29Inactive },
+  { id: 30, imageActive: Pokemon30Active, imageInactive: Pokemon30Inactive },
+  { id: 31, imageActive: Pokemon31Active, imageInactive: Pokemon31Inactive },
+  { id: 32, imageActive: Pokemon32Active, imageInactive: Pokemon32Inactive },
+  { id: 33, imageActive: Pokemon33Active, imageInactive: Pokemon33Inactive },
+  { id: 34, imageActive: Pokemon34Active, imageInactive: Pokemon34Inactive },
+  { id: 35, imageActive: Pokemon35Active, imageInactive: Pokemon35Inactive },
+  { id: 36, imageActive: Pokemon36Active, imageInactive: Pokemon36Inactive },
+  { id: 37, imageActive: Pokemon37Active, imageInactive: Pokemon37Inactive },
+  { id: 38, imageActive: Pokemon38Active, imageInactive: Pokemon38Inactive },
+  { id: 39, imageActive: Pokemon39Active, imageInactive: Pokemon39Inactive },
+  { id: 40, imageActive: Pokemon40Active, imageInactive: Pokemon40Inactive },
+  { id: 41, imageActive: Pokemon41Active, imageInactive: Pokemon41Inactive },
+  { id: 42, imageActive: Pokemon42Active, imageInactive: Pokemon42Inactive },
+  { id: 43, imageActive: Pokemon43Active, imageInactive: Pokemon43Inactive },
+  { id: 44, imageActive: Pokemon44Active, imageInactive: Pokemon44Inactive },
+  { id: 45, imageActive: Pokemon45Active, imageInactive: Pokemon45Inactive },
+  { id: 46, imageActive: Pokemon46Active, imageInactive: Pokemon46Inactive },
+  { id: 47, imageActive: Pokemon47Active, imageInactive: Pokemon47Inactive },
+  { id: 48, imageActive: Pokemon48Active, imageInactive: Pokemon48Inactive },
+  { id: 49, imageActive: Pokemon49Active, imageInactive: Pokemon49Inactive },
+  { id: 50, imageActive: Pokemon50Active, imageInactive: Pokemon50Inactive },
+  { id: 51, imageActive: Pokemon51Active, imageInactive: Pokemon51Inactive },
+  { id: 52, imageActive: Pokemon52Active, imageInactive: Pokemon52Inactive },
+  { id: 53, imageActive: Pokemon53Active, imageInactive: Pokemon53Inactive },
+  { id: 54, imageActive: Pokemon54Active, imageInactive: Pokemon54Inactive },
+  { id: 55, imageActive: Pokemon55Active, imageInactive: Pokemon55Inactive },
+  { id: 56, imageActive: Pokemon56Active, imageInactive: Pokemon56Inactive },
+  { id: 57, imageActive: Pokemon57Active, imageInactive: Pokemon57Inactive },
+  { id: 58, imageActive: Pokemon58Active, imageInactive: Pokemon58Inactive },
+  { id: 59, imageActive: Pokemon59Active, imageInactive: Pokemon59Inactive },
+  { id: 60, imageActive: Pokemon60Active, imageInactive: Pokemon60Inactive },
+  { id: 61, imageActive: Pokemon61Active, imageInactive: Pokemon61Inactive },
+  { id: 62, imageActive: Pokemon62Active, imageInactive: Pokemon62Inactive },
+  { id: 63, imageActive: Pokemon63Active, imageInactive: Pokemon63Inactive },
+  { id: 64, imageActive: Pokemon64Active, imageInactive: Pokemon64Inactive },
+  { id: 65, imageActive: Pokemon65Active, imageInactive: Pokemon65Inactive },
+  { id: 66, imageActive: Pokemon66Active, imageInactive: Pokemon66Inactive },
+  { id: 67, imageActive: Pokemon67Active, imageInactive: Pokemon67Inactive },
+  { id: 68, imageActive: Pokemon68Active, imageInactive: Pokemon68Inactive },
+  { id: 69, imageActive: Pokemon69Active, imageInactive: Pokemon69Inactive },
+  { id: 70, imageActive: Pokemon70Active, imageInactive: Pokemon70Inactive },
+  { id: 71, imageActive: Pokemon71Active, imageInactive: Pokemon71Inactive },
+  { id: 72, imageActive: Pokemon72Active, imageInactive: Pokemon72Inactive },
+  { id: 73, imageActive: Pokemon73Active, imageInactive: Pokemon73Inactive },
+  { id: 74, imageActive: Pokemon74Active, imageInactive: Pokemon74Inactive },
+  { id: 75, imageActive: Pokemon75Active, imageInactive: Pokemon75Inactive },
+  { id: 76, imageActive: Pokemon76Active, imageInactive: Pokemon76Inactive },
+  { id: 77, imageActive: Pokemon77Active, imageInactive: Pokemon77Inactive },
+  { id: 78, imageActive: Pokemon78Active, imageInactive: Pokemon78Inactive },
+  { id: 79, imageActive: Pokemon79Active, imageInactive: Pokemon79Inactive },
+  { id: 80, imageActive: Pokemon80Active, imageInactive: Pokemon80Inactive },
+  // TODO: 추후 오픈 예정
+  // { id: 81, imageActive: Pokemon81Active, imageInactive: Pokemon81Inactive },
 ];

@@ -15,7 +15,7 @@ import { ALL_POKEMON_IMAGES } from "@/features/shared/data/pokemonData";
  */
 
 // 랜딩 페이지에 표시할 포켓몬 인덱스 (0-80 범위, 원하는 포켓몬 번호 선택)
-const DISPLAYED_POKEMON_INDICES = [2, 32, 22, 9, 1, 67, 66];
+const DISPLAYED_POKEMON_INDICES = [3, 33, 23, 10, 2, 68, 67];
 
 export function LandingTree() {
   // 선택된 포켓몬 이미지

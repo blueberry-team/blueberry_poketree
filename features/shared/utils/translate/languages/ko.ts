@@ -30,6 +30,7 @@ export const ko = {
     detail: "자세히 보기",
     userPokedex: "님의 포켓몬 도감",
     masterBadge: "포켓몬 마스터",
+    ownedStatus: "{total}마리 중 {owned}마리 획득",
   },
   tree: {
     title: "나의 포켓트리",
@@ -41,6 +42,10 @@ export const ko = {
     level: "레벨",
     experience: "경험치",
   },
+  visitor: {
+    makeMessage: "메시지 작성하기",
+    makeTree: "내 포케트리 만들러 가기",
+  },
   message: {
     title: "포켓 메시지",
     placeholder: "메시지를 입력하세요",
@@ -48,6 +53,14 @@ export const ko = {
   common: {
     cancel: "취소",
     confirm: "확인",
+  },
+  error: {
+    title: "오류",
+    defaultMessage: "정보를 찾을 수 없습니다.",
+    goHome: "홈으로 돌아가기",
+    pokedexNotFound: "도감 정보를 찾을 수 없습니다.",
+    treeNotFound: "트리 정보를 찾을 수 없습니다.",
+    loadFailed: "데이터를 불러오는데 실패했습니다.",
   },
   landing: {
     countdown: "크리스마스까지",

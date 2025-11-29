@@ -20,7 +20,7 @@ export default function SignupOrGoPage() {
 
             if (res.message == "success" && res.data) {
                 // public_id를 query params로 전달
-                router.push(`/my-tree?publicId=${res.data.public_id}`);
+                router.push(`/my-tree?id=${res.data.public_id}`);
             }
         } catch (err) {
             if (err instanceof Error) {

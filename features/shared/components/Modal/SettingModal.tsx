@@ -4,7 +4,7 @@ import { useTranslation } from "../../utils/translate/useLanguage";
 import { logout } from "../../usecases/logout";
 import { HelpModal } from "./HelpModal";
 import { useState } from "react";
-import router from "next/router";
+import { useRouter, usePathname } from "next/navigation";
 
 interface SettingModalProps {
   isOpen: boolean;
@@ -14,13 +14,17 @@ interface SettingModalProps {
 export function SettingModal({ isOpen, onClose }: SettingModalProps) {
   const { translate } = useTranslation();
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
+  const router = useRouter();
+  const pathname = usePathname();
 
   if (!isOpen && !isHelpModalOpen) return null;
+
+  const shouldHideLogout = pathname === '/' || pathname === '/signup-or-go';
 
   const handleLogout = () => {
     logout();
     onClose();
-    router.push("/");
+    router.push('/');
   };
 
   const handleHelp = () => {
@@ -50,18 +54,20 @@ export function SettingModal({ isOpen, onClose }: SettingModalProps) {
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col gap-3">
-                {/* 로그아웃 버튼 */}
-                <button
-                  onClick={handleLogout}
-                  className="px-4 py-3 rounded border border bg-white transition-all text-black"
-                >
-                {translate("header.logout")}
-                </button>
+                {/* 로그아웃 버튼 - 랜딩 페이지와 회원가입 페이지에서는 숨김 */}
+                {!shouldHideLogout && (
+                  <button
+                    onClick={handleLogout}
+                    className="px-4 py-3 rounded border bg-white transition-all text-black"
+                  >
+                  {translate("header.logout")}
+                  </button>
+                )}
 
                 {/* 도움말 버튼 */}
                 <button
                   onClick={handleHelp}
-                  className="px-4 py-3 rounded border border bg-white transition-all text-black"
+                  className="px-4 py-3 rounded border bg-white transition-all text-black"
                 >
                 {translate("header.help")}
                 </button>
