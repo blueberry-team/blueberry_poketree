@@ -45,6 +45,7 @@ export const ja = {
   visitor: {
     makeMessage: "メッセージをかく",
     makeTree: "マイポケツリーをつくる",
+    send: "メッセージを送信"
   },
   message: {
     title: "ポケットメッセージ",

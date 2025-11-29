@@ -1,12 +1,14 @@
 "use client";
 
-import { useState } from "react";
 import Image, { StaticImageData } from "next/image";
 import BackgroundImage from "@/assets/images/background/background.png";
 import TreeImage from "@/assets/images/background/tree.png";
 import MonsterBallOpen from "@/assets/images/components/monster_ball_open.png";
 import MonsterBallClose from "@/assets/images/components/monster_ball_close.png";
+import LockIcon from "@/assets/icon/lockIcon.svg";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
+import { ChristmasGift } from "./ChristmasGift";
+import { Letter } from "../models/res/GetUserTreeResponse";
 
 /**
  * Tree 컴포넌트
@@ -18,31 +20,27 @@ import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 interface TreeProps {
   // 획득한 포켓몬 목록
   obtainedPokemons: StaticImageData[];
-  // 전체 편지 개수
-  totalMessageCount: number;
+  // 편지 목록 (is_open 상태 포함)
+  letters: Letter[];
   // 현재 페이지
   currentPage: number;
   // 편지 클릭 핸들러
   onLetterClick?: (index: number) => void;
-  // 현재 열린 편지 인덱스 (-1이면 없음)
-  openedLetterIndex?: number;
   // 페이지 이동 핸들러
   onPageChange?: (page: number) => void;
 }
 
 export function Tree({
   obtainedPokemons,
-  totalMessageCount,
+  letters,
   currentPage,
   onLetterClick,
-  openedLetterIndex = -1,
   onPageChange,
 }: TreeProps) {
   const { translate } = useTranslation();
-  // 호버 상태 관리
-  const [hoveredIndex, setHoveredIndex] = useState<number>(-1);
 
   // 페이지 계산
+  const totalMessageCount = letters.length;
   const messagesPerPage = 7;
   const totalPages = Math.ceil(totalMessageCount / messagesPerPage);
   // 현재 페이지에 표시할 편지 개수
@@ -79,9 +77,15 @@ export function Tree({
         </div>
       </div>
 
+      {/* 크리스마스 선물 (우상단) */}
+      <ChristmasGift onClick={() => {
+        // TODO: 크리스마스 선물 동작 구현
+        console.log("크리스마스 선물 클릭");
+      }} />
+
       {/* 트리 이미지 */}
-      <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative" style={{ width: "min(350px, 80vw)", height: "min(500px, 70vh)" }}>
+      <div className="absolute inset-0 flex items-center justify-center pt-24">
+        <div className="relative" style={{ width: "min(500px, 85vw)", height: "min(700px, 75vh)" }}>
           {/* 트리 이미지 */}
           <Image
             src={TreeImage}
@@ -109,33 +113,54 @@ export function Tree({
                 const pos = positions[index];
                 // 실제 메시지 인덱스 계산 (페이지 * 7 + 현재 인덱스)
                 const actualMessageIndex = currentPage * messagesPerPage + index;
+                // 해당 편지 데이터
+                const letter = letters[actualMessageIndex];
 
-                // 열린 상태 또는 호버 상태인지 확인
-                const isOpen = actualMessageIndex === openedLetterIndex || actualMessageIndex === hoveredIndex;
+                // 열린 상태 확인: is_read로 몬스터볼 열림 여부 확인
+                const isRead = letter?.is_read === "true";
+                // 공개 여부 확인: is_open이 false면 자물쇠 표시
+                const isPublic = letter?.is_open === "true";
 
                 return (
-                  // 몬스터볼 편지 버튼
-                  <button
-                    key={index}
-                    onClick={() => onLetterClick?.(actualMessageIndex)}
-                    onMouseEnter={() => setHoveredIndex(actualMessageIndex)}
-                    onMouseLeave={() => setHoveredIndex(-1)}
-                    className="absolute w-10 h-10 cursor-pointer hover:scale-110 transition-transform"
+                  <div
+                    key={actualMessageIndex}
+                    className="absolute flex flex-col items-center"
                     style={{
                       top: pos.top,
                       left: pos.left,
                       transform: pos.transform,
                     }}
-                    aria-label={`편지 ${actualMessageIndex + 1}`}
                   >
-                    <Image
-                      src={isOpen ? MonsterBallOpen : MonsterBallClose}
-                      alt="몬스터볼"
-                      width={48}
-                      height={48}
-                      className="object-contain"
-                    />
-                  </button>
+                    {/* 보낸 사람 이름 */}
+                    <div className="mb-1 bg-black/70 rounded px-2 py-0.5 whitespace-nowrap flex items-center gap-1">
+                      {!isPublic && (
+                        <Image
+                          src={LockIcon}
+                          alt="비공개"
+                          width={10}
+                          height={10}
+                          className="object-contain"
+                        />
+                      )}
+                      <span className="text-white text-xs font-bold">
+                        {letter?.sender_name || ""}
+                      </span>
+                    </div>
+                    {/* 몬스터볼 편지 버튼 */}
+                    <button
+                      onClick={() => onLetterClick?.(actualMessageIndex)}
+                      className="w-10 h-10 cursor-pointer transition-transform"
+                      aria-label={`편지 ${actualMessageIndex + 1}`}
+                    >
+                      <Image
+                        src={isRead ? MonsterBallOpen : MonsterBallClose}
+                        alt="몬스터볼"
+                        width={48}
+                        height={48}
+                        className="object-contain"
+                      />
+                    </button>
+                  </div>
                 );
               })}
             </>
@@ -150,10 +175,10 @@ export function Tree({
           { bottom: "70%", left: "10%", scaleX: -1 },  // 왼쪽 상단
           { bottom: "52%", left: "1%", scaleX: -1 },  // 왼쪽 중단
           { bottom: "20%", left: "2%", scaleX: -1 },  // 왼쪽 하단
-          { bottom: "60%", right: "0%", scaleX: 1 },  // 오른쪽 상단
+          { bottom: "60%", right: "10%", scaleX: -1 },  // 오른쪽 상단
           { bottom: "25%", left: "80%", scaleX: 1 },  // 오른쪽 중상단
-          { bottom: "8%", right: "45%", scaleX: 1 },  // 오른쪽 중하단
-          { bottom: "8%", right: "10%", scaleX: 1 },  // 오른쪽 하단
+          { bottom: "2%", right: "55%", scaleX: 1 },  // 오른쪽 중하단
+          { bottom: "4%", right: "10%", scaleX: -1 },  // 오른쪽 하단
         ];
         const pos = pokemonPositions[index];
         if (!pos) return null;
