@@ -23,57 +23,41 @@ export function PokedexGrid({ pokemons, selectedIndex }: PokedexGridProps) {
   }, [selectedIndex]);
 
   return (
-    <div className="flex flex-col px-3 py-1" style={{ height: "100%" }}>
-      {/* 5x5 그리드 - 최대 5줄까지만 표시 */}
+    <div className="flex flex-col" style={{ height: "100%" }}>
+      {/* 4열 그리드 - 남은 공간을 채움 */}
       <div
-        className="overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:hidden [scrollbar-width:none] [-ms-overflow-style:none]"
+        className="overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:hidden [scrollbar-width:none] [-ms-overflow-style:none] bg-[#F7F7F7] px-5 py-8 border-b-2 border-black h-full"
         style={{
           display: "grid",
-          gridTemplateColumns: "repeat(5, 1fr)",
+          gridTemplateColumns: "repeat(4, 1fr)",
           columnGap: "0px",
           rowGap: "6px",
           alignContent: "start",
-          // 카드 너비 기준: (컨테이너 - 패딩) / 5
-          // 카드 높이: 너비 * 6/5 (aspect ratio 5:6)
-          // 5줄 높이: 카드높이 * 5 (rowGap은 계산에 미포함)
-          height: "calc(((100vw - 24px) / 5) * (6/5) * 5)",
-          maxHeight: "calc(((410px - 24px) / 5) * (6/5) * 5)", // 410px는 컨테이너 최대 너비
         }}
       >
         {pokemons.map((pokemon, index) => {
-          const row = Math.floor(index / 5);
+          const row = Math.floor(index / 4);
           const isNotFirstRow = row > 0;
-          const isSelected = index === selectedIndex;
           const isOwned = pokemon.isOwned;
 
           return (
             <div
               key={pokemon.id}
-              ref={isSelected ? selectedRef : null}
               className="flex flex-col transition-all "
               style={{
                 aspectRatio: "5 / 6",
-                fontSize: "9px",
-                fontWeight: "500",
-                backgroundColor: "white",
-                border: isSelected ? "3px solid #FF3D00" : "3px solid transparent",
-                marginTop: isNotFirstRow ? "-1px" : "0",
+                marginTop: isNotFirstRow ? "10px" : "0",
+
               }}
             >
-              {/* NO.001 형식의 이름표 */}
-              <div className="w-full flex items-center justify-center pt-1 pointer-events-none">
-                <span className="text-black text-xs font-bold">
-                  No. {String(pokemon.id).padStart(3, "0")}
-                </span>
-              </div>
               {/* 포켓몬 이미지 */}
               <div className="flex-1 flex items-center justify-center pointer-events-none relative">
                 <Image
                   src={isOwned ? pokemon.imageActive : pokemon.imageInactive}
-                  alt={isOwned ? pokemon.name : "???"}
+                  alt={isOwned ? pokemon.id.toString() : "???"}
                   className="object-contain"
                   fill
-                  sizes="(max-width: 410px) 20vw, 82px"
+                  sizes="(max-width: 410px) 25vw, 97px"
                 />
               </div>
             </div>

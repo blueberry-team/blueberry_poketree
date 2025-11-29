@@ -1,19 +1,11 @@
-import { GetMyPokedexResponse } from "../models/res/GetMyPokedexResponse";
+import { apiClient } from "@/features/shared/utils/api/apiClient";
+import type { GetMyPokedexRequest } from "../models/req/GetMyPokedexRequest";
+import type { GetMyPokedexResponse } from "../models/res/GetMyPokedexResponse";
 
-// Mock: 서버 응답 데이터
-const MOCK_RESPONSE: GetMyPokedexResponse = {
-  pokemonIds: [
-    2, 3
-  ],
-};
-
-export const pokedexRepository = {
-  // 보유한 포켓몬 ID 리스트 조회
-  getMyPokedex: async (): Promise<GetMyPokedexResponse> => {
-    // TODO: API 호출로 대체
-    // const response = await fetch('/api/pokedex/owned');
-    // const data: GetMyPokedexResponse = await response.json();
-    // return data;
-    return MOCK_RESPONSE;
-  },
-};
+// 보유한 포켓몬 ID 리스트 조회
+export async function getMyPokedexGet(req: GetMyPokedexRequest): Promise<GetMyPokedexResponse> {
+  return apiClient.get<GetMyPokedexResponse>(
+    `/pokemon/get-my-pokemon?userId=${req.publicId}`,
+    true
+  );
+}

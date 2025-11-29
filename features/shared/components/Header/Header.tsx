@@ -40,7 +40,7 @@ export function Header() {
 
   return (
     <header
-      className={`w-full h-[60px] shrink-0 bg-primary-red overflow-hidden relative ${
+      className={`w-full h-[60px] shrink-0 bg-[#BF0120] overflow-hidden relative ${
         isFullScrollPage ? '' : 'sticky top-0 z-50'
       }`}
     >
