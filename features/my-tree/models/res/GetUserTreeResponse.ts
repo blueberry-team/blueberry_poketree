@@ -1,7 +1,7 @@
 import type { ApiResponse } from "@/features/shared/utils/api/apiClient";
 
 export interface Letter {
-  letter_jd: string;
+  letter_id: string;
   sender_name: string;
   is_open: string;
   is_read: string;

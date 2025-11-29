@@ -267,7 +267,7 @@ export default function MyTreePage() {
         isOpen={isLetterModalOpen}
         onClose={() => setIsLetterModalOpen(false)}
         letterIndex={selectedLetterIndex}
-        letterId={letters[selectedLetterIndex]?.letter_jd || null}
+        letterId={letters[selectedLetterIndex]?.letter_id || null}
         onDelete={() => {
           // 편지 삭제 후 트리 데이터 새로고침
           fetchTreeData();
@@ -278,7 +278,7 @@ export default function MyTreePage() {
       <SendLetterModal
         isOpen={isSendLetterModalOpen}
         onClose={() => setIsSendLetterModalOpen(false)}
-        receiverId={publicId}
+        receiverId={publicId!}
       />
     </div>
   );
