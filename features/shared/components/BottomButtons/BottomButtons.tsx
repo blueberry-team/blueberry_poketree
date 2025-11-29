@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useRouter, usePathname } from "next/navigation";
+import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { CrossButton } from "./CrossButton";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import ButtonMediumDark from "@/assets/images/components/button_medium_dark.png";
@@ -33,11 +33,13 @@ export function BottomButtons({
   const { translate } = useTranslation();
   const router = useRouter();
   const pathname = usePathname();
-
-  // const isMyPokedex = pathname === "/my-pokedex";
+  const searchParams = useSearchParams();
+  const publicId = searchParams.get('id');
 
   const handleButtonClick = () => {
-      router.push("/my-pokedex");
+    if (publicId) {
+      router.push(`/my-pokedex?id=${publicId}`);
+    }
   };
 
   const buttonLabel = translate("pokedex.button");

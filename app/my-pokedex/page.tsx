@@ -1,14 +1,18 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useSearchParams } from "next/navigation";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
 import { PokedexGrid } from "@/features/my-pokedex/components/PokedexGrid";
+import { ErrorPage } from "@/features/shared/components/ErrorPage/ErrorPage";
 import { getMyPokedex, PokemonInDex } from "@/features/my-pokedex/usecases/getMyPokedex";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 
 // 포켓몬 목록 페이지
 export default function MyPokedexPage() {
   const { translate } = useTranslation();
+  const searchParams = useSearchParams();
+  const publicId = searchParams.get('id');
 
   const [selectedIndex, setSelectedIndex] = useState(() => {
     if (typeof window !== 'undefined') {
@@ -20,17 +24,24 @@ export default function MyPokedexPage() {
     return 0;
   });
   const [pokemons, setPokemons] = useState<PokemonInDex[]>([]);
-  const [isMaster, setIsMaster] = useState(false);  //  포켓몬 마스터 여부
+  const [isMaster, setIsMaster] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    const fetchPokemons = async () => {
-      const data = await getMyPokedex();
-      setPokemons(data);
+    if (!publicId) return;
 
-      // 🔥 여기서 마스터 여부 체크
-      const ownedCount = data.filter((p) => p.isOwned).length;
-      const totalCount = data.length;
-      setIsMaster(ownedCount === totalCount);
+    const fetchPokemons = async () => {
+      try {
+        const data = await getMyPokedex({ publicId });
+        setPokemons(data);
+
+        // 마스터 여부 체크
+        const ownedCount = data.filter((p) => p.isOwned).length;
+        const totalCount = data.length;
+        setIsMaster(ownedCount === totalCount);
+      } catch (err) {
+        setError("포켓몬 도감을 불러오는데 실패했습니다.");
+      }
     };
 
     fetchPokemons();
