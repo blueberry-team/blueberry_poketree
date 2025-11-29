@@ -64,6 +64,7 @@ export default function MyTreePage() {
   // API 상태
   const [treeData, setTreeData] = useState<UserTreeData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   // 현재 페이지 (좌우 페이징)
   const [currentPage, setCurrentPage] = useState(0);
@@ -81,15 +82,16 @@ export default function MyTreePage() {
 
   // API로부터 데이터 가져오기
   useEffect(() => {
-    // publicId가 없으면 에러 페이지로 리다이렉트
     if (!publicId) {
-      router.replace("/error?type=tree");
+      setError('잘못된 접근입니다. 올바른 링크를 통해 접근해주세요.');
+      setIsLoading(false);
       return;
     }
 
     const fetchTreeData = async () => {
       try {
         setIsLoading(true);
+        setError(null);
 
         const response = await getUserTree({ public_id: publicId });
 
@@ -97,11 +99,12 @@ export default function MyTreePage() {
           setTreeData(response.data);
         }
       } catch (err) {
-        // 에러 발생 시 에러 페이지로 리다이렉트
         if (isApiError(err)) {
-          router.replace(`/error?message=${encodeURIComponent(err.message || '트리 정보를 불러올 수 없습니다.')}`);
+          setError(err.message || '트리 정보를 불러올 수 없습니다.');
+        } else if (err instanceof Error) {
+          setError(err.message);
         } else {
-          router.replace("/error?type=load");
+          setError('알 수 없는 오류가 발생했습니다.');
         }
       } finally {
         setIsLoading(false);
@@ -109,13 +112,29 @@ export default function MyTreePage() {
     };
 
     fetchTreeData();
-  }, [publicId, router]);
+  }, [publicId]);
 
   // 로딩 중
-  if (isLoading || !treeData) {
+  if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-[#E7E9EB]">
         <p className="text-lg">로딩 중...</p>
+      </div>
+    );
+  }
+
+  // 에러 또는 publicId 없음
+  if (error || !treeData) {
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen gap-4 p-4 bg-[#E7E9EB]">
+        <h1 className="text-xl font-bold">오류</h1>
+        <p className="text-gray-600">{error || '트리 정보를 찾을 수 없습니다.'}</p>
+        <button
+          onClick={() => router.push('/')}
+          className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
+        >
+          홈으로 돌아가기
+        </button>
       </div>
     );
   }
