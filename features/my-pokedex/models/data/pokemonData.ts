@@ -167,95 +167,178 @@ import Pokemon80Inactive from "@/assets/images/pokemon/inactive/80-inactive.png"
 // TODO: 추후 오픈 예정
 // import Pokemon81Inactive from "@/assets/images/pokemon/inactive/81-inactive.png";
 
+// 포켓몬 베이스 이미지 import (1-80)
+import Pokemon1Base from "@/assets/images/pokemon/base/1-pokemon.png";
+import Pokemon2Base from "@/assets/images/pokemon/base/2-pokemon.png";
+import Pokemon3Base from "@/assets/images/pokemon/base/3-pokemon.png";
+import Pokemon4Base from "@/assets/images/pokemon/base/4-pokemon.png";
+import Pokemon5Base from "@/assets/images/pokemon/base/5-pokemon.png";
+import Pokemon6Base from "@/assets/images/pokemon/base/6-pokemon.png";
+import Pokemon7Base from "@/assets/images/pokemon/base/7-pokemon.png";
+import Pokemon8Base from "@/assets/images/pokemon/base/8-pokemon.png";
+import Pokemon9Base from "@/assets/images/pokemon/base/9-pokemon.png";
+import Pokemon10Base from "@/assets/images/pokemon/base/10-pokemon.png";
+import Pokemon11Base from "@/assets/images/pokemon/base/11-pokemon.png";
+import Pokemon12Base from "@/assets/images/pokemon/base/12-pokemon.png";
+import Pokemon13Base from "@/assets/images/pokemon/base/13-pokemon.png";
+import Pokemon14Base from "@/assets/images/pokemon/base/14-pokemon.png";
+import Pokemon15Base from "@/assets/images/pokemon/base/15-pokemon.png";
+import Pokemon16Base from "@/assets/images/pokemon/base/16-pokemon.png";
+import Pokemon17Base from "@/assets/images/pokemon/base/17-pokemon.png";
+import Pokemon18Base from "@/assets/images/pokemon/base/18-pokemon.png";
+import Pokemon19Base from "@/assets/images/pokemon/base/19-pokemon.png";
+import Pokemon20Base from "@/assets/images/pokemon/base/20-pokemon.png";
+import Pokemon21Base from "@/assets/images/pokemon/base/21-pokemon.png";
+import Pokemon22Base from "@/assets/images/pokemon/base/22-pokemon.png";
+import Pokemon23Base from "@/assets/images/pokemon/base/23-pokemon.png";
+import Pokemon24Base from "@/assets/images/pokemon/base/24-pokemon.png";
+import Pokemon25Base from "@/assets/images/pokemon/base/25-pokemon.png";
+import Pokemon26Base from "@/assets/images/pokemon/base/26-pokemon.png";
+import Pokemon27Base from "@/assets/images/pokemon/base/27-pokemon.png";
+import Pokemon28Base from "@/assets/images/pokemon/base/28-pokemon.png";
+import Pokemon29Base from "@/assets/images/pokemon/base/29-pokemon.png";
+import Pokemon30Base from "@/assets/images/pokemon/base/30-pokemon.png";
+import Pokemon31Base from "@/assets/images/pokemon/base/31-pokemon.png";
+import Pokemon32Base from "@/assets/images/pokemon/base/32-pokemon.png";
+import Pokemon33Base from "@/assets/images/pokemon/base/33-pokemon.png";
+import Pokemon34Base from "@/assets/images/pokemon/base/34-pokemon.png";
+import Pokemon35Base from "@/assets/images/pokemon/base/35-pokemon.png";
+import Pokemon36Base from "@/assets/images/pokemon/base/36-pokemon.png";
+import Pokemon37Base from "@/assets/images/pokemon/base/37-pokemon.png";
+import Pokemon38Base from "@/assets/images/pokemon/base/38-pokemon.png";
+import Pokemon39Base from "@/assets/images/pokemon/base/39-pokemon.png";
+import Pokemon40Base from "@/assets/images/pokemon/base/40-pokemon.png";
+import Pokemon41Base from "@/assets/images/pokemon/base/41-pokemon.png";
+import Pokemon42Base from "@/assets/images/pokemon/base/42-pokemon.png";
+import Pokemon43Base from "@/assets/images/pokemon/base/43-pokemon.png";
+import Pokemon44Base from "@/assets/images/pokemon/base/44-pokemon.png";
+import Pokemon45Base from "@/assets/images/pokemon/base/45-pokemon.png";
+import Pokemon46Base from "@/assets/images/pokemon/base/46-pokemon.png";
+import Pokemon47Base from "@/assets/images/pokemon/base/47-pokemon.png";
+import Pokemon48Base from "@/assets/images/pokemon/base/48-pokemon.png";
+import Pokemon49Base from "@/assets/images/pokemon/base/49-pokemon.png";
+import Pokemon50Base from "@/assets/images/pokemon/base/50-pokemon.png";
+import Pokemon51Base from "@/assets/images/pokemon/base/51-pokemon.png";
+import Pokemon52Base from "@/assets/images/pokemon/base/52-pokemon.png";
+import Pokemon53Base from "@/assets/images/pokemon/base/53-pokemon.png";
+import Pokemon54Base from "@/assets/images/pokemon/base/54-pokemon.png";
+import Pokemon55Base from "@/assets/images/pokemon/base/55-pokemon.png";
+import Pokemon56Base from "@/assets/images/pokemon/base/56-pokemon.png";
+import Pokemon57Base from "@/assets/images/pokemon/base/57-pokemon.png";
+import Pokemon58Base from "@/assets/images/pokemon/base/58-pokemon.png";
+import Pokemon59Base from "@/assets/images/pokemon/base/59-pokemon.png";
+import Pokemon60Base from "@/assets/images/pokemon/base/60-pokemon.png";
+import Pokemon61Base from "@/assets/images/pokemon/base/61-pokemon.png";
+import Pokemon62Base from "@/assets/images/pokemon/base/62-pokemon.png";
+import Pokemon63Base from "@/assets/images/pokemon/base/63-pokemon.png";
+import Pokemon64Base from "@/assets/images/pokemon/base/64-pokemon.png";
+import Pokemon65Base from "@/assets/images/pokemon/base/65-pokemon.png";
+import Pokemon66Base from "@/assets/images/pokemon/base/66-pokemon.png";
+import Pokemon67Base from "@/assets/images/pokemon/base/67-pokemon.png";
+import Pokemon68Base from "@/assets/images/pokemon/base/68-pokemon.png";
+import Pokemon69Base from "@/assets/images/pokemon/base/69-pokemon.png";
+import Pokemon70Base from "@/assets/images/pokemon/base/70-pokemon.png";
+import Pokemon71Base from "@/assets/images/pokemon/base/71-pokemon.png";
+import Pokemon72Base from "@/assets/images/pokemon/base/72-pokemon.png";
+import Pokemon73Base from "@/assets/images/pokemon/base/73-pokemon.png";
+import Pokemon74Base from "@/assets/images/pokemon/base/74-pokemon.png";
+import Pokemon75Base from "@/assets/images/pokemon/base/75-pokemon.png";
+import Pokemon76Base from "@/assets/images/pokemon/base/76-pokemon.png";
+import Pokemon77Base from "@/assets/images/pokemon/base/77-pokemon.png";
+import Pokemon78Base from "@/assets/images/pokemon/base/78-pokemon.png";
+import Pokemon79Base from "@/assets/images/pokemon/base/79-pokemon.png";
+import Pokemon80Base from "@/assets/images/pokemon/base/80-pokemon.png";
+
 // 클라이언트에서 관리하는 포켓몬 기본 정보 타입
 export interface PokemonInfo {
   id: number;
   imageActive: string | StaticImageData;
   imageInactive: string | StaticImageData;
+  imageBase: string | StaticImageData;
 }
 
 // 모든 포켓몬의 정보 (클라이언트에서 관리)
 export const POKEMON_DATA: PokemonInfo[] = [
-  { id: 1, imageActive: Pokemon1Active, imageInactive: Pokemon1Inactive },
-  { id: 2, imageActive: Pokemon2Active, imageInactive: Pokemon2Inactive },
-  { id: 3, imageActive: Pokemon3Active, imageInactive: Pokemon3Inactive },
-  { id: 4, imageActive: Pokemon4Active, imageInactive: Pokemon4Inactive },
-  { id: 5, imageActive: Pokemon5Active, imageInactive: Pokemon5Inactive },
-  { id: 6, imageActive: Pokemon6Active, imageInactive: Pokemon6Inactive },
-  { id: 7, imageActive: Pokemon7Active, imageInactive: Pokemon7Inactive },
-  { id: 8, imageActive: Pokemon8Active, imageInactive: Pokemon8Inactive },
-  { id: 9, imageActive: Pokemon9Active, imageInactive: Pokemon9Inactive },
-  { id: 10, imageActive: Pokemon10Active, imageInactive: Pokemon10Inactive },
-  { id: 11, imageActive: Pokemon11Active, imageInactive: Pokemon11Inactive },
-  { id: 12, imageActive: Pokemon12Active, imageInactive: Pokemon12Inactive },
-  { id: 13, imageActive: Pokemon13Active, imageInactive: Pokemon13Inactive },
-  { id: 14, imageActive: Pokemon14Active, imageInactive: Pokemon14Inactive },
-  { id: 15, imageActive: Pokemon15Active, imageInactive: Pokemon15Inactive },
-  { id: 16, imageActive: Pokemon16Active, imageInactive: Pokemon16Inactive },
-  { id: 17, imageActive: Pokemon17Active, imageInactive: Pokemon17Inactive },
-  { id: 18, imageActive: Pokemon18Active, imageInactive: Pokemon18Inactive },
-  { id: 19, imageActive: Pokemon19Active, imageInactive: Pokemon19Inactive },
-  { id: 20, imageActive: Pokemon20Active, imageInactive: Pokemon20Inactive },
-  { id: 21, imageActive: Pokemon21Active, imageInactive: Pokemon21Inactive },
-  { id: 22, imageActive: Pokemon22Active, imageInactive: Pokemon22Inactive },
-  { id: 23, imageActive: Pokemon23Active, imageInactive: Pokemon23Inactive },
-  { id: 24, imageActive: Pokemon24Active, imageInactive: Pokemon24Inactive },
-  { id: 25, imageActive: Pokemon25Active, imageInactive: Pokemon25Inactive },
-  { id: 26, imageActive: Pokemon26Active, imageInactive: Pokemon26Inactive },
-  { id: 27, imageActive: Pokemon27Active, imageInactive: Pokemon27Inactive },
-  { id: 28, imageActive: Pokemon28Active, imageInactive: Pokemon28Inactive },
-  { id: 29, imageActive: Pokemon29Active, imageInactive: Pokemon29Inactive },
-  { id: 30, imageActive: Pokemon30Active, imageInactive: Pokemon30Inactive },
-  { id: 31, imageActive: Pokemon31Active, imageInactive: Pokemon31Inactive },
-  { id: 32, imageActive: Pokemon32Active, imageInactive: Pokemon32Inactive },
-  { id: 33, imageActive: Pokemon33Active, imageInactive: Pokemon33Inactive },
-  { id: 34, imageActive: Pokemon34Active, imageInactive: Pokemon34Inactive },
-  { id: 35, imageActive: Pokemon35Active, imageInactive: Pokemon35Inactive },
-  { id: 36, imageActive: Pokemon36Active, imageInactive: Pokemon36Inactive },
-  { id: 37, imageActive: Pokemon37Active, imageInactive: Pokemon37Inactive },
-  { id: 38, imageActive: Pokemon38Active, imageInactive: Pokemon38Inactive },
-  { id: 39, imageActive: Pokemon39Active, imageInactive: Pokemon39Inactive },
-  { id: 40, imageActive: Pokemon40Active, imageInactive: Pokemon40Inactive },
-  { id: 41, imageActive: Pokemon41Active, imageInactive: Pokemon41Inactive },
-  { id: 42, imageActive: Pokemon42Active, imageInactive: Pokemon42Inactive },
-  { id: 43, imageActive: Pokemon43Active, imageInactive: Pokemon43Inactive },
-  { id: 44, imageActive: Pokemon44Active, imageInactive: Pokemon44Inactive },
-  { id: 45, imageActive: Pokemon45Active, imageInactive: Pokemon45Inactive },
-  { id: 46, imageActive: Pokemon46Active, imageInactive: Pokemon46Inactive },
-  { id: 47, imageActive: Pokemon47Active, imageInactive: Pokemon47Inactive },
-  { id: 48, imageActive: Pokemon48Active, imageInactive: Pokemon48Inactive },
-  { id: 49, imageActive: Pokemon49Active, imageInactive: Pokemon49Inactive },
-  { id: 50, imageActive: Pokemon50Active, imageInactive: Pokemon50Inactive },
-  { id: 51, imageActive: Pokemon51Active, imageInactive: Pokemon51Inactive },
-  { id: 52, imageActive: Pokemon52Active, imageInactive: Pokemon52Inactive },
-  { id: 53, imageActive: Pokemon53Active, imageInactive: Pokemon53Inactive },
-  { id: 54, imageActive: Pokemon54Active, imageInactive: Pokemon54Inactive },
-  { id: 55, imageActive: Pokemon55Active, imageInactive: Pokemon55Inactive },
-  { id: 56, imageActive: Pokemon56Active, imageInactive: Pokemon56Inactive },
-  { id: 57, imageActive: Pokemon57Active, imageInactive: Pokemon57Inactive },
-  { id: 58, imageActive: Pokemon58Active, imageInactive: Pokemon58Inactive },
-  { id: 59, imageActive: Pokemon59Active, imageInactive: Pokemon59Inactive },
-  { id: 60, imageActive: Pokemon60Active, imageInactive: Pokemon60Inactive },
-  { id: 61, imageActive: Pokemon61Active, imageInactive: Pokemon61Inactive },
-  { id: 62, imageActive: Pokemon62Active, imageInactive: Pokemon62Inactive },
-  { id: 63, imageActive: Pokemon63Active, imageInactive: Pokemon63Inactive },
-  { id: 64, imageActive: Pokemon64Active, imageInactive: Pokemon64Inactive },
-  { id: 65, imageActive: Pokemon65Active, imageInactive: Pokemon65Inactive },
-  { id: 66, imageActive: Pokemon66Active, imageInactive: Pokemon66Inactive },
-  { id: 67, imageActive: Pokemon67Active, imageInactive: Pokemon67Inactive },
-  { id: 68, imageActive: Pokemon68Active, imageInactive: Pokemon68Inactive },
-  { id: 69, imageActive: Pokemon69Active, imageInactive: Pokemon69Inactive },
-  { id: 70, imageActive: Pokemon70Active, imageInactive: Pokemon70Inactive },
-  { id: 71, imageActive: Pokemon71Active, imageInactive: Pokemon71Inactive },
-  { id: 72, imageActive: Pokemon72Active, imageInactive: Pokemon72Inactive },
-  { id: 73, imageActive: Pokemon73Active, imageInactive: Pokemon73Inactive },
-  { id: 74, imageActive: Pokemon74Active, imageInactive: Pokemon74Inactive },
-  { id: 75, imageActive: Pokemon75Active, imageInactive: Pokemon75Inactive },
-  { id: 76, imageActive: Pokemon76Active, imageInactive: Pokemon76Inactive },
-  { id: 77, imageActive: Pokemon77Active, imageInactive: Pokemon77Inactive },
-  { id: 78, imageActive: Pokemon78Active, imageInactive: Pokemon78Inactive },
-  { id: 79, imageActive: Pokemon79Active, imageInactive: Pokemon79Inactive },
-  { id: 80, imageActive: Pokemon80Active, imageInactive: Pokemon80Inactive },
+  { id: 1, imageActive: Pokemon1Active, imageInactive: Pokemon1Inactive, imageBase: Pokemon1Base },
+  { id: 2, imageActive: Pokemon2Active, imageInactive: Pokemon2Inactive, imageBase: Pokemon2Base },
+  { id: 3, imageActive: Pokemon3Active, imageInactive: Pokemon3Inactive, imageBase: Pokemon3Base },
+  { id: 4, imageActive: Pokemon4Active, imageInactive: Pokemon4Inactive, imageBase: Pokemon4Base },
+  { id: 5, imageActive: Pokemon5Active, imageInactive: Pokemon5Inactive, imageBase: Pokemon5Base },
+  { id: 6, imageActive: Pokemon6Active, imageInactive: Pokemon6Inactive, imageBase: Pokemon6Base },
+  { id: 7, imageActive: Pokemon7Active, imageInactive: Pokemon7Inactive, imageBase: Pokemon7Base },
+  { id: 8, imageActive: Pokemon8Active, imageInactive: Pokemon8Inactive, imageBase: Pokemon8Base },
+  { id: 9, imageActive: Pokemon9Active, imageInactive: Pokemon9Inactive, imageBase: Pokemon9Base },
+  { id: 10, imageActive: Pokemon10Active, imageInactive: Pokemon10Inactive, imageBase: Pokemon10Base },
+  { id: 11, imageActive: Pokemon11Active, imageInactive: Pokemon11Inactive, imageBase: Pokemon11Base },
+  { id: 12, imageActive: Pokemon12Active, imageInactive: Pokemon12Inactive, imageBase: Pokemon12Base },
+  { id: 13, imageActive: Pokemon13Active, imageInactive: Pokemon13Inactive, imageBase: Pokemon13Base },
+  { id: 14, imageActive: Pokemon14Active, imageInactive: Pokemon14Inactive, imageBase: Pokemon14Base },
+  { id: 15, imageActive: Pokemon15Active, imageInactive: Pokemon15Inactive, imageBase: Pokemon15Base },
+  { id: 16, imageActive: Pokemon16Active, imageInactive: Pokemon16Inactive, imageBase: Pokemon16Base },
+  { id: 17, imageActive: Pokemon17Active, imageInactive: Pokemon17Inactive, imageBase: Pokemon17Base },
+  { id: 18, imageActive: Pokemon18Active, imageInactive: Pokemon18Inactive, imageBase: Pokemon18Base },
+  { id: 19, imageActive: Pokemon19Active, imageInactive: Pokemon19Inactive, imageBase: Pokemon19Base },
+  { id: 20, imageActive: Pokemon20Active, imageInactive: Pokemon20Inactive, imageBase: Pokemon20Base },
+  { id: 21, imageActive: Pokemon21Active, imageInactive: Pokemon21Inactive, imageBase: Pokemon21Base },
+  { id: 22, imageActive: Pokemon22Active, imageInactive: Pokemon22Inactive, imageBase: Pokemon22Base },
+  { id: 23, imageActive: Pokemon23Active, imageInactive: Pokemon23Inactive, imageBase: Pokemon23Base },
+  { id: 24, imageActive: Pokemon24Active, imageInactive: Pokemon24Inactive, imageBase: Pokemon24Base },
+  { id: 25, imageActive: Pokemon25Active, imageInactive: Pokemon25Inactive, imageBase: Pokemon25Base },
+  { id: 26, imageActive: Pokemon26Active, imageInactive: Pokemon26Inactive, imageBase: Pokemon26Base },
+  { id: 27, imageActive: Pokemon27Active, imageInactive: Pokemon27Inactive, imageBase: Pokemon27Base },
+  { id: 28, imageActive: Pokemon28Active, imageInactive: Pokemon28Inactive, imageBase: Pokemon28Base },
+  { id: 29, imageActive: Pokemon29Active, imageInactive: Pokemon29Inactive, imageBase: Pokemon29Base },
+  { id: 30, imageActive: Pokemon30Active, imageInactive: Pokemon30Inactive, imageBase: Pokemon30Base },
+  { id: 31, imageActive: Pokemon31Active, imageInactive: Pokemon31Inactive, imageBase: Pokemon31Base },
+  { id: 32, imageActive: Pokemon32Active, imageInactive: Pokemon32Inactive, imageBase: Pokemon32Base },
+  { id: 33, imageActive: Pokemon33Active, imageInactive: Pokemon33Inactive, imageBase: Pokemon33Base },
+  { id: 34, imageActive: Pokemon34Active, imageInactive: Pokemon34Inactive, imageBase: Pokemon34Base },
+  { id: 35, imageActive: Pokemon35Active, imageInactive: Pokemon35Inactive, imageBase: Pokemon35Base },
+  { id: 36, imageActive: Pokemon36Active, imageInactive: Pokemon36Inactive, imageBase: Pokemon36Base },
+  { id: 37, imageActive: Pokemon37Active, imageInactive: Pokemon37Inactive, imageBase: Pokemon37Base },
+  { id: 38, imageActive: Pokemon38Active, imageInactive: Pokemon38Inactive, imageBase: Pokemon38Base },
+  { id: 39, imageActive: Pokemon39Active, imageInactive: Pokemon39Inactive, imageBase: Pokemon39Base },
+  { id: 40, imageActive: Pokemon40Active, imageInactive: Pokemon40Inactive, imageBase: Pokemon40Base },
+  { id: 41, imageActive: Pokemon41Active, imageInactive: Pokemon41Inactive, imageBase: Pokemon41Base },
+  { id: 42, imageActive: Pokemon42Active, imageInactive: Pokemon42Inactive, imageBase: Pokemon42Base },
+  { id: 43, imageActive: Pokemon43Active, imageInactive: Pokemon43Inactive, imageBase: Pokemon43Base },
+  { id: 44, imageActive: Pokemon44Active, imageInactive: Pokemon44Inactive, imageBase: Pokemon44Base },
+  { id: 45, imageActive: Pokemon45Active, imageInactive: Pokemon45Inactive, imageBase: Pokemon45Base },
+  { id: 46, imageActive: Pokemon46Active, imageInactive: Pokemon46Inactive, imageBase: Pokemon46Base },
+  { id: 47, imageActive: Pokemon47Active, imageInactive: Pokemon47Inactive, imageBase: Pokemon47Base },
+  { id: 48, imageActive: Pokemon48Active, imageInactive: Pokemon48Inactive, imageBase: Pokemon48Base },
+  { id: 49, imageActive: Pokemon49Active, imageInactive: Pokemon49Inactive, imageBase: Pokemon49Base },
+  { id: 50, imageActive: Pokemon50Active, imageInactive: Pokemon50Inactive, imageBase: Pokemon50Base },
+  { id: 51, imageActive: Pokemon51Active, imageInactive: Pokemon51Inactive, imageBase: Pokemon51Base },
+  { id: 52, imageActive: Pokemon52Active, imageInactive: Pokemon52Inactive, imageBase: Pokemon52Base },
+  { id: 53, imageActive: Pokemon53Active, imageInactive: Pokemon53Inactive, imageBase: Pokemon53Base },
+  { id: 54, imageActive: Pokemon54Active, imageInactive: Pokemon54Inactive, imageBase: Pokemon54Base },
+  { id: 55, imageActive: Pokemon55Active, imageInactive: Pokemon55Inactive, imageBase: Pokemon55Base },
+  { id: 56, imageActive: Pokemon56Active, imageInactive: Pokemon56Inactive, imageBase: Pokemon56Base },
+  { id: 57, imageActive: Pokemon57Active, imageInactive: Pokemon57Inactive, imageBase: Pokemon57Base },
+  { id: 58, imageActive: Pokemon58Active, imageInactive: Pokemon58Inactive, imageBase: Pokemon58Base },
+  { id: 59, imageActive: Pokemon59Active, imageInactive: Pokemon59Inactive, imageBase: Pokemon59Base },
+  { id: 60, imageActive: Pokemon60Active, imageInactive: Pokemon60Inactive, imageBase: Pokemon60Base },
+  { id: 61, imageActive: Pokemon61Active, imageInactive: Pokemon61Inactive, imageBase: Pokemon61Base },
+  { id: 62, imageActive: Pokemon62Active, imageInactive: Pokemon62Inactive, imageBase: Pokemon62Base },
+  { id: 63, imageActive: Pokemon63Active, imageInactive: Pokemon63Inactive, imageBase: Pokemon63Base },
+  { id: 64, imageActive: Pokemon64Active, imageInactive: Pokemon64Inactive, imageBase: Pokemon64Base },
+  { id: 65, imageActive: Pokemon65Active, imageInactive: Pokemon65Inactive, imageBase: Pokemon65Base },
+  { id: 66, imageActive: Pokemon66Active, imageInactive: Pokemon66Inactive, imageBase: Pokemon66Base },
+  { id: 67, imageActive: Pokemon67Active, imageInactive: Pokemon67Inactive, imageBase: Pokemon67Base },
+  { id: 68, imageActive: Pokemon68Active, imageInactive: Pokemon68Inactive, imageBase: Pokemon68Base },
+  { id: 69, imageActive: Pokemon69Active, imageInactive: Pokemon69Inactive, imageBase: Pokemon69Base },
+  { id: 70, imageActive: Pokemon70Active, imageInactive: Pokemon70Inactive, imageBase: Pokemon70Base },
+  { id: 71, imageActive: Pokemon71Active, imageInactive: Pokemon71Inactive, imageBase: Pokemon71Base },
+  { id: 72, imageActive: Pokemon72Active, imageInactive: Pokemon72Inactive, imageBase: Pokemon72Base },
+  { id: 73, imageActive: Pokemon73Active, imageInactive: Pokemon73Inactive, imageBase: Pokemon73Base },
+  { id: 74, imageActive: Pokemon74Active, imageInactive: Pokemon74Inactive, imageBase: Pokemon74Base },
+  { id: 75, imageActive: Pokemon75Active, imageInactive: Pokemon75Inactive, imageBase: Pokemon75Base },
+  { id: 76, imageActive: Pokemon76Active, imageInactive: Pokemon76Inactive, imageBase: Pokemon76Base },
+  { id: 77, imageActive: Pokemon77Active, imageInactive: Pokemon77Inactive, imageBase: Pokemon77Base },
+  { id: 78, imageActive: Pokemon78Active, imageInactive: Pokemon78Inactive, imageBase: Pokemon78Base },
+  { id: 79, imageActive: Pokemon79Active, imageInactive: Pokemon79Inactive, imageBase: Pokemon79Base },
+  { id: 80, imageActive: Pokemon80Active, imageInactive: Pokemon80Inactive, imageBase: Pokemon80Base },
   // TODO: 추후 오픈 예정
-  // { id: 81, imageActive: Pokemon81Active, imageInactive: Pokemon81Inactive },
+  // { id: 81, imageActive: Pokemon81Active, imageInactive: Pokemon81Inactive, imageBase: Pokemon81Base },
 ];
