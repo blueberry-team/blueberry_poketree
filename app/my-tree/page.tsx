@@ -181,7 +181,7 @@ export default function MyTreePage() {
    * 전체 메시지 페이지로 이동
    */
   const handleViewAllMessages = () => {
-    router.push("/my-poket-message");
+    router.push(`/my-poket-message?id=${publicId}`);
   };
 
   /**

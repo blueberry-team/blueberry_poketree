@@ -1,17 +1,15 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
+import Image from "next/image";
 import { MessageGrid } from "@/features/my-poket-message/components/MessageGrid";
-import { MessageDetailModal } from "@/features/my-poket-message/components/MessageDetailModal";
+import LetterModal from "@/features/shared/components/Modal/LetterModal";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { getUserTree } from "@/features/my-tree/usecases/getUserTree";
-import { getLetter } from "@/features/my-poket-message/usecases/getLetter";
-import { deleteLetter } from "@/features/my-poket-message/usecases/deleteLetter";
-import { openLetter } from "@/features/my-poket-message/usecases/openLetter";
 import { Letter } from "@/features/my-tree/models/res/GetUserTreeResponse";
-import { LetterDetail } from "@/features/my-poket-message/models/res/GetLetterResponse";
+import MonsterBallOpen from "@/assets/images/components/monster_ball_open.png";
 
 export default function MyPoketMessagePage() {
   const { translate } = useTranslation();
@@ -24,93 +22,70 @@ export default function MyPoketMessagePage() {
   const [isLoading, setIsLoading] = useState(true);
 
   // 모달 관련 state
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [selectedLetterId, setSelectedLetterId] = useState<string | null>(null);
-  const [letterDetail, setLetterDetail] = useState<LetterDetail | null>(null);
-  const [isLoadingDetail, setIsLoadingDetail] = useState(false);
+  const [isLetterModalOpen, setIsLetterModalOpen] = useState(false);
+  const [selectedLetterIndex, setSelectedLetterIndex] = useState(0);
 
-  useEffect(() => {
-    // publicId가 없으면 에러 페이지로 리다이렉트
+  // 메시지 목록 가져오기
+  const fetchMessages = useCallback(async () => {
     if (!publicId) {
       router.replace("/error?type=load");
       return;
     }
 
-    const fetchMessages = async () => {
-      try {
-        setIsLoading(true);
-        const response = await getUserTree({ public_id: publicId });
+    try {
+      setIsLoading(true);
+      const response = await getUserTree({ user_id: publicId });
 
-        if (response.message === "success" && response.data) {
-          setMessages(response.data.letters);
-          setUserName(response.data.nickname);
-        }
-      } catch (err) {
-        router.replace("/error?type=load");
-      } finally {
-        setIsLoading(false);
+      if (response.message === "success" && response.data) {
+        setMessages(response.data.letters);
+        setUserName(response.data.nickname);
       }
-    };
-
-    fetchMessages();
+    } catch (err) {
+      router.replace("/error?type=load");
+    } finally {
+      setIsLoading(false);
+    }
   }, [publicId, router]);
 
-  const handleMessageClick = async (index: number) => {
-    const selectedMessage = messages[index];
-    setSelectedLetterId(selectedMessage.letter_id);
-    setIsModalOpen(true);
-    setIsLoadingDetail(true);
+  useEffect(() => {
+    fetchMessages();
+  }, [fetchMessages]);
 
-    try {
-      const response = await getLetter({ letterId: selectedMessage.letter_id });
-      if (response.message === "success" && response.data) {
-        setLetterDetail(response.data);
-      }
-    } catch (err) {
-      console.error("Failed to load letter detail:", err);
-    } finally {
-      setIsLoadingDetail(false);
+  // 메시지 클릭 시 선택 + 모달 열기
+  const handleMessageClick = (index: number) => {
+    setSelectedLetterIndex(index);
+    setIsLetterModalOpen(true);
+  };
+
+  // 메시지 버튼 클릭 시 선택된 메시지 모달 열기
+  const handleCheckMessage = () => {
+    if (messages.length > 0) {
+      setIsLetterModalOpen(true);
     }
   };
 
-  const handleCloseModal = () => {
-    setIsModalOpen(false);
-    setSelectedLetterId(null);
-    setLetterDetail(null);
+  // 십자버튼: 왼쪽 (이전 메시지, 첫번째면 이동 안함)
+  const handleLeft = () => {
+    if (messages.length === 0) return;
+    setSelectedLetterIndex((prev) => (prev > 0 ? prev - 1 : prev));
   };
 
-  const handleDeleteLetter = async () => {
-    if (!selectedLetterId) return;
-
-    try {
-      await deleteLetter({ letterId: selectedLetterId });
-      // 삭제 성공 시 목록에서 제거
-      setMessages((prev) => prev.filter((m) => m.letter_id !== selectedLetterId));
-      handleCloseModal();
-    } catch (err) {
-      console.error("Failed to delete letter:", err);
-    }
+  // 십자버튼: 오른쪽 (다음 메시지, 마지막이면 이동 안함)
+  const handleRight = () => {
+    if (messages.length === 0) return;
+    setSelectedLetterIndex((prev) => (prev < messages.length - 1 ? prev + 1 : prev));
   };
 
-  const handleToggleOpen = async () => {
-    if (!selectedLetterId || !letterDetail) return;
+  // 십자버튼: 위 (한 줄 위로, 3칸)
+  const handleUp = () => {
+    if (messages.length === 0) return;
+    setSelectedLetterIndex((prev) => (prev >= 3 ? prev - 3 : prev));
+  };
 
-    try {
-      const newIsOpen = !letterDetail.is_opened;
-      await openLetter({ letterId: selectedLetterId, isOpen: newIsOpen });
-      // 성공 시 letterDetail 업데이트
-      setLetterDetail((prev) => prev ? { ...prev, is_opened: newIsOpen } : null);
-      // messages 목록도 업데이트
-      setMessages((prev) =>
-        prev.map((m) =>
-          m.letter_id === selectedLetterId
-            ? { ...m, is_open: newIsOpen ? "true" : "false" }
-            : m
-        )
-      );
-    } catch (err) {
-      console.error("Failed to toggle open status:", err);
-    }
+  // 십자버튼: 아래 (한 줄 아래로, 3칸)
+  const handleDown = () => {
+    if (messages.length === 0) return;
+    setSelectedLetterIndex((prev) => (prev + 3 < messages.length ? prev + 3 : prev));
   };
 
   if (isLoading) {
@@ -130,6 +105,7 @@ export default function MyPoketMessagePage() {
             {userName} {translate("tree.title")}
           </h1>
           <button className="flex items-center gap-1 px-3 py-2 bg-black/60 text-white text-sm font-bold w-fit rounded-lg">
+            <Image src={MonsterBallOpen} alt="몬스터볼" width={16} height={16} />
             <span>{messages.length}{translate("tree.messageCount")}</span>
           </button>
         </div>
@@ -137,22 +113,34 @@ export default function MyPoketMessagePage() {
 
       {/* 그리드 영역 */}
       <div className="flex-1 overflow-hidden">
-        <MessageGrid messages={messages} onMessageClick={handleMessageClick} />
+        <MessageGrid
+          messages={messages}
+          selectedIndex={selectedLetterIndex}
+          onMessageClick={handleMessageClick}
+        />
       </div>
 
       {/* 하단 버튼 영역 */}
-      <div className="px-4 py-4 shrink-0 bg-[#BF0120]">
-        <BottomButtons />
+      <div className="px-4 py-4 shrink-0 relative bg-[#BF0120] h-[246px] border-t-2 border-black">
+        <BottomButtons
+          onUp={handleUp}
+          onDown={handleDown}
+          onLeft={handleLeft}
+          onRight={handleRight}
+          onCheckMessage={handleCheckMessage}
+        />
       </div>
 
-      {/* 메시지 상세 모달 */}
-      <MessageDetailModal
-        isOpen={isModalOpen}
-        onClose={handleCloseModal}
-        letterDetail={letterDetail}
-        isLoading={isLoadingDetail}
-        onDelete={handleDeleteLetter}
-        onToggleOpen={handleToggleOpen}
+      {/* 편지 모달 */}
+      <LetterModal
+        isOpen={isLetterModalOpen}
+        onClose={() => setIsLetterModalOpen(false)}
+        letterIndex={selectedLetterIndex}
+        letterId={messages[selectedLetterIndex]?.letter_id || null}
+        onDelete={() => {
+          // 편지 삭제 후 목록 새로고침
+          fetchMessages();
+        }}
       />
     </div>
   );
