@@ -181,7 +181,7 @@ export default function MyTreePage() {
    * 전체 메시지 페이지로 이동
    */
   const handleViewAllMessages = () => {
-    router.push("/my-poket-message");
+    router.push(`/my-poket-message?id=${publicId}`);
   };
 
   /**
@@ -234,7 +234,7 @@ export default function MyTreePage() {
       <div className="px-4 py-4 shrink-0 relative min-h-[200px]">
         {/* 도감 버튼과 십자 버튼 (메시지 버튼 포함) */}
         {/*is_owner에 따라 바텀컴포넌트 구분*/}
-        {!isOwner ? (
+        {isOwner ? (
           <BottomButtons
             onUp={handleUp}
             onDown={handleDown}

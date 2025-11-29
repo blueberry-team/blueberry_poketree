@@ -135,7 +135,7 @@ export default function MyPoketMessagePage() {
       <LetterModal
         isOpen={isLetterModalOpen}
         onClose={() => setIsLetterModalOpen(false)}
-        letterIndex={selectedLetterIndex}
+        // letterIndex={selectedLetterIndex}
         letterId={messages[selectedLetterIndex]?.letter_id || null}
         onDelete={() => {
           // 편지 삭제 후 목록 새로고침
