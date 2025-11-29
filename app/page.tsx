@@ -8,7 +8,7 @@ import { LandingFooter } from "@/features/landing/components/LandingFooter/Landi
 export default function LandingPage() {
   return (
     <div>
-      <div className="px-4 py-3">
+      <div className="px-4 py-3 bg-[#BF0120]">
         {/* 헤더 영역 */}
         <ChristmasCountdown />
       </div>
