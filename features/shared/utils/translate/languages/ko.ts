@@ -78,6 +78,7 @@ export const ko = {
   },
   message: {
     title: "포켓 메시지",
+    userMessage: "님의 포켓 메세지",
     placeholder: "메시지를 입력하세요",
   },
   common: {

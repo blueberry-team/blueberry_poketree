@@ -102,7 +102,7 @@ export default function MyPoketMessagePage() {
       <div className="px-4 py-3 shrink-0">
         <div className="flex flex-col gap-2 mb-2">
           <h1 className="text-white text-xl font-bold">
-            {userName} {translate("tree.title")}
+            {userName}{translate("message.userMessage")}
           </h1>
           <button className="flex items-center gap-1 px-3 py-2 bg-black/60 text-white text-sm font-bold w-fit rounded-lg">
             <Image src={MonsterBallOpen} alt="몬스터볼" width={16} height={16} />

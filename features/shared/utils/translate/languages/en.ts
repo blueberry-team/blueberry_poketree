@@ -78,6 +78,7 @@ export const en = {
   },
   message: {
     title: "Pockét Message",
+    userMessage: "'s Pocket Messages",
     placeholder: "Enter message",
   },
   common: {
@@ -97,7 +98,7 @@ export const en = {
     days: "D",
     hours: "H",
     minutes: "M",
-    description1: "Log in on Christmas Day to receive a surprise gift!",
+    description1: "Get a surprise gift on Christmas Day!",
     description2: "Write letters to decorate your friend's tree!",
     makeTree: "Make PokeTree",
     visitSocial: "Visit our Instagram",

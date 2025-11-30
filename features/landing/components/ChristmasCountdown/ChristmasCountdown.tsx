@@ -2,12 +2,19 @@
 
 import { useState, useEffect } from "react";
 import Image from "next/image";
+import { useRouter } from "next/navigation";
 import GiftBoxIcon from "@/assets/icon/giftBoxIcon.svg";
+import ButtonSmallDark from "@/assets/images/components/button_small_dark.png";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 
 export function ChristmasCountdown() {
+  const router = useRouter();
   const { translate } = useTranslation();
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0 });
+
+  const handleLogin = () => {
+    router.push("/signup-or-go");
+  };
 
   useEffect(() => {
     const calculateTimeLeft = () => {
@@ -39,7 +46,7 @@ export function ChristmasCountdown() {
   return (
     <div className="flex flex-col items-center w-full overflow-hidden">
       {/* 크리스마스 카운트다운 */}
-      <div className="flex items-center gap-2 text-[18px] flex-wrap justify-center">
+      <div className="flex items-center gap-2 text-[18px] flex-wrap justify-center px-4">
         <span className="font-bold">{translate("landing.countdown")}</span>
 
         {/* Days 그룹 */}
@@ -88,12 +95,29 @@ export function ChristmasCountdown() {
         </div>
       </div>
 
-      {/* 선물 메시지 */}
-      <div className="flex items-center justify-start gap-1 mt-2 px-4">
-        <Image src={GiftBoxIcon} alt="Gift" width={16} height={16} />
-        <p className="font-bold text-[12px] -mb-0.5">
-          {translate("landing.description1")}
-        </p>
+      {/* 선물 메시지 + 로그인 버튼 */}
+      <div className="flex items-center justify-around w-full mt-2">
+        <div className="flex items-center gap-1 min-w-0">
+          <Image src={GiftBoxIcon} alt="Gift" width={16} height={16} className="shrink-0" />
+          <p className="font-bold text-[12px] -mb-0.5 truncate">
+            {translate("landing.description1")}
+          </p>
+        </div>
+        <button
+          onClick={handleLogin}
+          className="relative flex items-center justify-center shrink-0"
+          style={{ width: "66px", height: "28px" }}
+        >
+          <Image
+            src={ButtonSmallDark}
+            alt={translate("header.login")}
+            fill
+            className="object-fill"
+          />
+          <span className="relative z-10 text-white text-[12px] font-bold">
+            {translate("header.login")}
+          </span>
+        </button>
       </div>
     </div>
   );
