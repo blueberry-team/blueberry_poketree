@@ -1,6 +1,6 @@
 import { GetMyPokedexRequest } from "../models/req/GetMyPokedexRequest";
 import { getMyPokedexGet } from "../repositories/pokedexRepository";
-import { PokemonInfo, POKEMON_DATA } from "@/features/my-pokedex/models/data/pokemonData";
+import { PokemonInfo, POKEMON_DATA } from "@/features/shared/data/pokemonData";
 
 // 포켓몬 도감에서 표시할 포켓몬 (보유 여부 포함)
 export interface PokemonInDex extends PokemonInfo {
