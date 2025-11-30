@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useRef, useEffect } from "react";
 import { Letter } from "@/features/my-tree/models/res/GetUserTreeResponse";
-import { POKEMON_DATA } from "@/features/my-pokedex/models/data/pokemonData";
+import { POKEMON_DATA } from "@/features/shared/data/pokemonData";
 import LockIcon from "@/assets/icon/lockIcon.svg";
 
 interface MessageGridProps {
