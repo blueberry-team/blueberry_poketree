@@ -152,8 +152,7 @@ export default function MyTreePage() {
    * 이전 페이지로 이동
    */
   const handleLeft = () => {
-    const totalPages = Math.ceil(letters.length / 7);
-    setCurrentPage((prev) => (prev > 0 ? prev - 1 : totalPages - 1));
+    setCurrentPage((prev) => (prev > 0 ? prev - 1 : prev));
   };
 
   /**
@@ -161,7 +160,7 @@ export default function MyTreePage() {
    */
   const handleRight = () => {
     const totalPages = Math.ceil(letters.length / 7);
-    setCurrentPage((prev) => (prev < totalPages - 1 ? prev + 1 : 0));
+    setCurrentPage((prev) => (prev < totalPages - 1 ? prev + 1 : prev));
   };
 
   /**
