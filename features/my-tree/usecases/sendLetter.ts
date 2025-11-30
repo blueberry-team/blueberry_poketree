@@ -2,6 +2,9 @@ import { ApiResponse } from "@/features/shared/utils/api/apiClient";
 import { SendLetterRequest } from "../models/req/SendLetterRequest";
 import { sendLetter as sendLetterRepo } from "../repositories/letterRepository";
 
+const MIN_SENDER_NAME_LENGTH = 1;
+const MAX_SENDER_NAME_LENGTH = 6;
+const MIN_CONTENT_LENGTH = 4;
 const MAX_CONTENT_LENGTH = 300;
 
 /**
@@ -13,22 +16,34 @@ export async function sendLetter(
   req: SendLetterRequest
 ): Promise<ApiResponse<null>> {
   // validation
-  if (!req.sender_name || req.sender_name.trim().length === 0) {
+
+  const trimmedSenderName = req.sender_name.trim();
+  const trimmedContent = req.content.trim();
+
+  if (trimmedSenderName.length === 0) {
     throw new Error("발신자 이름을 입력해주세요.");
   }
 
-  if (!req.content || req.content.trim().length === 0) {
+  if (trimmedContent.length === 0) {
     throw new Error("편지 내용을 입력해주세요.");
   }
 
-  if (req.content.length > MAX_CONTENT_LENGTH) {
+  if (
+    trimmedSenderName.length < MIN_SENDER_NAME_LENGTH ||
+    trimmedSenderName.length > MAX_SENDER_NAME_LENGTH
+  ) {
     throw new Error(
-      `편지 내용은 최대 ${MAX_CONTENT_LENGTH}자까지 입력 가능합니다.`
+      `작성자 닉네임은 ${MIN_SENDER_NAME_LENGTH}~${MAX_SENDER_NAME_LENGTH}자여야 합니다.`
     );
   }
 
-  if (!req.receiver_id || req.receiver_id.trim().length === 0) {
-    throw new Error("수신자 ID가 필요합니다.");
+  if (
+    trimmedContent.length < MIN_CONTENT_LENGTH ||
+    trimmedContent.length > MAX_CONTENT_LENGTH
+  ) {
+    throw new Error(
+      `메세지 내용은 ${MIN_CONTENT_LENGTH}~${MAX_CONTENT_LENGTH}자여야 합니다.`
+    );
   }
 
   // API request

@@ -111,7 +111,7 @@ export default function LetterModal({
       onClick={onClose}
     >
       <div
-        className="bg-black rounded-2xl w-full max-w-[800px] relative"
+        className="bg-black rounded-lg w-[352px] h-[531px] relative overflow-y-auto"
         onClick={(e) => e.stopPropagation()}
       >
         {/* 닫기 버튼 */}
@@ -129,14 +129,14 @@ export default function LetterModal({
           />
         </button>
 
-        {/* 자물쇠 아이콘 (우상단) - is_opened가 true일 때만 표시 */}
-        {!letterData?.is_opened && (
+        {/* 자물쇠 아이콘 (우상단) - is_open가 true일 때만 표시 */}
+        {!letterData?.is_open && (
           <div className="absolute top-6 right-6">
             <Image
               src={LockIcon}
               alt="비공개"
-              width={32}
-              height={32}
+              width={16}
+              height={16}
               className="object-contain"
             />
           </div>
@@ -170,18 +170,18 @@ export default function LetterModal({
               <Image
                 src={getPokemonImage(letterData.letter_pokemon)}
                 alt={`Pokemon ${letterData.letter_pokemon}`}
-                width={120}
-                height={120}
+                width={48}
+                height={48}
                 className="object-contain"
                 unoptimized
               />
-              <h2 className="text-white text-3xl font-bold">
+              <h2 className="text-white text-[20px] font-bold">
                 {translate("letterModal.title").replace("{name}", letterData.sender_name)}
               </h2>
             </div>
 
             {/* 편지 내용 */}
-            <div className="bg-white rounded-2xl p-8 min-h-[400px] mb-6">
+            <div className="bg-white rounded-lg p-8 min-h-[320px] mb-6">
               <p className="text-black text-lg whitespace-pre-wrap leading-relaxed">
                 {letterData.content}
               </p>
@@ -193,26 +193,26 @@ export default function LetterModal({
               <button
                 onClick={handleDeleteClick}
                 disabled={isDeleting}
-                className="w-24 h-14 px-8 py-2 bg-transparent border-2 border-white text-white rounded-sm font-bold hover:bg-white hover:text-black transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-20 h-12 bg-transparent border border-white text-white rounded-sm font-bold hover:bg-white hover:text-black transition-colors"
               >
                 {isDeleting ? translate("letterModal.deleting") : translate("letterModal.delete")}
               </button>
 
               {/* 메세지 공개/비공개 버튼 */}
               <div
-                className="relative cursor-pointer h-14 flex items-center justify-center"
+                className="relative cursor-pointer h-12 flex items-center justify-center"
                 onClick={handlePublish}
                 style={{ width: '200px' }}
               >
                 <Image
-                  src={letterData.is_opened ? ButtonLetterUnpublic : ButtonLetterPublic}
-                  alt={letterData.is_opened ? translate("letterModal.publish") : translate("letterModal.unpublish")}
+                  src={letterData.is_open ? ButtonLetterUnpublic : ButtonLetterPublic}
+                  alt={letterData.is_open ? translate("letterModal.publish") : translate("letterModal.unpublish")}
                   width={200}
                   height={56}
                   className="h-full w-auto object-contain"
                 />
                 <div className="absolute inset-0 flex items-center justify-center gap-2 pointer-events-none">
-                  {letterData.is_opened && (
+                  {letterData.is_open && (
                     <Image
                       src={LockIcon}
                       alt="자물쇠"
@@ -222,7 +222,7 @@ export default function LetterModal({
                     />
                   )}
                   <span className="text-black font-bold text-center text-base">
-                    {letterData.is_opened ? translate("letterModal.unpublish") : translate("letterModal.publish")}
+                    {letterData.is_open ? translate("letterModal.unpublish") : translate("letterModal.publish")}
                   </span>
                 </div>
               </div>

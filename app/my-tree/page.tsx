@@ -188,8 +188,11 @@ export default function MyTreePage() {
    * 편지(몬스터볼) 클릭 시 모달 열기
    */
   const handleLetterClick = (index: number) => {
-    setSelectedLetterIndex(index);
-    setIsLetterModalOpen(true);
+    // 주인은 모든 편지를 볼 수 있고, 방문자는 오픈된 편지만 볼 수 있음
+    if (isOwner || letters[index].is_open) {
+      setSelectedLetterIndex(index);
+      setIsLetterModalOpen(true);
+    }
   };
 
   const handleShareLinkClick = () => {
@@ -281,6 +284,11 @@ export default function MyTreePage() {
         isOpen={isSendLetterModalOpen}
         onClose={() => setIsSendLetterModalOpen(false)}
         receiverId={publicId!}
+        receiverName={userName}
+        onSuccess={() => {
+          // 편지 전송 성공 후 트리 데이터 새로고침
+          fetchTreeData();
+        }}
       />
     </div>
   );
