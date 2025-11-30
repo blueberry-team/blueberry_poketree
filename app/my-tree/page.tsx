@@ -281,6 +281,7 @@ export default function MyTreePage() {
         isOpen={isSendLetterModalOpen}
         onClose={() => setIsSendLetterModalOpen(false)}
         receiverId={publicId!}
+        receiverName={userName}
       />
     </div>
   );

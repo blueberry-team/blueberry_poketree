@@ -22,14 +22,14 @@ interface SendLetterModalProps {
   isOpen: boolean;
   onClose: () => void;
   receiverId: string;
-  receiverName?: string;
+  receiverName: string;
 }
 
 export default function SendLetterModal({
   isOpen,
   onClose,
   receiverId,
-  receiverName = "착한",
+  receiverName,
 }: SendLetterModalProps) {
   const { translate } = useTranslation();
   const [senderName, setSenderName] = useState("");
@@ -51,25 +51,9 @@ export default function SendLetterModal({
       setIsLoading(true);
       setError(null);
 
-      // Validation
-      const trimmedSenderName = senderName.trim();
-      const trimmedContent = content.trim();
-
-      if (trimmedSenderName.length < MIN_SENDER_NAME_LENGTH || trimmedSenderName.length > MAX_SENDER_NAME_LENGTH) {
-        setError(`작성자 닉네임은 ${MIN_SENDER_NAME_LENGTH}~${MAX_SENDER_NAME_LENGTH}자여야 합니다.`);
-        setIsLoading(false);
-        return;
-      }
-
-      if (trimmedContent.length < MIN_CONTENT_LENGTH || trimmedContent.length > MAX_CONTENT_LENGTH) {
-        setError(`메세지 내용은 ${MIN_CONTENT_LENGTH}~${MAX_CONTENT_LENGTH}자여야 합니다.`);
-        setIsLoading(false);
-        return;
-      }
-
       const response = await sendLetter({
-        sender_name: trimmedSenderName,
-        content: trimmedContent,
+        sender_name: senderName,
+        content: content,
         receiver_id: receiverId,
       });
 
