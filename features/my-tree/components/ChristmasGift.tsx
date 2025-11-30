@@ -9,15 +9,17 @@ import GiftBox from "@/assets/images/components/gift_box.png";
  * - 당일에 크리스마스 선물 주는 동작을 추가할 예정
  */
 
-interface ChristmasGiftProps {
-  onClick?: () => void;
-}
+// TODO: 크리스마스 날 기능 오픈
+// interface ChristmasGiftProps {
+//   onClick?: () => void;
+// }
 
-export function ChristmasGift({ onClick }: ChristmasGiftProps) {
+export function ChristmasGift() {
   return (
     <button
-      onClick={onClick}
-      className="absolute top-4 right-4 z-10 cursor-pointer hover:scale-110 transition-transform"
+      // TODO: 크리스마스 날 기능 오픈 후 주석 해제
+      // className="absolute top-4 right-4 z-10 cursor-pointer hover:scale-110 transition-transform"
+      className="absolute top-4 right-4 z-10"
       aria-label="크리스마스 선물"
     >
       <Image

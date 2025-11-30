@@ -79,10 +79,7 @@ export function Tree({
       </div>
 
       {/* 크리스마스 선물 (우상단) */}
-      <ChristmasGift onClick={() => {
-        // TODO: 크리스마스 선물 동작 구현
-        console.log("크리스마스 선물 클릭");
-      }} />
+      <ChristmasGift/>
 
       {/* 트리 이미지 */}
       <div className="absolute inset-0 flex items-center justify-center pt-24">
