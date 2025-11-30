@@ -45,7 +45,7 @@ export const en = {
   visitor: {
     makeMessage: "Send a message",
     makeTree: "Create my PokéTree",
-    send: "send Message"
+    send: "send Message",
   },
   sendLetter: {
     title: "Write a Pockét Message\nfor {name}'s tree",
@@ -71,6 +71,9 @@ export const en = {
     deleteError: "Failed to delete letter.",
     publish: "Publish Message",
     unpublish: "Unpublish Message",
+    publishSuccess: "Message has been published.",
+    unpublishSuccess: "Message has been unpublished.",
+    updateVisibilityError: "Failed to update message visibility.",
     loadError: "Failed to load letter.",
   },
   message: {
@@ -105,7 +108,8 @@ export const en = {
     title: "How to Use",
     section1: {
       title: "Share with Friends",
-      description: "Share your tree address with friends using the share button.",
+      description:
+        "Share your tree address with friends using the share button.",
     },
     section2: {
       title: "Collect Letters & Pokémon",
@@ -117,7 +121,8 @@ export const en = {
     },
     tip: {
       title: "Collect Rare Pokémon!",
-      description: "The more you share and receive letters, the higher your chance of encountering rare Pokémon!",
+      description:
+        "The more you share and receive letters, the higher your chance of encountering rare Pokémon!",
     },
   },
 } as const;

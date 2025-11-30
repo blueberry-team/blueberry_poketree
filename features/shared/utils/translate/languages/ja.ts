@@ -45,7 +45,7 @@ export const ja = {
   visitor: {
     makeMessage: "メッセージをかく",
     makeTree: "マイポケツリーをつくる",
-    send: "メッセージを送信"
+    send: "メッセージを送信",
   },
   sendLetter: {
     title: "{name}のツリーに\nポケットメッセージを書く",
@@ -71,6 +71,9 @@ export const ja = {
     deleteError: "メッセージの削除に失敗しました。",
     publish: "メッセージを公開",
     unpublish: "メッセージを非公開",
+    publishSuccess: "メッセージが公開されました。",
+    unpublishSuccess: "メッセージが非公開になりました。",
+    updateVisibilityError: "メッセージの公開状態の変更に失敗しました。",
     loadError: "メッセージを読み込めませんでした。",
   },
   message: {
@@ -94,7 +97,8 @@ export const ja = {
     days: "D",
     hours: "H",
     minutes: "M",
-    description1: "クリスマス当日にアクセスするとサプライズプレゼントがもらえます！",
+    description1:
+      "クリスマス当日にアクセスするとサプライズプレゼントがもらえます！",
     description2: "お友達のツリーを飾るためにお手紙を書きましょう！",
     makeTree: "ポケツリーを作る",
     visitSocial: "Twitterを見る",
@@ -105,7 +109,8 @@ export const ja = {
     title: "使い方",
     section1: {
       title: "友達と共有する",
-      description: "共有ボタンを使って、自分のツリーのアドレスを友達に共有しましょう。",
+      description:
+        "共有ボタンを使って、自分のツリーのアドレスを友達に共有しましょう。",
     },
     section2: {
       title: "手紙とポケモンを集める",
@@ -117,7 +122,8 @@ export const ja = {
     },
     tip: {
       title: "特別なポケモンを集めよう！",
-      description: "もっと多くの友達と共有して手紙を受け取るほど、レアなポケモンに出会う確率が高くなります！",
+      description:
+        "もっと多くの友達と共有して手紙を受け取るほど、レアなポケモンに出会う確率が高くなります！",
     },
   },
 } as const;

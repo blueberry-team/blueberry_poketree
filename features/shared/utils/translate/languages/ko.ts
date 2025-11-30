@@ -45,7 +45,7 @@ export const ko = {
   visitor: {
     makeMessage: "메시지 작성하기",
     makeTree: "내 포케트리 만들러 가기",
-    send: "메시지 보내기"
+    send: "메시지 보내기",
   },
   sendLetter: {
     title: "{name} 님의 트리에\n포켓 메세지 작성",
@@ -71,6 +71,9 @@ export const ko = {
     deleteError: "편지 삭제에 실패했습니다.",
     publish: "메세지 공개하기",
     unpublish: "메세지 비공개하기",
+    publishSuccess: "메세지가 공개되었습니다.",
+    unpublishSuccess: "메세지가 비공개되었습니다.",
+    updateVisibilityError: "메세지 공개 상태 변경에 실패했습니다.",
     loadError: "편지를 불러올 수 없습니다.",
   },
   message: {
@@ -105,11 +108,13 @@ export const ko = {
     title: "이용 방법",
     section1: {
       title: "친구들과 공유하기",
-      description: "공유하기 버튼을 통해 친구들에게 나만의 트리 주소를 공유 해보세요.",
+      description:
+        "공유하기 버튼을 통해 친구들에게 나만의 트리 주소를 공유 해보세요.",
     },
     section2: {
       title: "편지와 포켓몬 모으기",
-      description: "친구들이 보낸 편지를 열면 랜덤으로 포켓몬을 받을 수 있어요!",
+      description:
+        "친구들이 보낸 편지를 열면 랜덤으로 포켓몬을 받을 수 있어요!",
     },
     section3: {
       title: "도감 확인하기",
@@ -117,7 +122,8 @@ export const ko = {
     },
     tip: {
       title: "특별한 포켓몬을 모아보세요!",
-      description: "더 많은 친구들과 공유하고 편지를 받을수록 레어한 포켓몬을 만날 확률이 높아져요!",
+      description:
+        "더 많은 친구들과 공유하고 편지를 받을수록 레어한 포켓몬을 만날 확률이 높아져요!",
     },
   },
 } as const;

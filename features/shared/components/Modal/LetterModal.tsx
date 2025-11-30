@@ -12,6 +12,7 @@ import LockIcon from "@/assets/icon/lockIcon.svg";
 import CloseIcon from "@/assets/icon/closeIcon.png";
 import ButtonLetterPublic from "@/assets/images/components/button_letter_public.png";
 import ButtonLetterUnpublic from "@/assets/images/components/button_letter_unpublic.png";
+import { openLetter } from "@/features/my-tree/repositories/letterRepository";
 
 /**
  * LetterModal - 편지 내용을 보여주는 모달
@@ -105,9 +106,34 @@ export default function LetterModal({
     }
   };
 
-  // 메시지 공개하기 (TODO)
-  const handlePublish = () => {
-    alert("메시지 공개 기능은 준비 중입니다.");
+  // 메시지 공개하기
+  const handlePublish = async () => {
+    if (!letterData) return;
+
+    try {
+        setIsLoading(true);
+        setError(null);
+
+        const response = await openLetter({
+        letter_id: letterData.letter_id,
+        is_open: !letterData.is_open,
+        });
+
+        if (response.message === "success") {
+            setLetterData({
+                ...letterData,
+                is_open: !letterData.is_open,
+            });
+        }
+    } catch (err) {
+        if (err instanceof Error) {
+            setError(err.message);
+        } else {
+            setError(translate("letterModal.updateVisibilityError"));
+        }
+    } finally {
+        setIsLoading(false);
+    }
   };
 
   if (!isOpen) return null;

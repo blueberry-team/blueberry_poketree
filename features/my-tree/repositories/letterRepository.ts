@@ -3,6 +3,7 @@ import type { GetLetterRequest } from "../models/req/GetLetterRequest";
 import type { GetLetterResponse } from "../models/res/GetLetterResponse";
 import type { SendLetterRequest } from "../models/req/SendLetterRequest";
 import type { DeleteLetterRequest } from "../models/req/DeleteLetterRequest";
+import type { OpenLetterRequest } from "../models/req/OpenLetterRequest";
 
 /**
  * 편지의 상세 정보를 가져옵니다
@@ -46,5 +47,18 @@ export async function deleteLetter(
     '/letter/delete-letter',
     req,
     true  // 인증 필요 (본인만 삭제 가능)
+
+/**
+ * 편지의 공개/비공개 상태를 변경합니다
+ * @param req - letter_id와 is_open을 포함한 요청 데이터
+ * @returns 성공 메시지
+ */
+export async function openLetter(
+  req: OpenLetterRequest
+): Promise<ApiResponse<null>> {
+  return apiClient.put<ApiResponse<null>>(
+    "/letter/open-letter",
+    req,
+    true // 인증 필요 (본인만 변경 가능)
   );
 }
