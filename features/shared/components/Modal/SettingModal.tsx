@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import Image from "next/image";
 import { useTranslation } from "../../utils/translate/useLanguage";
 import { logout } from "../../usecases/logout";
@@ -14,7 +15,7 @@ interface SettingModalProps {
   onClose: () => void;
 }
 
-export function SettingModal({ isOpen, onClose }: SettingModalProps) {
+function SettingModalContent({ isOpen, onClose }: SettingModalProps) {
   const { translate } = useTranslation();
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const router = useRouter();
@@ -100,5 +101,13 @@ export function SettingModal({ isOpen, onClose }: SettingModalProps) {
         onClose={() => setIsHelpModalOpen(false)}
       />
     </>
-  )
+  );
+}
+
+export function SettingModal(props: SettingModalProps) {
+  return (
+    <Suspense fallback={null}>
+      <SettingModalContent {...props} />
+    </Suspense>
+  );
 }

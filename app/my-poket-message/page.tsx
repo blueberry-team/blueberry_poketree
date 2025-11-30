@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useState, useEffect, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import Image from "next/image";
@@ -11,7 +12,7 @@ import { getUserTree } from "@/features/my-tree/usecases/getUserTree";
 import { Letter } from "@/features/my-tree/models/res/GetUserTreeResponse";
 import MonsterBallOpen from "@/assets/images/components/monster_ball_open.png";
 
-export default function MyPoketMessagePage() {
+function MyPoketMessagePageContent() {
   const { translate } = useTranslation();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -143,5 +144,17 @@ export default function MyPoketMessagePage() {
         }}
       />
     </div>
+  );
+}
+
+export default function MyPoketMessagePage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen bg-[#E7E9EB]">
+        <div className="w-12 h-12 border-4 border-gray-800 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    }>
+      <MyPoketMessagePageContent />
+    </Suspense>
   );
 }

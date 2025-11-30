@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import Image, { type StaticImageData } from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
@@ -36,7 +37,7 @@ import { isApiError } from "@/features/shared/utils/api/apiClient";
  * - 십자 버튼
  */
 
-export default function MyTreePage() {
+function MyTreePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const publicId = searchParams.get('id');
@@ -291,5 +292,17 @@ export default function MyTreePage() {
         }}
       />
     </div>
+  );
+}
+
+export default function MyTreePage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen bg-[#E7E9EB]">
+        <div className="w-12 h-12 border-4 border-gray-800 border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    }>
+      <MyTreePageContent />
+    </Suspense>
   );
 }

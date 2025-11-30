@@ -7,7 +7,7 @@
 
 "use client";
 
-import { useState } from "react";
+import { useState, Suspense } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import LogoIcon from "@/assets/icon/logo.png";
@@ -18,7 +18,7 @@ import { LanguageModal } from "../Modal/LanguageModal";
 import { SettingModal } from "../Modal/SettingModal";
 import { useTranslation } from "../../utils/translate/useLanguage";
 
-export function Header() {
+function HeaderContent() {
   const pathname = usePathname();
   const router = useRouter();
   const { translate } = useTranslation();
@@ -118,5 +118,22 @@ export function Header() {
         onClose={() => setIsSettingModalOpen(false)}
       />
     </header>
+  );
+}
+
+export function Header() {
+  return (
+    <Suspense fallback={
+      <header className="w-full h-[60px] shrink-0 bg-[#BF0120] overflow-hidden relative">
+        <Image
+          src={HeaderBackground}
+          alt="헤더 배경"
+          fill
+          className="object-cover"
+        />
+      </header>
+    }>
+      <HeaderContent />
+    </Suspense>
   );
 }
