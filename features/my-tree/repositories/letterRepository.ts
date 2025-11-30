@@ -42,19 +42,9 @@ export async function deleteLetter(
   req: DeleteLetterRequest
 ): Promise<ApiResponse<null>> {
   // TODO: 서버 구현 후 주석 해제
-  // return apiClient.post<DeleteLetterResponse>(
-  //   '/letter/delete-letter',
-  //   req,
-  //   true  // 인증 필요 (본인만 삭제 가능)
-  // );
-
-  // 샘플 데이터 반환
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        message: "success",
-        data: null,
-      });
-    }, 300);
-  });
+  return apiClient.delete<ApiResponse<null>>(
+    '/letter/delete-letter',
+    req,
+    true  // 인증 필요 (본인만 삭제 가능)
+  );
 }

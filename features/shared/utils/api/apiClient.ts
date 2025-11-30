@@ -161,10 +161,11 @@ export class ApiClient {
    * DELETE 요청을 수행합니다
    * @param endpoint - API 엔드포인트 경로
    * @param requiresAuth - 인증이 필요한지 여부 (기본값: false)
+   * @param body - 요청 본문 (선택)
    * @returns 응답 데이터
    */
-  async delete<T>(endpoint: string, requiresAuth = false): Promise<T> {
-    return this.request<T>(endpoint, 'DELETE', requiresAuth);
+  async delete<T>(endpoint: string, body?: unknown, requiresAuth = false): Promise<T> {
+    return this.request<T>(endpoint, 'DELETE', requiresAuth, body);
   }
 
   /**
