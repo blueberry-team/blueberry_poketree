@@ -270,7 +270,7 @@ export default function MyTreePage() {
 
       {/* 편지 모달 */}
       <LetterModal
-        isOpen={isLetterModalOpen}
+        isModalOpen={isLetterModalOpen}
         onClose={() => setIsLetterModalOpen(false)}
         letterId={letters[selectedLetterIndex]?.letter_id || null}
         onComplete={() => {
@@ -281,7 +281,7 @@ export default function MyTreePage() {
 
       {/* 편지 보내기 모달 */}
       <SendLetterModal
-        isOpen={isSendLetterModalOpen}
+        isModalOpen={isSendLetterModalOpen}
         onClose={() => setIsSendLetterModalOpen(false)}
         receiverId={publicId!}
         receiverName={userName}
