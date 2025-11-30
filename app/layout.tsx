@@ -6,6 +6,7 @@ import Container from "@/features/shared/components/Container/Container";
 import { Header } from "@/features/shared/components/Header/Header";
 import { LanguageProvider } from "@/features/shared/utils/translate/useLanguage";
 import { AuthInitializer } from "@/features/signup-or-go/stores/AuthInitializer";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -66,6 +67,9 @@ export default function RootLayout({
             {children}
           </Container>
         </LanguageProvider>
+        {process.env.NODE_ENV === 'production' && (
+          <GoogleAnalytics gaId="G-XQ786LV8BS" />
+        )}
       </body>
     </html>
   );
