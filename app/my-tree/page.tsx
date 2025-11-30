@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Tree } from "@/features/my-tree/components/Tree";
@@ -53,7 +53,7 @@ export default function MyTreePage() {
   const [currentPage, setCurrentPage] = useState(0);
 
   // 현재 표시할 포켓몬 목록 (pokemon_list에서 가져옴)
-  const [displayedPokemons, setDisplayedPokemons] = useState(ALL_POKEMON_IMAGES.slice(0, 7));
+  const [displayedPokemons, setDisplayedPokemons] = useState<StaticImageData[]>([]);
 
   // 편지 열린 상태
   const [isLetterModalOpen, setIsLetterModalOpen] = useState(false);
