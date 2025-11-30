@@ -85,15 +85,6 @@ import Pokemon79 from "@/assets/images/pokemon/base/79-pokemon.png";
 import Pokemon80 from "@/assets/images/pokemon/base/80-pokemon.png";
 import Pokemon81 from "@/assets/images/pokemon/base/81-pokemon.png";
 
-/*
-// 포켓몬 webp이미지 동적 import (주석처리)
-import Pokemon1 from "@/assets/images/pokemonWebp/pokemon/pokemon1.webp";
-import Pokemon2 from "@/assets/images/pokemonWebp/pokemon/pokemon2.webp";
-import Pokemon3 from "@/assets/images/pokemonWebp/pokemon/pokemon3.webp";
-... (생략)
-import Pokemon151 from "@/assets/images/pokemonWebp/pokemon/pokemon151.webp";
-*/
-
 /**
  * 전체 포켓몬 이미지 배열 (인덱스 0 = 포켓몬 1번)
  */
