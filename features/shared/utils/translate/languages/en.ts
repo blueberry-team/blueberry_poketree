@@ -75,6 +75,7 @@ export const en = {
   },
   message: {
     title: "Pockét Message",
+    userMessage: "'s Pocket Messages",
     placeholder: "Enter message",
   },
   common: {
