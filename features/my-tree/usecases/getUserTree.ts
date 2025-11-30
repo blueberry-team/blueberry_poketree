@@ -1,6 +1,7 @@
+import { isLoggedIn, userId } from "@/features/signup-or-go/stores/authStore";
 import { GetUserTreeRequest } from "../models/req/GetUserTreeRequest";
 import { GetUserTreeResponse } from "../models/res/GetUserTreeResponse";
-import { getUserTreeGet } from "../repositories/treeRepository";
+import { getUserTreeWithTokenGet, getUserTreeWithoutTokenGet } from "../repositories/treeRepository";
 
 /**
  * 유저 트리 정보를 조회합니다
@@ -14,8 +15,12 @@ export async function getUserTree(req: GetUserTreeRequest): Promise<GetUserTreeR
   }
 
   // API request
-  const res = await getUserTreeGet(req);
-
-  return res;
+  if (isLoggedIn.value && userId.value === req.user_id) {
+    const res = await getUserTreeWithTokenGet(req);
+    return res;
+  } else {
+    const res = await getUserTreeWithoutTokenGet(req);
+    return res;
+  }
 }
 

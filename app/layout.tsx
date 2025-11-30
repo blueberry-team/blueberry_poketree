@@ -5,6 +5,7 @@ import "./globals.css";
 import Container from "@/features/shared/components/Container/Container";
 import { Header } from "@/features/shared/components/Header/Header";
 import { LanguageProvider } from "@/features/shared/utils/translate/useLanguage";
+import { AuthInitializer } from "@/features/signup-or-go/stores/AuthInitializer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -58,6 +59,7 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${pressStart2P.variable} ${pfStardust.variable} antialiased`}
       >
+        <AuthInitializer />
         <LanguageProvider>
           <Container>
             <Header />

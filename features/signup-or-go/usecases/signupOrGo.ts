@@ -1,6 +1,10 @@
 import { SignupOrGoRequest } from "../models/req/SignupOrGoRequest";
 import { SignupOrGoResponse } from "../models/res/SignupOrGoResponse";
 import { signupOrGoPost } from "../repositories/authRepository";
+import {
+  setLoggedIn,
+  setUserId,
+} from "../stores/authStore";
 
 export async function signupOrGo(
   req: SignupOrGoRequest
@@ -18,6 +22,12 @@ export async function signupOrGo(
 
   // API request
   const res = await signupOrGoPost(req);
+
+  // 로그인 성공 시 상태 업데이트
+  if (res.message === "success") {
+    setLoggedIn(true);
+    setUserId(res.data.public_id);
+  }
 
   return res;
 }
