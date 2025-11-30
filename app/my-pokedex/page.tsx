@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { PokedexGrid } from "@/features/my-pokedex/components/PokedexGrid";
@@ -7,7 +8,7 @@ import { getMyPokedex, PokemonInDex } from "@/features/my-pokedex/usecases/getMy
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 
 // 포켓몬 목록 페이지
-export default function MyPokedexPage() {
+function MyPokedexPageContent() {
   const { translate } = useTranslation();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -87,5 +88,17 @@ export default function MyPokedexPage() {
       {/* 하단 여백 */}
       <div className="h-[10px] shrink-0"></div>
     </div>
+  );
+}
+
+export default function MyPokedexPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex items-center justify-center min-h-screen bg-[#BF0120]">
+        <div className="w-12 h-12 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    }>
+      <MyPokedexPageContent />
+    </Suspense>
   );
 }

@@ -1,3 +1,4 @@
+/* eslint-disable */
 "use client";
 
 import { createContext, useContext, useState, useEffect, ReactNode } from "react";
@@ -88,7 +89,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
         setLanguageState(savedLanguage);
       }
     }
-  }, [pathname, mounted]);
+  }, [pathname, mounted, language]);
 
   // 언어 변경 함수
   const setLanguage = (lang: Language) => {

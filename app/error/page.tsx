@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useTranslation, TranslationKey } from "@/features/shared/utils/translate/useLanguage";
 
@@ -11,7 +12,7 @@ const ERROR_TYPE_MAP: Record<string, TranslationKey> = {
   default: "error.defaultMessage",
 };
 
-export default function ErrorPage() {
+function ErrorContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
   const { translate } = useTranslation();
@@ -41,5 +42,17 @@ export default function ErrorPage() {
         {displayButtonText}
       </button>
     </div>
+  );
+}
+
+export default function ErrorPage() {
+  return (
+    <Suspense fallback={
+      <div className="flex flex-col items-center justify-center min-h-screen gap-4 p-4 bg-[#BF0120]">
+        <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
+      </div>
+    }>
+      <ErrorContent />
+    </Suspense>
   );
 }

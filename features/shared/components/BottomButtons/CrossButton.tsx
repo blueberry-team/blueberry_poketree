@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import ControlButton from "@/assets/images/components/control_button.png";
@@ -11,7 +12,7 @@ interface CrossButtonProps {
   onRight?: () => void;
 }
 
-export function CrossButton({
+function CrossButtonContent({
   onUp,
   onDown,
   onLeft,
@@ -80,5 +81,13 @@ export function CrossButton({
         />
       </div>
     </div>
+  );
+}
+
+export function CrossButton(props: CrossButtonProps) {
+  return (
+    <Suspense fallback={null}>
+      <CrossButtonContent {...props} />
+    </Suspense>
   );
 }

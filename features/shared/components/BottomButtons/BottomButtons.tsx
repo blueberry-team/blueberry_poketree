@@ -1,5 +1,6 @@
 "use client";
 
+import { Suspense } from "react";
 import Image from "next/image";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { CrossButton } from "./CrossButton";
@@ -22,7 +23,7 @@ interface BottomButtonsProps {
  * - 포켓몬도감 버튼과 십자 버튼 포함
  * - Container 내부에서 사용
  */
-export function BottomButtons({
+function BottomButtonsContent({
   onUp,
   onDown,
   onLeft,
@@ -110,5 +111,29 @@ export function BottomButtons({
         onRight={onRight}
       />
     </div>
+  );
+}
+
+export function BottomButtons(props: BottomButtonsProps) {
+  return (
+    <Suspense fallback={
+      <div className="flex justify-between items-end">
+        <div className="flex flex-col gap-2">
+          <button
+            className="relative flex items-center justify-center"
+            style={{ width: "193px", height: "56px" }}
+          >
+            <Image
+              src={ButtonMediumSkyblue}
+              alt="Loading..."
+              fill
+              className="object-fill"
+            />
+          </button>
+        </div>
+      </div>
+    }>
+      <BottomButtonsContent {...props} />
+    </Suspense>
   );
 }
