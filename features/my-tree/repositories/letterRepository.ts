@@ -1,4 +1,7 @@
-import { apiClient, type ApiResponse } from "@/features/shared/utils/api/apiClient";
+import {
+  apiClient,
+  type ApiResponse,
+} from "@/features/shared/utils/api/apiClient";
 import type { GetLetterRequest } from "../models/req/GetLetterRequest";
 import type { GetLetterResponse } from "../models/res/GetLetterResponse";
 import type { SendLetterRequest } from "../models/req/SendLetterRequest";
@@ -15,7 +18,7 @@ export async function getLetterById(
 ): Promise<GetLetterResponse> {
   return apiClient.get<GetLetterResponse>(
     `/letter/${req.letter_id}`,
-    true,  // 인증 필요
+    true // 인증 필요
   );
 }
 
@@ -28,9 +31,9 @@ export async function sendLetter(
   req: SendLetterRequest
 ): Promise<ApiResponse<null>> {
   return apiClient.post<ApiResponse<null>>(
-    '/letter/create-letter',
+    "/letter/create-letter",
     req,
-    false  // 인증 불필요 (익명 편지)
+    false // 인증 불필요 (익명 편지)
   );
 }
 
@@ -44,9 +47,11 @@ export async function deleteLetter(
 ): Promise<ApiResponse<null>> {
   // TODO: 서버 구현 후 주석 해제
   return apiClient.delete<ApiResponse<null>>(
-    '/letter/delete-letter',
+    "/letter/delete-letter",
     req,
-    true  // 인증 필요 (본인만 삭제 가능)
+    true // 인증 필요 (본인만 삭제 가능)
+  );
+}
 
 /**
  * 편지의 공개/비공개 상태를 변경합니다
