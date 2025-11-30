@@ -98,7 +98,7 @@ export function BottomButtons({
             fill
             className="object-fill"
           />
-          <span className="relative z-10 text-white text-base font-bold">{buttonLabel}</span>
+          <span className="relative z-10 text-black text-base font-bold">{buttonLabel}</span>
         </button>
       </div>
 

@@ -75,6 +75,7 @@ export const ja = {
   },
   message: {
     title: "ポケットメッセージ",
+    userMessage: "のポケットメッセージ",
     placeholder: "メッセージを入力",
   },
   common: {
