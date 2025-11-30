@@ -273,7 +273,7 @@ export default function MyTreePage() {
         isOpen={isLetterModalOpen}
         onClose={() => setIsLetterModalOpen(false)}
         letterId={letters[selectedLetterIndex]?.letter_id || null}
-        onDelete={() => {
+        onComplete={() => {
           // 편지 삭제 후 트리 데이터 새로고침
           fetchTreeData();
         }}

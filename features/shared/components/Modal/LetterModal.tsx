@@ -23,14 +23,21 @@ interface LetterModalProps {
   isOpen: boolean;
   onClose: () => void;
   letterId: string | null;
-  onDelete?: () => void;
+  onComplete?: () => void;
 }
 
+/**
+ * LetterModal - 편지 내용을 보여주는 모달
+ * @param isOpen - 모달 열림 여부
+ * @param onClose - 모달 닫기 함수
+ * @param letterId - 편지 ID
+ * @param onComplete - 편지 삭제 또는 공개/비공개 상태 변경 후 페이지를 새로고침하기위한 callBack 함수
+ */
 export default function LetterModal({
   isOpen,
   onClose,
   letterId,
-  onDelete,
+  onComplete,
 }: LetterModalProps) {
   const { translate } = useTranslation();
   const [letterData, setLetterData] = useState<LetterData | null>(null);
@@ -84,7 +91,7 @@ export default function LetterModal({
 
       if (response.message === "success") {
         alert(translate("letterModal.deleteSuccess"));
-        onDelete?.();
+        onComplete?.();
         onClose();
       }
     } catch (err) {
