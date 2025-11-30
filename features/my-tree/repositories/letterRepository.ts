@@ -27,7 +27,7 @@ export async function getLetterById(
         data: {
           letter_id: req.letter_id,
           sender_name: "아구몬",
-          is_opened: true,
+          is_open: true,
           letter_pokemon: 49,
           content: "디지몬이 짱임",
         },

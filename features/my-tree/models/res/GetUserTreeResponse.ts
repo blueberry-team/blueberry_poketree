@@ -3,8 +3,8 @@ import type { ApiResponse } from "@/features/shared/utils/api/apiClient";
 export interface Letter {
   letter_id: string;
   sender_name: string;
-  is_open: string;
-  is_read: string;
+  is_open: boolean;
+  is_read?: boolean;
   letter_pokemon: number;
 }
 
