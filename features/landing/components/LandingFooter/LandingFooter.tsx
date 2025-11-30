@@ -16,11 +16,7 @@ export function LandingFooter() {
   };
 
   return (
-    <div className="px-4 py-4 shrink-0 relative min-h-[200px] flex flex-col items-center">
-      <p className="text-center font-semibold text-[18px]">
-        {translate("landing.description2")}
-      </p>
-
+    <div className="px-4 shrink-0 relative min-h-[200px] flex flex-col items-center">
       {/* 포켓몬 이미지와 아이콘 */}
       <div className="flex gap-4 mt-4 items-center">
         <Image
@@ -52,6 +48,10 @@ export function LandingFooter() {
           height={80}
         />
       </div>
+
+      <p className="text-center font-semibold text-[18px]">
+        {translate("landing.description2")}
+      </p>
 
       <SocialMediaButton />
     </div>
