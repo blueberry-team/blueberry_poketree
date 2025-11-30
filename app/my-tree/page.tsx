@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import Image, { type StaticImageData } from "next/image";
 import { useState, useEffect, useCallback } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Tree } from "@/features/my-tree/components/Tree";
@@ -53,7 +53,7 @@ export default function MyTreePage() {
   const [currentPage, setCurrentPage] = useState(0);
 
   // 현재 표시할 포켓몬 목록 (pokemon_list에서 가져옴)
-  const [displayedPokemons, setDisplayedPokemons] = useState(ALL_POKEMON_IMAGES.slice(0, 7));
+  const [displayedPokemons, setDisplayedPokemons] = useState<StaticImageData[]>([]);
 
   // 편지 열린 상태
   const [isLetterModalOpen, setIsLetterModalOpen] = useState(false);
@@ -63,6 +63,19 @@ export default function MyTreePage() {
   const [isSendLetterModalOpen, setIsSendLetterModalOpen] = useState(false);
   // 선택 편지 인덱스
   const [selectedLetterIndex, setSelectedLetterIndex] = useState(0);
+
+  /**
+   * pokemon_list에서 포켓몬 이미지 섞기
+   */
+  const updatePokemonDisplay = useCallback(() => {
+    if (treeData?.pokemon_list && treeData.pokemon_list.length > 0) {
+      const shuffled = [...treeData.pokemon_list].sort(() => Math.random() - 0.5);
+      const pokemonImages = shuffled.map(index =>
+        ALL_POKEMON_IMAGES[index] || ALL_POKEMON_IMAGES[0]
+      );
+      setDisplayedPokemons(pokemonImages);
+    }
+  }, [treeData]);
 
   // API로부터 데이터 가져오기
   const fetchTreeData = useCallback(async () => {
@@ -80,13 +93,6 @@ export default function MyTreePage() {
 
       if (response.message === 'success' && response.data) {
         setTreeData(response.data);
-        // pokemon_list에서 포켓몬 이미지 설정
-        if (response.data.pokemon_list && response.data.pokemon_list.length > 0) {
-          const pokemonImages = response.data.pokemon_list.map(index =>
-            ALL_POKEMON_IMAGES[index - 1] || ALL_POKEMON_IMAGES[0]
-          );
-          setDisplayedPokemons(pokemonImages);
-        }
       }
     } catch (err) {
       if (isApiError(err)) {
@@ -104,6 +110,13 @@ export default function MyTreePage() {
   useEffect(() => {
     fetchTreeData();
   }, [fetchTreeData]);
+
+  // treeData가 변경되면 포켓몬 이미지 업데이트
+  useEffect(() => {
+    if (treeData) {
+      updatePokemonDisplay();
+    }
+  }, [treeData, updatePokemonDisplay]);
 
   // 로딩 중
   if (isLoading) {
@@ -139,8 +152,7 @@ export default function MyTreePage() {
    * 이전 페이지로 이동
    */
   const handleLeft = () => {
-    const totalPages = Math.ceil(letters.length / 7);
-    setCurrentPage((prev) => (prev > 0 ? prev - 1 : totalPages - 1));
+    setCurrentPage((prev) => (prev > 0 ? prev - 1 : prev));
   };
 
   /**
@@ -148,35 +160,21 @@ export default function MyTreePage() {
    */
   const handleRight = () => {
     const totalPages = Math.ceil(letters.length / 7);
-    setCurrentPage((prev) => (prev < totalPages - 1 ? prev + 1 : 0));
+    setCurrentPage((prev) => (prev < totalPages - 1 ? prev + 1 : prev));
   };
 
   /**
    * 포켓몬 Refresh (상 버튼) - pokemon_list에서 랜덤으로 표시
    */
   const handleUp = () => {
-    if (treeData.pokemon_list && treeData.pokemon_list.length > 0) {
-      // pokemon_list를 셔플해서 표시
-      const shuffled = [...treeData.pokemon_list].sort(() => Math.random() - 0.5);
-      const pokemonImages = shuffled.map(index =>
-        ALL_POKEMON_IMAGES[index - 1] || ALL_POKEMON_IMAGES[0]
-      );
-      setDisplayedPokemons(pokemonImages);
-    }
+    updatePokemonDisplay();
   };
 
   /**
    * 포켓몬 Refresh (하 버튼) - pokemon_list에서 랜덤으로 표시
    */
   const handleDown = () => {
-    if (treeData.pokemon_list && treeData.pokemon_list.length > 0) {
-      // pokemon_list를 셔플해서 표시
-      const shuffled = [...treeData.pokemon_list].sort(() => Math.random() - 0.5);
-      const pokemonImages = shuffled.map(index =>
-        ALL_POKEMON_IMAGES[index - 1] || ALL_POKEMON_IMAGES[0]
-      );
-      setDisplayedPokemons(pokemonImages);
-    }
+    updatePokemonDisplay();
   };
 
   /**

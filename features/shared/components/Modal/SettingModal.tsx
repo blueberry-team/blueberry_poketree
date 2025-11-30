@@ -7,6 +7,7 @@ import { HelpModal } from "./HelpModal";
 import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import CloseIcon from "@/assets/icon/closeIcon.png";
+import { isLoggedIn } from "@/features/signup-or-go/stores/authStore";
 
 interface SettingModalProps {
   isOpen: boolean;
@@ -21,7 +22,7 @@ export function SettingModal({ isOpen, onClose }: SettingModalProps) {
 
   if (!isOpen && !isHelpModalOpen) return null;
 
-  const shouldHideLogout = pathname === '/' || pathname === '/signup-or-go';
+  const shouldHideLogout = pathname === '/' || pathname === '/signup-or-go' || !isLoggedIn.value;
 
   const handleLogout = async () => {
     try {
