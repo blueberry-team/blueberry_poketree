@@ -204,7 +204,7 @@ export default function MyTreePage() {
   return (
     <div className="flex flex-col">
       {/* ~님의 포케트리 텍스트, 공유하기 버튼 */}
-      <div className="px-4 py-3 shrink-0 bg-primary-red flex items-center justify-between gap-2">
+      <div className="px-4 py-3 shrink-0 bg-[#BF0120] flex items-center justify-between gap-2">
         <span className="text-white text-xl font-bold whitespace-nowrap">{userName}{translate("tree.userTree")}</span>
         {/* is_owner에 따라 공유하기 버튼 표시*/}
         {isOwner && (
