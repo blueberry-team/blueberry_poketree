@@ -23,10 +23,18 @@ export function SettingModal({ isOpen, onClose }: SettingModalProps) {
 
   const shouldHideLogout = pathname === '/' || pathname === '/signup-or-go';
 
-  const handleLogout = () => {
-    logout();
-    onClose();
-    router.push('/');
+  const handleLogout = async () => {
+    try {
+      const res = await logout();
+
+      if (res.message === 'success') {
+        onClose();
+        router.push('/');
+      }
+    } catch (error) {
+      // TODO: 에러 처리 필요함
+      console.error('로그아웃 실패:', error);
+    }
   };
 
   const handleHelp = () => {

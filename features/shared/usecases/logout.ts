@@ -1,17 +1,26 @@
 import { logoutPost } from "../repositories/logoutPost";
-import { setLoggedIn } from "../../signup-or-go/stores/authStore";
+import {
+  setLoggedIn,
+  setUserId,
+} from "../../signup-or-go/stores/authStore";
+import { ApiResponse } from "../utils/api/apiClient";
 
-// 로그아웃 유즈케이스
-export async function logout(): Promise<void> {
-  // TODO: 서버 개발 후 주석 해제
-  // const res = await logoutPost();
+/**
+ * 로그아웃을 수행합니다
+ * authStore에서 user_id를 가져와 사용합니다
+ * @returns void
+ */
+export async function logout(): Promise<ApiResponse<null>> {
+  // API request
+  const res = await logoutPost();
 
-  // if (res.message == "success") {
-  //     sessionStorage.removeItem('accessToken');
-  //     setLoggedIn(false);
-  // }
-  sessionStorage.removeItem("accessToken");
-
-  // 로그아웃 상태로 업데이트
-  setLoggedIn(false);
+  if (res.message === "success") {
+    sessionStorage.removeItem("accessToken");
+    setLoggedIn(false);
+    setUserId(""); // userId도 초기화
+    return res
+  } else {
+    console.log(res.message);
+    throw new Error(res.message);
+  }
 }
