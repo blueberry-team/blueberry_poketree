@@ -64,6 +64,19 @@ export default function MyTreePage() {
   // 선택 편지 인덱스
   const [selectedLetterIndex, setSelectedLetterIndex] = useState(0);
 
+  /**
+   * pokemon_list에서 포켓몬 이미지 섞기
+   */
+  const updatePokemonDisplay = useCallback(() => {
+    if (treeData?.pokemon_list && treeData.pokemon_list.length > 0) {
+      const shuffled = [...treeData.pokemon_list].sort(() => Math.random() - 0.5);
+      const pokemonImages = shuffled.map(index =>
+        ALL_POKEMON_IMAGES[index] || ALL_POKEMON_IMAGES[0]
+      );
+      setDisplayedPokemons(pokemonImages);
+    }
+  }, [treeData]);
+
   // API로부터 데이터 가져오기
   const fetchTreeData = useCallback(async () => {
     if (!publicId) {
@@ -80,13 +93,6 @@ export default function MyTreePage() {
 
       if (response.message === 'success' && response.data) {
         setTreeData(response.data);
-        // pokemon_list에서 포켓몬 이미지 설정
-        if (response.data.pokemon_list && response.data.pokemon_list.length > 0) {
-          const pokemonImages = response.data.pokemon_list.map(index =>
-            ALL_POKEMON_IMAGES[index - 1] || ALL_POKEMON_IMAGES[0]
-          );
-          setDisplayedPokemons(pokemonImages);
-        }
       }
     } catch (err) {
       if (isApiError(err)) {
@@ -104,6 +110,13 @@ export default function MyTreePage() {
   useEffect(() => {
     fetchTreeData();
   }, [fetchTreeData]);
+
+  // treeData가 변경되면 포켓몬 이미지 업데이트
+  useEffect(() => {
+    if (treeData) {
+      updatePokemonDisplay();
+    }
+  }, [treeData, updatePokemonDisplay]);
 
   // 로딩 중
   if (isLoading) {
@@ -155,28 +168,14 @@ export default function MyTreePage() {
    * 포켓몬 Refresh (상 버튼) - pokemon_list에서 랜덤으로 표시
    */
   const handleUp = () => {
-    if (treeData.pokemon_list && treeData.pokemon_list.length > 0) {
-      // pokemon_list를 셔플해서 표시
-      const shuffled = [...treeData.pokemon_list].sort(() => Math.random() - 0.5);
-      const pokemonImages = shuffled.map(index =>
-        ALL_POKEMON_IMAGES[index - 1] || ALL_POKEMON_IMAGES[0]
-      );
-      setDisplayedPokemons(pokemonImages);
-    }
+    updatePokemonDisplay();
   };
 
   /**
    * 포켓몬 Refresh (하 버튼) - pokemon_list에서 랜덤으로 표시
    */
   const handleDown = () => {
-    if (treeData.pokemon_list && treeData.pokemon_list.length > 0) {
-      // pokemon_list를 셔플해서 표시
-      const shuffled = [...treeData.pokemon_list].sort(() => Math.random() - 0.5);
-      const pokemonImages = shuffled.map(index =>
-        ALL_POKEMON_IMAGES[index - 1] || ALL_POKEMON_IMAGES[0]
-      );
-      setDisplayedPokemons(pokemonImages);
-    }
+    updatePokemonDisplay();
   };
 
   /**
