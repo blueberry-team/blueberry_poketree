@@ -39,8 +39,10 @@ import { isApiError } from "@/features/shared/utils/api/apiClient";
 export default function MyTreePage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  const { translate, language } = useTranslation();
   const publicId = searchParams.get('id');
+
+  // 다국어화 관련
+  const { translate, language } = useTranslation();
 
   // API 상태
   const [treeData, setTreeData] = useState<UserTreeData | null>(null);
@@ -205,18 +207,21 @@ export default function MyTreePage() {
       {/* ~님의 포케트리 텍스트, 공유하기 버튼 */}
       <div className="px-4 py-3 shrink-0 bg-primary-red flex items-center justify-between gap-2">
         <span className="text-white text-xl font-bold whitespace-nowrap">{userName}{translate("tree.userTree")}</span>
-        <button
-          onClick={() => handleShareLinkClick()}
-          className="relative w-36 h-10 flex items-center justify-center shrink-0"
-        >
-          <Image
-            src={ButtonBigGreen}
-            alt={translate("tree.share")}
-            fill
-            className="object-fill"
-          />
-          <span className={`relative z-10 text-black font-bold ${language === "en" ? "text-[12px]" : "text-12"}`}>{translate("tree.share")}</span>
-        </button>
+        {/* is_owner에 따라 공유하기 버튼 표시*/}
+        {isOwner && (
+          <button
+            onClick={() => handleShareLinkClick()}
+            className="relative w-36 h-10 flex items-center justify-center shrink-0"
+          >
+            <Image
+              src={ButtonBigGreen}
+              alt={translate("tree.share")}
+              fill
+              className="object-fill"
+            />
+            <span className={`relative z-10 text-black font-bold ${language === "en" ? "text-[12px]" : "text-12"}`}>{translate("tree.share")}</span>
+          </button>
+        )}
       </div>
 
       {/* 바디 영역 */}
