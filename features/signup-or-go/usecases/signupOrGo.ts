@@ -4,8 +4,6 @@ import { signupOrGoPost } from "../repositories/authRepository";
 import {
   setLoggedIn,
   setUserId,
-  isLoggedIn,
-  userId,
 } from "../stores/authStore";
 
 export async function signupOrGo(
