@@ -6,12 +6,12 @@ export interface Letter {
   is_open: string;
   is_read: string;
   letter_pokemon: number;
-  content?: string;
 }
 
 export interface UserTreeData {
   nickname: string;
   is_owner: boolean;
+  is_master: boolean;
   letters: Letter[];
   pokemon_list: number[];
 }
