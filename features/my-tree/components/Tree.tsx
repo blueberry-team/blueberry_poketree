@@ -115,9 +115,9 @@ export function Tree({
                 const letter = letters[actualMessageIndex];
 
                 // 열린 상태 확인: is_read로 몬스터볼 열림 여부 확인
-                const isRead = letter?.is_read === "true";
+                const isRead = letter?.is_read;
                 // 공개 여부 확인: is_open이 false면 자물쇠 표시
-                const isPublic = letter?.is_open === "true";
+                const isPublic = letter?.is_open;
 
                 return (
                   <div

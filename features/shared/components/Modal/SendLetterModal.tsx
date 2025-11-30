@@ -19,7 +19,7 @@ const MAX_SENDER_NAME_LENGTH = 6;
  */
 
 interface SendLetterModalProps {
-  isOpen: boolean;
+  isModalOpen: boolean;
   onClose: () => void;
   receiverId: string;
   receiverName: string;
@@ -27,7 +27,7 @@ interface SendLetterModalProps {
 }
 
 export default function SendLetterModal({
-  isOpen,
+  isModalOpen,
   onClose,
   receiverId,
   receiverName,
@@ -76,7 +76,7 @@ export default function SendLetterModal({
     }
   };
 
-  if (!isOpen) return null;
+  if (!isModalOpen) return null;
 
   // 버튼 활성화 여부 체크
   const isButtonDisabled =

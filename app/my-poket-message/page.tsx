@@ -133,11 +133,11 @@ export default function MyPoketMessagePage() {
 
       {/* 편지 모달 */}
       <LetterModal
-        isOpen={isLetterModalOpen}
+        isModalOpen={isLetterModalOpen}
         onClose={() => setIsLetterModalOpen(false)}
         // letterIndex={selectedLetterIndex}
         letterId={messages[selectedLetterIndex]?.letter_id || null}
-        onDelete={() => {
+        onComplete={() => {
           // 편지 삭제 후 목록 새로고침
           fetchMessages();
         }}

@@ -270,10 +270,10 @@ export default function MyTreePage() {
 
       {/* 편지 모달 */}
       <LetterModal
-        isOpen={isLetterModalOpen}
+        isModalOpen={isLetterModalOpen}
         onClose={() => setIsLetterModalOpen(false)}
         letterId={letters[selectedLetterIndex]?.letter_id || null}
-        onDelete={() => {
+        onComplete={() => {
           // 편지 삭제 후 트리 데이터 새로고침
           fetchTreeData();
         }}
@@ -281,7 +281,7 @@ export default function MyTreePage() {
 
       {/* 편지 보내기 모달 */}
       <SendLetterModal
-        isOpen={isSendLetterModalOpen}
+        isModalOpen={isSendLetterModalOpen}
         onClose={() => setIsSendLetterModalOpen(false)}
         receiverId={publicId!}
         receiverName={userName}

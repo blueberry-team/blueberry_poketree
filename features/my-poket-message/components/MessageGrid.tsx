@@ -58,7 +58,7 @@ export function MessageGrid({ messages, selectedIndex, onMessageClick }: Message
                 </div>
 
                 {/* 비공개 자물쇠 아이콘 */}
-                {message.is_open === "false" && (
+                {!message.is_open && (
                   <div className="absolute top-1 right-1 w-[16px] h-[16px] flex items-center justify-center">
                     <Image src={LockIcon} alt="비공개" width={16} height={16} />
                   </div>
