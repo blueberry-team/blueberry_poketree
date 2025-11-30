@@ -1,4 +1,4 @@
-import type { ApiResponse } from "@/features/shared/utils/api/apiClient";
+import { apiClient, type ApiResponse } from "@/features/shared/utils/api/apiClient";
 import type { GetLetterRequest } from "../models/req/GetLetterRequest";
 import type { GetLetterResponse } from "../models/res/GetLetterResponse";
 import type { SendLetterRequest } from "../models/req/SendLetterRequest";
@@ -44,22 +44,11 @@ export async function getLetterById(
 export async function sendLetter(
   req: SendLetterRequest
 ): Promise<ApiResponse<null>> {
-  // TODO: 서버 구현 후 주석 해제
-  // return apiClient.post<SendLetterResponse>(
-  //   '/letter/send-letter',
-  //   req,
-  //   false  // 인증 불필요 (익명 편지)
-  // );
-
-  // 샘플 데이터 반환
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        message: "success",
-        data: null,
-      });
-    }, 300);
-  });
+  return apiClient.post<ApiResponse<null>>(
+    '/letter/create-letter',
+    req,
+    false  // 인증 불필요 (익명 편지)
+  );
 }
 
 /**

@@ -23,6 +23,7 @@ interface SendLetterModalProps {
   onClose: () => void;
   receiverId: string;
   receiverName: string;
+  onSuccess?: () => void;
 }
 
 export default function SendLetterModal({
@@ -30,6 +31,7 @@ export default function SendLetterModal({
   onClose,
   receiverId,
   receiverName,
+  onSuccess,
 }: SendLetterModalProps) {
   const { translate } = useTranslation();
   const [senderName, setSenderName] = useState("");
@@ -60,6 +62,8 @@ export default function SendLetterModal({
       if (response.message === "success") {
         alert(translate("sendLetter.sendSuccess"));
         handleClose();
+        // 메세지 전송 성공 후 트리 데이터 새로고침
+        onSuccess?.();
       }
     } catch (err) {
       if (err instanceof Error) {

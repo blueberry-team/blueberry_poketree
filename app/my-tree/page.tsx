@@ -282,6 +282,10 @@ export default function MyTreePage() {
         onClose={() => setIsSendLetterModalOpen(false)}
         receiverId={publicId!}
         receiverName={userName}
+        onSuccess={() => {
+          // 편지 전송 성공 후 트리 데이터 새로고침
+          fetchTreeData();
+        }}
       />
     </div>
   );
