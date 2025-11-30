@@ -43,6 +43,7 @@ export function Tree({
   const totalMessageCount = letters.length;
   const messagesPerPage = 7;
   const totalPages = Math.ceil(totalMessageCount / messagesPerPage);
+
   // 현재 페이지에 표시할 편지 개수
   const currentPageMessageCount = Math.min(
     messagesPerPage,
@@ -215,7 +216,7 @@ export function Tree({
           {"<<"}
         </button>
         <span className="text-white font-bold text-sm">
-          {currentPage + 1}/{totalPages}
+          {currentPage + 1}/{totalPages === 0 ? 1 : totalPages}
         </span>
         <button
           onClick={() => onPageChange?.(currentPage < totalPages - 1 ? currentPage + 1 : 0)}
