@@ -51,19 +51,21 @@ export function getTranslation(language: Language, key: TranslationKey): string 
 
 // 브라우저 언어 감지 함수
 function detectBrowserLanguage(): Language {
-  if (typeof window === "undefined") return "ko";
+  if (typeof window === "undefined") return "en";
 
-  const browserLang = navigator.language.toLowerCase();
+  const browserLang = navigator.language?.toLowerCase();
 
+  if (!browserLang) return "en";
   if (browserLang.startsWith("ko")) return "ko";
   if (browserLang.startsWith("ja")) return "ja";
+  if (browserLang.startsWith("en")) return "en";
   return "en";
 }
 
 export function LanguageProvider({ children }: { children: ReactNode }) {
   const pathname = usePathname();
-  // 서버/클라이언트 초기값을 동일하게 "ko"로 설정하여 hydration 불일치 방지
-  const [language, setLanguageState] = useState<Language>("ko");
+  // 서버/클라이언트 초기값을 동일하게 "en"으로 설정하여 hydration 불일치 방지
+  const [language, setLanguageState] = useState<Language>("en");
   const [mounted, setMounted] = useState(false);
 
   // 클라이언트 마운트 확인 및 localStorage 동기화
