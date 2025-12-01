@@ -146,7 +146,7 @@ function MyTreePageContent() {
 
   // API에서 받은 데이터 사용
   const userName = treeData.nickname;
-  const isOwner = treeData.is_owner;
+  const isOwner = treeData.is_owner === "true";
   const letters = treeData.letters;
 
   /**
@@ -190,7 +190,7 @@ function MyTreePageContent() {
    */
   const handleLetterClick = (index: number) => {
     // 주인은 모든 편지를 볼 수 있고, 방문자는 오픈된 편지만 볼 수 있음
-    if (isOwner || letters[index].is_open) {
+    if (isOwner || letters[index].is_open === "true") {
       setSelectedLetterIndex(index);
       setIsLetterModalOpen(true);
     }
