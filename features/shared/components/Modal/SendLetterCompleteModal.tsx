@@ -51,7 +51,7 @@ export default function SendLetterCompleteModal({
         </button>
 
         {/* 모달 카드 */}
-        <div className="bg-black rounded-lg p-6 w-[352px] h-[370px]">
+        <div className="bg-black rounded-lg p-6 w-[352px]">
           {/* 제목 (~~님께 포켓 메시지를 보냈습니다) */}
           <h2 className="whitespace-pre-line text-lg font-bold text-center text-white pt-4 pb-3 text-[24px]">
             {translate("sendCompleteModal.title").replace(
@@ -81,7 +81,7 @@ export default function SendLetterCompleteModal({
           </div>
 
           {/* 확인 버튼 */}
-          <button onClick={onClose} className="relative w-full h-[60px] mt-6">
+          <button onClick={onClose} className="relative w-full h-[60px] mt-6 pb-4">
             <Image
               src={ButtonLargeGreen}
               alt={translate("common.confirm")}
