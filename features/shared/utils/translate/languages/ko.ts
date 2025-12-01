@@ -59,6 +59,9 @@ export const ko = {
     sendSuccess: "편지가 성공적으로 전송되었습니다!",
     sendError: "편지 전송에 실패했습니다.",
   },
+  sendCompleteModal: {
+    title: "{name}님께\n포켓 메시지를 보냈습니다",
+  },
   letterModal: {
     title: "{name} 님의 포켓 메세지",
     loading: "로딩 중...",

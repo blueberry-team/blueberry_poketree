@@ -59,6 +59,9 @@ export const en = {
     sendSuccess: "Letter sent successfully!",
     sendError: "Failed to send letter.",
   },
+  sendCompleteModal: {
+    title: "You sent a pocket message to\n{name}",
+  },
   letterModal: {
     title: "{name}'s Pockét Message",
     loading: "Loading...",

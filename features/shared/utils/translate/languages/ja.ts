@@ -59,6 +59,9 @@ export const ja = {
     sendSuccess: "メッセージが送信されました！",
     sendError: "メッセージの送信に失敗しました。",
   },
+  sendCompleteModal: {
+    title: "{name}さんに\nポケットメッセージをおくりました"
+  },
   letterModal: {
     title: "{name}のポケットメッセージ",
     loading: "読み込み中...",
