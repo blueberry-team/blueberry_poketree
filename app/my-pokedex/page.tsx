@@ -14,7 +14,7 @@ function MyPokedexPageContent() {
   const searchParams = useSearchParams();
   const publicId = searchParams.get('id');
 
-  const [selectedIndex, setSelectedIndex] = useState(() => {
+  const [selectedIndex] = useState(() => {
     if (typeof window !== 'undefined') {
       const savedIndex = localStorage.getItem("selectedIndex");
       if (savedIndex !== null) {
@@ -42,7 +42,7 @@ function MyPokedexPageContent() {
         const ownedCount = data.filter((p) => p.isOwned).length;
         const totalCount = data.length;
         setIsMaster(ownedCount === totalCount);
-      } catch (err) {
+      } catch {
         // 에러 발생 시 에러 페이지로 리다이렉트
         router.replace("/error?type=load");
       }
