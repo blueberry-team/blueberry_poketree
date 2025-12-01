@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { getPokemonImage } from "@/features/shared/data/pokemonData";
 import { getLetter } from "@/features/my-tree/usecases/getLetter";
+import { getVisitorLetter } from "@/features/my-tree/usecases/getVisitorLetter";
 import { deleteLetter } from "@/features/my-tree/usecases/deleteLetter";
 import { LetterData } from "@/features/my-tree/models/res/GetLetterResponse";
 import DeleteConfirmModal from "@/features/shared/components/Modal/DeleteConfirmModal";
@@ -24,6 +25,8 @@ interface LetterModalProps {
   isModalOpen: boolean;
   onClose: () => void;
   letterId: string | null;
+  isOwner: string;
+  userId: string;
   onComplete?: () => void;
 }
 
@@ -32,12 +35,16 @@ interface LetterModalProps {
  * @param isOpen - 모달 열림 여부
  * @param onClose - 모달 닫기 함수
  * @param letterId - 편지 ID
+ * @param isOwner - 트리 소유자 여부
+ * @param userId - 현재 트리의 소유자 ID
  * @param onComplete - 편지 삭제 또는 공개/비공개 상태 변경 후 페이지를 새로고침하기위한 callBack 함수
  */
 export default function LetterModal({
   isModalOpen,
   onClose,
   letterId,
+  isOwner,
+  userId,
   onComplete,
 }: LetterModalProps) {
   const { translate } = useTranslation();
@@ -56,7 +63,10 @@ export default function LetterModal({
         setIsLoading(true);
         setError(null);
 
-        const response = await getLetter({ letter_id: letterId });
+        // isOwner에 따라 다른 API 호출
+        const response = isOwner === "true"
+          ? await getLetter({ letter_id: letterId })
+          : await getVisitorLetter({ letter_id: letterId, user_id: userId });
 
         if (response.message === "success" && response.data) {
           setLetterData(response.data);
@@ -74,7 +84,7 @@ export default function LetterModal({
 
     fetchLetter();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isModalOpen, letterId]);
+  }, [isModalOpen, letterId, isOwner, userId]);
 
   // 편지 삭제 확인 모달 열기
   const handleDeleteClick = () => {
@@ -165,8 +175,8 @@ export default function LetterModal({
           />
         </button>
 
-        {/* 자물쇠 아이콘 (우상단) - is_open가 true일 때만 표시 */}
-        {letterData?.is_open !== "true" && (
+        {/* 자물쇠 아이콘 (우상단) - isOwner일 때만 표시, is_open가 false일 때 표시 */}
+        {isOwner === "true" && letterData?.is_open !== "true" && (
           <div className="absolute top-6 right-6">
             <Image
               src={LockIcon}
@@ -223,47 +233,49 @@ export default function LetterModal({
               </p>
             </div>
 
-            {/* 버튼 그룹 */}
-            <div className="flex justify-between items-center">
-              {/* 삭제 버튼 */}
-              <button
-                onClick={handleDeleteClick}
-                disabled={isDeleting}
-                className="w-20 h-12 bg-transparent border border-white text-white rounded-sm font-bold hover:bg-white hover:text-black transition-colors"
-              >
-                {isDeleting ? translate("letterModal.deleting") : translate("letterModal.delete")}
-              </button>
+            {/* 버튼 그룹 - isOwner일 때만 표시 */}
+            {isOwner === "true" && (
+              <div className="flex justify-between items-center">
+                {/* 삭제 버튼 */}
+                <button
+                  onClick={handleDeleteClick}
+                  disabled={isDeleting}
+                  className="w-20 h-12 bg-transparent border border-white text-white rounded-sm font-bold hover:bg-white hover:text-black transition-colors"
+                >
+                  {isDeleting ? translate("letterModal.deleting") : translate("letterModal.delete")}
+                </button>
 
-              {/* 메세지 공개/비공개 버튼 */}
-              <button
-                onClick={handlePublish}
-                disabled={isLoading}
-                className="relative h-12 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
-                style={{ width: '200px' }}
-              >
-                <Image
-                  src={letterData.is_open === "true" ? ButtonLetterUnpublic : ButtonLetterPublic}
-                  alt={letterData.is_open === "true" ? translate("letterModal.unpublish") : translate("letterModal.publish")}
-                  width={200}
-                  height={56}
-                  className="h-full w-auto object-contain"
-                />
-                <div className="absolute inset-0 flex items-center justify-center gap-2 pointer-events-none">
-                  {letterData.is_open === "true" && (
-                    <Image
-                      src={LockIcon}
-                      alt="자물쇠"
-                      width={16}
-                      height={16}
-                      className="object-contain"
-                    />
-                  )}
-                  <span className="text-black font-bold text-center text-base">
-                    {letterData.is_open === "true" ? translate("letterModal.unpublish") : translate("letterModal.publish")}
-                  </span>
-                </div>
-              </button>
-            </div>
+                {/* 메세지 공개/비공개 버튼 */}
+                <button
+                  onClick={handlePublish}
+                  disabled={isLoading}
+                  className="relative h-12 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
+                  style={{ width: '200px' }}
+                >
+                  <Image
+                    src={letterData.is_open === "true" ? ButtonLetterUnpublic : ButtonLetterPublic}
+                    alt={letterData.is_open === "true" ? translate("letterModal.unpublish") : translate("letterModal.publish")}
+                    width={200}
+                    height={56}
+                    className="h-full w-auto object-contain"
+                  />
+                  <div className="absolute inset-0 flex items-center justify-center gap-2 pointer-events-none">
+                    {letterData.is_open === "true" && (
+                      <Image
+                        src={LockIcon}
+                        alt="자물쇠"
+                        width={16}
+                        height={16}
+                        className="object-contain"
+                      />
+                    )}
+                    <span className="text-black font-bold text-center text-base">
+                      {letterData.is_open === "true" ? translate("letterModal.unpublish") : translate("letterModal.publish")}
+                    </span>
+                  </div>
+                </button>
+              </div>
+            )}
           </div>
         )}
       </div>

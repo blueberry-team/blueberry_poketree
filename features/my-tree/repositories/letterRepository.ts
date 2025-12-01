@@ -3,13 +3,14 @@ import {
   type ApiResponse,
 } from "@/features/shared/utils/api/apiClient";
 import type { GetLetterRequest } from "../models/req/GetLetterRequest";
+import type { GetVisitorLetterRequest } from "../models/req/GetVisitorLetterRequest";
 import type { GetLetterResponse } from "../models/res/GetLetterResponse";
 import type { SendLetterRequest } from "../models/req/SendLetterRequest";
 import type { DeleteLetterRequest } from "../models/req/DeleteLetterRequest";
 import type { OpenLetterRequest } from "../models/req/OpenLetterRequest";
 
 /**
- * 편지의 상세 정보를 가져옵니다
+ * 편지의 상세 정보를 가져옵니다 (소유자용)
  * @param req - letter_id를 포함한 요청 데이터
  * @returns 편지 상세 정보 (발신자, 내용, 포켓몬 등)
  */
@@ -19,6 +20,20 @@ export async function getLetterById(
   return apiClient.get<GetLetterResponse>(
     `/letter/${req.letter_id}`,
     true // 인증 필요
+  );
+}
+
+/**
+ * 편지의 상세 정보를 가져옵니다 (방문자용)
+ * @param req - letter_id와 user_id를 포함한 요청 데이터
+ * @returns 편지 상세 정보 (발신자, 내용, 포켓몬 등)
+ */
+export async function getVisitorLetterById(
+  req: GetVisitorLetterRequest
+): Promise<GetLetterResponse> {
+  return apiClient.get<GetLetterResponse>(
+    `/letter/get-open-letter/${req.user_id}/${req.letter_id}`,
+    false // 인증 불필요
   );
 }
 
