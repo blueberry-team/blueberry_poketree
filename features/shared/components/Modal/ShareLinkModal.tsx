@@ -8,7 +8,7 @@ import ButtonBigGreen from "@/assets/images/components/button_big_green.png";
 import CloseIcon from "@/assets/icon/closeIcon.png";
 
 // 공유 베이스 url
-const SHARE_BASE_URL = "https://poketree.com/";
+const SHARE_BASE_URL = "https://poketrees.com/";
 
 interface ShareLinkModalProps {
   isOpen: boolean;
