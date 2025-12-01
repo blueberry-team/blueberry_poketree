@@ -115,14 +115,14 @@ export default function LetterModal({
 
       const response = await openLetter({
         letter_id: letterData.letter_id,
-        is_open: !letterData.is_opened,
+        is_open: !letterData.is_open,
       });
 
       if (response.message === "success") {
         // 모달 내 상태 즉시 업데이트
         setLetterData({
           ...letterData,
-          is_opened: !letterData.is_opened,
+          is_open: !letterData.is_open,
         });
 
         // 부모 컴포넌트 새로고침 (페이지 상태 업데이트)
@@ -166,7 +166,7 @@ export default function LetterModal({
         </button>
 
         {/* 자물쇠 아이콘 (우상단) - is_open가 true일 때만 표시 */}
-        {!letterData?.is_opened && (
+        {!letterData?.is_open && (
           <div className="absolute top-6 right-6">
             <Image
               src={LockIcon}
@@ -242,14 +242,14 @@ export default function LetterModal({
                 style={{ width: '200px' }}
               >
                 <Image
-                  src={letterData.is_opened ? ButtonLetterUnpublic : ButtonLetterPublic}
-                  alt={letterData.is_opened ? translate("letterModal.unpublish") : translate("letterModal.publish")}
+                  src={letterData.is_open ? ButtonLetterUnpublic : ButtonLetterPublic}
+                  alt={letterData.is_open ? translate("letterModal.unpublish") : translate("letterModal.publish")}
                   width={200}
                   height={56}
                   className="h-full w-auto object-contain"
                 />
                 <div className="absolute inset-0 flex items-center justify-center gap-2 pointer-events-none">
-                  {letterData.is_opened && (
+                  {letterData.is_open && (
                     <Image
                       src={LockIcon}
                       alt="자물쇠"
@@ -259,7 +259,7 @@ export default function LetterModal({
                     />
                   )}
                   <span className="text-black font-bold text-center text-base">
-                    {letterData.is_opened ? translate("letterModal.unpublish") : translate("letterModal.publish")}
+                    {letterData.is_open ? translate("letterModal.unpublish") : translate("letterModal.publish")}
                   </span>
                 </div>
               </button>
