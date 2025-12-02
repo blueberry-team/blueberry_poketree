@@ -7,6 +7,7 @@ import CloseIcon from "@/assets/icon/closeIcon.png";
 import TrainerIcon from "@/assets/icon/trainerIcon.png";
 import ButtonLargeGreen from "@/assets/images/components/button_large_green.png";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
+import { trackEvent } from "@/features/shared/utils/analytics/analytics";
 
 const MAX_CONTENT_LENGTH = 300;
 const MIN_CONTENT_LENGTH = 4;
@@ -52,6 +53,15 @@ export default function SendLetterModal({
     try {
       setIsLoading(true);
       setError(null);
+
+      // Analytics 이벤트 전송
+      trackEvent("button_click_send_letter", {
+        sender_name: senderName,
+        message_content: content,
+        message_length: content.length,
+        receiver_name: receiverName,
+        receiver_id: receiverId,
+      });
 
       const response = await sendLetter({
         sender_name: senderName,

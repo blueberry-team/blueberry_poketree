@@ -11,6 +11,7 @@
   "dependencies": {
     "@next/third-parties": "^16.0.5",
     "@preact/signals-react": "^3.6.1",
+    "firebase": "^12.6.0",
     "next": "16.0.3",
     "react": "19.2.0",
     "react-dom": "19.2.0"
