@@ -46,7 +46,7 @@ const pfStardust = localFont({
 });
 
 export const metadata: Metadata = {
-  title: "PokémTree",
+  title: "PokéTree",
   description: "Christmas Event with Pokémon",
   icons: {
     icon: "/icon.png",
