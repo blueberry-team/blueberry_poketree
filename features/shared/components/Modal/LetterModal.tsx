@@ -14,6 +14,7 @@ import CloseIcon from "@/assets/icon/closeIcon.png";
 import ButtonLetterPublic from "@/assets/images/components/button_letter_public.png";
 import ButtonLetterUnpublic from "@/assets/images/components/button_letter_unpublic.png";
 import { openLetter } from "@/features/my-tree/repositories/letterRepository";
+import BallHatchImage from "@/assets/images/components/ball-hatch.webp";
 
 /**
  * LetterModal - 편지 내용을 보여주는 모달
@@ -27,6 +28,7 @@ interface LetterModalProps {
   letterId: string | null;
   isOwner: string;
   userId: string;
+  isRead: string;
   onComplete?: () => void;
 }
 
@@ -37,6 +39,7 @@ interface LetterModalProps {
  * @param letterId - 편지 ID
  * @param isOwner - 트리 소유자 여부
  * @param userId - 현재 트리의 소유자 ID
+ * @param isRead - 편지 읽음 여부
  * @param onComplete - 편지 삭제 또는 공개/비공개 상태 변경 후 페이지를 새로고침하기위한 callBack 함수
  */
 export default function LetterModal({
@@ -45,6 +48,7 @@ export default function LetterModal({
   letterId,
   isOwner,
   userId,
+  isRead,
   onComplete,
 }: LetterModalProps) {
   const { translate } = useTranslation();
@@ -53,6 +57,8 @@ export default function LetterModal({
   const [isDeleting, setIsDeleting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
+  const [showHatchAnimation, setShowHatchAnimation] = useState(false);
+  const [showPokemonReveal, setShowPokemonReveal] = useState(false);
 
   // 편지 데이터 가져오기
   useEffect(() => {
@@ -70,6 +76,11 @@ export default function LetterModal({
 
         if (response.message === "success" && response.data) {
           setLetterData(response.data);
+
+          // is_read가 false면 볼 부화 애니메이션 시작
+          if (isRead === "false") {
+            setShowHatchAnimation(true);
+          }
         }
       } catch (err) {
         if (err instanceof Error) {
@@ -84,7 +95,20 @@ export default function LetterModal({
 
     fetchLetter();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isModalOpen, letterId, isOwner, userId]);
+  }, [isModalOpen, letterId, isOwner, userId, isRead]);
+
+  // 볼 부화 애니메이션 후 포켓몬 공개
+  useEffect(() => {
+    if (showHatchAnimation) {
+      // 3초 후 포켓몬 이미지 표시
+      const timer = setTimeout(() => {
+        setShowHatchAnimation(false);
+        setShowPokemonReveal(true);
+      }, 3000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [showHatchAnimation]);
 
   // 편지 삭제 확인 모달 열기
   const handleDeleteClick = () => {
@@ -150,6 +174,62 @@ export default function LetterModal({
   };
 
   if (!isModalOpen) return null;
+
+  // 볼 부화 애니메이션 표시
+  if (showHatchAnimation) {
+    return (
+      <div
+        className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="bg-black rounded-lg w-[352px] h-[531px] relative flex items-center justify-center">
+          <Image
+            src={BallHatchImage}
+            alt="볼 부화"
+            width={300}
+            height={300}
+            className="object-contain"
+          />
+        </div>
+      </div>
+    );
+  }
+
+  // 포켓몬 공개 화면 표시
+  if (showPokemonReveal && letterData) {
+    return (
+      <div
+        className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+        onClick={() => {
+          setShowPokemonReveal(false);
+          onComplete?.(); // 트리 새로고침으로 is_read 상태 반영
+        }}
+      >
+        <div className="bg-black rounded-lg w-[352px] h-[531px] relative flex flex-col items-center justify-center gap-8">
+          <Image
+            src={getPokemonImage(letterData.letter_pokemon)}
+            alt={`Pokemon ${letterData.letter_pokemon}`}
+            width={200}
+            height={200}
+            className="object-contain"
+            unoptimized
+          />
+          <p className="text-white text-xl font-bold">
+            {letterData.sender_name}{translate("letterModal.pokemonReceived")}
+          </p>
+          <button
+            onClick={() => {
+              setShowPokemonReveal(false);
+              onComplete?.(); // 트리 새로고침으로 is_read 상태 반영
+            }}
+            className="px-6 py-3 bg-white text-black rounded-lg font-bold hover:bg-gray-200 transition-colors"
+          >
+            {translate("letterModal.viewLetter")}
+          </button>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div
@@ -227,7 +307,7 @@ export default function LetterModal({
             </div>
 
             {/* 편지 내용 */}
-            <div className="bg-white rounded-lg p-8 min-h-[320px] mb-6">
+            <div className="bg-white rounded-lg p-8 min-h-320px mb-6">
               <p className="text-black text-lg whitespace-pre-wrap leading-relaxed">
                 {letterData.content}
               </p>

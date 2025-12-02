@@ -78,6 +78,8 @@ export const ja = {
     unpublishSuccess: "メッセージが非公開になりました。",
     updateVisibilityError: "メッセージの公開状態の変更に失敗しました。",
     loadError: "メッセージを読み込めませんでした。",
+    pokemonReceived: "のポケモンをゲット！",
+    viewLetter: "メッセージを見る",
   },
   message: {
     title: "ポケットメッセージ",

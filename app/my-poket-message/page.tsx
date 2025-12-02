@@ -142,6 +142,7 @@ function MyPoketMessagePageContent() {
         letterId={messages[selectedLetterIndex]?.letter_id || null}
         isOwner={isOwner}
         userId={publicId!}
+        isRead={messages[selectedLetterIndex]?.is_read || "true"}
         onComplete={() => {
           // 편지 삭제 후 목록 새로고침
           fetchMessages();

@@ -276,6 +276,7 @@ function MyTreePageContent() {
         letterId={letters[selectedLetterIndex]?.letter_id || null}
         isOwner={isOwner}
         userId={publicId!}
+        isRead={letters[selectedLetterIndex]?.is_read || "true"}
         onComplete={() => {
           // 편지 삭제 후 트리 데이터 새로고침
           fetchTreeData();

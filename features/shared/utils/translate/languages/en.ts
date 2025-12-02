@@ -78,6 +78,8 @@ export const en = {
     unpublishSuccess: "Message has been unpublished.",
     updateVisibilityError: "Failed to update message visibility.",
     loadError: "Failed to load letter.",
+    pokemonReceived: "'s Pokémon received!",
+    viewLetter: "View Letter",
   },
   message: {
     title: "Pockét Message",
