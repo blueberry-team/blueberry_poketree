@@ -16,7 +16,7 @@ interface SendLetterCompleteModalProps {
   isOpen: boolean;
   onClose: () => void;
   reveicerName: string;
-  receivedPokemon: StaticImageData;
+  receivedPokemon: StaticImageData | string;
 }
 
 export default function SendLetterCompleteModal({
@@ -65,8 +65,9 @@ export default function SendLetterCompleteModal({
             <Image
               src={receivedPokemon}
               alt="포켓몬"
-              width={129.68}
-              height={149.75}
+              width={130}
+              height={150}
+              unoptimized
               className="object-contain"
             />
 

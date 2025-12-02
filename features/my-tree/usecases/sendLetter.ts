@@ -48,6 +48,7 @@ export async function sendLetter(
 
   // API request
   const res = await sendLetterRepo(req);
+  console.log(res);
 
   return res;
 }
