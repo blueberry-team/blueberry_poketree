@@ -49,8 +49,9 @@ function HeaderContent() {
       <Image
         src={HeaderBackground}
         alt="헤더 배경"
-        fill
-        className="object-cover"
+        width={390}
+        height={92}
+        className="object-cover absolute inset-0 w-full h-full"
       />
       <div className="relative z-10 w-full h-full">
         {/* 좌측: 뒤로가기 버튼 또는 로고 그룹 */}
@@ -89,19 +90,21 @@ function HeaderContent() {
           {/* 언어 설정 버튼 */}
           <button
             onClick={() => setIsLanguageModalOpen(true)}
-            className="relative w-20 h-10 flex items-center justify-center"
+            className="relative flex items-center justify-center"
+            style={{ width: "53px", height: "37px" }}
           >
             <Image src={ButtonSmallBlue} alt="언어 버튼" fill className="object-contain absolute inset-0" />
-            <span className="relative z-10 text-black text-12 font-bold">{translate("header.language")}</span>
+            <span className="relative z-10 text-black text-[12px] font-bold">{translate("header.language")}</span>
           </button>
 
           {/* 설정 버튼 */}
           <button
             onClick={() => setIsSettingModalOpen(true)}
-            className="relative w-20 h-10 flex items-center justify-center"
+            className="relative flex items-center justify-center"
+            style={{ width: "53px", height: "37px" }}
           >
             <Image src={ButtonSmallBlue} alt="설정 버튼" fill className="object-contain absolute inset-0" />
-            <span className="relative z-10 text-black text-12 font-bold">{translate("header.options")}</span>
+            <span className="relative z-10 text-black text-[12px] font-bold">{translate("header.options")}</span>
           </button>
         </div>
       </div>
@@ -128,8 +131,9 @@ export function Header() {
         <Image
           src={HeaderBackground}
           alt="헤더 배경"
-          fill
-          className="object-cover"
+          width={390}
+          height={92}
+          className="object-cover absolute inset-0 w-full h-full"
         />
       </header>
     }>
