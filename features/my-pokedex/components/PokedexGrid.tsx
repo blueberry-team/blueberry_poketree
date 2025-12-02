@@ -2,14 +2,14 @@
 
 import { useRef, useEffect } from "react";
 import Image from "next/image";
-import { PokemonInDex } from "@/features/my-pokedex/usecases/getMyPokedex";
+import { POKEMON_DATA } from "@/features/shared/data/pokemonData";
 
 interface PokedexGridProps {
-  pokemons: PokemonInDex[];
+  ownedPokemonIds: number[]; // 보유한 포켓몬 ID 리스트
   selectedIndex: number;
 }
 
-export function PokedexGrid({ pokemons, selectedIndex }: PokedexGridProps) {
+export function PokedexGrid({ ownedPokemonIds, selectedIndex }: PokedexGridProps) {
   const selectedRef = useRef<HTMLDivElement>(null);
 
   // 선택된 항목으로 스크롤
@@ -35,10 +35,10 @@ export function PokedexGrid({ pokemons, selectedIndex }: PokedexGridProps) {
           alignContent: "start",
         }}
       >
-        {pokemons.map((pokemon, index) => {
+        {POKEMON_DATA.map((pokemon, index) => {
           const row = Math.floor(index / 4);
           const isNotFirstRow = row > 0;
-          const isOwned = pokemon.isOwned;
+          const isOwned = ownedPokemonIds.includes(pokemon.id);
 
           return (
             <div
@@ -47,7 +47,6 @@ export function PokedexGrid({ pokemons, selectedIndex }: PokedexGridProps) {
               style={{
                 aspectRatio: "5 / 6",
                 marginTop: isNotFirstRow ? "10px" : "0",
-
               }}
             >
               {/* 포켓몬 이미지 */}
