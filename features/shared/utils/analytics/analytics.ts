@@ -14,7 +14,7 @@ declare global {
 /**
  * 세션 ID 생성 및 저장
  */
-function getOrCreateSessionId(): string {
+export function getOrCreateSessionId(): string {
   if (typeof window === "undefined") return "";
 
   let sessionId = sessionStorage.getItem("analytics_session_id");

@@ -8,6 +8,7 @@ import TrainerIcon from "@/assets/icon/trainerIcon.png";
 import ButtonLargeGreen from "@/assets/images/components/button_large_green.png";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { trackEvent } from "@/features/shared/utils/analytics/analytics";
+import { notifySendLetter } from "@/features/shared/utils/discord/discord";
 
 const MAX_CONTENT_LENGTH = 300;
 const MIN_CONTENT_LENGTH = 4;
@@ -70,6 +71,9 @@ export default function SendLetterModal({
       });
 
       if (response.message === "success") {
+        // Discord 알림 전송 (비동기, 에러 무시)
+        notifySendLetter(senderName, content, receiverName, receiverId);
+
         alert(translate("sendLetter.sendSuccess"));
         handleClose();
         // 메세지 전송 성공 후 트리 데이터 새로고침

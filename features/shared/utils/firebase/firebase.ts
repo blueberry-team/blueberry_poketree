@@ -1,5 +1,6 @@
 import { initializeApp, getApps } from "firebase/app";
 import { getAnalytics, Analytics } from "firebase/analytics";
+import { getFunctions, Functions } from "firebase/functions";
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -16,8 +17,11 @@ const app = getApps().length === 0 ? initializeApp(firebaseConfig) : getApps()[0
 
 // Analytics는 클라이언트에서만 초기화
 let analytics: Analytics | null = null;
+let functions: Functions | null = null;
+
 if (typeof window !== "undefined") {
   analytics = getAnalytics(app);
+  functions = getFunctions(app);
 }
 
-export { app, analytics };
+export { app, analytics, functions };
