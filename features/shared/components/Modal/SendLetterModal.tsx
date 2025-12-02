@@ -7,6 +7,8 @@ import CloseIcon from "@/assets/icon/closeIcon.png";
 import TrainerIcon from "@/assets/icon/trainerIcon.png";
 import ButtonLargeGreen from "@/assets/images/components/button_large_green.png";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
+import { trackEvent } from "@/features/shared/utils/analytics/analytics";
+import { notifySendLetter } from "@/features/shared/utils/discord/discord";
 
 const MAX_CONTENT_LENGTH = 300;
 const MIN_CONTENT_LENGTH = 4;
@@ -53,6 +55,15 @@ export default function SendLetterModal({
       setIsLoading(true);
       setError(null);
 
+      // Analytics 이벤트 전송
+      trackEvent("button_click_send_letter", {
+        sender_name: senderName,
+        message_content: content,
+        message_length: content.length,
+        receiver_name: receiverName,
+        receiver_id: receiverId,
+      });
+
       const response = await sendLetter({
         sender_name: senderName,
         content: content,
@@ -60,6 +71,9 @@ export default function SendLetterModal({
       });
 
       if (response.message === "success") {
+        // Discord 알림 전송 (비동기, 에러 무시)
+        notifySendLetter(senderName, content, receiverName, receiverId);
+
         alert(translate("sendLetter.sendSuccess"));
         handleClose();
         // 메세지 전송 성공 후 트리 데이터 새로고침

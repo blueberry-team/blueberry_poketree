@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import ButtonBigGreen from "@/assets/images/components/button_big_green.png";
 import ButtonMediumSky from "@/assets/images/components/button_medium_skyblue.png";
+import { trackButtonClick } from "@/features/shared/utils/analytics/analytics";
 
 interface VisitorButtonsProps {
   onSendMessage: () => void;
@@ -27,7 +28,10 @@ export function VisitorButtons({
       <div className="shrink-0 w-fill h-fill">
         <button
           className="relative w-[344px] h-[96px] mt-2"
-          onClick={() => onSendMessage()}
+          onClick={() => {
+            trackButtonClick("button_click_visitor_send_message");
+            onSendMessage();
+          }}
         >
           <Image
             src={ButtonBigGreen}
@@ -47,7 +51,10 @@ export function VisitorButtons({
       <div className="shrink-0 w-fill h-fill mt-6">
         <button
           className="relative w-[193px] h-[56px]"
-          onClick={() => onMakeTree()}
+          onClick={() => {
+            trackButtonClick("button_click_visitor_make_tree");
+            onMakeTree();
+          }}
         >
           <Image
             src={ButtonMediumSky}

@@ -6,12 +6,14 @@ import { ALL_POKEMON_IMAGES } from "@/features/shared/data/pokemonData";
 import MakePokeTreeIcon from "@/assets/images/components/button_large_green.png";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { SocialMediaButton } from "@/features/shared/components/SocialMediaButton/SocialMediaButton";
+import { trackButtonClick } from "@/features/shared/utils/analytics/analytics";
 
 export function LandingFooter() {
   const router = useRouter();
   const { translate } = useTranslation();
 
   const handleMakePokeTree = () => {
+    trackButtonClick("button_click_home_make_tree");
     router.push("/signup-or-go");
   };
 

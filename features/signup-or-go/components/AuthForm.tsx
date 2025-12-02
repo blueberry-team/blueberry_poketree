@@ -7,6 +7,7 @@ import DoctorOhImage from "@/assets/images/signuporgo/doctor_oh.png";
 import ButtonBigBlue from "@/assets/images/components/button_big_blue.png";
 import PixelInputField from "@/assets/images/signuporgo/pixel_inputfield.svg";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
+import { trackEvent } from "@/features/shared/utils/analytics/analytics";
 
 interface AuthFormProps {
   onSubmit: (req: SignupOrGoRequest) => Promise<void>;
@@ -22,6 +23,13 @@ export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    // Analytics 이벤트 전송
+    trackEvent("button_click_auth_submit", {
+      tree_name: nickname,
+      tree_name_length: nickname.length,
+    });
+
     await onSubmit({ nickname, password });
   };
 
