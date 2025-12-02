@@ -168,10 +168,10 @@ export default function LetterModal({
       {letterData && (
         <HatchModal
           isOpen={showHatchModal}
-          onClose={() => setShowHatchModal(false)}
-          onComplete={() => {
-            onComplete?.(); // 트리 새로고침으로 is_read 상태 반영
+          onClose={() => {
+            setShowHatchModal(false);
           }}
+          onComplete={() => {}}
           senderName={letterData.sender_name}
           pokemonId={letterData.letter_pokemon}
         />

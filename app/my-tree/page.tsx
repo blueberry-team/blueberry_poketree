@@ -272,7 +272,11 @@ function MyTreePageContent() {
       {/* 편지 모달 */}
       <LetterModal
         isModalOpen={isLetterModalOpen}
-        onClose={() => setIsLetterModalOpen(false)}
+        onClose={() => {
+          setIsLetterModalOpen(false);
+          // 모달 닫을 때 트리 데이터 새로고침
+          fetchTreeData();
+        }}
         letterId={letters[selectedLetterIndex]?.letter_id || null}
         isOwner={isOwner}
         userId={publicId!}

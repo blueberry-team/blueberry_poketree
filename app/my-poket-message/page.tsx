@@ -137,7 +137,11 @@ function MyPoketMessagePageContent() {
       {/* 편지 모달 */}
       <LetterModal
         isModalOpen={isLetterModalOpen}
-        onClose={() => setIsLetterModalOpen(false)}
+        onClose={() => {
+          setIsLetterModalOpen(false);
+          // 모달 닫을 때 목록 새로고침
+          fetchMessages();
+        }}
         // letterIndex={selectedLetterIndex}
         letterId={messages[selectedLetterIndex]?.letter_id || null}
         isOwner={isOwner}
