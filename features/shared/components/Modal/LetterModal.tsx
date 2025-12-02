@@ -183,6 +183,21 @@ export default function LetterModal({
         onClick={(e) => e.stopPropagation()}
       >
         <div className="bg-black rounded-lg w-[352px] h-[531px] relative flex items-center justify-center">
+          {/* 닫기 버튼 */}
+          <button
+            onClick={onClose}
+            className="absolute bottom-[calc(100%+15px)] right-0 w-8 h-8 bg-black rounded flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors z-10"
+            aria-label="닫기"
+          >
+            <Image
+              src={CloseIcon}
+              alt="닫기"
+              width={20}
+              height={20}
+              className="object-contain"
+            />
+          </button>
+
           <Image
             src={BallHatchImage}
             alt="볼 부화"
@@ -200,12 +215,28 @@ export default function LetterModal({
     return (
       <div
         className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
-        onClick={() => {
-          setShowPokemonReveal(false);
-          onComplete?.(); // 트리 새로고침으로 is_read 상태 반영
-        }}
+        onClick={(e) => e.stopPropagation()}
       >
         <div className="bg-black rounded-lg w-[352px] h-[531px] relative flex flex-col items-center justify-center gap-8">
+          {/* 닫기 버튼 */}
+          <button
+            onClick={() => {
+              setShowPokemonReveal(false);
+              onComplete?.(); // 트리 새로고침으로 is_read 상태 반영
+              onClose();
+            }}
+            className="absolute bottom-[calc(100%+15px)] right-0 w-8 h-8 bg-black rounded flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors z-10"
+            aria-label="닫기"
+          >
+            <Image
+              src={CloseIcon}
+              alt="닫기"
+              width={20}
+              height={20}
+              className="object-contain"
+            />
+          </button>
+
           <Image
             src={getPokemonImage(letterData.letter_pokemon)}
             alt={`Pokemon ${letterData.letter_pokemon}`}

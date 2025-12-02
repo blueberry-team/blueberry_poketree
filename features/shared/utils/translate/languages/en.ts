@@ -78,7 +78,7 @@ export const en = {
     unpublishSuccess: "Message has been unpublished.",
     updateVisibilityError: "Failed to update message visibility.",
     loadError: "Failed to load letter.",
-    pokemonReceived: "'s Pokémon received!",
+    pokemonReceived: " sent you a Pokémon!",
     viewLetter: "View Letter",
   },
   message: {
