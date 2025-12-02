@@ -79,7 +79,7 @@ export const en = {
     updateVisibilityError: "Failed to update message visibility.",
     loadError: "Failed to load letter.",
     pokemonReceived: " sent you a Pokémon!",
-    viewLetter: "View Letter",
+    viewLetter: "Check the message",
   },
   message: {
     title: "Pockét Message",

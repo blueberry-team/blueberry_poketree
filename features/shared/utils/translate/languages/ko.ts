@@ -79,7 +79,7 @@ export const ko = {
     updateVisibilityError: "메세지 공개 상태 변경에 실패했습니다.",
     loadError: "편지를 불러올 수 없습니다.",
     pokemonReceived: "님이 보낸 포켓몬 획득!",
-    viewLetter: "편지 보기",
+    viewLetter: "메세지 확인하기",
   },
   message: {
     title: "포켓 메시지",
