@@ -1,8 +1,13 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { LandingTree } from "@/features/landing/components/LandingTree/LandingTree";
-import { ChristmasCountdown } from "@/features/landing/components/ChristmasCountdown/ChristmasCountdown";
 import { LandingFooter } from "@/features/landing/components/LandingFooter/LandingFooter";
+
+const ChristmasCountdown = dynamic(
+  () => import("@/features/landing/components/ChristmasCountdown/ChristmasCountdown").then(mod => mod.ChristmasCountdown),
+  { ssr: false }
+);
 
 // 랜딩 페이지
 export default function LandingPage() {

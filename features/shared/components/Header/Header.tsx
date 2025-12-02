@@ -41,9 +41,8 @@ function HeaderContent() {
 
   return (
     <header
-      className={`w-full h-[60px] shrink-0 bg-[#BF0120] overflow-hidden relative ${
-        isFullScrollPage ? '' : 'sticky top-0 z-50'
-      }`}
+      className={`w-full h-[90px] shrink-0 bg-[#BF0120] overflow-hidden relative ${isFullScrollPage ? '' : 'sticky top-0 z-50'
+        }`}
     >
       {/* 헤더 배경 이미지 */}
       <Image
@@ -55,7 +54,7 @@ function HeaderContent() {
       />
       <div className="relative z-10 w-full h-full">
         {/* 좌측: 뒤로가기 버튼 또는 로고 그룹 */}
-        <div className="absolute left-4 top-3 flex items-center gap-2">
+        <div className="absolute left-4 bottom-4 flex items-center gap-2">
           {showBackButton && (
             <button
               onClick={handleBack}
@@ -68,7 +67,7 @@ function HeaderContent() {
             <Image
               src={LogoIcon}
               alt="로고"
-              width={36}
+              width={37}
               height={36}
               className="object-contain"
             />
@@ -79,21 +78,21 @@ function HeaderContent() {
               alt="도감 신호등"
               width={36}
               height={24}
-              className="object-contain absolute -top-2 left-0"
+              className="object-contain absolute -top-3 left-0"
             />
-            <span className="text-white text-lg" style={{ fontFamily: 'var(--font-press-start)' }}>PokéTree</span>
+            <span className="text-white text-[18px]" style={{ fontFamily: 'var(--font-press-start)' }}>PokéTree</span>
           </div>
         </div>
 
         {/* 우측 버튼 그룹 */}
-        <div className="absolute right-0 top-[18px] flex items-center ">
+        <div className="absolute right-[16px] bottom-[9px] flex gap-[16px] items-center">
           {/* 언어 설정 버튼 */}
           <button
             onClick={() => setIsLanguageModalOpen(true)}
             className="relative flex items-center justify-center"
             style={{ width: "53px", height: "37px" }}
           >
-            <Image src={ButtonSmallBlue} alt="언어 버튼" fill className="object-contain absolute inset-0" />
+            <Image src={ButtonSmallBlue} alt="언어 버튼" width={53} height={37} className="absolute inset-0" />
             <span className="relative z-10 text-black text-[12px] font-bold">{translate("header.language")}</span>
           </button>
 
@@ -103,7 +102,7 @@ function HeaderContent() {
             className="relative flex items-center justify-center"
             style={{ width: "53px", height: "37px" }}
           >
-            <Image src={ButtonSmallBlue} alt="설정 버튼" fill className="object-contain absolute inset-0" />
+            <Image src={ButtonSmallBlue} alt="설정 버튼" width={53} height={37} className="absolute inset-0" />
             <span className="relative z-10 text-black text-[12px] font-bold">{translate("header.options")}</span>
           </button>
         </div>
@@ -127,7 +126,7 @@ function HeaderContent() {
 export function Header() {
   return (
     <Suspense fallback={
-      <header className="w-full h-[60px] shrink-0 bg-[#BF0120] overflow-hidden relative">
+      <header className="w-full h-[90px] shrink-0 bg-[#BF0120] overflow-hidden relative">
         <Image
           src={HeaderBackground}
           alt="헤더 배경"
