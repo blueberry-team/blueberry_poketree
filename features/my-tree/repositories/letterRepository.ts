@@ -37,15 +37,19 @@ export async function getVisitorLetterById(
   );
 }
 
+interface SendLetterResponseData {
+  letter_pokemon: number;
+}
+
 /**
  * 편지를 보냅니다
  * @param req - 발신자명, 내용, 수신자ID를 포함한 요청 데이터
- * @returns 성공 메시지
+ * @returns 성공 메시지와 포켓몬 ID
  */
 export async function sendLetter(
   req: SendLetterRequest
-): Promise<ApiResponse<null>> {
-  return apiClient.post<ApiResponse<null>>(
+): Promise<ApiResponse<SendLetterResponseData>> {
+  return apiClient.post<ApiResponse<SendLetterResponseData>>(
     "/letter/create-letter",
     req,
     false // 인증 불필요 (익명 편지)

@@ -7,14 +7,18 @@ const MAX_SENDER_NAME_LENGTH = 6;
 const MIN_CONTENT_LENGTH = 4;
 const MAX_CONTENT_LENGTH = 300;
 
+interface SendLetterResponse {
+  letter_pokemon: number;
+}
+
 /**
  * 편지를 보냅니다
  * @param req - 발신자명, 내용, 수신자ID를 포함한 요청
- * @returns 성공 메시지
+ * @returns 성공 메시지와 포켓몬 ID
  */
 export async function sendLetter(
   req: SendLetterRequest
-): Promise<ApiResponse<null>> {
+): Promise<ApiResponse<SendLetterResponse>> {
   // validation
 
   const trimmedSenderName = req.sender_name.trim();

@@ -64,16 +64,13 @@ export default function SendLetterModal({
         content: content,
         receiver_id: receiverId,
       });
-      // 응답에 letter_pokemon이 있으면 성공
-      if (response && typeof response === 'object') {
-        const pokemonId = (response as { letter_pokemon?: number }).letter_pokemon;
-        if (pokemonId) {
-          setReceivedPokemonId(pokemonId);
-          setShowCompleteModal(true);
-        } else {
-          handleClose();
-          onSuccess?.();
-        }
+      // 응답 성공 시 포켓몬 ID 추출
+      if (response.message === "success" && response.data?.letter_pokemon) {
+        setReceivedPokemonId(response.data.letter_pokemon);
+        setShowCompleteModal(true);
+      } else {
+        handleClose();
+        onSuccess?.();
       }
     } catch (err) {
       if (err instanceof Error) {
