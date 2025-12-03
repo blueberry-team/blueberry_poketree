@@ -50,7 +50,7 @@ export const vi = {
   },
   visitor: {
     makeMessage: "Viet tin nhan",
-    makeTree: "Tao PokeTree cua toi",
+    makeTree: "Xem PokeTree cua toi",
     send: "Gui tin nhan",
   },
   sendLetter: {

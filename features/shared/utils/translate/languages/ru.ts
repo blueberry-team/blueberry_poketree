@@ -50,7 +50,7 @@ export const ru = {
   },
   visitor: {
     makeMessage: "Написать сообщение",
-    makeTree: "Создать моё PokéTree",
+    makeTree: "Посмотреть моё PokéTree",
     send: "Отправить сообщение",
   },
   sendLetter: {
