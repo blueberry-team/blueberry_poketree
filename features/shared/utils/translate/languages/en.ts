@@ -12,6 +12,12 @@ export const en = {
     korean: "한국어",
     english: "English",
     japanese: "日本語",
+    spanish: "Español",
+    portuguese: "Português",
+    russian: "Русский",
+    vietnamese: "Tieng Viet",
+    chineseSimplified: "简体中文",
+    chineseTraditional: "繁體中文",
   },
   auth: {
     yourTree: "What's your tree name?",

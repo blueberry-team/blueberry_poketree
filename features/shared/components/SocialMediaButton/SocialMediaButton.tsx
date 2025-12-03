@@ -21,6 +21,12 @@ export function SocialMediaButton() {
       ko: "https://instagram.com/poketree_kr",
       en: "https://instagram.com/poketree_official",
       ja: "https://twitter.com/poketree_jp",
+      es: "https://instagram.com/poketree_official",
+      pt: "https://instagram.com/poketree_official",
+      ru: "https://instagram.com/poketree_official",
+      vi: "https://instagram.com/poketree_official",
+      "zh-CN": "https://instagram.com/poketree_official",
+      "zh-TW": "https://instagram.com/poketree_official",
     };
 
     const platform = language === "ja" ? "twitter" : "instagram";
