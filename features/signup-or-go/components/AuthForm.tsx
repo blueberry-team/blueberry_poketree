@@ -9,6 +9,10 @@ import PixelInputField from "@/assets/images/signuporgo/pixel_inputfield.svg";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { trackEvent } from "@/features/shared/utils/analytics/analytics";
 
+const MIN_NICKNAME_LENGTH = 2;
+const MAX_NICKNAME_LENGTH = 6;
+const PASSWORD_LENGTH = 4;
+
 interface AuthFormProps {
   onSubmit: (req: SignupOrGoRequest) => Promise<void>;
   isLoading: boolean;
@@ -33,10 +37,17 @@ export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
     await onSubmit({ nickname, password });
   };
 
+  // 버튼 활성화 여부 체크
+  const isButtonDisabled =
+    isLoading ||
+    nickname.trim().length < MIN_NICKNAME_LENGTH ||
+    nickname.trim().length > MAX_NICKNAME_LENGTH ||
+    password.length !== PASSWORD_LENGTH;
+
   return (
     <div className="flex-1 bg-[#F7F7F7] flex flex-col items-center px-[94px]">
       {/* Doctor Oh 이미지 */}
-      <div className="mt-[115px] mb-[64px]">
+      <div className="mt-[115px] mb-16">
         <Image
           src={DoctorOhImage}
           alt="Doctor Oh"
@@ -56,7 +67,6 @@ export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
           <div className="relative w-full">
             <Image
               src={PixelInputField}
-
               alt="input field"
               width={202}
               height={49}
@@ -67,8 +77,16 @@ export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
               placeholder=""
+              maxLength={MAX_NICKNAME_LENGTH}
               className="absolute top-0 left-0 w-full h-[49px] bg-transparent border-none text-black text-center text-base font-normal outline-none px-4"
             />
+          </div>
+          <div className="text-center mt-1">
+            <span className="text-gray-600 text-xs">
+              {translate("auth.charCount")
+                .replace("{current}", nickname.length.toString())
+                .replace("{max}", MAX_NICKNAME_LENGTH.toString())}
+            </span>
           </div>
         </div>
 
@@ -90,8 +108,16 @@ export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
               value={password}
               onChange={(e) => setPassword(e.target.value)}
               placeholder=""
+              maxLength={PASSWORD_LENGTH}
               className="absolute top-0 left-0 w-full h-[49px] bg-transparent border-none text-black text-center text-base font-normal outline-none px-4"
             />
+          </div>
+          <div className="text-center mt-1">
+            <span className="text-gray-600 text-xs">
+              {translate("auth.passwordLength")
+                .replace("{current}", password.length.toString())
+                .replace("{max}", PASSWORD_LENGTH.toString())}
+            </span>
           </div>
         </div>
 
@@ -105,7 +131,7 @@ export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
         {/* 로그인 버튼 */}
         <button
           type="submit"
-          disabled={isLoading}
+          disabled={isButtonDisabled}
           className="relative w-full disabled:opacity-50"
         >
           <Image

@@ -132,13 +132,13 @@ function MyTreePageContent() {
   if (error || !treeData) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen gap-4 p-4 bg-[#E7E9EB]">
-        <h1 className="text-xl font-bold">오류</h1>
-        <p className="text-gray-600">{error || '트리 정보를 찾을 수 없습니다.'}</p>
+        <h1 className="text-xl font-bold">{translate("error.title")}</h1>
+        <p className="text-gray-600">{error || translate("error.treeNotFound")}</p>
         <button
           onClick={() => router.push('/')}
           className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
         >
-          홈으로 돌아가기
+          {translate("error.goHome")}
         </button>
       </div>
     );
