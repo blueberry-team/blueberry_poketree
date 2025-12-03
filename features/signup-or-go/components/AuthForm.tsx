@@ -47,12 +47,11 @@ export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
   return (
     <div className="flex-1 bg-[#F7F7F7] flex flex-col items-center px-[94px]">
       {/* Doctor Oh 이미지 */}
-      <div className="mt-[115px] mb-16">
+      <div className="mt-[53px] mb-16">
         <Image
           src={DoctorOhImage}
           alt="Doctor Oh"
-          width={90}
-          height={120}
+          width={122}
           className="object-contain"
         />
       </div>
@@ -109,6 +108,9 @@ export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
               onChange={(e) => setPassword(e.target.value)}
               placeholder=""
               maxLength={PASSWORD_LENGTH}
+              inputMode="numeric"
+              pattern="[0-9]*"
+              autoComplete="new-password"
               className="absolute top-0 left-0 w-full h-[49px] bg-transparent border-none text-black text-center text-base font-normal outline-none px-4"
             />
           </div>
