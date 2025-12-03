@@ -5,8 +5,10 @@ import { useState } from "react";
 import { sendLetter } from "@/features/my-tree/usecases/sendLetter";
 import CloseIcon from "@/assets/icon/closeIcon.png";
 import TrainerIcon from "@/assets/icon/trainerIcon.png";
-import ButtonLargeGreen from "@/assets/images/components/button_large_green.png";
+import ButtonLetterWrite from "@/assets/images/components/button_letter_write.png";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
+import { POKEMON_DATA } from "@/features/shared/data/pokemonData";
+import SendLetterCompleteModal from "./SendLetterCompleteModal";
 import { trackEvent } from "@/features/shared/utils/analytics/analytics";
 import { notifySendLetter } from "@/features/shared/utils/discord/discord";
 
@@ -40,12 +42,16 @@ export default function SendLetterModal({
   const [content, setContent] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showCompleteModal, setShowCompleteModal] = useState(false);
+  const [receivedPokemonId, setReceivedPokemonId] = useState<number | null>(null);
 
   // 모달 닫기 및 초기화
   const handleClose = () => {
     setSenderName("");
     setContent("");
     setError(null);
+    setShowCompleteModal(false);
+    setReceivedPokemonId(null);
     onClose();
   };
 
@@ -69,15 +75,15 @@ export default function SendLetterModal({
         content: content,
         receiver_id: receiverId,
       });
-
-      if (response.message === "success") {
-        // Discord 알림 전송 (비동기, 에러 무시)
+      // 응답 성공 시 포켓몬 ID 추출
+      if (response.message === "success" && response.data?.letter_pokemon) {
+        setReceivedPokemonId(response.data.letter_pokemon);
+        setShowCompleteModal(true);
         notifySendLetter(senderName, content, receiverName, receiverId);
-
         alert(translate("sendLetter.sendSuccess"));
         handleClose();
-        // 메세지 전송 성공 후 트리 데이터 새로고침
         onSuccess?.();
+
       }
     } catch (err) {
       if (err instanceof Error) {
@@ -89,6 +95,33 @@ export default function SendLetterModal({
       setIsLoading(false);
     }
   };
+
+  // 완료 모달 닫기 핸들러
+  const handleCompleteModalClose = () => {
+    setShowCompleteModal(false);
+    setReceivedPokemonId(null);
+    handleClose();
+    onSuccess?.();
+  };
+
+  // 포켓몬 이미지 가져오기
+  const getPokemonImage = () => {
+    if (!receivedPokemonId) return POKEMON_DATA[0].imageBase;
+    const pokemon = POKEMON_DATA.find(p => p.id === receivedPokemonId);
+    return pokemon?.imageBase || POKEMON_DATA[0].imageBase;
+  };
+
+  // 완료 모달만 표시
+  if (showCompleteModal && receivedPokemonId) {
+    return (
+      <SendLetterCompleteModal
+        isOpen={true}
+        onClose={handleCompleteModalClose}
+        reveicerName={receiverName}
+        receivedPokemon={getPokemonImage()}
+      />
+    );
+  }
 
   if (!isModalOpen) return null;
 
@@ -123,32 +156,32 @@ export default function SendLetterModal({
         </button>
 
         <div
-          className="bg-black rounded-2xl w-full max-w-[800px] p-6 sm:p-8"
+          className="bg-black rounded-2xl w-full max-w-[352px] p-4"
           onClick={(e) => e.stopPropagation()}
         >
           {/* 헤더 */}
-          <h1 className="text-white text-2xl font-bold text-center mb-6 whitespace-pre-line">
+          <h1 className="text-white text-lg font-bold text-center mb-4 whitespace-pre-line">
             {translate("sendLetter.title").replace("{name}", receiverName)}
           </h1>
 
           {/* 작성자 닉네임 */}
-          <div className="mb-6">
-            <div className="flex items-center gap-2 mb-3">
+          <div className="mb-4">
+            <div className="flex items-center gap-2 mb-2">
               <Image
                 src={TrainerIcon}
                 alt="트레이너"
-                width={24}
-                height={24}
+                width={20}
+                height={20}
                 className="object-contain"
               />
-              <span className="text-white font-bold">{translate("sendLetter.senderName")}</span>
+              <span className="text-white text-sm font-bold">{translate("sendLetter.senderName")}</span>
             </div>
             <input
               type="text"
               value={senderName}
               onChange={(e) => setSenderName(e.target.value)}
               placeholder={translate("sendLetter.senderPlaceholder")}
-              className="w-full px-4 py-3 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-white"
+              className="w-full px-3 py-2 rounded-lg bg-white text-black text-sm focus:outline-none focus:ring-2 focus:ring-white"
               maxLength={MAX_SENDER_NAME_LENGTH}
               disabled={isLoading}
             />
@@ -162,18 +195,18 @@ export default function SendLetterModal({
           </div>
 
           {/* 메세지 내용 */}
-          <div className="mb-6">
-            <h3 className="text-white font-bold mb-3">{translate("sendLetter.content")}</h3>
+          <div className="mb-4">
+            <h3 className="text-white text-sm font-bold mb-2">{translate("sendLetter.content")}</h3>
             <textarea
               value={content}
               onChange={(e) => setContent(e.target.value)}
               placeholder={translate("sendLetter.contentPlaceholder")}
-              className="w-full px-4 py-3 rounded-lg bg-white text-black focus:outline-none focus:ring-2 focus:ring-white resize-none min-h-[300px]"
+              className="w-full px-3 py-2 rounded-lg bg-white text-black text-sm focus:outline-none focus:ring-2 focus:ring-white resize-none min-h-[150px]"
               maxLength={MAX_CONTENT_LENGTH}
               disabled={isLoading}
             />
-            <div className="text-right mt-2">
-              <span className="text-white text-sm">
+            <div className="text-right mt-1">
+              <span className="text-white text-xs">
                 {translate("sendLetter.charCount")
                   .replace("{current}", content.length.toString())
                   .replace("{max}", MAX_CONTENT_LENGTH.toString())}
@@ -194,13 +227,11 @@ export default function SendLetterModal({
             onClick={isButtonDisabled ? undefined : handleSend}
           >
             <Image
-              src={ButtonLargeGreen}
+              src={ButtonLetterWrite}
               alt="메세지 보내기"
-              width={218}
               height={60.84}
-              className={`w-full h-auto ${
-                isButtonDisabled ? "opacity-50 cursor-not-allowed" : ""
-              }`}
+              className={`w-full h-auto ${isButtonDisabled ? "opacity-50 cursor-not-allowed" : ""
+                }`}
             />
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
               <span className="text-black font-bold text-center text-lg">

@@ -1,5 +1,5 @@
-import { ApiResponse } from "@/features/shared/utils/api/apiClient";
 import { SendLetterRequest } from "../models/req/SendLetterRequest";
+import { SendLetterResponse } from "../models/res/SendLetterResponse";
 import { sendLetter as sendLetterRepo } from "../repositories/letterRepository";
 
 const MIN_SENDER_NAME_LENGTH = 1;
@@ -10,11 +10,11 @@ const MAX_CONTENT_LENGTH = 300;
 /**
  * 편지를 보냅니다
  * @param req - 발신자명, 내용, 수신자ID를 포함한 요청
- * @returns 성공 메시지
+ * @returns 성공 메시지와 포켓몬 ID
  */
 export async function sendLetter(
   req: SendLetterRequest
-): Promise<ApiResponse<null>> {
+): Promise<SendLetterResponse> {
   // validation
 
   const trimmedSenderName = req.sender_name.trim();
@@ -48,6 +48,5 @@ export async function sendLetter(
 
   // API request
   const res = await sendLetterRepo(req);
-
   return res;
 }

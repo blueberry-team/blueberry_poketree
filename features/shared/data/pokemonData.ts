@@ -251,9 +251,9 @@ import Pokemon80Base from "@/assets/images/pokemon/base/80-pokemon.png";
  */
 export interface PokemonInfo {
   id: number;
-  imageActive: string | StaticImageData;
-  imageInactive: string | StaticImageData;
-  imageBase: string | StaticImageData;
+  imageActive: StaticImageData;
+  imageInactive: StaticImageData;
+  imageBase: StaticImageData;
 }
 
 /**
