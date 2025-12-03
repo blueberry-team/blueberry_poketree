@@ -17,6 +17,8 @@ export const ko = {
     yourTree: "당신의 트리 이름은?",
     password: "비밀번호 (4자리)",
     confirmInput: "입력 완료",
+    charCount: "{current} / {max}자",
+    passwordLength: "{current} / {max}자",
   },
   share: {
     title: "친구들에게 포케트리를 공유해주세요!",
