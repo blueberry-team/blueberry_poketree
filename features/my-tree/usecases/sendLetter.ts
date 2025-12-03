@@ -1,15 +1,11 @@
-import { ApiResponse } from "@/features/shared/utils/api/apiClient";
 import { SendLetterRequest } from "../models/req/SendLetterRequest";
+import { SendLetterResponse } from "../models/res/SendLetterResponse";
 import { sendLetter as sendLetterRepo } from "../repositories/letterRepository";
 
 const MIN_SENDER_NAME_LENGTH = 1;
 const MAX_SENDER_NAME_LENGTH = 6;
 const MIN_CONTENT_LENGTH = 4;
 const MAX_CONTENT_LENGTH = 300;
-
-interface SendLetterResponse {
-  letter_pokemon: number;
-}
 
 /**
  * 편지를 보냅니다
@@ -18,7 +14,7 @@ interface SendLetterResponse {
  */
 export async function sendLetter(
   req: SendLetterRequest
-): Promise<ApiResponse<SendLetterResponse>> {
+): Promise<SendLetterResponse> {
   // validation
 
   const trimmedSenderName = req.sender_name.trim();

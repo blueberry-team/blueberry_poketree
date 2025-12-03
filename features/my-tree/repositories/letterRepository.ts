@@ -6,6 +6,7 @@ import type { GetLetterRequest } from "../models/req/GetLetterRequest";
 import type { GetVisitorLetterRequest } from "../models/req/GetVisitorLetterRequest";
 import type { GetLetterResponse } from "../models/res/GetLetterResponse";
 import type { SendLetterRequest } from "../models/req/SendLetterRequest";
+import type { SendLetterResponse } from "../models/res/SendLetterResponse";
 import type { DeleteLetterRequest } from "../models/req/DeleteLetterRequest";
 import type { OpenLetterRequest } from "../models/req/OpenLetterRequest";
 
@@ -37,10 +38,6 @@ export async function getVisitorLetterById(
   );
 }
 
-interface SendLetterResponseData {
-  letter_pokemon: number;
-}
-
 /**
  * 편지를 보냅니다
  * @param req - 발신자명, 내용, 수신자ID를 포함한 요청 데이터
@@ -48,8 +45,8 @@ interface SendLetterResponseData {
  */
 export async function sendLetter(
   req: SendLetterRequest
-): Promise<ApiResponse<SendLetterResponseData>> {
-  return apiClient.post<ApiResponse<SendLetterResponseData>>(
+): Promise<SendLetterResponse> {
+  return apiClient.post<SendLetterResponse>(
     "/letter/create-letter",
     req,
     false // 인증 불필요 (익명 편지)
