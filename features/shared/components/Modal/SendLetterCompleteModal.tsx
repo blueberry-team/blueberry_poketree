@@ -16,7 +16,7 @@ interface SendLetterCompleteModalProps {
   isOpen: boolean;
   onClose: () => void;
   reveicerName: string;
-  receivedPokemon: StaticImageData | string;
+  receivedPokemon: StaticImageData;
 }
 
 export default function SendLetterCompleteModal({
