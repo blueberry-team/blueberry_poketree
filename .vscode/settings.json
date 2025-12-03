@@ -1,6 +1,9 @@
 {
     "cSpell.ignorePaths": [
+        "**/languages/en.ts",
         "**/languages/es.ts",
+        "**/languages/ja.ts",
+        "**/languages/ko.ts",
         "**/languages/pt.ts",
         "**/languages/ru.ts",
         "**/languages/vi.ts",
