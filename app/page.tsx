@@ -1,8 +1,14 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { LandingTree } from "@/features/landing/components/LandingTree/LandingTree";
-import { ChristmasCountdown } from "@/features/landing/components/ChristmasCountdown/ChristmasCountdown";
 import { LandingFooter } from "@/features/landing/components/LandingFooter/LandingFooter";
+
+// TODO: 리팩토링 시 hydration 문제 해결 방안 검토 (현재 ssr: false로 우회 중)
+const ChristmasCountdown = dynamic(
+  () => import("@/features/landing/components/ChristmasCountdown/ChristmasCountdown").then(mod => mod.ChristmasCountdown),
+  { ssr: false }
+);
 
 // 랜딩 페이지
 export default function LandingPage() {

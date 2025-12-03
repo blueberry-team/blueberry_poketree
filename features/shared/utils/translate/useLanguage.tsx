@@ -99,13 +99,9 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     localStorage.setItem("language", lang);
   };
 
-  // SSR 중에는 기본값 사용
+  // SSR/hydration 중에는 렌더링하지 않아서 불일치 방지
   if (!mounted) {
-    return (
-      <LanguageContext.Provider value={{ language, setLanguage }}>
-        {children}
-      </LanguageContext.Provider>
-    );
+    return null;
   }
 
   return (
