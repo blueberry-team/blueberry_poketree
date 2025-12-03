@@ -1,0 +1,155 @@
+"use client";
+
+import Image from "next/image";
+import { useEffect, useState } from "react";
+import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
+import { getPokemonImage } from "@/features/shared/data/pokemonData";
+import CloseIcon from "@/assets/icon/closeIcon.png";
+import BallHatchImage from "@/assets/images/components/ball-hatch.webp";
+import ButtonLargeGreen from "@/assets/images/components/button_large_green.png";
+
+/**
+ * HatchModal - 볼 부화 애니메이션과 포켓몬 공개 화면을 표시하는 모달
+ * - is_read가 false인 편지를 처음 열 때 표시
+ * - 볼 부화 애니메이션 3초 후 포켓몬 공개 화면으로 전환
+ */
+
+interface HatchModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onComplete: () => void;
+  senderName: string;
+  pokemonId: number;
+}
+
+function HatchModalContent({
+  onClose,
+  onComplete,
+  senderName,
+  pokemonId,
+}: Omit<HatchModalProps, 'isOpen'>) {
+  const { translate } = useTranslation();
+  const [showHatchAnimation, setShowHatchAnimation] = useState(true);
+
+  // 볼 부화 애니메이션 후 포켓몬 공개
+  useEffect(() => {
+    // 3초 후 포켓몬 이미지 표시
+    const timer = setTimeout(() => {
+      setShowHatchAnimation(false);
+    }, 3000);
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (!showHatchAnimation) {
+    // 포켓몬 공개 화면 표시
+    return (
+      <div
+        className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="bg-black rounded-lg w-[352px] relative flex flex-col items-center justify-center gap-8 py-12 px-8">
+          {/* 닫기 버튼 */}
+          <button
+            onClick={() => {
+              onClose();
+              onComplete();
+            }}
+            className="absolute bottom-[calc(100%+15px)] right-0 w-8 h-8 bg-black rounded flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors z-10"
+            aria-label="닫기"
+          >
+            <Image
+              src={CloseIcon}
+              alt="닫기"
+              width={20}
+              height={20}
+              className="object-contain"
+            />
+          </button>
+
+          <p className="text-white text-2xl font-bold">
+            {senderName}{translate("letterModal.pokemonReceived")}
+          </p>
+          <Image
+            src={getPokemonImage(pokemonId)}
+            alt={`Pokemon ${pokemonId}`}
+            width={200}
+            height={200}
+            className="object-contain"
+            unoptimized
+          />
+          <button
+            onClick={onClose}
+            className="relative flex items-center justify-center"
+            style={{ width: "300px", height: "56px" }}
+          >
+            <Image
+              src={ButtonLargeGreen}
+              alt={translate("letterModal.viewLetter")}
+              fill
+              className="object-fill"
+            />
+            <span className="relative z-10 text-black text-xl font-bold">
+              {translate("letterModal.viewLetter")}
+            </span>
+          </button>
+        </div>
+      </div>
+    );
+  }
+
+  // 볼 부화 애니메이션 표시
+  return (
+    <div
+      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
+      onClick={(e) => e.stopPropagation()}
+    >
+      <div className="bg-black rounded-lg w-[352px] relative flex items-center justify-center py-12 px-8">
+        {/* 닫기 버튼 */}
+        <button
+          onClick={() => {
+            onClose();
+            onComplete();
+          }}
+          className="absolute bottom-[calc(100%+15px)] right-0 w-8 h-8 bg-black rounded flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors z-10"
+          aria-label="닫기"
+        >
+          <Image
+            src={CloseIcon}
+            alt="닫기"
+            width={20}
+            height={20}
+            className="object-contain"
+          />
+        </button>
+
+        <Image
+          src={BallHatchImage}
+          alt="볼 부화"
+          width={300}
+          height={300}
+          className="object-contain"
+        />
+      </div>
+    </div>
+  );
+}
+
+export default function HatchModal({
+  isOpen,
+  onClose,
+  onComplete,
+  senderName,
+  pokemonId,
+}: HatchModalProps) {
+  if (!isOpen) return null;
+
+  return (
+    <HatchModalContent
+      onClose={onClose}
+      onComplete={onComplete}
+      senderName={senderName}
+      pokemonId={pokemonId}
+    />
+  );
+}

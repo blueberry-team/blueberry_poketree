@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import GiftBoxIcon from "@/assets/icon/giftBoxIcon.svg";
 import ButtonSmallDark from "@/assets/images/components/button_small_dark.png";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
+import { trackButtonClick } from "@/features/shared/utils/analytics/analytics";
 
 export function ChristmasCountdown() {
   const router = useRouter();
@@ -13,6 +14,7 @@ export function ChristmasCountdown() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0 });
 
   const handleLogin = () => {
+    trackButtonClick("button_click_home_login");
     router.push("/signup-or-go");
   };
 
