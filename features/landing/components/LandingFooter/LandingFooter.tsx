@@ -37,7 +37,7 @@ export function LandingFooter() {
             height={60.84}
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="text-white font-bold text-center" style={{ fontSize: "20.28px" }}>
+            <span className="font-bold text-center" style={{ fontSize: "20.28px" }}>
               {translate("landing.makeTree")}
             </span>
           </div>
@@ -51,7 +51,7 @@ export function LandingFooter() {
         />
       </div>
 
-      <p className="text-center font-semibold text-[18px]">
+      <p className="text-center font-semibold text-[18px] text-white">
         {translate("landing.description2")}
       </p>
 

@@ -46,7 +46,7 @@ export function ChristmasCountdown() {
   const minutesStr = String(timeLeft.minutes).padStart(2, "0");
 
   return (
-    <div className="flex flex-col items-center w-full overflow-hidden">
+    <div className="flex flex-col items-center w-full overflow-hidden text-white">
       {/* 크리스마스 카운트다운 */}
       <div className="flex items-center gap-2 text-[18px] flex-wrap justify-center px-4">
         <span className="font-bold">{translate("landing.countdown")}</span>
