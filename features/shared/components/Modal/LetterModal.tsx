@@ -201,7 +201,7 @@ export default function LetterModal({
               />
             </button>
 
-            <div className="bg-black rounded-lg w-[352px] h-[531px] relative overflow-y-auto">
+            <div className="bg-black rounded-lg w-[352px] max-h-[80vh] relative overflow-hidden">
 
             {/* 자물쇠 아이콘 (우상단) - isOwner일 때만 표시, is_open가 false일 때 표시 */}
             {isOwner === "true" && letterData?.is_open !== "true" && (
