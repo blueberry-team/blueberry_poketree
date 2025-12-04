@@ -4,14 +4,20 @@ import { AuthForm } from "@/features/signup-or-go/components/AuthForm";
 import { SignupOrGoRequest } from "@/features/signup-or-go/models/req/SignupOrGoRequest";
 import { signupOrGo } from "@/features/signup-or-go/usecases/signupOrGo";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { trackEvent } from "@/features/shared/utils/analytics/analytics";
 import { notifyUserCreateSuccess } from "@/features/shared/utils/discord/discord";
+import { resetAuthState } from "@/features/signup-or-go/stores/authStore";
 
 export default function SignupOrGoPage() {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
+    // 페이지 진입 시 인증 상태 초기화 (AUTH005 등으로 리다이렉트된 경우 대비)
+    useEffect(() => {
+        resetAuthState();
+    }, []);
 
     const handleSignupOrGo = async (req: SignupOrGoRequest) => {
         setIsLoading(true);

@@ -1,9 +1,8 @@
 import { logoutPost } from "../repositories/logoutPost";
-import {
-  setLoggedIn,
-  setUserId,
-} from "../../signup-or-go/stores/authStore";
-import { ApiResponse } from "../utils/api/apiClient";
+import { resetAuthState } from "../../signup-or-go/stores/authStore";
+import { ApiResponse, isApiError } from "../utils/api/apiClient";
+import { extractErrorCode } from "../utils/errorHandler";
+import { ErrorCode } from "../types/errorTypes";
 
 /**
  * 로그아웃을 수행합니다
@@ -11,16 +10,24 @@ import { ApiResponse } from "../utils/api/apiClient";
  * @returns void
  */
 export async function logout(): Promise<ApiResponse<null>> {
-  // API request
-  const res = await logoutPost();
+  try {
+    // API request
+    const res = await logoutPost();
 
-  if (res.message === "success") {
-    sessionStorage.removeItem("accessToken");
-    setLoggedIn(false);
-    setUserId(""); // userId도 초기화
-    return res
-  } else {
-    console.log(res.message);
-    throw new Error(res.message);
+    if (res.message === "success") {
+      resetAuthState();
+      return res;
+    } else {
+      throw new Error(res.message);
+    }
+  } catch (err) {
+    // AUTH005 에러인 경우에도 상태 초기화 (토큰 만료 후 로그아웃 시도)
+    if (isApiError(err)) {
+      const errorCode = extractErrorCode(err);
+      if (errorCode === ErrorCode.AUTH_005) {
+        resetAuthState();
+      }
+    }
+    throw err;
   }
 }

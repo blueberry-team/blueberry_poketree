@@ -16,9 +16,11 @@ import {
   ALL_POKEMON_IMAGES
 } from "@/features/shared/data/pokemonData";
 import ButtonBigGreen from "@/assets/images/components/button_big_green.png";
+import ButtonSmallDark from "@/assets/images/components/button_small_dark.png";
 import { getUserTree } from "@/features/my-tree/usecases/getUserTree";
 import { UserTreeData } from "@/features/my-tree/models/res/GetUserTreeResponse";
 import { isApiError } from "@/features/shared/utils/api/apiClient";
+import { trackButtonClick } from "@/features/shared/utils/analytics/analytics";
 
 /**
  * MyTreePage - 내 트리 페이지
@@ -204,13 +206,18 @@ function MyTreePageContent() {
     router.push("/signup-or-go");
   };
 
+  const handleLogin = () => {
+    trackButtonClick("button_click_tree_login");
+    router.push("/signup-or-go");
+  };
+
   return (
     <div className="flex flex-col">
-      {/* ~님의 포케트리 텍스트, 공유하기 버튼 */}
+      {/* ~님의 포케트리 텍스트, 공유하기 버튼 또는 로그인 버튼 */}
       <div className="px-4 py-3 shrink-0 bg-[#BF0120] flex items-center justify-between gap-2">
         <span className="text-white text-xl font-bold whitespace-nowrap">{userName}{translate("tree.userTree")}</span>
-        {/* is_owner에 따라 공유하기 버튼 표시*/}
-        {isOwner === "true" && (
+        {/* is_owner에 따라 공유하기 버튼 또는 로그인 버튼 표시*/}
+        {isOwner === "true" ? (
           <button
             onClick={() => handleShareLinkClick()}
             className="relative w-36 h-10 flex items-center justify-center shrink-0"
@@ -222,6 +229,22 @@ function MyTreePageContent() {
               className="object-fill"
             />
             <span className={`relative z-10 text-black font-bold ${language === "en" ? "text-[12px]" : "text-12"}`}>{translate("tree.share")}</span>
+          </button>
+        ) : (
+          <button
+            onClick={handleLogin}
+            className="relative flex items-center justify-center shrink-0"
+            style={{ width: "66px", height: "28px" }}
+          >
+            <Image
+              src={ButtonSmallDark}
+              alt={translate("header.login")}
+              fill
+              className="object-fill"
+            />
+            <span className="relative z-10 text-white text-[12px] font-bold">
+              {translate("header.login")}
+            </span>
           </button>
         )}
       </div>

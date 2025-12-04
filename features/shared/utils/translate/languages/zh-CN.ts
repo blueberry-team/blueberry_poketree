@@ -50,7 +50,7 @@ export const zhCN = {
   },
   visitor: {
     makeMessage: "写消息",
-    makeTree: "创建我的宝可树",
+    makeTree: "查看我的宝可树",
     send: "发送消息",
   },
   sendLetter: {

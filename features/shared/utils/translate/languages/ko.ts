@@ -52,7 +52,7 @@ export const ko = {
   },
   visitor: {
     makeMessage: "메시지 작성하기",
-    makeTree: "내 포케트리 만들러 가기",
+    makeTree: "내 포케트리 보러가기",
     send: "메시지 보내기",
   },
   sendLetter: {

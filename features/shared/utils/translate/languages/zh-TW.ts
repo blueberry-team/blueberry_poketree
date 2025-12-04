@@ -50,7 +50,7 @@ export const zhTW = {
   },
   visitor: {
     makeMessage: "寫訊息",
-    makeTree: "創建我的寶可樹",
+    makeTree: "查看我的寶可樹",
     send: "發送訊息",
   },
   sendLetter: {

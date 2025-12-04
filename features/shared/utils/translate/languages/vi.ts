@@ -25,7 +25,7 @@ export const vi = {
     confirmInput: "Xac nhan",
   },
   share: {
-    title: "Chia se PokeTree cua ban voi ban be!",
+    title: "Chia se PokéTree cua ban voi ban be!",
     copy: "Sao chep lien ket",
     copySuccess: "Da sao chep lien ket!",
     copyError: "Khong the sao chep lien ket. Vui long thu lai.",
@@ -39,9 +39,9 @@ export const vi = {
     ownedStatus: "Da bat {owned} trong so {total}",
   },
   tree: {
-    title: "PokeTree cua toi",
-    userTree: " PokeTree cua",
-    share: "Chia se PokeTree",
+    title: "PokéTree cua toi",
+    userTree: " PokéTree cua",
+    share: "Chia se PokéTree",
     notice: "Tin nhan co the xem tu ngay Giang sinh!",
     messageCount: " Tin nhan Pocket",
     checkMessage: "Xem tin nhan",
@@ -50,7 +50,7 @@ export const vi = {
   },
   visitor: {
     makeMessage: "Viet tin nhan",
-    makeTree: "Tao PokeTree cua toi",
+    makeTree: "Xem PokéTree cua toi",
     send: "Gui tin nhan",
   },
   sendLetter: {
@@ -111,7 +111,7 @@ export const vi = {
     minutes: "P",
     description1: "Nhan qua bat ngo vao ngay Giang sinh!",
     description2: "Viet thu de trang tri cay cua ban be!",
-    makeTree: "Tao PokeTree",
+    makeTree: "Tao PokéTree",
     visitSocial: "Ghe tham Instagram",
     socialName: "Instagram",
     socialId: "@poketree_official",
@@ -120,8 +120,7 @@ export const vi = {
     title: "Cach su dung",
     section1: {
       title: "Chia se voi ban be",
-      description:
-        "Chia se dia chi cay cua ban voi ban be bang nut chia se.",
+      description: "Chia se dia chi cay cua ban voi ban be bang nut chia se.",
     },
     section2: {
       title: "Thu thap thu va Pokemon",
