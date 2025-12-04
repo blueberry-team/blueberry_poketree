@@ -50,7 +50,7 @@ function BottomButtonsContent({
   return (
     <div className="flex justify-between items-end">
       {/* 왼쪽: 메시지 버튼 + 도감 버튼 (세로 배치) */}
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col gap-4">
         {/* 메시지 확인 버튼 (onCheckMessage가 전달된 경우) */}
         {onCheckMessage && (
           <button
@@ -126,7 +126,7 @@ export function BottomButtons(props: BottomButtonsProps) {
   return (
     <Suspense fallback={
       <div className="flex justify-between items-end">
-        <div className="flex flex-col gap-2">
+        <div className="flex flex-col gap-4">
           <button
             className="relative flex items-center justify-center"
             style={{ width: "193px", height: "56px" }}
