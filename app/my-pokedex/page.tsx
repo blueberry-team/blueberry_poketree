@@ -66,9 +66,9 @@ function MyPokedexPageContent() {
   const totalCount = POKEMON_DATA.length;
 
   return (
-    <div className="flex-1 flex flex-col bg-[#BF0120] overflow-hidden">
+    <div className="flex-1 flex flex-col bg-[#BF0120] overflow-hidden w-full max-w-full">
       {/* 헤더 영역 */}
-      <div className="px-4 py-3 shrink-0">
+      <div className="px-4 py-3 shrink-0 w-full">
         <div className="flex flex-col gap-2 mb-2">
           <h1 className="text-white text-xl font-bold">
             {userName} {translate("pokedex.userPokedex")}
@@ -88,7 +88,7 @@ function MyPokedexPageContent() {
       </div>
 
       {/* 그리드 영역 - 컨테이너 높이에서 헤더(110px)와 하단여백(10px)을 뺀 높이 */}
-      <div className="h-[calc(100vh-120px)] md:h-[660px] overflow-hidden">
+      <div className="h-[calc(100vh-120px)] md:h-[660px] overflow-hidden w-full max-w-full">
         <PokedexGrid ownedPokemonIds={ownedPokemonIds} selectedIndex={selectedIndex} />
       </div>
 

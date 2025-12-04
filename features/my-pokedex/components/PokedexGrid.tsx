@@ -23,10 +23,10 @@ export function PokedexGrid({ ownedPokemonIds, selectedIndex }: PokedexGridProps
   }, [selectedIndex]);
 
   return (
-    <div className="flex flex-col" style={{ height: "100%" }}>
+    <div className="flex flex-col w-full max-w-full" style={{ height: "100%" }}>
       {/* 4열 그리드 - 남은 공간을 채움 */}
       <div
-        className="overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:hidden [scrollbar-width:none] [-ms-overflow-style:none] bg-[#F7F7F7] px-5 py-8 border-b-2 border-black h-full"
+        className="w-full max-w-full box-border overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:hidden [scrollbar-width:none] [-ms-overflow-style:none] bg-[#F7F7F7] px-5 py-8 border-b-2 border-black h-full"
         style={{
           display: "grid",
           gridTemplateColumns: "repeat(4, 1fr)",
@@ -43,7 +43,7 @@ export function PokedexGrid({ ownedPokemonIds, selectedIndex }: PokedexGridProps
           return (
             <div
               key={pokemon.id}
-              className="flex flex-col transition-all "
+              className="flex flex-col transition-all min-w-0"
               style={{
                 aspectRatio: "5 / 6",
                 marginTop: isNotFirstRow ? "10px" : "0",
