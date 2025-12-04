@@ -18,6 +18,12 @@ export function LanguageModal({ isOpen, onClose }: LanguageModalProps) {
     { code: "ko", label: "한국어" },
     { code: "en", label: "English" },
     { code: "ja", label: "日本語", useJaFont: true },
+    { code: "es", label: "Español" },
+    { code: "pt", label: "Português" },
+    { code: "ru", label: "Русский" },
+    { code: "vi", label: "Tieng Viet" },
+    { code: "zh-CN", label: "简体中文" },
+    { code: "zh-TW", label: "繁體中文" },
   ];
 
   const handleLanguageSelect = (lang: Language) => {

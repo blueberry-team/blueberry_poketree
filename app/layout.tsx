@@ -73,6 +73,24 @@ export const metadata: Metadata = {
   icons: {
     icon: "/icon.png",
   },
+  openGraph: {
+    title: "PokéTree",
+    description: "Christmas Event with Pokémon",
+    images: [
+      {
+        url: "/og-image.png", // 또는 원하는 이미지 경로
+        width: 1200,
+        height: 630,
+        alt: "PokéTree",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "PokéTree",
+    description: "Christmas Event with Pokémon",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({

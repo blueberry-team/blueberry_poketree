@@ -1,6 +1,6 @@
 # Contributing Guide
 
-PokeTree 프로젝트에 기여해주셔서 감사합니다!
+PokéTree 프로젝트에 기여해주셔서 감사합니다!
 
 ## 브랜치 전략
 

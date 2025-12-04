@@ -3,7 +3,7 @@ export const ko = {
     login: "로그인",
     logout: "로그아웃",
     logo: "로고",
-    language: "언어",
+    language: "Lang",
     help: "도움말",
     options: "설정",
   },
@@ -12,11 +12,19 @@ export const ko = {
     korean: "한국어",
     english: "English",
     japanese: "日本語",
+    spanish: "Español",
+    portuguese: "Português",
+    russian: "Русский",
+    vietnamese: "Tieng Viet",
+    chineseSimplified: "简体中文",
+    chineseTraditional: "繁體中文",
   },
   auth: {
     yourTree: "당신의 트리 이름은?",
     password: "비밀번호 (4자리)",
     confirmInput: "입력 완료",
+    charCount: "{current} / {max}자",
+    passwordLength: "{current} / {max}자",
   },
   share: {
     title: "친구들에게 포케트리를 공유해주세요!",
@@ -44,7 +52,7 @@ export const ko = {
   },
   visitor: {
     makeMessage: "메시지 작성하기",
-    makeTree: "내 포케트리 만들러 가기",
+    makeTree: "내 포케트리 보러가기",
     send: "메시지 보내기",
   },
   sendLetter: {

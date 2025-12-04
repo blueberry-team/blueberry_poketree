@@ -82,7 +82,7 @@ export function Tree({
       <ChristmasGift/>
 
       {/* 트리 이미지 */}
-      <div className="absolute inset-0 flex items-center justify-center pt-24">
+      <div className="absolute inset-0 flex items-center justify-center">
         <div className="relative" style={{ width: "min(500px, 85vw)", height: "min(700px, 75vh)" }}>
           {/* 트리 이미지 */}
           <Image
@@ -100,12 +100,12 @@ export function Tree({
               {Array.from({ length: currentPageMessageCount }).map((_, index) => {
                 // 7개 몬스터볼 위치
                 const positions = [
-                  { top: "20%", left: "50%", transform: "translateX(-50%)" },  // 꼭대기
+                  { top: "22%", left: "48%", transform: "translateX(-50%)" },  // 꼭대기
                   { top: "30%", left: "60%", transform: "translateX(-50%)" },  // 2층 오른쪽
-                  { top: "35%", left: "41%", transform: "translateX(-50%)" },  // 2층 왼쪽
-                  { top: "40%", left: "72%", transform: "translateX(-50%)" },  // 3층 오른쪽
-                  { top: "50%", left: "34%", transform: "translateX(-50%)" },  // 3층 왼쪽
-                  { top: "45%", left: "54%", transform: "translateX(-50%)" },  // 4층 가운데
+                  { top: "36%", left: "39%", transform: "translateX(-50%)" },  // 2층 왼쪽
+                  { top: "39%", left: "70%", transform: "translateX(-50%)" },  // 3층 오른쪽
+                  { top: "51%", left: "32%", transform: "translateX(-50%)" },  // 3층 왼쪽
+                  { top: "47%", left: "52%", transform: "translateX(-50%)" },  // 4층 가운데
                   { top: "52%", left: "70%", transform: "translateX(-50%)" },  // 4층 오른쪽
                 ];
                 const pos = positions[index];
@@ -153,8 +153,8 @@ export function Tree({
                       <Image
                         src={isRead ? MonsterBallOpen : MonsterBallClose}
                         alt="몬스터볼"
-                        width={48}
-                        height={48}
+                        width={36}
+                        height={36}
                         className="object-contain"
                       />
                     </button>
@@ -170,13 +170,13 @@ export function Tree({
       {obtainedPokemons.map((pokemon, index) => {
         // 7마리 포켓몬 위치
         const pokemonPositions = [
-          { bottom: "70%", left: "10%", scaleX: -1 },  // 왼쪽 상단
-          { bottom: "52%", left: "1%", scaleX: -1 },  // 왼쪽 중단
-          { bottom: "20%", left: "2%", scaleX: -1 },  // 왼쪽 하단
-          { bottom: "60%", right: "10%", scaleX: -1 },  // 오른쪽 상단
-          { bottom: "25%", left: "80%", scaleX: 1 },  // 오른쪽 중상단
-          { bottom: "2%", right: "55%", scaleX: 1 },  // 오른쪽 중하단
-          { bottom: "4%", right: "10%", scaleX: -1 },  // 오른쪽 하단
+          { bottom: "67%", left: "6%", scaleX: -1 },  // 왼쪽 상단
+          { bottom: "46%", left: "0%", scaleX: -1 },  // 왼쪽 중단
+          { bottom: "14%", left: "3%", scaleX: -1 },  // 왼쪽 하단
+          { bottom: "57%", right: "2%", scaleX: -1 },  // 오른쪽 상단 *
+          { bottom: "27%", left: "77%", scaleX: 1 },  // 오른쪽 중상단
+          { bottom: "5%", right: "50%", scaleX: 1 },  // 오른쪽 중하단
+          { bottom: "9%", right: "10%", scaleX: -1 },  // 오른쪽 하단
         ];
         const pos = pokemonPositions[index];
         if (!pos) return null;
@@ -195,8 +195,8 @@ export function Tree({
             <Image
               src={pokemon}
               alt={`포켓몬 ${index + 1}`}
-              width={80}
-              height={80}
+              width={90}
+              height={90}
               className="object-contain"
             />
           </div>

@@ -33,10 +33,10 @@ function HatchModalContent({
 
   // 볼 부화 애니메이션 후 포켓몬 공개
   useEffect(() => {
-    // 3초 후 포켓몬 이미지 표시
+    // 2초 후 포켓몬 이미지 표시
     const timer = setTimeout(() => {
       setShowHatchAnimation(false);
-    }, 3000);
+    }, 2000);
 
     return () => clearTimeout(timer);
   }, []);

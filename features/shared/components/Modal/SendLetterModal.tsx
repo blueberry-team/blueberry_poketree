@@ -182,8 +182,16 @@ export default function SendLetterModal({
               onChange={(e) => setSenderName(e.target.value)}
               placeholder={translate("sendLetter.senderPlaceholder")}
               className="w-full px-3 py-2 rounded-lg bg-white text-black text-sm focus:outline-none focus:ring-2 focus:ring-white"
+              maxLength={MAX_SENDER_NAME_LENGTH}
               disabled={isLoading}
             />
+            <div className="text-right mt-2">
+              <span className="text-white text-sm">
+                {translate("sendLetter.charCount")
+                  .replace("{current}", senderName.length.toString())
+                  .replace("{max}", MAX_SENDER_NAME_LENGTH.toString())}
+              </span>
+            </div>
           </div>
 
           {/* 메세지 내용 */}

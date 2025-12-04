@@ -6,8 +6,14 @@ import { usePathname } from "next/navigation";
 import { ko } from "./languages/ko";
 import { en } from "./languages/en";
 import { ja } from "./languages/ja";
+import { es } from "./languages/es";
+import { pt } from "./languages/pt";
+import { ru } from "./languages/ru";
+import { vi } from "./languages/vi";
+import { zhCN } from "./languages/zh-CN";
+import { zhTW } from "./languages/zh-TW";
 
-export type Language = "ko" | "en" | "ja";
+export type Language = "ko" | "en" | "ja" | "es" | "pt" | "ru" | "vi" | "zh-CN" | "zh-TW";
 
 interface LanguageContextType {
   language: Language;
@@ -22,6 +28,12 @@ export const translations = {
   ko,
   en,
   ja,
+  es,
+  pt,
+  ru,
+  vi,
+  "zh-CN": zhCN,
+  "zh-TW": zhTW,
 } as const;
 
 type NestedKeyOf<T> = T extends object
@@ -58,6 +70,12 @@ function detectBrowserLanguage(): Language {
   if (!browserLang) return "en";
   if (browserLang.startsWith("ko")) return "ko";
   if (browserLang.startsWith("ja")) return "ja";
+  if (browserLang.startsWith("es")) return "es";
+  if (browserLang.startsWith("pt")) return "pt";
+  if (browserLang.startsWith("ru")) return "ru";
+  if (browserLang.startsWith("vi")) return "vi";
+  if (browserLang.startsWith("zh-cn") || browserLang === "zh" || browserLang.startsWith("zh-hans")) return "zh-CN";
+  if (browserLang.startsWith("zh-tw") || browserLang.startsWith("zh-hk") || browserLang.startsWith("zh-hant")) return "zh-TW";
   if (browserLang.startsWith("en")) return "en";
   return "en";
 }
@@ -72,7 +90,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
   useEffect(() => {
     setMounted(true);
     const savedLanguage = localStorage.getItem("language") as Language;
-    if (savedLanguage && ["ko", "en", "ja"].includes(savedLanguage)) {
+    if (savedLanguage && ["ko", "en", "ja", "es", "pt", "ru", "vi", "zh-CN", "zh-TW"].includes(savedLanguage)) {
       setLanguageState(savedLanguage);
     } else {
       // localStorage에 저장된 언어가 없으면 브라우저 언어 감지
@@ -86,7 +104,7 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     if (!mounted) return;
 
     const savedLanguage = localStorage.getItem("language") as Language;
-    if (savedLanguage && ["ko", "en", "ja"].includes(savedLanguage)) {
+    if (savedLanguage && ["ko", "en", "ja", "es", "pt", "ru", "vi", "zh-CN", "zh-TW"].includes(savedLanguage)) {
       if (savedLanguage !== language) {
         setLanguageState(savedLanguage);
       }
