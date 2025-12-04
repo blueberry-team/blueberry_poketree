@@ -3,7 +3,7 @@ export const ko = {
     login: "로그인",
     logout: "로그아웃",
     logo: "로고",
-    language: "언어",
+    language: "Lang",
     help: "도움말",
     options: "설정",
   },
@@ -12,11 +12,19 @@ export const ko = {
     korean: "한국어",
     english: "English",
     japanese: "日本語",
+    spanish: "Español",
+    portuguese: "Português",
+    russian: "Русский",
+    vietnamese: "Tieng Viet",
+    chineseSimplified: "简体中文",
+    chineseTraditional: "繁體中文",
   },
   auth: {
     yourTree: "당신의 트리 이름은?",
     password: "비밀번호 (4자리)",
     confirmInput: "입력 완료",
+    charCount: "{current} / {max}자",
+    passwordLength: "{current} / {max}자",
   },
   share: {
     title: "친구들에게 포케트리를 공유해주세요!",
@@ -44,7 +52,7 @@ export const ko = {
   },
   visitor: {
     makeMessage: "메시지 작성하기",
-    makeTree: "내 포케트리 만들러 가기",
+    makeTree: "내 포케트리 보러가기",
     send: "메시지 보내기",
   },
   sendLetter: {
@@ -58,6 +66,9 @@ export const ko = {
     sending: "전송 중...",
     sendSuccess: "편지가 성공적으로 전송되었습니다!",
     sendError: "편지 전송에 실패했습니다.",
+  },
+  sendCompleteModal: {
+    title: "{name}님께\n포켓 메시지를 보냈습니다",
   },
   letterModal: {
     title: "{name} 님의 포켓 메세지",
@@ -75,6 +86,8 @@ export const ko = {
     unpublishSuccess: "메세지가 비공개되었습니다.",
     updateVisibilityError: "메세지 공개 상태 변경에 실패했습니다.",
     loadError: "편지를 불러올 수 없습니다.",
+    pokemonReceived: "님이 보낸 포켓몬 획득!",
+    viewLetter: "메세지 확인하기",
   },
   message: {
     title: "포켓 메시지",

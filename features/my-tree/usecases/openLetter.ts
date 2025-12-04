@@ -15,7 +15,7 @@ export async function openLetter(
     throw new Error("편지 ID가 필요합니다.");
   }
 
-  if (typeof req.is_open !== "boolean") {
+  if (req.is_open !== "true" && req.is_open !== "false") {
     throw new Error("공개 여부 값이 필요합니다.");
   }
 

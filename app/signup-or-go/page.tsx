@@ -4,12 +4,20 @@ import { AuthForm } from "@/features/signup-or-go/components/AuthForm";
 import { SignupOrGoRequest } from "@/features/signup-or-go/models/req/SignupOrGoRequest";
 import { signupOrGo } from "@/features/signup-or-go/usecases/signupOrGo";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { trackEvent } from "@/features/shared/utils/analytics/analytics";
+import { notifyUserCreateSuccess } from "@/features/shared/utils/discord/discord";
+import { resetAuthState } from "@/features/signup-or-go/stores/authStore";
 
 export default function SignupOrGoPage() {
     const router = useRouter();
     const [isLoading, setIsLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
+    // 페이지 진입 시 인증 상태 초기화 (AUTH005 등으로 리다이렉트된 경우 대비)
+    useEffect(() => {
+        resetAuthState();
+    }, []);
 
     const handleSignupOrGo = async (req: SignupOrGoRequest) => {
         setIsLoading(true);
@@ -19,6 +27,16 @@ export default function SignupOrGoPage() {
             const res = await signupOrGo(req);
 
             if (res.message == "success" && res.data) {
+                // Analytics 이벤트 전송 - 회원가입 성공
+                trackEvent("user_create_success", {
+                    tree_name: req.nickname,
+                    tree_name_length: req.nickname.length,
+                    public_id: res.data.public_id,
+                });
+
+                // Discord 알림 전송 (비동기, 에러 무시)
+                notifyUserCreateSuccess(req.nickname);
+
                 // public_id를 query params로 전달
                 router.push(`/my-tree?id=${res.data.public_id}`);
             }

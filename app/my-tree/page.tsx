@@ -16,9 +16,11 @@ import {
   ALL_POKEMON_IMAGES
 } from "@/features/shared/data/pokemonData";
 import ButtonBigGreen from "@/assets/images/components/button_big_green.png";
+import ButtonSmallDark from "@/assets/images/components/button_small_dark.png";
 import { getUserTree } from "@/features/my-tree/usecases/getUserTree";
 import { UserTreeData } from "@/features/my-tree/models/res/GetUserTreeResponse";
 import { isApiError } from "@/features/shared/utils/api/apiClient";
+import { trackButtonClick } from "@/features/shared/utils/analytics/analytics";
 
 /**
  * MyTreePage - 내 트리 페이지
@@ -132,13 +134,13 @@ function MyTreePageContent() {
   if (error || !treeData) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen gap-4 p-4 bg-[#E7E9EB]">
-        <h1 className="text-xl font-bold">오류</h1>
-        <p className="text-gray-600">{error || '트리 정보를 찾을 수 없습니다.'}</p>
+        <h1 className="text-xl font-bold">{translate("error.title")}</h1>
+        <p className="text-gray-600">{error || translate("error.treeNotFound")}</p>
         <button
           onClick={() => router.push('/')}
           className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
         >
-          홈으로 돌아가기
+          {translate("error.goHome")}
         </button>
       </div>
     );
@@ -190,7 +192,7 @@ function MyTreePageContent() {
    */
   const handleLetterClick = (index: number) => {
     // 주인은 모든 편지를 볼 수 있고, 방문자는 오픈된 편지만 볼 수 있음
-    if (isOwner || letters[index].is_open) {
+    if (isOwner === "true" || letters[index].is_open === "true") {
       setSelectedLetterIndex(index);
       setIsLetterModalOpen(true);
     }
@@ -204,13 +206,18 @@ function MyTreePageContent() {
     router.push("/signup-or-go");
   };
 
+  const handleLogin = () => {
+    trackButtonClick("button_click_tree_login");
+    router.push("/signup-or-go");
+  };
+
   return (
     <div className="flex flex-col">
-      {/* ~님의 포케트리 텍스트, 공유하기 버튼 */}
+      {/* ~님의 포케트리 텍스트, 공유하기 버튼 또는 로그인 버튼 */}
       <div className="px-4 py-3 shrink-0 bg-[#BF0120] flex items-center justify-between gap-2">
         <span className="text-white text-xl font-bold whitespace-nowrap">{userName}{translate("tree.userTree")}</span>
-        {/* is_owner에 따라 공유하기 버튼 표시*/}
-        {isOwner && (
+        {/* is_owner에 따라 공유하기 버튼 또는 로그인 버튼 표시*/}
+        {isOwner === "true" ? (
           <button
             onClick={() => handleShareLinkClick()}
             className="relative w-36 h-10 flex items-center justify-center shrink-0"
@@ -222,6 +229,22 @@ function MyTreePageContent() {
               className="object-fill"
             />
             <span className={`relative z-10 text-black font-bold ${language === "en" ? "text-[12px]" : "text-12"}`}>{translate("tree.share")}</span>
+          </button>
+        ) : (
+          <button
+            onClick={handleLogin}
+            className="relative flex items-center justify-center shrink-0"
+            style={{ width: "66px", height: "28px" }}
+          >
+            <Image
+              src={ButtonSmallDark}
+              alt={translate("header.login")}
+              fill
+              className="object-fill"
+            />
+            <span className="relative z-10 text-white text-[12px] font-bold">
+              {translate("header.login")}
+            </span>
           </button>
         )}
       </div>
@@ -241,7 +264,7 @@ function MyTreePageContent() {
       <div className="px-4 py-4 shrink-0 relative min-h-[200px]">
         {/* 도감 버튼과 십자 버튼 (메시지 버튼 포함) */}
         {/*is_owner에 따라 바텀컴포넌트 구분*/}
-        {isOwner ? (
+        {isOwner === "true" ? (
           <BottomButtons
             onUp={handleUp}
             onDown={handleDown}
@@ -272,8 +295,15 @@ function MyTreePageContent() {
       {/* 편지 모달 */}
       <LetterModal
         isModalOpen={isLetterModalOpen}
-        onClose={() => setIsLetterModalOpen(false)}
+        onClose={() => {
+          setIsLetterModalOpen(false);
+          // 모달 닫을 때 트리 데이터 새로고침
+          fetchTreeData();
+        }}
         letterId={letters[selectedLetterIndex]?.letter_id || null}
+        isOwner={isOwner}
+        userId={publicId!}
+        isRead={letters[selectedLetterIndex]?.is_read || "true"}
         onComplete={() => {
           // 편지 삭제 후 트리 데이터 새로고침
           fetchTreeData();

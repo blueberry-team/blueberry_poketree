@@ -7,6 +7,7 @@ import { CrossButton } from "./CrossButton";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import ButtonMediumDark from "@/assets/images/components/button_medium_dark.png";
 import ButtonMediumSkyblue from "@/assets/images/components/button_medium_skyblue.png";
+import { trackButtonClick } from "@/features/shared/utils/analytics/analytics";
 
 interface BottomButtonsProps {
   onUp?: () => void;
@@ -38,6 +39,7 @@ function BottomButtonsContent({
   const publicId = searchParams.get('id');
 
   const handleButtonClick = () => {
+    trackButtonClick("button_click_pokedex_view", { public_id: publicId });
     if (publicId) {
       router.push(`/my-pokedex?id=${publicId}`);
     }
@@ -52,7 +54,10 @@ function BottomButtonsContent({
         {/* 메시지 확인 버튼 (onCheckMessage가 전달된 경우) */}
         {onCheckMessage && (
           <button
-            onClick={onCheckMessage}
+            onClick={() => {
+              trackButtonClick("button_click_check_message");
+              onCheckMessage();
+            }}
             className="relative flex items-center justify-center"
             style={{ width: "193px", height: "56px" }}
           >
@@ -71,7 +76,10 @@ function BottomButtonsContent({
         {/* 메시지 보내기 버튼 (onSendMessage가 전달된 경우) */}
         {onSendMessage && (
           <button
-            onClick={onSendMessage}
+            onClick={() => {
+              trackButtonClick("button_click_send_pocket_message");
+              onSendMessage();
+            }}
             className="relative flex items-center justify-center"
             style={{ width: "193px", height: "56px" }}
           >

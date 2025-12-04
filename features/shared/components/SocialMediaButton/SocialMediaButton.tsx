@@ -5,6 +5,7 @@ import InstagramIcon from "@/assets/icon/instagramIcon.svg";
 import XIcon from "@/assets/icon/xIcon.svg";
 import RightArrowIcon from "@/assets/icon/rightArrowIcon.svg";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
+import { trackButtonClick } from "@/features/shared/utils/analytics/analytics";
 
 /**
  * 소셜미디어 버튼 컴포넌트
@@ -20,7 +21,21 @@ export function SocialMediaButton() {
       ko: "https://instagram.com/poketree_kr",
       en: "https://instagram.com/poketree_official",
       ja: "https://twitter.com/poketree_jp",
+      es: "https://instagram.com/poketree_official",
+      pt: "https://instagram.com/poketree_official",
+      ru: "https://instagram.com/poketree_official",
+      vi: "https://instagram.com/poketree_official",
+      "zh-CN": "https://instagram.com/poketree_official",
+      "zh-TW": "https://instagram.com/poketree_official",
     };
+
+    const platform = language === "ja" ? "twitter" : "instagram";
+    trackButtonClick("button_click_social_media", {
+      platform,
+      language,
+      url: socialUrls[language],
+    });
+
     window.open(socialUrls[language], "_blank");
   };
 

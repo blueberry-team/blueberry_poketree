@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import GiftBoxIcon from "@/assets/icon/giftBoxIcon.svg";
 import ButtonSmallDark from "@/assets/images/components/button_small_dark.png";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
+import { trackButtonClick } from "@/features/shared/utils/analytics/analytics";
 
 export function ChristmasCountdown() {
   const router = useRouter();
@@ -13,6 +14,7 @@ export function ChristmasCountdown() {
   const [timeLeft, setTimeLeft] = useState({ days: 0, hours: 0, minutes: 0 });
 
   const handleLogin = () => {
+    trackButtonClick("button_click_home_login");
     router.push("/signup-or-go");
   };
 
@@ -44,7 +46,7 @@ export function ChristmasCountdown() {
   const minutesStr = String(timeLeft.minutes).padStart(2, "0");
 
   return (
-    <div className="flex flex-col items-center w-full overflow-hidden">
+    <div className="flex flex-col items-center w-full overflow-hidden text-white">
       {/* 크리스마스 카운트다운 */}
       <div className="flex items-center gap-2 text-[18px] flex-wrap justify-center px-4">
         <span className="font-bold">{translate("landing.countdown")}</span>

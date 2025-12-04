@@ -3,7 +3,7 @@ export const ja = {
     login: "ログイン",
     logout: "ログアウト",
     logo: "ロゴ",
-    language: "言語",
+    language: "Lang",
     help: "ヘルプ",
     options: "設定",
   },
@@ -12,11 +12,19 @@ export const ja = {
     korean: "한국어",
     english: "English",
     japanese: "日本語",
+    spanish: "Español",
+    portuguese: "Português",
+    russian: "Русский",
+    vietnamese: "Tieng Viet",
+    chineseSimplified: "简体中文",
+    chineseTraditional: "繁體中文",
   },
   auth: {
     yourTree: "あなたのツリーの名前は？",
     password: "パスワード (4桁)",
     confirmInput: "入力完了",
+    charCount: "{current} / {max}文字",
+    passwordLength: "{current} / {max}文字",
   },
   share: {
     title: "ともだちに「PokéTree」を\nシェアしましょう！",
@@ -44,7 +52,7 @@ export const ja = {
   },
   visitor: {
     makeMessage: "メッセージをかく",
-    makeTree: "マイポケツリーをつくる",
+    makeTree: "マイポケツリーを見る",
     send: "メッセージを送信",
   },
   sendLetter: {
@@ -58,6 +66,9 @@ export const ja = {
     sending: "送信中...",
     sendSuccess: "メッセージが送信されました！",
     sendError: "メッセージの送信に失敗しました。",
+  },
+  sendCompleteModal: {
+    title: "{name}さんに\nポケットメッセージをおくりました"
   },
   letterModal: {
     title: "{name}のポケットメッセージ",
@@ -75,6 +86,8 @@ export const ja = {
     unpublishSuccess: "メッセージが非公開になりました。",
     updateVisibilityError: "メッセージの公開状態の変更に失敗しました。",
     loadError: "メッセージを読み込めませんでした。",
+    pokemonReceived: "からポケモンをゲット！",
+    viewLetter: "メッセージを確認する",
   },
   message: {
     title: "ポケットメッセージ",

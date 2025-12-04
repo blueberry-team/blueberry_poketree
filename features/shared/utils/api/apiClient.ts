@@ -1,3 +1,8 @@
+import {
+  extractErrorCode,
+  handleRedirectError,
+} from "@/features/shared/utils/errorHandler";
+
 /**
  * API 성공 응답 구조
  * @template T - 응답 데이터의 타입
@@ -28,6 +33,7 @@ const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
  * API 클라이언트 클래스
  * - HTTP 요청을 처리하고 인증 토큰을 관리합니다
  * - 응답 헤더에서 토큰을 자동으로 갱신합니다
+ * - X-Token-Refresh-Required 헤더가 오면 응답은 즉시 반환하고 백그라운드에서 토큰 리프레시를 수행합니다
  * - 에러 응답을 처리하고 타입 안전성을 제공합니다
  */
 export class ApiClient {
@@ -36,7 +42,7 @@ export class ApiClient {
    * @returns 액세스 토큰 또는 null
    */
   private getAuthToken(): string | null {
-    return sessionStorage.getItem('accessToken');
+    return sessionStorage.getItem("accessToken");
   }
 
   /**
@@ -44,7 +50,7 @@ export class ApiClient {
    * @param token - 저장할 액세스 토큰
    */
   private setAuthToken(token: string): void {
-    sessionStorage.setItem('accessToken', token);
+    sessionStorage.setItem("accessToken", token);
   }
 
   /**
@@ -53,15 +59,18 @@ export class ApiClient {
    * @param customHeaders - 추가 커스텀 헤더 (선택)
    * @returns 구성된 HTTP 헤더
    */
-  private buildHeaders(requiresAuth: boolean, customHeaders?: Record<string, string>): HeadersInit {
+  private buildHeaders(
+    requiresAuth: boolean,
+    customHeaders?: Record<string, string>
+  ): HeadersInit {
     const headers: Record<string, string> = {
-      'Content-Type': 'application/json',
+      "Content-Type": "application/json",
     };
 
     if (requiresAuth) {
       const token = this.getAuthToken();
       if (token) {
-        headers['Authorization'] = `Bearer ${token}`;
+        headers["Authorization"] = `Bearer ${token}`;
       }
     }
 
@@ -74,6 +83,39 @@ export class ApiClient {
   }
 
   /**
+   * 토큰 리프레시를 위한 login API를 호출합니다
+   * @throws Error - 로그인/리프레시 실패 시
+   */
+  private async login(): Promise<void> {
+    const response = await fetch(`${BASE_API_URL}/auth/login`, {
+      method: "POST",
+      credentials: "include",
+    });
+
+    if (!response.ok) {
+      // 에러 응답에서 에러 코드 추출
+      try {
+        const errorData: ApiError = await response.json();
+        const errorCode = extractErrorCode(errorData);
+
+        // 리다이렉트 타입 에러인 경우 리다이렉트 처리
+        if (errorCode) {
+          handleRedirectError(errorCode, "/signup-or-go");
+        }
+      } catch {
+        // JSON 파싱 실패 시 기본 에러 처리
+      }
+      throw new Error("Token refresh failed");
+    }
+
+    // 응답 헤더에서 새로운 토큰이 있으면 저장
+    const newAccessToken = response.headers.get("access-token");
+    if (newAccessToken) {
+      this.setAuthToken(newAccessToken);
+    }
+  }
+
+  /**
    * HTTP 응답을 처리합니다
    * - 응답 헤더에서 새로운 토큰이 있으면 자동으로 갱신
    * - 에러 응답인 경우 ApiError를 throw
@@ -83,7 +125,7 @@ export class ApiClient {
    */
   private async handleResponse<T>(response: Response): Promise<T> {
     // 토큰 자동 갱신
-    const newAccessToken = response.headers.get('access-token');
+    const newAccessToken = response.headers.get("access-token");
     if (newAccessToken) {
       this.setAuthToken(newAccessToken);
     }
@@ -99,6 +141,7 @@ export class ApiClient {
 
   /**
    * 기본 HTTP 요청을 수행합니다
+   * - X-Token-Expired 또는 X-Token-Refresh-Required 헤더가 있으면 응답은 즉시 반환하고 백그라운드에서 토큰 리프레시를 수행합니다
    * @param endpoint - API 엔드포인트 경로
    * @param method - HTTP 메서드
    * @param requiresAuth - 인증이 필요한지 여부
@@ -117,10 +160,28 @@ export class ApiClient {
       method,
       headers: this.buildHeaders(requiresAuth, customHeaders),
       // TODO: 쿠키 전송 필요 여부 확인 분기처리
-      credentials: 'include',
+      credentials: "include",
       body: body ? JSON.stringify(body) : undefined,
     });
 
+    // 응답 헤더에서 토큰 만료 또는 리프레시 필요 여부 확인
+    const tokenExpiredHeader = response.headers.get("X-Token-Expired");
+    const tokenRefreshRequiredHeader = response.headers.get(
+      "X-Token-Refresh-Required"
+    );
+    const needsRefresh =
+      tokenExpiredHeader === "true" || tokenRefreshRequiredHeader === "true";
+
+    if (needsRefresh) {
+      // 백그라운드에서 토큰 리프레시 수행 (await 없이 비동기로 실행)
+      // 응답은 즉시 반환하여 딜레이를 방지하고, 다음 요청부터 갱신된 토큰 사용
+      this.login().catch(() => {
+        // 리프레시 실패는 조용히 처리 (다음 요청 시 다시 시도)
+        // AUTH_005 같은 리다이렉트 에러는 login() 내부에서 처리됨
+      });
+    }
+
+    // 응답을 즉시 처리하고 반환
     return this.handleResponse<T>(response);
   }
 
@@ -131,8 +192,18 @@ export class ApiClient {
    * @param customHeaders - 추가 커스텀 헤더 (선택)
    * @returns 응답 데이터
    */
-  async get<T>(endpoint: string, requiresAuth = false, customHeaders?: Record<string, string>): Promise<T> {
-    return this.request<T>(endpoint, 'GET', requiresAuth, undefined, customHeaders);
+  async get<T>(
+    endpoint: string,
+    requiresAuth = false,
+    customHeaders?: Record<string, string>
+  ): Promise<T> {
+    return this.request<T>(
+      endpoint,
+      "GET",
+      requiresAuth,
+      undefined,
+      customHeaders
+    );
   }
 
   /**
@@ -142,8 +213,12 @@ export class ApiClient {
    * @param requiresAuth - 인증이 필요한지 여부 (기본값: false)
    * @returns 응답 데이터
    */
-  async post<T>(endpoint: string, body?: unknown, requiresAuth = false): Promise<T> {
-    return this.request<T>(endpoint, 'POST', requiresAuth, body);
+  async post<T>(
+    endpoint: string,
+    body?: unknown,
+    requiresAuth = false
+  ): Promise<T> {
+    return this.request<T>(endpoint, "POST", requiresAuth, body);
   }
 
   /**
@@ -153,8 +228,12 @@ export class ApiClient {
    * @param requiresAuth - 인증이 필요한지 여부 (기본값: false)
    * @returns 응답 데이터
    */
-  async put<T>(endpoint: string, body?: unknown, requiresAuth = false): Promise<T> {
-    return this.request<T>(endpoint, 'PUT', requiresAuth, body);
+  async put<T>(
+    endpoint: string,
+    body?: unknown,
+    requiresAuth = false
+  ): Promise<T> {
+    return this.request<T>(endpoint, "PUT", requiresAuth, body);
   }
 
   /**
@@ -164,8 +243,12 @@ export class ApiClient {
    * @param body - 요청 본문 (선택)
    * @returns 응답 데이터
    */
-  async delete<T>(endpoint: string, body?: unknown, requiresAuth = false): Promise<T> {
-    return this.request<T>(endpoint, 'DELETE', requiresAuth, body);
+  async delete<T>(
+    endpoint: string,
+    body?: unknown,
+    requiresAuth = false
+  ): Promise<T> {
+    return this.request<T>(endpoint, "DELETE", requiresAuth, body);
   }
 
   /**
@@ -175,8 +258,12 @@ export class ApiClient {
    * @param requiresAuth - 인증이 필요한지 여부 (기본값: false)
    * @returns 응답 데이터
    */
-  async patch<T>(endpoint: string, body?: unknown, requiresAuth = false): Promise<T> {
-    return this.request<T>(endpoint, 'PATCH', requiresAuth, body);
+  async patch<T>(
+    endpoint: string,
+    body?: unknown,
+    requiresAuth = false
+  ): Promise<T> {
+    return this.request<T>(endpoint, "PATCH", requiresAuth, body);
   }
 }
 
@@ -192,9 +279,5 @@ export const apiClient = new ApiClient();
  * @returns ApiError 타입인지 여부
  */
 export function isApiError(error: unknown): error is ApiError {
-  return (
-    typeof error === 'object' &&
-    error !== null &&
-    'error_code' in error
-  );
+  return typeof error === "object" && error !== null && "error_code" in error;
 }

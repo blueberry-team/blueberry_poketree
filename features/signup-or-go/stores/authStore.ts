@@ -30,3 +30,13 @@ export function setUserId(value: string) {
     }
   }
 }
+
+// 인증 상태 초기화 함수 (AUTH005 등으로 리다이렉트된 경우 사용)
+export function resetAuthState() {
+  isLoggedIn.value = false;
+  userId.value = "";
+  if (typeof window !== "undefined") {
+    sessionStorage.removeItem("accessToken");
+    sessionStorage.removeItem("userId");
+  }
+}

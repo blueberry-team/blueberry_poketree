@@ -12,11 +12,19 @@ export const en = {
     korean: "한국어",
     english: "English",
     japanese: "日本語",
+    spanish: "Español",
+    portuguese: "Português",
+    russian: "Русский",
+    vietnamese: "Tieng Viet",
+    chineseSimplified: "简体中文",
+    chineseTraditional: "繁體中文",
   },
   auth: {
     yourTree: "What's your tree name?",
     password: "Password (6 digits)",
     confirmInput: "Confirm",
+    charCount: "{current} / {max} chars",
+    passwordLength: "{current} / {max} chars",
   },
   share: {
     title: "Share your PokéTree!",
@@ -33,9 +41,9 @@ export const en = {
     ownedStatus: "{owned} of {total} collected",
   },
   tree: {
-    title: "My Poke Tree",
-    userTree: "'s Pokétree",
-    share: "Share Pokétree",
+    title: "My PokéTree",
+    userTree: "'s PokéTree",
+    share: "Share PokéTree",
     notice: "Messages can be viewed from Christmas Day!",
     messageCount: " Pockét Messages",
     checkMessage: "Check Messages",
@@ -44,7 +52,7 @@ export const en = {
   },
   visitor: {
     makeMessage: "Send a message",
-    makeTree: "Create my PokéTree",
+    makeTree: "View my PokéTree",
     send: "send Message",
   },
   sendLetter: {
@@ -58,6 +66,9 @@ export const en = {
     sending: "Sending...",
     sendSuccess: "Letter sent successfully!",
     sendError: "Failed to send letter.",
+  },
+  sendCompleteModal: {
+    title: "You sent a pocket message to\n{name}",
   },
   letterModal: {
     title: "{name}'s Pockét Message",
@@ -75,6 +86,8 @@ export const en = {
     unpublishSuccess: "Message has been unpublished.",
     updateVisibilityError: "Failed to update message visibility.",
     loadError: "Failed to load letter.",
+    pokemonReceived: " sent you a Pokémon!",
+    viewLetter: "Check the message",
   },
   message: {
     title: "Pockét Message",
@@ -100,7 +113,7 @@ export const en = {
     minutes: "M",
     description1: "Get a surprise gift on Christmas Day!",
     description2: "Write letters to decorate your friend's tree!",
-    makeTree: "Make PokeTree",
+    makeTree: "Make PokéTree",
     visitSocial: "Visit our Instagram",
     socialName: "Instagram",
     socialId: "@poketree_official",

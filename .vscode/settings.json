@@ -1,0 +1,32 @@
+{
+    "cSpell.ignorePaths": [
+        "**/languages/en.ts",
+        "**/languages/es.ts",
+        "**/languages/ja.ts",
+        "**/languages/ko.ts",
+        "**/languages/pt.ts",
+        "**/languages/ru.ts",
+        "**/languages/vi.ts",
+        "**/languages/zh-CN.ts",
+        "**/languages/zh-TW.ts"
+    ],
+    "cSpell.words": [
+        "Bulbasaur",
+        "Español",
+        "firestore",
+        "Mewtwo",
+        "nodenext",
+        "Pikachu",
+        "Poké",
+        "pokedex",
+        "poket",
+        "poketree",
+        "Português",
+        "predeploy",
+        "Pretendard",
+        "signup",
+        "usecase",
+        "usecases",
+        "Русский"
+    ]
+}

@@ -19,14 +19,14 @@ export function ChristmasGift() {
     <button
       // TODO: 크리스마스 날 기능 오픈 후 주석 해제
       // className="absolute top-4 right-4 z-10 cursor-pointer hover:scale-110 transition-transform"
-      className="absolute top-4 right-4 z-10"
+      className="absolute top-6 right-6 z-10"
       aria-label="크리스마스 선물"
     >
       <Image
         src={GiftBox}
         alt="크리스마스 선물"
-        width={96}
-        height={96}
+        width={68}
+        height={68}
         className="object-contain"
       />
     </button>

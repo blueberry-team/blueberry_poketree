@@ -19,6 +19,12 @@ export function LanguageModal({ isOpen, onClose }: LanguageModalProps) {
     { code: "ko", label: translate("language.korean") },
     { code: "en", label: translate("language.english") },
     { code: "ja", label: translate("language.japanese") },
+    { code: "es", label: translate("language.spanish") },
+    { code: "pt", label: translate("language.portuguese") },
+    { code: "ru", label: translate("language.russian") },
+    { code: "vi", label: translate("language.vietnamese") },
+    { code: "zh-CN", label: translate("language.chineseSimplified") },
+    { code: "zh-TW", label: translate("language.chineseTraditional") },
   ];
 
   const handleLanguageSelect = (lang: Language) => {

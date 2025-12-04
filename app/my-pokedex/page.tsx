@@ -4,8 +4,10 @@ import { Suspense } from "react";
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { PokedexGrid } from "@/features/my-pokedex/components/PokedexGrid";
-import { getMyPokedex, PokemonInDex } from "@/features/my-pokedex/usecases/getMyPokedex";
+import { getMyPokedex } from "@/features/my-pokedex/usecases/getMyPokedex";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
+import { isApiError } from "@/features/shared/utils/api/apiClient";
+import { POKEMON_DATA } from "@/features/shared/data/pokemonData";
 
 // 포켓몬 목록 페이지
 function MyPokedexPageContent() {
@@ -14,7 +16,7 @@ function MyPokedexPageContent() {
   const searchParams = useSearchParams();
   const publicId = searchParams.get('id');
 
-  const [selectedIndex, setSelectedIndex] = useState(() => {
+  const [selectedIndex] = useState(() => {
     if (typeof window !== 'undefined') {
       const savedIndex = localStorage.getItem("selectedIndex");
       if (savedIndex !== null) {
@@ -23,8 +25,9 @@ function MyPokedexPageContent() {
     }
     return 0;
   });
-  const [pokemons, setPokemons] = useState<PokemonInDex[]>([]);
+  const [ownedPokemonIds, setOwnedPokemonIds] = useState<number[]>([]);
   const [isMaster, setIsMaster] = useState(false);
+  const [userName, setUserName] = useState("");
 
   useEffect(() => {
     // publicId가 없으면 에러 페이지로 리다이렉트
@@ -35,28 +38,32 @@ function MyPokedexPageContent() {
 
     const fetchPokemons = async () => {
       try {
-        const data = await getMyPokedex({ publicId });
-        setPokemons(data);
+        const res = await getMyPokedex({ publicId });
+        const { pokemon_list, nickname, isMaster } = res.data;
 
-        // 마스터 여부 체크
-        const ownedCount = data.filter((p) => p.isOwned).length;
-        const totalCount = data.length;
-        setIsMaster(ownedCount === totalCount);
+        setOwnedPokemonIds(pokemon_list ?? []);
+        setUserName(nickname);
+        // 문자열/불리언 모두 대응 (타입 단언으로 비교)
+        const isMasterStr = isMaster as unknown as string;
+        setIsMaster(isMasterStr === "true" || isMasterStr === "1");
       } catch (err) {
-        // 에러 발생 시 에러 페이지로 리다이렉트
-        router.replace("/error?type=load");
+        // 에러 발생 시 에러 페이지로 리다이렉트 (에러 메시지 전달 시도)
+        if (isApiError(err) && err.message) {
+          router.replace(`/error?type=load&message=${encodeURIComponent(err.message)}`);
+        } else if (err instanceof Error && err.message) {
+          router.replace(`/error?type=load&message=${encodeURIComponent(err.message)}`);
+        } else {
+          router.replace("/error?type=load");
+        }
       }
     };
 
     fetchPokemons();
   }, [publicId, router]);
 
-  // 사용자 이름 (하드코딩)
-  const userName = "상화";
-
   // 획득한 포켓몬 수 계산
-  const ownedCount = pokemons.filter((p) => p.isOwned).length;
-  const totalCount = pokemons.length;
+  const ownedCount = ownedPokemonIds.length;
+  const totalCount = POKEMON_DATA.length;
 
   return (
     <div className="flex-1 flex flex-col bg-[#BF0120] overflow-hidden">
@@ -82,7 +89,7 @@ function MyPokedexPageContent() {
 
       {/* 그리드 영역 - 컨테이너 높이에서 헤더(110px)와 하단여백(10px)을 뺀 높이 */}
       <div className="h-[calc(100vh-120px)] md:h-[660px] overflow-hidden">
-        <PokedexGrid pokemons={pokemons} selectedIndex={selectedIndex} />
+        <PokedexGrid ownedPokemonIds={ownedPokemonIds} selectedIndex={selectedIndex} />
       </div>
 
       {/* 하단 여백 */}
