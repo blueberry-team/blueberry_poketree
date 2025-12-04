@@ -75,15 +75,15 @@ export default function SendLetterModal({
         content: content,
         receiver_id: receiverId,
       });
-      // 응답 성공 시 포켓몬 ID 추출
+      // 응답 성공 시 포켓몬 ID 추출 후 완료 모달 표시
       if (response.message === "success" && response.data?.letter_pokemon) {
         setReceivedPokemonId(response.data.letter_pokemon);
         setShowCompleteModal(true);
         notifySendLetter(senderName, content, receiverName, receiverId);
-        alert(translate("sendLetter.sendSuccess"));
+      } else {
+        // 포켓몬 정보 없으면 바로 닫기
         handleClose();
         onSuccess?.();
-
       }
     } catch (err) {
       if (err instanceof Error) {
