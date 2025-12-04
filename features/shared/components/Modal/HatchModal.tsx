@@ -11,7 +11,7 @@ import ButtonLargeGreen from "@/assets/images/components/button_large_green.png"
 /**
  * HatchModal - 볼 부화 애니메이션과 포켓몬 공개 화면을 표시하는 모달
  * - is_read가 false인 편지를 처음 열 때 표시
- * - 볼 부화 애니메이션 3초 후 포켓몬 공개 화면으로 전환
+ * - 볼 부화 애니메이션 2초 후 포켓몬 공개 화면으로 전환
  */
 
 interface HatchModalProps {
