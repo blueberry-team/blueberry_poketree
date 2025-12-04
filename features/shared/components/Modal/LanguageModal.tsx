@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { Language, useLanguage, useTranslation } from "../../utils/translate/useLanguage";
+import { Language, useLanguage } from "../../utils/translate/useLanguage";
 import CloseIcon from "@/assets/icon/closeIcon.png";
 
 interface LanguageModalProps {
@@ -11,14 +11,13 @@ interface LanguageModalProps {
 
 export function LanguageModal({ isOpen, onClose }: LanguageModalProps) {
   const { language, setLanguage } = useLanguage();
-  const { translate } = useTranslation();
 
   if (!isOpen) return null;
 
-  const languages: { code: Language; label: string }[] = [
-    { code: "ko", label: translate("language.korean") },
-    { code: "en", label: translate("language.english") },
-    { code: "ja", label: translate("language.japanese") },
+  const languages: { code: Language; label: string; useJaFont?: boolean }[] = [
+    { code: "ko", label: "한국어" },
+    { code: "en", label: "English" },
+    { code: "ja", label: "日本語", useJaFont: true },
   ];
 
   const handleLanguageSelect = (lang: Language) => {
@@ -60,9 +59,10 @@ export function LanguageModal({ isOpen, onClose }: LanguageModalProps) {
                 onClick={() => handleLanguageSelect(lang.code)}
                 className={`px-4 py-3 rounded border transition-all text-black ${
                   language === lang.code
-                    ? "bg-[#90EE90] border-[#90EE90] font-bold"
+                    ? "bg-[#90EE90] border-[#90EE90] font-regular"
                     : "bg-white border-gray-300 hover:bg-gray-50"
                 }`}
+                style={{ fontFamily: lang.useJaFont ? "var(--font-pixel-mplus)" : "var(--font-pf-stardust)" }}
               >
                 {lang.label}
               </button>

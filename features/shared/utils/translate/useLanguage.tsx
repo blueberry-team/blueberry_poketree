@@ -93,6 +93,17 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     }
   }, [pathname, mounted, language]);
 
+  // 언어에 따른 폰트 변경 (일본어일 때만 PixelMplus 적용)
+  useEffect(() => {
+    if (!mounted) return;
+
+    if (language === "ja") {
+      document.body.classList.add("font-ja");
+    } else {
+      document.body.classList.remove("font-ja");
+    }
+  }, [language, mounted]);
+
   // 언어 변경 함수
   const setLanguage = (lang: Language) => {
     setLanguageState(lang);

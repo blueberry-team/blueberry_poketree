@@ -14,6 +14,7 @@
   --font-mono: var(--font-geist-mono);
   --font-press-start: var(--font-press-start);
   --font-pf-stardust: var(--font-pf-stardust);
+  --font-pixel-mplus: var(--font-pixel-mplus);
 }
 
 @media (prefers-color-scheme: dark) {
@@ -27,6 +28,10 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-pf-stardust), -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+}
+
+body.font-ja {
+  font-family: var(--font-pixel-mplus), -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
 }
 
 /* 스크롤바 숨기기 */

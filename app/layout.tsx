@@ -46,6 +46,27 @@ const pfStardust = localFont({
   variable: "--font-pf-stardust",
 });
 
+const pixelMplus = localFont({
+  src: [
+    {
+      path: "../assets/fonts/PixelMplus/PixelMplus12-Regular.ttf",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "../assets/fonts/PixelMplus/PixelMplus12-Bold.ttf",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "../assets/fonts/PixelMplus/PixelMplus12-Extrabold.ttf",
+      weight: "800",
+      style: "normal",
+    },
+  ],
+  variable: "--font-pixel-mplus",
+});
+
 export const metadata: Metadata = {
   title: "PokéTree",
   description: "Christmas Event with Pokémon",
@@ -62,7 +83,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${pressStart2P.variable} ${pfStardust.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${pressStart2P.variable} ${pfStardust.variable} ${pixelMplus.variable} antialiased`}
       >
         <AuthInitializer />
         <LanguageProvider>
