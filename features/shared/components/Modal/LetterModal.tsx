@@ -169,9 +169,11 @@ export default function LetterModal({
         <HatchModal
           isOpen={showHatchModal}
           onClose={() => {
-            setShowHatchModal(false);
+            setShowHatchModal(false); // "편지 보기" 버튼: HatchModal만 닫고 LetterModal 표시
           }}
-          onComplete={() => {}}
+          onComplete={() => {
+            onClose(); // X 버튼: 전체 닫기
+          }}
           senderName={letterData.sender_name}
           pokemonId={letterData.letter_pokemon}
         />
@@ -183,11 +185,8 @@ export default function LetterModal({
           className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
           onClick={onClose}
         >
-          <div
-            className="bg-black rounded-lg w-[352px] h-[531px] relative overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            {/* 닫기 버튼 */}
+          <div className="relative" onClick={(e) => e.stopPropagation()}>
+            {/* 닫기 버튼 - 모달 바깥 우측 상단 */}
             <button
               onClick={onClose}
               className="absolute bottom-[calc(100%+15px)] right-0 w-8 h-8 bg-black rounded flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors z-10"
@@ -201,6 +200,8 @@ export default function LetterModal({
                 className="object-contain"
               />
             </button>
+
+            <div className="bg-black rounded-lg w-[352px] h-[531px] relative overflow-y-auto">
 
             {/* 자물쇠 아이콘 (우상단) - isOwner일 때만 표시, is_open가 false일 때 표시 */}
             {isOwner === "true" && letterData?.is_open !== "true" && (
@@ -305,6 +306,7 @@ export default function LetterModal({
                 )}
               </div>
             )}
+            </div>
 
             {/* 삭제 확인 모달 */}
             <DeleteConfirmModal
