@@ -25,7 +25,7 @@ export default function DeleteConfirmModal({
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      contentClassName="bg-black rounded-2xl w-full max-w-[500px] p-8"
+      contentClassName="bg-black rounded-2xl w-full max-w-[min(500px,90vw)] p-4 sm:p-8"
     >
           {/* 제목 */}
           <h2 className="text-white text-2xl font-bold text-center mb-8 whitespace-pre-line">

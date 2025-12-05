@@ -52,7 +52,7 @@ function HatchModalContent({
       <BaseModal
         isOpen={true}
         onClose={handleClose}
-        contentClassName="bg-black rounded-lg w-[352px] relative flex flex-col items-center justify-center gap-8 py-12 px-8"
+        contentClassName="bg-black rounded-lg w-[352px] max-w-[90vw] relative flex flex-col items-center justify-center gap-6 sm:gap-8 py-8 sm:py-12 px-4 sm:px-8"
         closeOnOverlayClick={false}
       >
         <p className="text-white text-2xl font-bold">
@@ -90,7 +90,7 @@ function HatchModalContent({
     <BaseModal
       isOpen={true}
       onClose={handleClose}
-      contentClassName="bg-black rounded-lg w-[352px] relative flex items-center justify-center py-12 px-8"
+      contentClassName="bg-black rounded-lg w-[352px] max-w-[90vw] relative flex items-center justify-center py-8 sm:py-12 px-4 sm:px-8"
       closeOnOverlayClick={false}
     >
       <Image

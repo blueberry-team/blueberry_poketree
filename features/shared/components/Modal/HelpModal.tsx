@@ -22,7 +22,7 @@ export function HelpModal({ isOpen, onClose }: HelpModalProps) {
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      contentClassName="bg-white rounded-2xl p-6 w-[360px] max-h-[80vh] overflow-y-auto"
+      contentClassName="bg-white rounded-2xl p-4 sm:p-6 w-[360px] max-w-[90vw] max-h-[80vh] overflow-y-auto"
     >
           <h2 className="text-[32px] font-bold mb-4 text-black">
             {translate("help.title")}

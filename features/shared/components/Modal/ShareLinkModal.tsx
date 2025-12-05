@@ -57,7 +57,7 @@ export function ShareLinkModal({
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      contentClassName="bg-white rounded-lg p-6 w-[320px]"
+      contentClassName="bg-white rounded-lg p-4 sm:p-6 w-[320px] max-w-[90vw]"
     >
           {/* 모달 헤더 */}
           <h2 className="whitespace-pre-line text-lg font-bold text-center text-black pb-4">
