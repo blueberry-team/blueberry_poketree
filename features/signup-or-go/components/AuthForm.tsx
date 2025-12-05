@@ -6,6 +6,7 @@ import { SignupOrGoRequest } from "../models/req/SignupOrGoRequest";
 import DoctorOhImage from "@/assets/images/signuporgo/doctor_oh.webp";
 import ButtonBigBlue from "@/assets/images/components/button_big_blue.webp";
 import PixelInputField from "@/assets/images/signuporgo/pixel_inputfield.svg";
+import MonsterBallBasic from "@/assets/images/components/monster_ball_basic.png";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { trackEvent } from "@/features/shared/utils/analytics/analytics";
 
@@ -56,7 +57,7 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
           <span className="text-black text-base font-extrabold">{title}</span>
         </div>
       )}
-      <div className="flex flex-col items-center px-[94px]">
+      <div className="flex flex-col items-center px-8 sm:px-[94px]">
       {/* Doctor Oh 이미지 */}
       <div className={title ? "mt-[30px] mb-16" : "mt-[53px] mb-16"}>
         <Image
@@ -80,7 +81,7 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
               alt="input field"
               width={202}
               height={49}
-              className="w-full h-[49px]"
+              className="w-full h-[42px] sm:h-[49px]"
             />
             <input
               type="text"
@@ -90,12 +91,12 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
               onBlur={() => setNicknameFocused(false)}
               placeholder=""
               maxLength={MAX_NICKNAME_LENGTH}
-              className="absolute top-0 left-0 w-full h-[49px] bg-transparent border-none text-transparent text-center text-base font-extrabold outline-none px-4 caret-transparent"
+              className="absolute top-0 left-0 w-full h-[42px] sm:h-[49px] bg-transparent border-none text-transparent text-center text-base font-extrabold outline-none px-4 caret-transparent"
             />
-            <div className="absolute top-0 left-0 w-full h-[49px] flex items-end justify-start pointer-events-none px-4 pb-3">
-              <span className="text-black text-base font-extrabold">{nickname}</span>
+            <div className="absolute top-0 left-0 w-full h-[42px] sm:h-[49px] flex items-end justify-start pointer-events-none px-4 pb-2 sm:pb-3 overflow-hidden">
+              <span className="text-black text-base font-extrabold truncate">{nickname}</span>
               {nicknameFocused && (
-                <span className="inline-block w-6 h-[3px] bg-black animate-pulse" />
+                <span className="inline-block w-4 h-[3px] bg-black animate-pulse flex-shrink-0" />
               )}
             </div>
           </div>
@@ -119,7 +120,7 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
               alt="input field"
               width={202}
               height={49}
-              className="w-full h-[49px]"
+              className="w-full h-[42px] sm:h-[49px]"
             />
             <input
               type="password"
@@ -132,12 +133,12 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
               inputMode="numeric"
               pattern="[0-9]*"
               autoComplete="new-password"
-              className="absolute top-0 left-0 w-full h-[49px] bg-transparent border-none text-transparent text-center text-base font-extrabold outline-none px-4 caret-transparent"
+              className="absolute top-0 left-0 w-full h-[42px] sm:h-[49px] bg-transparent border-none text-transparent text-center text-base font-extrabold outline-none px-4 caret-transparent"
             />
-            <div className="absolute top-0 left-0 w-full h-[49px] flex items-end justify-start pointer-events-none px-4 pb-3">
+            <div className="absolute top-0 left-0 w-full h-[42px] sm:h-[49px] flex items-end justify-start pointer-events-none px-4 pb-2 sm:pb-3 overflow-hidden">
               <span className="text-black text-base font-extrabold">{"●".repeat(password.length)}</span>
               {passwordFocused && (
-                <span className="inline-block w-6 h-[3px] bg-black animate-pulse" />
+                <span className="inline-block w-4 h-[3px] bg-black animate-pulse flex-shrink-0" />
               )}
             </div>
           </div>
@@ -159,19 +160,35 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
         <button
           type="submit"
           disabled={isButtonDisabled}
-          className="relative w-full disabled:opacity-50"
+          className="relative w-[208px] mx-auto disabled:opacity-50"
         >
           <Image
             src={ButtonBigBlue}
             alt="button background"
             width={201}
             height={70}
-            className="w-full h-[70px]"
+            className="w-full h-[60px] sm:h-[70px]"
           />
           <span className="absolute inset-0 flex items-center justify-center text-black text-2xl font-extrabold">
             {isLoading ? "로딩중 .." : translate("auth.confirmInput")}
           </span>
         </button>
+
+        {/* 설명 문구 */}
+        <div className="mt-4 flex flex-col gap-2 w-[208px] mx-auto">
+          <div className="flex items-start gap-2">
+            <Image src={MonsterBallBasic} alt="" width={14} height={14} className="flex-shrink-0 mt-0.5" />
+            <span className="text-black text-[14px] font-bold">회원가입·로그인 화면은 동일해요!</span>
+          </div>
+          <div className="flex items-start gap-2">
+            <Image src={MonsterBallBasic} alt="" width={14} height={14} className="flex-shrink-0 mt-0.5" />
+            <span className="text-black text-[14px] font-bold">트리는 2~6글자, 비밀번호는 숫자 4자리로 설정해주세요!</span>
+          </div>
+          <div className="flex items-start gap-2">
+            <Image src={MonsterBallBasic} alt="" width={14} height={14} className="flex-shrink-0 mt-0.5" />
+            <span className="text-black text-[14px] font-bold">처음 설정한 트리 이름은 이후 변경할 수 없으니 신중히 입력해주세요!</span>
+          </div>
+        </div>
       </form>
       </div>
     </div>
