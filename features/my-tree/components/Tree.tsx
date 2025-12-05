@@ -68,7 +68,7 @@ export function Tree({
           <Image
             src={MonsterBallClose}
             alt="몬스터볼"
-            width={20}
+            width={40}
             height={20}
             className="object-contain"
           />
@@ -83,7 +83,7 @@ export function Tree({
 
       {/* 트리 이미지 */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative" style={{ width: "min(500px, 85vw)", height: "min(700px, 75vh)" }}>
+        <div className="relative" style={{ width: "min(350px, 80vw)", height: "min(500px, 70vh)" }}>
           {/* 트리 이미지 */}
           <Image
             src={TreeImage}
@@ -100,13 +100,13 @@ export function Tree({
               {Array.from({ length: currentPageMessageCount }).map((_, index) => {
                 // 7개 몬스터볼 위치
                 const positions = [
-                  { top: "22%", left: "48%", transform: "translateX(-50%)" },  // 꼭대기
-                  { top: "30%", left: "60%", transform: "translateX(-50%)" },  // 2층 오른쪽
-                  { top: "36%", left: "39%", transform: "translateX(-50%)" },  // 2층 왼쪽
-                  { top: "39%", left: "70%", transform: "translateX(-50%)" },  // 3층 오른쪽
-                  { top: "51%", left: "32%", transform: "translateX(-50%)" },  // 3층 왼쪽
-                  { top: "47%", left: "52%", transform: "translateX(-50%)" },  // 4층 가운데
-                  { top: "52%", left: "70%", transform: "translateX(-50%)" },  // 4층 오른쪽
+                    { top: "20%", left: "48%", transform: "translateX(-50%)" },  // 꼭대기
+                    { top: "30%", left: "58%", transform: "translateX(-50%)" },  // 2층 오른쪽
+                    { top: "35%", left: "39%", transform: "translateX(-50%)" },  // 2층 왼쪽
+                    { top: "40%", left: "70%", transform: "translateX(-50%)" },  // 3층 오른쪽
+                    { top: "50%", left: "32%", transform: "translateX(-50%)" },  // 3층 왼쪽
+                    { top: "45%", left: "52%", transform: "translateX(-50%)" },  // 4층 가운데
+                    { top: "52%", left: "68%", transform: "translateX(-50%)" },  // 4층 오른쪽
                 ];
                 const pos = positions[index];
                 // 실제 메시지 인덱스 계산 (페이지 * 7 + 현재 인덱스)
@@ -130,13 +130,13 @@ export function Tree({
                     }}
                   >
                     {/* 보낸 사람 이름 */}
-                    <div className="mb-1 bg-black/70 rounded px-2 py-0.5 whitespace-nowrap flex items-center gap-1">
+                    <div className="mb-0.3 bg-black/70 rounded px-1 py-0.5 whitespace-nowrap flex items-center gap-1">
                       {!isPublic && (
                         <Image
                           src={LockIcon}
                           alt="비공개"
-                          width={10}
-                          height={10}
+                          width={7}
+                          height={7}
                           className="object-contain"
                         />
                       )}
@@ -153,8 +153,8 @@ export function Tree({
                       <Image
                         src={isRead ? MonsterBallOpen : MonsterBallClose}
                         alt="몬스터볼"
-                        width={36}
-                        height={36}
+                        width={48}
+                        height={48}
                         className="object-contain"
                       />
                     </button>
@@ -172,9 +172,9 @@ export function Tree({
         const pokemonPositions = [
           { bottom: "67%", left: "6%", scaleX: -1 },  // 왼쪽 상단
           { bottom: "46%", left: "0%", scaleX: -1 },  // 왼쪽 중단
-          { bottom: "14%", left: "3%", scaleX: -1 },  // 왼쪽 하단
+          { bottom: "14%", left: "2%", scaleX: -1 },  // 왼쪽 하단
           { bottom: "57%", right: "2%", scaleX: -1 },  // 오른쪽 상단 *
-          { bottom: "27%", left: "77%", scaleX: 1 },  // 오른쪽 중상단
+          { bottom: "27%", left: "80%", scaleX: 1 },  // 오른쪽 중상단
           { bottom: "5%", right: "50%", scaleX: 1 },  // 오른쪽 중하단
           { bottom: "9%", right: "10%", scaleX: -1 },  // 오른쪽 하단
         ];
