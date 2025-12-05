@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useEffect } from "react";
 import CloseIcon from "@/assets/icon/closeIcon.png";
 
 /**
@@ -27,6 +28,27 @@ export function BaseModal({
   contentClassName = "",
   closeOnOverlayClick = true,
 }: BaseModalProps) {
+  // 모달이 열릴 때 body 스크롤 막기
+  useEffect(() => {
+    if (isOpen) {
+      // 현재 스크롤 위치 저장
+      const scrollY = window.scrollY;
+      document.body.style.position = 'fixed';
+      document.body.style.top = `-${scrollY}px`;
+      document.body.style.width = '100%';
+      document.body.style.overflow = 'hidden';
+
+      return () => {
+        // 모달 닫힐 때 원래 스크롤 위치로 복원
+        document.body.style.position = '';
+        document.body.style.top = '';
+        document.body.style.width = '';
+        document.body.style.overflow = '';
+        window.scrollTo(0, scrollY);
+      };
+    }
+  }, [isOpen]);
+
   if (!isOpen) return null;
 
   const handleOverlayClick = () => {
