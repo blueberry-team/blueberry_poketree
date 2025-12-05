@@ -43,7 +43,7 @@ export function SocialMediaButton() {
   const socialIcon = language === "ja" ? XIcon : InstagramIcon;
 
   return (
-    <div className="w-full bg-[#DC0A2D] py-8">
+    <div className="w-full bg-[#DC0A2D] py-2">
       <div className="mx-auto flex max-w-[320px] flex-col items-center gap-4 px-4">
         {/* 상단 텍스트 */}
         <p className="font-pf-stardust font-bold text-center text-[24px] leading-normal tracking-tight text-white">

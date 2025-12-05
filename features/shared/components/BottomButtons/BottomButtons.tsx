@@ -34,7 +34,6 @@ function BottomButtonsContent({
 }: BottomButtonsProps) {
   const { translate } = useTranslation();
   const router = useRouter();
-  const pathname = usePathname();
   const searchParams = useSearchParams();
   const publicId = searchParams.get('id');
 
@@ -126,7 +125,7 @@ export function BottomButtons(props: BottomButtonsProps) {
   return (
     <Suspense fallback={
       <div className="flex justify-between items-end">
-        <div className="flex flex-col gap-4">
+        <div className="flex flex-col gap-2">
           <button
             className="relative flex items-center justify-center"
             style={{ width: "193px", height: "56px" }}

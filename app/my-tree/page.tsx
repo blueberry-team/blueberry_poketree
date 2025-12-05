@@ -16,7 +16,6 @@ import {
   ALL_POKEMON_IMAGES
 } from "@/features/shared/data/pokemonData";
 import ButtonBigGreen from "@/assets/images/components/button_big_green.webp";
-import ButtonSmallDark from "@/assets/images/components/button_small_dark.webp";
 import { getUserTree } from "@/features/my-tree/usecases/getUserTree";
 import { UserTreeData } from "@/features/my-tree/models/res/GetUserTreeResponse";
 import { isApiError } from "@/features/shared/utils/api/apiClient";
@@ -239,7 +238,7 @@ function MyTreePageContent() {
       />
 
       {/* 하단 영역 */}
-      <div className="px-4 py-4 shrink-0 relative min-h-[200px]">
+      <div className="px-4 py-4 shrink-0 relative">
         {/* 도감 버튼과 십자 버튼 (메시지 버튼 포함) */}
         {/*is_owner에 따라 바텀컴포넌트 구분*/}
         {isOwner === "true" ? (
