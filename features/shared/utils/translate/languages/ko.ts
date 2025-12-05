@@ -20,11 +20,15 @@ export const ko = {
     chineseTraditional: "繁體中文",
   },
   auth: {
+    login: "로그인",
+    signup: "회원가입",
     yourTree: "당신의 트리 이름은?",
     password: "비밀번호 (4자리)",
     confirmInput: "입력 완료",
     charCount: "{current} / {max}자",
     passwordLength: "{current} / {max}자",
+    wrongPassword: "비밀번호가 틀렸습니다",
+    accountExists: "이미 존재하는 계정입니다",
   },
   share: {
     title: "친구들에게 포케트리를 공유해주세요!",

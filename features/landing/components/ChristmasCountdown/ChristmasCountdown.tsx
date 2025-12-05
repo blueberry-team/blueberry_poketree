@@ -15,7 +15,7 @@ export function ChristmasCountdown() {
 
   const handleLogin = () => {
     trackButtonClick("button_click_home_login");
-    router.push("/signup-or-go");
+    router.push("/signup-or-go?from=login");
   };
 
   useEffect(() => {

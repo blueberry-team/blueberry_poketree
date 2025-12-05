@@ -20,11 +20,15 @@ export const en = {
     chineseTraditional: "繁體中文",
   },
   auth: {
+    login: "Login",
+    signup: "Sign Up",
     yourTree: "What's your tree name?",
     password: "Password (6 digits)",
     confirmInput: "Confirm",
     charCount: "{current} / {max} chars",
     passwordLength: "{current} / {max} chars",
+    wrongPassword: "Wrong password",
+    accountExists: "Account already exists",
   },
   share: {
     title: "Share your PokéTree!",

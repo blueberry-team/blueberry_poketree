@@ -14,7 +14,7 @@ export function LandingFooter() {
 
   const handleMakePokeTree = () => {
     trackButtonClick("button_click_home_make_tree");
-    router.push("/signup-or-go");
+    router.push("/signup-or-go?from=make_tree");
   };
 
   return (

@@ -20,11 +20,15 @@ export const ja = {
     chineseTraditional: "繁體中文",
   },
   auth: {
+    login: "ログイン",
+    signup: "新規登録",
     yourTree: "あなたのツリーの名前は？",
     password: "パスワード (4桁)",
     confirmInput: "入力完了",
     charCount: "{current} / {max}文字",
     passwordLength: "{current} / {max}文字",
+    wrongPassword: "パスワードが間違っています",
+    accountExists: "既に存在するアカウントです",
   },
   share: {
     title: "ともだちに「PokéTree」を\nシェアしましょう！",

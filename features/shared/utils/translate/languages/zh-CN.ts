@@ -20,9 +20,13 @@ export const zhCN = {
     chineseTraditional: "繁體中文",
   },
   auth: {
+    login: "登录",
+    signup: "注册",
     yourTree: "你的树叫什么名字？",
     password: "密码（4位数字）",
     confirmInput: "确认",
+    wrongPassword: "密码错误",
+    accountExists: "账户已存在",
   },
   share: {
     title: "与朋友分享你的宝可树！",

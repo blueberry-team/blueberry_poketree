@@ -20,9 +20,13 @@ export const ru = {
     chineseTraditional: "繁體中文",
   },
   auth: {
+    login: "Войти",
+    signup: "Регистрация",
     yourTree: "Как называется ваше дерево?",
     password: "Пароль (4 цифры)",
     confirmInput: "Подтвердить",
+    wrongPassword: "Неверный пароль",
+    accountExists: "Аккаунт уже существует",
   },
   share: {
     title: "Поделитесь своим PokéTree с друзьями!",

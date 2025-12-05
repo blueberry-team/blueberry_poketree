@@ -20,9 +20,13 @@ export const zhTW = {
     chineseTraditional: "繁體中文",
   },
   auth: {
+    login: "登入",
+    signup: "註冊",
     yourTree: "你的樹叫什麼名字？",
     password: "密碼（4位數字）",
     confirmInput: "確認",
+    wrongPassword: "密碼錯誤",
+    accountExists: "帳戶已存在",
   },
   share: {
     title: "與朋友分享你的寶可樹！",

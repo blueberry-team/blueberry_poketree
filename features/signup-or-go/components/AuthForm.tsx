@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Image from "next/image";
 import { SignupOrGoRequest } from "../models/req/SignupOrGoRequest";
 import DoctorOhImage from "@/assets/images/signuporgo/doctor_oh.png";
@@ -8,6 +8,7 @@ import ButtonBigBlue from "@/assets/images/components/button_big_blue.png";
 import PixelInputField from "@/assets/images/signuporgo/pixel_inputfield.svg";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { trackEvent } from "@/features/shared/utils/analytics/analytics";
+import SignupOrGoErrorModal from "./SignupOrGoErrorModal";
 
 const MIN_NICKNAME_LENGTH = 2;
 const MAX_NICKNAME_LENGTH = 6;
@@ -17,12 +18,22 @@ interface AuthFormProps {
   onSubmit: (req: SignupOrGoRequest) => Promise<void>;
   isLoading: boolean;
   error: string | null;
+  title?: string;
+  isLogin?: boolean;
 }
 
-export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
+export function AuthForm({ onSubmit, isLoading, error, title, isLogin = false }: AuthFormProps) {
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const { translate } = useTranslation();
+
+  // error가 변경되면 모달 열기
+  useEffect(() => {
+    if (error) {
+      setIsErrorModalOpen(true);
+    }
+  }, [error]);
 
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -45,9 +56,16 @@ export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
     password.length !== PASSWORD_LENGTH;
 
   return (
-    <div className="flex-1 bg-[#F7F7F7] flex flex-col items-center px-[94px]">
+    <div className="flex-1 bg-[#F7F7F7] flex flex-col">
+      {/* 좌상단 타이틀 */}
+      {title && (
+        <div className="w-full text-left mt-4 px-4">
+          <span className="text-black text-base font-bold">{title}</span>
+        </div>
+      )}
+      <div className="flex flex-col items-center px-[94px]">
       {/* Doctor Oh 이미지 */}
-      <div className="mt-[53px] mb-16">
+      <div className={title ? "mt-[30px] mb-16" : "mt-[53px] mb-16"}>
         <Image
           src={DoctorOhImage}
           alt="Doctor Oh"
@@ -123,14 +141,7 @@ export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
           </div>
         </div>
 
-        {/* 에러 메시지 */}
-        {error && (
-          <div className="mb-4 p-3 bg-red-100 border border-red-400 rounded">
-            <p className="text-red-700 text-sm text-center">{error}</p>
-          </div>
-        )}
-
-        {/* 로그인 버튼 */}
+        {/* 입력 버튼 */}
         <button
           type="submit"
           disabled={isButtonDisabled}
@@ -148,6 +159,14 @@ export function AuthForm({ onSubmit, isLoading, error }: AuthFormProps) {
           </span>
         </button>
       </form>
+
+      {/* 에러 모달 */}
+      <SignupOrGoErrorModal
+        isOpen={isErrorModalOpen}
+        onClose={() => setIsErrorModalOpen(false)}
+        isLogin={isLogin}
+      />
+      </div>
     </div>
   );
 }
