@@ -9,7 +9,6 @@ import { trackEvent } from "@/features/shared/utils/analytics/analytics";
 import { notifyUserCreateSuccess } from "@/features/shared/utils/discord/discord";
 import { resetAuthState } from "@/features/signup-or-go/stores/authStore";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
-import { isApiError } from "@/features/shared/utils/api/apiClient";
 
 function SignupOrGoPageContent() {
     const router = useRouter();
@@ -48,9 +47,7 @@ function SignupOrGoPageContent() {
                 router.push(`/my-tree?id=${res.data.public_id}`);
             }
         } catch (err) {
-            if (isApiError(err)) {
-                setError(err.message || err.error_code);
-            } else if (err instanceof Error) {
+            if (err instanceof Error) {
                 setError(err.message);
             }
         } finally {

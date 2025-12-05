@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import Image from "next/image";
 import { SignupOrGoRequest } from "../models/req/SignupOrGoRequest";
 import DoctorOhImage from "@/assets/images/signuporgo/doctor_oh.webp";
@@ -8,7 +8,6 @@ import ButtonBigBlue from "@/assets/images/components/button_big_blue.webp";
 import PixelInputField from "@/assets/images/signuporgo/pixel_inputfield.svg";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { trackEvent } from "@/features/shared/utils/analytics/analytics";
-import SignupOrGoErrorModal from "./SignupOrGoErrorModal";
 
 const MIN_NICKNAME_LENGTH = 2;
 const MAX_NICKNAME_LENGTH = 6;
@@ -22,20 +21,12 @@ interface AuthFormProps {
   isLogin?: boolean;
 }
 
-export function AuthForm({ onSubmit, isLoading, error, title, isLogin = false }: AuthFormProps) {
+export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
-  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const [nicknameFocused, setNicknameFocused] = useState(false);
   const [passwordFocused, setPasswordFocused] = useState(false);
   const { translate } = useTranslation();
-
-  // error가 변경되면 모달 열기
-  useEffect(() => {
-    if (error) {
-      setIsErrorModalOpen(true);
-    }
-  }, [error]);
 
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -159,6 +150,11 @@ export function AuthForm({ onSubmit, isLoading, error, title, isLogin = false }:
           </div>
         </div>
 
+        {/* 에러 메시지 */}
+        {error && (
+          <p className="text-red-500 text-sm font-bold text-center mb-2">{error}</p>
+        )}
+
         {/* 입력 버튼 */}
         <button
           type="submit"
@@ -177,13 +173,6 @@ export function AuthForm({ onSubmit, isLoading, error, title, isLogin = false }:
           </span>
         </button>
       </form>
-
-      {/* 에러 모달 */}
-      <SignupOrGoErrorModal
-        isOpen={isErrorModalOpen}
-        onClose={() => setIsErrorModalOpen(false)}
-        isLogin={isLogin}
-      />
       </div>
     </div>
   );
