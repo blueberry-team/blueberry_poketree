@@ -16,6 +16,7 @@ const MAX_CONTENT_LENGTH = 300;
 const MIN_CONTENT_LENGTH = 4;
 const MIN_SENDER_NAME_LENGTH = 1;
 const MAX_SENDER_NAME_LENGTH = 6;
+const MAX_CONTENT_ROWS = 10;
 
 /**
  * SendLetterModal - 편지 작성 모달
@@ -53,6 +54,17 @@ export default function SendLetterModal({
     setShowCompleteModal(false);
     setReceivedPokemonId(null);
     onClose();
+  };
+
+  // 내용 변경 핸들러 (줄 수 제한)
+  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newContent = e.target.value;
+    const lines = newContent.split('\n');
+
+    // 줄 수가 MAX_CONTENT_ROWS를 초과하면 변경하지 않음
+    if (lines.length <= MAX_CONTENT_ROWS) {
+      setContent(newContent);
+    }
   };
 
   // 편지 보내기
@@ -199,10 +211,11 @@ export default function SendLetterModal({
             <h3 className="text-white text-sm font-bold mb-2">{translate("sendLetter.content")}</h3>
             <textarea
               value={content}
-              onChange={(e) => setContent(e.target.value)}
+              onChange={handleContentChange}
               placeholder={translate("sendLetter.contentPlaceholder")}
               className="w-full px-3 py-2 rounded-lg bg-white text-black text-sm focus:outline-none focus:ring-2 focus:ring-white resize-none min-h-[150px]"
               maxLength={MAX_CONTENT_LENGTH}
+              rows={MAX_CONTENT_ROWS}
               disabled={isLoading}
             />
             <div className="text-right mt-1">
