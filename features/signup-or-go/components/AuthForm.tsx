@@ -25,8 +25,6 @@ interface AuthFormProps {
 export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
-  const [nicknameFocused, setNicknameFocused] = useState(false);
-  const [passwordFocused, setPasswordFocused] = useState(false);
   const { translate } = useTranslation();
 
 
@@ -57,13 +55,13 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
           <span className="text-black text-base font-extrabold">{title}</span>
         </div>
       )}
-      <div className="flex flex-col items-center px-8 sm:px-[94px]">
+      <div className="flex flex-col items-center px-8 sm:px-[94px] bg-center justify-center flex-1">
       {/* Doctor Oh 이미지 */}
-      <div className={title ? "mt-[30px] mb-16" : "mt-[53px] mb-16"}>
+      <div className={title ? "mt-[15px] mb-8" : "mt-[25px] mb-8"}>
         <Image
           src={DoctorOhImage}
           alt="Doctor Oh"
-          width={122}
+          width={88}
           className="object-contain"
         />
       </div>
@@ -87,17 +85,12 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
               type="text"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
-              onFocus={() => setNicknameFocused(true)}
-              onBlur={() => setNicknameFocused(false)}
               placeholder=""
               maxLength={MAX_NICKNAME_LENGTH}
-              className="absolute top-0 left-0 w-full h-[42px] sm:h-[49px] bg-transparent border-none text-transparent text-center text-base font-extrabold outline-none px-4 caret-transparent"
+              className="absolute top-0 left-0 w-full h-[42px] sm:h-[49px] bg-transparent border-none text-transparent text-center text-base font-extrabold outline-none px-4 caret-black"
             />
-            <div className="absolute top-0 left-0 w-full h-[42px] sm:h-[49px] flex items-end justify-start pointer-events-none px-4 pb-2 sm:pb-3 overflow-hidden">
-              <span className="text-black text-base font-extrabold truncate">{nickname}</span>
-              {nicknameFocused && (
-                <span className="inline-block w-4 h-[3px] bg-black animate-pulse flex-shrink-0" />
-              )}
+            <div className="absolute top-0 left-0 w-full h-[42px] sm:h-[49px] flex items-center justify-center pointer-events-none overflow-hidden">
+              <span className="text-black text-base font-extrabold text-center">{nickname}</span>
             </div>
           </div>
           <div className="text-center mt-1">
@@ -126,21 +119,13 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              onFocus={() => setPasswordFocused(true)}
-              onBlur={() => setPasswordFocused(false)}
               placeholder=""
               maxLength={PASSWORD_LENGTH}
               inputMode="numeric"
               pattern="[0-9]*"
               autoComplete="new-password"
-              className="absolute top-0 left-0 w-full h-[42px] sm:h-[49px] bg-transparent border-none text-transparent text-center text-base font-extrabold outline-none px-4 caret-transparent"
+              className="absolute top-0 left-0 w-full h-[49px] bg-transparent border-none text-black text-center text-base font-normal outline-none px-4"
             />
-            <div className="absolute top-0 left-0 w-full h-[42px] sm:h-[49px] flex items-end justify-start pointer-events-none px-4 pb-2 sm:pb-3 overflow-hidden">
-              <span className="text-black text-base font-extrabold">{"●".repeat(password.length)}</span>
-              {passwordFocused && (
-                <span className="inline-block w-4 h-[3px] bg-black animate-pulse flex-shrink-0" />
-              )}
-            </div>
           </div>
           <div className="text-center mt-1">
             <span className="text-gray-600 text-xs">
@@ -150,6 +135,7 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
             </span>
           </div>
         </div>
+
 
         {/* 에러 메시지 */}
         {error && (
@@ -177,15 +163,15 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
         {/* 설명 문구 */}
         <div className="mt-4 flex flex-col gap-2 w-[208px] mx-auto">
           <div className="flex items-start gap-2">
-            <Image src={MonsterBallBasic} alt="" width={14} height={14} className="flex-shrink-0 mt-0.5" />
+            <Image src={MonsterBallBasic} alt="" width={14} height={14} className="shrink-0 mt-0.5" />
             <span className="text-black text-[14px] font-bold">회원가입·로그인 화면은 동일해요!</span>
           </div>
           <div className="flex items-start gap-2">
-            <Image src={MonsterBallBasic} alt="" width={14} height={14} className="flex-shrink-0 mt-0.5" />
+            <Image src={MonsterBallBasic} alt="" width={14} height={14} className="shrink-0 mt-0.5" />
             <span className="text-black text-[14px] font-bold">트리는 2~6글자, 비밀번호는 숫자 4자리로 설정해주세요!</span>
           </div>
           <div className="flex items-start gap-2">
-            <Image src={MonsterBallBasic} alt="" width={14} height={14} className="flex-shrink-0 mt-0.5" />
+            <Image src={MonsterBallBasic} alt="" width={14} height={14} className="shrink-0 mt-0.5" />
             <span className="text-black text-[14px] font-bold">처음 설정한 트리 이름은 이후 변경할 수 없으니 신중히 입력해주세요!</span>
           </div>
         </div>
