@@ -10,11 +10,11 @@ import { deleteLetter } from "@/features/my-tree/usecases/deleteLetter";
 import { LetterData } from "@/features/my-tree/models/res/GetLetterResponse";
 import DeleteConfirmModal from "@/features/shared/components/Modal/DeleteConfirmModal";
 import LockIcon from "@/assets/icon/lockIcon.svg";
-import CloseIcon from "@/assets/icon/closeIcon.png";
 import ButtonLetterPublic from "@/assets/images/components/button_letter_public.png";
 import ButtonLetterUnpublic from "@/assets/images/components/button_letter_unpublic.png";
 import { openLetter } from "@/features/my-tree/repositories/letterRepository";
 import HatchModal from "@/features/shared/components/Modal/HatchModal";
+import { BaseModal } from "@/features/shared/components/Modal/BaseModal";
 
 /**
  * LetterModal - 편지 내용을 보여주는 모달
@@ -181,27 +181,11 @@ export default function LetterModal({
 
       {/* 편지 내용 모달 */}
       {!showHatchModal && (
-        <div
-          className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4"
-          onClick={onClose}
+        <BaseModal
+          isOpen={true}
+          onClose={onClose}
+          contentClassName="bg-black rounded-lg w-[352px] max-h-[80vh] relative overflow-hidden"
         >
-          <div className="relative" onClick={(e) => e.stopPropagation()}>
-            {/* 닫기 버튼 - 모달 바깥 우측 상단 */}
-            <button
-              onClick={onClose}
-              className="absolute bottom-[calc(100%+15px)] right-0 w-8 h-8 bg-black rounded flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors z-10"
-              aria-label="닫기"
-            >
-              <Image
-                src={CloseIcon}
-                alt="닫기"
-                width={20}
-                height={20}
-                className="object-contain"
-              />
-            </button>
-
-            <div className="bg-black rounded-lg w-[352px] max-h-[80vh] relative overflow-hidden">
 
             {/* 자물쇠 아이콘 (우상단) - isOwner일 때만 표시, is_open가 false일 때 표시 */}
             {isOwner === "true" && letterData?.is_open !== "true" && (
@@ -306,19 +290,17 @@ export default function LetterModal({
                 )}
               </div>
             )}
-            </div>
-
-            {/* 삭제 확인 모달 */}
-            <DeleteConfirmModal
-              isOpen={showConfirmModal}
-              onClose={() => setShowConfirmModal(false)}
-              onConfirm={handleConfirmDelete}
-              title={translate("letterModal.deleteConfirm").replace("{name}", letterData?.sender_name || "")}
-              confirmText={translate("letterModal.deleteButton")}
-            />
-          </div>
-        </div>
+          </BaseModal>
       )}
+
+      {/* 삭제 확인 모달 */}
+      <DeleteConfirmModal
+        isOpen={showConfirmModal}
+        onClose={() => setShowConfirmModal(false)}
+        onConfirm={handleConfirmDelete}
+        title={translate("letterModal.deleteConfirm").replace("{name}", letterData?.sender_name || "")}
+        confirmText={translate("letterModal.deleteButton")}
+      />
     </>
   );
 }

@@ -1,8 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import CloseIcon from "@/assets/icon/closeIcon.png";
 import ButtonLetterDelete from "@/assets/images/components/button_letter_delete.png";
+import { BaseModal } from "@/features/shared/components/Modal/BaseModal";
 
 interface DeleteConfirmModalProps {
   isOpen: boolean;
@@ -22,31 +22,11 @@ export default function DeleteConfirmModal({
   if (!isOpen) return null;
 
   return (
-    <div
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-60 p-4"
-      onClick={onClose}
+    <BaseModal
+      isOpen={isOpen}
+      onClose={onClose}
+      contentClassName="bg-black rounded-2xl w-full max-w-[500px] p-8"
     >
-      {/* 모달 컨테이너 */}
-      <div className="relative">
-        {/* 닫기 버튼 - 모달 바깥 우측 상단 */}
-        <button
-          onClick={onClose}
-          className="absolute bottom-[calc(100%+15px)] right-0 w-8 h-8 bg-black rounded flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors z-10"
-          aria-label="닫기"
-        >
-          <Image
-            src={CloseIcon}
-            alt="닫기"
-            width={20}
-            height={20}
-            className="object-contain"
-          />
-        </button>
-
-        <div
-          className="bg-black rounded-2xl w-full max-w-[500px] p-8"
-          onClick={(e) => e.stopPropagation()}
-        >
           {/* 제목 */}
           <h2 className="text-white text-2xl font-bold text-center mb-8 whitespace-pre-line">
             {title}
@@ -70,8 +50,6 @@ export default function DeleteConfirmModal({
               </span>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+    </BaseModal>
   );
 }

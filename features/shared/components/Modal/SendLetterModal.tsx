@@ -3,7 +3,6 @@
 import Image from "next/image";
 import { useState } from "react";
 import { sendLetter } from "@/features/my-tree/usecases/sendLetter";
-import CloseIcon from "@/assets/icon/closeIcon.png";
 import TrainerIcon from "@/assets/icon/trainerIcon.png";
 import ButtonLetterWrite from "@/assets/images/components/button_letter_write.png";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
@@ -11,6 +10,7 @@ import { POKEMON_DATA } from "@/features/shared/data/pokemonData";
 import SendLetterCompleteModal from "./SendLetterCompleteModal";
 import { trackEvent } from "@/features/shared/utils/analytics/analytics";
 import { notifySendLetter } from "@/features/shared/utils/discord/discord";
+import { BaseModal } from "@/features/shared/components/Modal/BaseModal";
 
 const MAX_CONTENT_LENGTH = 300;
 const MIN_CONTENT_LENGTH = 4;
@@ -146,31 +146,11 @@ export default function SendLetterModal({
     content.trim().length > MAX_CONTENT_LENGTH;
 
   return (
-    <div
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4 py-4"
-      onClick={handleClose}
+    <BaseModal
+      isOpen={isModalOpen}
+      onClose={handleClose}
+      contentClassName="bg-black rounded-2xl w-full max-w-[352px] p-4"
     >
-      {/* 모달 컨테이너 */}
-      <div className="relative">
-        {/* 닫기 버튼 - 모달 바깥 우측 상단 */}
-        <button
-          onClick={handleClose}
-          className="absolute bottom-[calc(100%+15px)] right-0 w-8 h-8 bg-black rounded flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors z-10"
-          aria-label="닫기"
-        >
-          <Image
-            src={CloseIcon}
-            alt="닫기"
-            width={20}
-            height={20}
-            className="object-contain"
-          />
-        </button>
-
-        <div
-          className="bg-black rounded-2xl w-full max-w-[352px] p-4"
-          onClick={(e) => e.stopPropagation()}
-        >
           {/* 헤더 */}
           <h1 className="text-white text-lg font-bold text-center mb-4 whitespace-pre-line">
             {translate("sendLetter.title").replace("{name}", receiverName)}
@@ -252,8 +232,6 @@ export default function SendLetterModal({
               </span>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+    </BaseModal>
   );
 }

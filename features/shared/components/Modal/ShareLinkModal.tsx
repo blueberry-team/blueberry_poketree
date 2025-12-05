@@ -5,7 +5,7 @@ import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { useState, useEffect } from "react";
 import ShareIcon from "@/assets/icon/shareIcon.svg";
 import ButtonBigGreen from "@/assets/images/components/button_big_green.png";
-import CloseIcon from "@/assets/icon/closeIcon.png";
+import { BaseModal } from "@/features/shared/components/Modal/BaseModal";
 
 // 공유 베이스 url
 const SHARE_BASE_URL = "https://poketrees.com/";
@@ -54,31 +54,11 @@ export function ShareLinkModal({
   };
 
   return (
-    <div
-      className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
-      onClick={onClose}
+    <BaseModal
+      isOpen={isOpen}
+      onClose={onClose}
+      contentClassName="bg-white rounded-lg p-6 w-[320px]"
     >
-      {/* 모달 컨테이너 */}
-      <div className="relative">
-        {/* 닫기 버튼 - 모달 바깥 우측 상단 */}
-        <button
-          onClick={onClose}
-          className="absolute bottom-[calc(100%+15px)] right-0 w-8 h-8 bg-black rounded flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors z-10"
-          aria-label="닫기"
-        >
-          <Image
-            src={CloseIcon}
-            alt="닫기"
-            width={20}
-            height={20}
-            className="object-contain"
-          />
-        </button>
-
-        <div
-          className="bg-white rounded-lg p-6 w-[320px]"
-          onClick={(e) => e.stopPropagation()}
-        >
           {/* 모달 헤더 */}
           <h2 className="whitespace-pre-line text-lg font-bold text-center text-black pb-4">
             {translate("share.title")}
@@ -119,8 +99,6 @@ export function ShareLinkModal({
                 : translate("share.copyError")}
             </div>
           )}
-        </div>
-      </div>
-    </div>
+    </BaseModal>
   );
 }
