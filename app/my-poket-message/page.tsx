@@ -104,7 +104,7 @@ function MyPoketMessagePageContent() {
       {/* 헤더 영역 */}
       <div className="px-4 py-3 shrink-0">
         <div className="flex flex-col gap-2 mb-2">
-          <h1 className="text-white text-xl font-bold">
+          <h1 className="text-white text-xl font-extrabold">
             {userName}{translate("message.userMessage")}
           </h1>
           <button className="flex items-center gap-1 px-3 py-2 bg-black/60 text-white text-sm font-bold w-fit rounded-lg">
@@ -124,7 +124,7 @@ function MyPoketMessagePageContent() {
       </div>
 
       {/* 하단 버튼 영역 */}
-      <div className="px-4 py-4 shrink-0 relative bg-[#BF0120] h-[246px] border-t-2 border-black">
+      <div className="px-4 py-4 shrink-0 relative bg-[#BF0120] h-[200px] border-t-2 border-black">
         <BottomButtons
           onUp={handleUp}
           onDown={handleDown}

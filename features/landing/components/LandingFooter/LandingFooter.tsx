@@ -14,20 +14,18 @@ export function LandingFooter() {
 
   const handleMakePokeTree = () => {
     trackButtonClick("button_click_home_make_tree");
-    router.push("/signup-or-go");
+    router.push("/signup-or-go?from=make_tree");
   };
 
   return (
     <div className="px-4 shrink-0 relative min-h-[200px] flex flex-col items-center">
+
+      <p className="text-center font-semibold text-[18px] text-white mt-2">
+        {translate("landing.description2")}
+      </p>
+
       {/* 포켓몬 이미지와 아이콘 */}
       <div className="flex gap-4 mt-4 items-center">
-        <Image
-          src={ALL_POKEMON_IMAGES[1]}
-          alt="Pokemon 1"
-          width={80}
-          height={80}
-        />
-
         {/* 중앙 아이콘 + 텍스트 */}
         <div className="relative cursor-pointer" onClick={handleMakePokeTree}>
           <Image
@@ -37,23 +35,12 @@ export function LandingFooter() {
             height={60.84}
           />
           <div className="absolute inset-0 flex items-center justify-center">
-            <span className="font-bold text-center" style={{ fontSize: "20.28px" }}>
+            <span className="font-extrabold text-center" style={{ fontSize: "20.28px" }}>
               {translate("landing.makeTree")}
             </span>
           </div>
         </div>
-
-        <Image
-          src={ALL_POKEMON_IMAGES[73]}
-          alt="Pokemon 73"
-          width={80}
-          height={80}
-        />
       </div>
-
-      <p className="text-center font-semibold text-[18px] text-white">
-        {translate("landing.description2")}
-      </p>
 
       <SocialMediaButton />
     </div>

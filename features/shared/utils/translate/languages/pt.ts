@@ -20,9 +20,13 @@ export const pt = {
     chineseTraditional: "繁體中文",
   },
   auth: {
+    login: "Entrar",
+    signup: "Cadastrar",
     yourTree: "Qual é o nome da sua árvore?",
     password: "Senha (4 dígitos)",
     confirmInput: "Confirmar",
+    wrongPassword: "Senha incorreta",
+    accountExists: "A conta já existe",
   },
   share: {
     title: "Compartilhe sua PokéTree com amigos!",
@@ -110,7 +114,7 @@ export const pt = {
     hours: "H",
     minutes: "M",
     description1: "Ganhe um presente surpresa no dia de Natal!",
-    description2: "Escreva cartas para decorar a árvore dos seus amigos!",
+    description2: "Crie sua PokéTree e compartilhe com amigos!",
     makeTree: "Criar PokéTree",
     visitSocial: "Visite nosso Instagram",
     socialName: "Instagram",

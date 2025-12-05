@@ -48,14 +48,14 @@ function SettingModalContent({ isOpen, onClose }: SettingModalProps) {
         <BaseModal
           isOpen={isOpen}
           onClose={onClose}
-          contentClassName="bg-white rounded-2xl p-6 w-[360px] max-h-[80vh] overflow-y-auto"
+          contentClassName="bg-white rounded-2xl p-4 sm:p-6 w-[360px] max-w-[90vw] max-h-[80vh] overflow-y-auto"
         >
               <div className="flex flex-col gap-3">
                 {/* 로그아웃 버튼 - 랜딩 페이지와 회원가입 페이지에서는 숨김 */}
                 {!shouldHideLogout && (
                   <button
                     onClick={handleLogout}
-                    className="px-4 py-3 rounded border bg-white transition-all text-black"
+                    className="px-4 py-3 rounded bg-[#F5F5F5] transition-all text-black hover:bg-gray-200"
                   >
                   {translate("header.logout")}
                   </button>
@@ -64,7 +64,7 @@ function SettingModalContent({ isOpen, onClose }: SettingModalProps) {
                 {/* 도움말 버튼 */}
                 <button
                   onClick={handleHelp}
-                  className="px-4 py-3 rounded border bg-white transition-all text-black"
+                  className="px-4 py-3 rounded bg-[#F5F5F5] transition-all text-black hover:bg-gray-200"
                 >
                 {translate("header.help")}
                 </button>

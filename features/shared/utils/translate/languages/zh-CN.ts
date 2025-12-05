@@ -20,9 +20,13 @@ export const zhCN = {
     chineseTraditional: "繁體中文",
   },
   auth: {
+    login: "登录",
+    signup: "注册",
     yourTree: "你的树叫什么名字？",
     password: "密码（4位数字）",
     confirmInput: "确认",
+    wrongPassword: "密码错误",
+    accountExists: "账户已存在",
   },
   share: {
     title: "与朋友分享你的宝可树！",
@@ -110,7 +114,7 @@ export const zhCN = {
     hours: "时",
     minutes: "分",
     description1: "圣诞节当天获得惊喜礼物！",
-    description2: "写信装饰朋友的树！",
+    description2: "创建你的宝可树并分享给朋友！",
     makeTree: "创建宝可树",
     visitSocial: "访问我们的Instagram",
     socialName: "Instagram",

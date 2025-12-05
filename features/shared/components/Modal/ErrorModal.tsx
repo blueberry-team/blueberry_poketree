@@ -34,7 +34,7 @@ export default function ErrorModal({
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      contentClassName="bg-black rounded-2xl w-full max-w-[500px] p-8"
+      contentClassName="bg-black rounded-2xl w-full max-w-[min(500px,90vw)] p-4 sm:p-8"
     >
           {/* 에러 메시지 */}
           <div className="text-white text-xl font-medium text-center mb-8 whitespace-pre-line min-h-[100px] flex items-center justify-center">

@@ -34,17 +34,17 @@ export function LanguageModal({ isOpen, onClose }: LanguageModalProps) {
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      contentClassName="bg-white rounded-3xl px-6 pt-10 pb-16 w-[360px]"
+      contentClassName="bg-white rounded-3xl px-4 sm:px-6 pt-8 sm:pt-10 pb-12 sm:pb-16 w-[360px] max-w-[90vw]"
     >
           <div className="flex flex-col gap-3">
             {languages.map((lang) => (
               <button
                 key={lang.code}
                 onClick={() => handleLanguageSelect(lang.code)}
-                className={`px-4 py-3 rounded border transition-all text-black ${
+                className={`px-4 py-3 rounded transition-all text-black ${
                   language === lang.code
-                    ? "bg-[#90EE90] border-[#90EE90] font-regular"
-                    : "bg-white border-gray-300 hover:bg-gray-50"
+                    ? "bg-[#90EE90] font-regular"
+                    : "bg-[#F5F5F5] hover:bg-gray-200"
                 }`}
                 style={{ fontFamily: lang.useJaFont ? "var(--font-pixel-mplus)" : "var(--font-pf-stardust)" }}
               >

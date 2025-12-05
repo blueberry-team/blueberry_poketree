@@ -15,7 +15,7 @@ export function ChristmasCountdown() {
 
   const handleLogin = () => {
     trackButtonClick("button_click_home_login");
-    router.push("/signup-or-go");
+    router.push("/signup-or-go?from=login");
   };
 
   useEffect(() => {
@@ -116,7 +116,7 @@ export function ChristmasCountdown() {
             fill
             className="object-fill"
           />
-          <span className="relative z-10 text-white text-[12px] font-bold">
+          <span className="relative z-10 text-white text-[12px] font-extrabold">
             {translate("header.login")}
           </span>
         </button>

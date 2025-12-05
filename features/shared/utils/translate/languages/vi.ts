@@ -20,9 +20,13 @@ export const vi = {
     chineseTraditional: "繁體中文",
   },
   auth: {
+    login: "Dang nhap",
+    signup: "Dang ky",
     yourTree: "Ten cay cua ban la gi?",
     password: "Mat khau (4 chu so)",
     confirmInput: "Xac nhan",
+    wrongPassword: "Mat khau sai",
+    accountExists: "Tai khoan da ton tai",
   },
   share: {
     title: "Chia se PokéTree cua ban voi ban be!",
@@ -110,7 +114,7 @@ export const vi = {
     hours: "G",
     minutes: "P",
     description1: "Nhan qua bat ngo vao ngay Giang sinh!",
-    description2: "Viet thu de trang tri cay cua ban be!",
+    description2: "Tao PokéTree va chia se voi ban be!",
     makeTree: "Tao PokéTree",
     visitSocial: "Ghe tham Instagram",
     socialName: "Instagram",

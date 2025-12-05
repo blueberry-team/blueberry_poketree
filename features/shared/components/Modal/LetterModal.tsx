@@ -184,7 +184,7 @@ export default function LetterModal({
         <BaseModal
           isOpen={true}
           onClose={onClose}
-          contentClassName="bg-black rounded-lg w-[352px] max-h-[80vh] relative overflow-hidden"
+          contentClassName="bg-black rounded-lg w-[352px] max-w-[90vw] max-h-[80vh] relative overflow-hidden"
         >
 
             {/* 자물쇠 아이콘 (우상단) - isOwner일 때만 표시, is_open가 false일 때 표시 */}
@@ -222,7 +222,7 @@ export default function LetterModal({
 
             {/* 편지 데이터 표시 */}
             {letterData && !isLoading && !error && (
-              <div className="p-8">
+              <div className="p-4 sm:p-8">
                 {/* 헤더: 포켓몬 이미지와 제목 */}
                 <div className="flex items-center gap-6 mb-6">
                   <Image
@@ -239,7 +239,7 @@ export default function LetterModal({
                 </div>
 
                 {/* 편지 내용 */}
-                <div className="bg-white rounded-lg p-8 min-h-320px mb-6 max-h-[400px] overflow-y-auto">
+                <div className="bg-white rounded-lg p-4 sm:p-8 min-h-320px mb-6 max-h-[400px] overflow-y-auto">
                   <p className="text-black text-lg whitespace-pre-wrap leading-relaxed">
                     {letterData.content}
                   </p>

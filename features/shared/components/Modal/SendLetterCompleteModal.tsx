@@ -32,7 +32,7 @@ export default function SendLetterCompleteModal({
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      contentClassName="bg-black rounded-lg p-6 w-[352px]"
+      contentClassName="bg-black rounded-lg p-4 sm:p-6 w-[352px] max-w-[90vw]"
     >
           {/* 제목 (~~님께 포켓 메시지를 보냈습니다) */}
           <h2 className="whitespace-pre-line text-lg font-bold text-center text-white pt-4 pb-3 text-[24px]">
