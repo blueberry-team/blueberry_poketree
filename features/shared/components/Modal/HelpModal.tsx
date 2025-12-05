@@ -6,7 +6,7 @@ import MonsterBall1 from "@/assets/icon/tooltip/monsterBall1.svg";
 import MonsterBall2 from "@/assets/icon/tooltip/monsterBall2.svg";
 import MonsterBall3 from "@/assets/icon/tooltip/monsterBall3.svg";
 import ElectricBulb from "@/assets/icon/tooltip/electricBulb.svg";
-import CloseIcon from "@/assets/icon/closeIcon.png";
+import { BaseModal } from "@/features/shared/components/Modal/BaseModal";
 
 interface HelpModalProps {
   isOpen: boolean;
@@ -19,32 +19,11 @@ export function HelpModal({ isOpen, onClose }: HelpModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div
-      className="fixed inset-0 bg-black/60 flex items-center justify-center z-50"
-      onClick={onClose}
+    <BaseModal
+      isOpen={isOpen}
+      onClose={onClose}
+      contentClassName="bg-white rounded-2xl p-6 w-[360px] max-h-[80vh] overflow-y-auto"
     >
-      {/* 모달 컨테이너 */}
-      <div className="relative">
-        {/* 닫기 버튼 - 모달 바깥 우측 상단 */}
-        <button
-          onClick={onClose}
-          className="absolute bottom-[calc(100%+15px)] right-0 w-8 h-8 bg-black rounded flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors z-10"
-          aria-label="닫기"
-        >
-          <Image
-            src={CloseIcon}
-            alt="닫기"
-            width={20}
-            height={20}
-            className="object-contain"
-          />
-        </button>
-
-        {/* 모달 내용 */}
-        <div
-          className="bg-white rounded-2xl p-6 w-[360px] max-h-[80vh] overflow-y-auto"
-          onClick={(e) => e.stopPropagation()}
-        >
           <h2 className="text-[32px] font-bold mb-4 text-black">
             {translate("help.title")}
           </h2>
@@ -86,8 +65,6 @@ export function HelpModal({ isOpen, onClose }: HelpModalProps) {
               <p className="text-[15px]">{translate("help.tip.description")}</p>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+    </BaseModal>
   );
 }

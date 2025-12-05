@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import BackgroundImage from "@/assets/images/background/background.png";
-import TreeImage from "@/assets/images/background/tree.png";
-import MonsterBallClose from "@/assets/images/components/monster_ball_close.png";
+import BackgroundImage from "@/assets/images/background/background.webp";
+import TreeImage from "@/assets/images/background/tree.webp";
+import MonsterBallClose from "@/assets/images/components/monster_ball_close.webp";
 import { ALL_POKEMON_IMAGES } from "@/features/shared/data/pokemonData";
 
 /**

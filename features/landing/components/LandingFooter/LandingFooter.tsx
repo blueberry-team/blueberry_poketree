@@ -3,7 +3,7 @@
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { ALL_POKEMON_IMAGES } from "@/features/shared/data/pokemonData";
-import MakePokeTreeIcon from "@/assets/images/components/button_large_green.png";
+import MakePokeTreeIcon from "@/assets/images/components/button_large_green.webp";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { SocialMediaButton } from "@/features/shared/components/SocialMediaButton/SocialMediaButton";
 import { trackButtonClick } from "@/features/shared/utils/analytics/analytics";

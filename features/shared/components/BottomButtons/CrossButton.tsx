@@ -3,7 +3,7 @@
 import { Suspense } from "react";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import ControlButton from "@/assets/images/components/control_button.png";
+import ControlButton from "@/assets/images/components/control_button.webp";
 
 interface CrossButtonProps {
   onUp?: () => void;

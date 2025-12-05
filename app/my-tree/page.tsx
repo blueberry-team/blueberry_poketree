@@ -15,7 +15,8 @@ import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import {
   ALL_POKEMON_IMAGES
 } from "@/features/shared/data/pokemonData";
-import ButtonBigGreen from "@/assets/images/components/button_big_green.png";
+import ButtonBigGreen from "@/assets/images/components/button_big_green.webp";
+import ButtonSmallDark from "@/assets/images/components/button_small_dark.webp";
 import { getUserTree } from "@/features/my-tree/usecases/getUserTree";
 import { UserTreeData } from "@/features/my-tree/models/res/GetUserTreeResponse";
 import { isApiError } from "@/features/shared/utils/api/apiClient";
