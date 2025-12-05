@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import CloseIcon from "@/assets/icon/closeIcon.png";
+import CloseIcon from "@/assets/icon/closeIcon.webp";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 
 interface SignupOrGoErrorModalProps {

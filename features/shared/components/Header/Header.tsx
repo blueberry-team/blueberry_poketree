@@ -41,7 +41,7 @@ function HeaderContent() {
 
   return (
     <header
-      className={`w-full h-[90px] shrink-0 bg-[#BF0120] overflow-hidden relative ${isFullScrollPage ? '' : 'sticky top-0 z-50'
+      className={`w-full h-[70px] shrink-0 bg-[#BF0120] overflow-hidden relative ${isFullScrollPage ? '' : 'sticky top-0 z-50'
         }`}
     >
       {/* 헤더 배경 이미지 */}
@@ -50,7 +50,7 @@ function HeaderContent() {
         alt="헤더 배경"
         width={390}
         height={92}
-        className="object-cover absolute inset-0 w-full h-full"
+        className="object-cover absolute -top-[20px] left-0 right-0 w-full h-[92px]"
       />
       <div className="relative z-10 w-full h-full">
         {/* 좌측: 뒤로가기 버튼 또는 로고 그룹 */}
@@ -76,8 +76,8 @@ function HeaderContent() {
             <Image
               src={PokedexDot}
               alt="도감 신호등"
-              width={36}
-              height={24}
+              width={43}
+              height={10}
               className="object-contain absolute -top-3 left-0"
             />
             <span className="text-white text-[18px]" style={{ fontFamily: 'var(--font-press-start)' }}>PokéTree</span>
@@ -93,7 +93,7 @@ function HeaderContent() {
             style={{ width: "53px", height: "37px" }}
           >
             <Image src={ButtonSmallBlue} alt="언어 버튼" width={53} height={37} className="absolute inset-0" />
-            <span className="relative z-10 text-black text-[12px] font-bold">{translate("header.language")}</span>
+            <span className="relative z-10 text-black text-[12px] font-extrabold">{translate("header.language")}</span>
           </button>
 
           {/* 설정 버튼 */}
@@ -103,7 +103,7 @@ function HeaderContent() {
             style={{ width: "53px", height: "37px" }}
           >
             <Image src={ButtonSmallBlue} alt="설정 버튼" width={53} height={37} className="absolute inset-0" />
-            <span className="relative z-10 text-black text-[12px] font-bold">{translate("header.options")}</span>
+            <span className="relative z-10 text-black text-[12px] font-extrabold">{translate("header.options")}</span>
           </button>
         </div>
       </div>
@@ -126,13 +126,13 @@ function HeaderContent() {
 export function Header() {
   return (
     <Suspense fallback={
-      <header className="w-full h-[90px] shrink-0 bg-[#BF0120] overflow-hidden relative">
+      <header className="w-full h-[70px] shrink-0 bg-[#BF0120] overflow-hidden relative">
         <Image
           src={HeaderBackground}
           alt="헤더 배경"
           width={390}
           height={92}
-          className="object-cover absolute inset-0 w-full h-full"
+          className="object-cover absolute -top-[20px] left-0 right-0 w-full h-[92px]"
         />
       </header>
     }>

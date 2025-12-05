@@ -26,6 +26,8 @@ export function AuthForm({ onSubmit, isLoading, error, title, isLogin = false }:
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+  const [nicknameFocused, setNicknameFocused] = useState(false);
+  const [passwordFocused, setPasswordFocused] = useState(false);
   const { translate } = useTranslation();
 
   // error가 변경되면 모달 열기
@@ -60,7 +62,7 @@ export function AuthForm({ onSubmit, isLoading, error, title, isLogin = false }:
       {/* 좌상단 타이틀 */}
       {title && (
         <div className="w-full text-left mt-4 px-4">
-          <span className="text-black text-base font-bold">{title}</span>
+          <span className="text-black text-base font-extrabold">{title}</span>
         </div>
       )}
       <div className="flex flex-col items-center px-[94px]">
@@ -78,7 +80,7 @@ export function AuthForm({ onSubmit, isLoading, error, title, isLogin = false }:
       <form onSubmit={handleSubmit} className="w-full flex flex-col">
         {/* 아이디 입력 */}
         <div className="mb-[15px]">
-          <p className="text-black text-base font-bold mb-2 text-center">
+          <p className="text-black text-base font-extrabold mb-2 text-center">
             {translate("auth.yourTree")}
           </p>
           <div className="relative w-full">
@@ -93,10 +95,18 @@ export function AuthForm({ onSubmit, isLoading, error, title, isLogin = false }:
               type="text"
               value={nickname}
               onChange={(e) => setNickname(e.target.value)}
+              onFocus={() => setNicknameFocused(true)}
+              onBlur={() => setNicknameFocused(false)}
               placeholder=""
               maxLength={MAX_NICKNAME_LENGTH}
-              className="absolute top-0 left-0 w-full h-[49px] bg-transparent border-none text-black text-center text-base font-normal outline-none px-4"
+              className="absolute top-0 left-0 w-full h-[49px] bg-transparent border-none text-transparent text-center text-base font-extrabold outline-none px-4 caret-transparent"
             />
+            <div className="absolute top-0 left-0 w-full h-[49px] flex items-end justify-start pointer-events-none px-4 pb-3">
+              <span className="text-black text-base font-extrabold">{nickname}</span>
+              {nicknameFocused && (
+                <span className="inline-block w-6 h-[3px] bg-black animate-pulse" />
+              )}
+            </div>
           </div>
           <div className="text-center mt-1">
             <span className="text-gray-600 text-xs">
@@ -109,7 +119,7 @@ export function AuthForm({ onSubmit, isLoading, error, title, isLogin = false }:
 
         {/* 비밀번호 입력 */}
         <div className="mb-[26px]">
-          <p className="text-black text-base font-bold mb-2 text-center">
+          <p className="text-black text-base font-extrabold mb-2 text-center">
             {translate("auth.password")}
           </p>
           <div className="relative w-full">
@@ -124,13 +134,21 @@ export function AuthForm({ onSubmit, isLoading, error, title, isLogin = false }:
               type="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
+              onFocus={() => setPasswordFocused(true)}
+              onBlur={() => setPasswordFocused(false)}
               placeholder=""
               maxLength={PASSWORD_LENGTH}
               inputMode="numeric"
               pattern="[0-9]*"
               autoComplete="new-password"
-              className="absolute top-0 left-0 w-full h-[49px] bg-transparent border-none text-black text-center text-base font-normal outline-none px-4"
+              className="absolute top-0 left-0 w-full h-[49px] bg-transparent border-none text-transparent text-center text-base font-extrabold outline-none px-4 caret-transparent"
             />
+            <div className="absolute top-0 left-0 w-full h-[49px] flex items-end justify-start pointer-events-none px-4 pb-3">
+              <span className="text-black text-base font-extrabold">{"●".repeat(password.length)}</span>
+              {passwordFocused && (
+                <span className="inline-block w-6 h-[3px] bg-black animate-pulse" />
+              )}
+            </div>
           </div>
           <div className="text-center mt-1">
             <span className="text-gray-600 text-xs">
@@ -154,7 +172,7 @@ export function AuthForm({ onSubmit, isLoading, error, title, isLogin = false }:
             height={70}
             className="w-full h-[70px]"
           />
-          <span className="absolute inset-0 flex items-center justify-center text-black text-2xl font-bold">
+          <span className="absolute inset-0 flex items-center justify-center text-black text-2xl font-extrabold">
             {isLoading ? "로딩중 .." : translate("auth.confirmInput")}
           </span>
         </button>

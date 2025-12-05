@@ -116,7 +116,7 @@ export function ChristmasCountdown() {
             fill
             className="object-fill"
           />
-          <span className="relative z-10 text-white text-[12px] font-bold">
+          <span className="relative z-10 text-white text-[12px] font-extrabold">
             {translate("header.login")}
           </span>
         </button>

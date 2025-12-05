@@ -114,7 +114,7 @@ export const vi = {
     hours: "G",
     minutes: "P",
     description1: "Nhan qua bat ngo vao ngay Giang sinh!",
-    description2: "Viet thu de trang tri cay cua ban be!",
+    description2: "Tao PokéTree va chia se voi ban be!",
     makeTree: "Tao PokéTree",
     visitSocial: "Ghe tham Instagram",
     socialName: "Instagram",

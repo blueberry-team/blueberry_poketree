@@ -114,7 +114,7 @@ export const zhTW = {
     hours: "時",
     minutes: "分",
     description1: "聖誕節當天獲得驚喜禮物！",
-    description2: "寫信裝飾朋友的樹！",
+    description2: "創建你的寶可樹並分享給朋友！",
     makeTree: "創建寶可樹",
     visitSocial: "造訪我們的Instagram",
     socialName: "Instagram",

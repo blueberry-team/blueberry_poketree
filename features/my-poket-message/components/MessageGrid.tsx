@@ -46,7 +46,7 @@ export function MessageGrid({ messages, selectedIndex, onMessageClick }: Message
                 key={message.letter_id}
                 ref={(el) => { itemRefs.current[index] = el; }}
                 onClick={() => onMessageClick?.(index)}
-                className={`relative flex flex-col items-center p-3 rounded-lg cursor-pointer transition-colors ${
+                className={`relative flex flex-col items-center p-3 rounded-lg cursor-pointer transition-colors w-[106px] h-[106px] ${
                   isSelected
                     ? "border-2 border-[#EEF2F6] bg-[#16A9FE]"
                     : "border-4 border-[#EEF2F6] bg-white"
@@ -65,7 +65,7 @@ export function MessageGrid({ messages, selectedIndex, onMessageClick }: Message
                 )}
 
                 {/* 포켓몬 이미지 */}
-                <div className="w-16 h-16 relative">
+                <div className="w-10 h-10 relative mt-4">
                   {pokemonImage && (
                     <Image
                       src={pokemonImage}

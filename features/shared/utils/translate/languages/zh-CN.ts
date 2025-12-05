@@ -114,7 +114,7 @@ export const zhCN = {
     hours: "时",
     minutes: "分",
     description1: "圣诞节当天获得惊喜礼物！",
-    description2: "写信装饰朋友的树！",
+    description2: "创建你的宝可树并分享给朋友！",
     makeTree: "创建宝可树",
     visitSocial: "访问我们的Instagram",
     socialName: "Instagram",

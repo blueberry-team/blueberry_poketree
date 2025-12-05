@@ -55,7 +55,7 @@ function SettingModalContent({ isOpen, onClose }: SettingModalProps) {
                 {!shouldHideLogout && (
                   <button
                     onClick={handleLogout}
-                    className="px-4 py-3 rounded border bg-white transition-all text-black"
+                    className="px-4 py-3 rounded bg-[#F5F5F5] transition-all text-black hover:bg-gray-200"
                   >
                   {translate("header.logout")}
                   </button>
@@ -64,7 +64,7 @@ function SettingModalContent({ isOpen, onClose }: SettingModalProps) {
                 {/* 도움말 버튼 */}
                 <button
                   onClick={handleHelp}
-                  className="px-4 py-3 rounded border bg-white transition-all text-black"
+                  className="px-4 py-3 rounded bg-[#F5F5F5] transition-all text-black hover:bg-gray-200"
                 >
                 {translate("header.help")}
                 </button>

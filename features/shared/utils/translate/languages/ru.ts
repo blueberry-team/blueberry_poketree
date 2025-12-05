@@ -114,7 +114,7 @@ export const ru = {
     hours: "Ч",
     minutes: "М",
     description1: "Получите сюрприз в день Рождества!",
-    description2: "Пишите письма, чтобы украсить дерево ваших друзей!",
+    description2: "Создайте свой PokéTree и поделитесь с друзьями!",
     makeTree: "Создать PokéTree",
     visitSocial: "Посетите наш Instagram",
     socialName: "Instagram",

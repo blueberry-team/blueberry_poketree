@@ -114,7 +114,7 @@ export const pt = {
     hours: "H",
     minutes: "M",
     description1: "Ganhe um presente surpresa no dia de Natal!",
-    description2: "Escreva cartas para decorar a árvore dos seus amigos!",
+    description2: "Crie sua PokéTree e compartilhe com amigos!",
     makeTree: "Criar PokéTree",
     visitSocial: "Visite nosso Instagram",
     socialName: "Instagram",
