@@ -3,19 +3,20 @@
 import Image from "next/image";
 import { useState } from "react";
 import { sendLetter } from "@/features/my-tree/usecases/sendLetter";
-import CloseIcon from "@/assets/icon/closeIcon.png";
-import TrainerIcon from "@/assets/icon/trainerIcon.png";
-import ButtonLetterWrite from "@/assets/images/components/button_letter_write.png";
+import TrainerIcon from "@/assets/icon/trainerIcon.webp";
+import ButtonLetterWrite from "@/assets/images/components/button_letter_write.webp";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { POKEMON_DATA } from "@/features/shared/data/pokemonData";
 import SendLetterCompleteModal from "./SendLetterCompleteModal";
 import { trackEvent } from "@/features/shared/utils/analytics/analytics";
 import { notifySendLetter } from "@/features/shared/utils/discord/discord";
+import { BaseModal } from "@/features/shared/components/Modal/BaseModal";
 
 const MAX_CONTENT_LENGTH = 300;
 const MIN_CONTENT_LENGTH = 4;
 const MIN_SENDER_NAME_LENGTH = 1;
 const MAX_SENDER_NAME_LENGTH = 6;
+const MAX_CONTENT_ROWS = 10;
 
 /**
  * SendLetterModal - 편지 작성 모달
@@ -53,6 +54,17 @@ export default function SendLetterModal({
     setShowCompleteModal(false);
     setReceivedPokemonId(null);
     onClose();
+  };
+
+  // 내용 변경 핸들러 (줄 수 제한)
+  const handleContentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    const newContent = e.target.value;
+    const lines = newContent.split('\n');
+
+    // 줄 수가 MAX_CONTENT_ROWS를 초과하면 변경하지 않음
+    if (lines.length <= MAX_CONTENT_ROWS) {
+      setContent(newContent);
+    }
   };
 
   // 편지 보내기
@@ -134,31 +146,11 @@ export default function SendLetterModal({
     content.trim().length > MAX_CONTENT_LENGTH;
 
   return (
-    <div
-      className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4 py-4"
-      onClick={handleClose}
+    <BaseModal
+      isOpen={isModalOpen}
+      onClose={handleClose}
+      contentClassName="bg-black rounded-2xl w-full max-w-[352px] p-4"
     >
-      {/* 모달 컨테이너 */}
-      <div className="relative">
-        {/* 닫기 버튼 - 모달 바깥 우측 상단 */}
-        <button
-          onClick={handleClose}
-          className="absolute bottom-[calc(100%+15px)] right-0 w-8 h-8 bg-black rounded flex items-center justify-center shadow-lg hover:bg-gray-800 transition-colors z-10"
-          aria-label="닫기"
-        >
-          <Image
-            src={CloseIcon}
-            alt="닫기"
-            width={20}
-            height={20}
-            className="object-contain"
-          />
-        </button>
-
-        <div
-          className="bg-black rounded-2xl w-full max-w-[352px] p-4"
-          onClick={(e) => e.stopPropagation()}
-        >
           {/* 헤더 */}
           <h1 className="text-white text-lg font-bold text-center mb-4 whitespace-pre-line">
             {translate("sendLetter.title").replace("{name}", receiverName)}
@@ -199,10 +191,11 @@ export default function SendLetterModal({
             <h3 className="text-white text-sm font-bold mb-2">{translate("sendLetter.content")}</h3>
             <textarea
               value={content}
-              onChange={(e) => setContent(e.target.value)}
+              onChange={handleContentChange}
               placeholder={translate("sendLetter.contentPlaceholder")}
               className="w-full px-3 py-2 rounded-lg bg-white text-black text-sm focus:outline-none focus:ring-2 focus:ring-white resize-none min-h-[150px]"
               maxLength={MAX_CONTENT_LENGTH}
+              rows={MAX_CONTENT_ROWS}
               disabled={isLoading}
             />
             <div className="text-right mt-1">
@@ -239,8 +232,6 @@ export default function SendLetterModal({
               </span>
             </div>
           </div>
-        </div>
-      </div>
-    </div>
+    </BaseModal>
   );
 }

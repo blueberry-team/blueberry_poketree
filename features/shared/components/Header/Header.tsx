@@ -10,10 +10,10 @@
 import { useState, Suspense } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
-import LogoIcon from "@/assets/icon/logo.png";
-import HeaderBackground from "@/assets/images/background/header_background.png";
-import ButtonSmallBlue from "@/assets/images/components/button_small_blue.png";
-import PokedexDot from "@/assets/images/background/pokedex_dot.png";
+import LogoIcon from "@/assets/icon/logo.webp";
+import HeaderBackground from "@/assets/images/background/header_background.webp";
+import ButtonSmallBlue from "@/assets/images/components/button_small_blue.webp";
+import PokedexDot from "@/assets/images/background/pokedex_dot.webp";
 import { LanguageModal } from "../Modal/LanguageModal";
 import { SettingModal } from "../Modal/SettingModal";
 import { useTranslation } from "../../utils/translate/useLanguage";

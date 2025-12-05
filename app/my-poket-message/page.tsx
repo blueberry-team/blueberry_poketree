@@ -10,7 +10,7 @@ import { BottomButtons } from "@/features/shared/components/BottomButtons/Bottom
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { getUserTree } from "@/features/my-tree/usecases/getUserTree";
 import { Letter } from "@/features/my-tree/models/res/GetUserTreeResponse";
-import MonsterBallOpen from "@/assets/images/components/monster_ball_open.png";
+import MonsterBallOpen from "@/assets/images/components/monster_ball_open.webp";
 
 function MyPoketMessagePageContent() {
   const { translate } = useTranslation();

@@ -1,10 +1,10 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import BackgroundImage from "@/assets/images/background/background.png";
-import TreeImage from "@/assets/images/background/tree.png";
-import MonsterBallOpen from "@/assets/images/components/monster_ball_open.png";
-import MonsterBallClose from "@/assets/images/components/monster_ball_close.png";
+import BackgroundImage from "@/assets/images/background/background.webp";
+import TreeImage from "@/assets/images/background/tree.webp";
+import MonsterBallOpen from "@/assets/images/components/monster_ball_open.webp";
+import MonsterBallClose from "@/assets/images/components/monster_ball_close.webp";
 import LockIcon from "@/assets/icon/lockIcon.svg";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { ChristmasGift } from "./ChristmasGift";

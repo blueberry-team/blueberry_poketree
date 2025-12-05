@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import GiftBox from "@/assets/images/components/gift_box.png";
+import GiftBox from "@/assets/images/components/gift_box.webp";
 
 /**
  * ChristmasGift 컴포넌트
