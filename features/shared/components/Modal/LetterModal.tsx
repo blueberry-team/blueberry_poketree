@@ -247,12 +247,12 @@ export default function LetterModal({
 
                 {/* 버튼 그룹 - isOwner일 때만 표시 */}
                 {isOwner === "true" && (
-                  <div className="flex justify-between items-center">
+                  <div className="flex justify-between items-center w-full">
                     {/* 삭제 버튼 */}
                     <button
                       onClick={handleDeleteClick}
                       disabled={isDeleting}
-                      className="w-20 h-12 bg-transparent border border-white text-white rounded-sm font-bold hover:bg-white hover:text-black transition-colors"
+                      className="w-20 mx-1 h-12 bg-transparent border border-white text-white rounded-sm font-bold hover:bg-white hover:text-black transition-colors"
                     >
                       {isDeleting ? translate("letterModal.deleting") : translate("letterModal.delete")}
                     </button>
@@ -262,7 +262,6 @@ export default function LetterModal({
                       onClick={handlePublish}
                       disabled={isLoading}
                       className="relative h-12 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed"
-                      style={{ width: '200px' }}
                     >
                       <Image
                         src={letterData.is_open === "true" ? ButtonLetterUnpublic : ButtonLetterPublic}
