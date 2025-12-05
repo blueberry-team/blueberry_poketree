@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { useState, useEffect } from "react";
 import ShareIcon from "@/assets/icon/shareIcon.svg";
-import ButtonBigGreen from "@/assets/images/components/button_big_green.png";
+import ButtonBigGreen from "@/assets/images/components/button_big_green.webp";
 import { BaseModal } from "@/features/shared/components/Modal/BaseModal";
 
 // 공유 베이스 url

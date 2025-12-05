@@ -4,7 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 import GiftBoxIcon from "@/assets/icon/giftBoxIcon.svg";
-import ButtonSmallDark from "@/assets/images/components/button_small_dark.png";
+import ButtonSmallDark from "@/assets/images/components/button_small_dark.webp";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { trackButtonClick } from "@/features/shared/utils/analytics/analytics";
 

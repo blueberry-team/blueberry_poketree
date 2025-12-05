@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { useState } from "react";
 import { sendLetter } from "@/features/my-tree/usecases/sendLetter";
-import TrainerIcon from "@/assets/icon/trainerIcon.png";
-import ButtonLetterWrite from "@/assets/images/components/button_letter_write.png";
+import TrainerIcon from "@/assets/icon/trainerIcon.webp";
+import ButtonLetterWrite from "@/assets/images/components/button_letter_write.webp";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { POKEMON_DATA } from "@/features/shared/data/pokemonData";
 import SendLetterCompleteModal from "./SendLetterCompleteModal";

@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { getPokemonImage } from "@/features/shared/data/pokemonData";
 import BallHatchImage from "@/assets/images/components/ball-hatch.webp";
-import ButtonLargeGreen from "@/assets/images/components/button_large_green.png";
+import ButtonLargeGreen from "@/assets/images/components/button_large_green.webp";
 import { BaseModal } from "@/features/shared/components/Modal/BaseModal";
 
 /**

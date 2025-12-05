@@ -5,8 +5,8 @@ import Image from "next/image";
 import { useRouter, usePathname, useSearchParams } from "next/navigation";
 import { CrossButton } from "./CrossButton";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
-import ButtonMediumDark from "@/assets/images/components/button_medium_dark.png";
-import ButtonMediumSkyblue from "@/assets/images/components/button_medium_skyblue.png";
+import ButtonMediumDark from "@/assets/images/components/button_medium_dark.webp";
+import ButtonMediumSkyblue from "@/assets/images/components/button_medium_skyblue.webp";
 import { trackButtonClick } from "@/features/shared/utils/analytics/analytics";
 
 interface BottomButtonsProps {

@@ -1,8 +1,8 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import ButtonLargeGreen from "@/assets/images/components/button_large_green.png";
-import MonsterBallFullyOpen from "@/assets/images/components/monster_ball_fully_open.png";
+import ButtonLargeGreen from "@/assets/images/components/button_large_green.webp";
+import MonsterBallFullyOpen from "@/assets/images/components/monster_ball_fully_open.webp";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { BaseModal } from "@/features/shared/components/Modal/BaseModal";
 

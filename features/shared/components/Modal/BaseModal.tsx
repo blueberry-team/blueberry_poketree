@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import { useEffect } from "react";
-import CloseIcon from "@/assets/icon/closeIcon.png";
+import CloseIcon from "@/assets/icon/closeIcon.webp";
 
 /**
  * BaseModal - 모든 모달의 기본 구조를 제공하는 컴포넌트

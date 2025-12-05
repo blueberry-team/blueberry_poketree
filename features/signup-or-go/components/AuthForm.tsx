@@ -3,8 +3,8 @@
 import { useState } from "react";
 import Image from "next/image";
 import { SignupOrGoRequest } from "../models/req/SignupOrGoRequest";
-import DoctorOhImage from "@/assets/images/signuporgo/doctor_oh.png";
-import ButtonBigBlue from "@/assets/images/components/button_big_blue.png";
+import DoctorOhImage from "@/assets/images/signuporgo/doctor_oh.webp";
+import ButtonBigBlue from "@/assets/images/components/button_big_blue.webp";
 import PixelInputField from "@/assets/images/signuporgo/pixel_inputfield.svg";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { trackEvent } from "@/features/shared/utils/analytics/analytics";

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import ButtonLetterDelete from "@/assets/images/components/button_letter_delete.png";
+import ButtonLetterDelete from "@/assets/images/components/button_letter_delete.webp";
 import { BaseModal } from "@/features/shared/components/Modal/BaseModal";
 
 interface DeleteConfirmModalProps {

@@ -71,14 +71,14 @@ export const metadata: Metadata = {
   title: "PokéTree",
   description: "Christmas Event with Pokémon",
   icons: {
-    icon: "/icon.png",
+    icon: "/icon.webp",
   },
   openGraph: {
     title: "PokéTree",
     description: "Christmas Event with Pokémon",
     images: [
       {
-        url: "/og-image.png", // 또는 원하는 이미지 경로
+        url: "/og-image.webp", // 또는 원하는 이미지 경로
         width: 1200,
         height: 630,
         alt: "PokéTree",
@@ -89,7 +89,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "PokéTree",
     description: "Christmas Event with Pokémon",
-    images: ["/og-image.png"],
+    images: ["/og-image.webp"],
   },
 };
 

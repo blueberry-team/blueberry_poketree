@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
-import ButtonBigGreen from "@/assets/images/components/button_big_green.png";
-import ButtonMediumSky from "@/assets/images/components/button_medium_skyblue.png";
+import ButtonBigGreen from "@/assets/images/components/button_big_green.webp";
+import ButtonMediumSky from "@/assets/images/components/button_medium_skyblue.webp";
 import { trackButtonClick } from "@/features/shared/utils/analytics/analytics";
 
 interface VisitorButtonsProps {
