@@ -255,7 +255,7 @@ export default function LetterModal({
                 </div>
 
                 {/* 편지 내용 */}
-                <div className="bg-white rounded-lg p-8 min-h-320px mb-6">
+                <div className="bg-white rounded-lg p-8 min-h-320px mb-6 max-h-[400px] overflow-y-auto">
                   <p className="text-black text-lg whitespace-pre-wrap leading-relaxed">
                     {letterData.content}
                   </p>
