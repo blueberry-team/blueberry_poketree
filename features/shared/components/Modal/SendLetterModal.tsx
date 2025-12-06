@@ -9,7 +9,7 @@ import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { POKEMON_DATA } from "@/features/shared/data/pokemonData";
 import SendLetterCompleteModal from "./SendLetterCompleteModal";
 import { trackEvent } from "@/features/shared/utils/analytics/analytics";
-import { notifySendLetterNew } from "@/features/shared/utils/discord/discord";
+import { notifySendLetter } from "@/features/shared/utils/discord/discord";
 import { BaseModal } from "@/features/shared/components/Modal/BaseModal";
 
 const MAX_CONTENT_LENGTH = 300;
@@ -95,7 +95,7 @@ export default function SendLetterModal({
           pokemon_id: pokemonId,
         });
 
-        notifySendLetterNew(senderName, content, receiverName, receiverId, pokemonId);
+        notifySendLetter(senderName, content, receiverName, receiverId, pokemonId);
       } else {
         // 포켓몬 정보 없으면 바로 닫기
         handleClose();

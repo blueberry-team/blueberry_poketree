@@ -24,38 +24,9 @@ export async function notifyUserCreateSuccess(treeName: string) {
 }
 
 /**
- * 편지 보내기 Discord 알림 (구버전 - 포켓몬 정보 없음)
+ * 편지 보내기 Discord 알림
  */
 export async function notifySendLetter(
-  senderName: string,
-  messageContent: string,
-  receiverName: string,
-  receiverId: string
-) {
-  if (!functions) {
-    console.warn("Firebase Functions not initialized");
-    return;
-  }
-
-  try {
-    const sessionId = getOrCreateSessionId();
-    const notifyFunction = httpsCallable(functions, "notifySendLetter");
-    await notifyFunction({
-      senderName,
-      messageContent,
-      receiverName,
-      receiverId,
-      sessionId,
-    });
-  } catch (error) {
-    console.error("Failed to send letter notification:", error);
-  }
-}
-
-/**
- * 편지 보내기 Discord 알림 (신버전 - 포켓몬 정보 포함)
- */
-export async function notifySendLetterNew(
   senderName: string,
   messageContent: string,
   receiverName: string,
