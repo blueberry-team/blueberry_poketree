@@ -24,6 +24,11 @@ export async function POST(request: NextRequest) {
     return createErrorResponse('AUTH_001', 'Nickname and password are required');
   }
 
+  // URL의 from 파라미터 확인 (회원가입 페이지에서는 from=login이 없음)
+  const searchParams = request.nextUrl.searchParams;
+  const from = searchParams.get('from');
+  const isSignup = from !== 'login';
+
   // 목 서버에서는 입력값과 상관없이 항상 상화 유저로 로그인
   const sanghwaUser = db.getUser('1');
 
@@ -36,7 +41,7 @@ export async function POST(request: NextRequest) {
     {
       nickname: sanghwaUser.nickname,
       public_id: sanghwaUser.public_id,
-      action: 'login',
+      action: isSignup ? 'signup' : 'login',
     },
     token
   );
