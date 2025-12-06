@@ -5,6 +5,7 @@ import BackgroundImage from "@/assets/images/background/background.webp";
 import TreeImage from "@/assets/images/background/tree.webp";
 import MonsterBallClose from "@/assets/images/components/monster_ball_close.webp";
 import { ALL_POKEMON_IMAGES } from "@/features/shared/data/pokemonData";
+import { Snow } from "@/features/shared/components/Snow/Snow";
 
 /**
  * LandingTree 컴포넌트
@@ -36,6 +37,9 @@ export function LandingTree() {
           priority
         />
       </div>
+
+      {/* 눈 내리는 효과 */}
+      <Snow />
 
       {/* 트리 이미지 */}
       <div className="absolute inset-0 flex items-center justify-center">
