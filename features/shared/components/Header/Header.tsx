@@ -63,25 +63,42 @@ function HeaderContent() {
               <span className="text-black text-xl font-bold">{"<"}</span>
             </button>
           )}
-          {!showBackButton && (
-            <Image
-              src={LogoIcon}
-              alt="로고"
-              width={37}
-              height={36}
-              className="object-contain"
-            />
+{!showBackButton && (
+            <button
+              onClick={() => router.push('/')}
+              className="flex items-center gap-2 cursor-pointer"
+            >
+              <Image
+                src={LogoIcon}
+                alt="로고"
+                width={37}
+                height={36}
+                className="object-contain"
+              />
+              <div className="relative flex items-center">
+                <Image
+                  src={PokedexDot}
+                  alt="도감 신호등"
+                  width={43}
+                  height={10}
+                  className="object-contain absolute -top-3 left-0"
+                />
+                <span className="text-white text-[18px]" style={{ fontFamily: 'var(--font-press-start)' }}>PokéTree</span>
+              </div>
+            </button>
           )}
-          <div className="relative flex items-center">
-            <Image
-              src={PokedexDot}
-              alt="도감 신호등"
-              width={43}
-              height={10}
-              className="object-contain absolute -top-3 left-0"
-            />
-            <span className="text-white text-[18px]" style={{ fontFamily: 'var(--font-press-start)' }}>PokéTree</span>
-          </div>
+          {showBackButton && (
+            <div className="relative flex items-center">
+              <Image
+                src={PokedexDot}
+                alt="도감 신호등"
+                width={43}
+                height={10}
+                className="object-contain absolute -top-3 left-0"
+              />
+              <span className="text-white text-[18px]" style={{ fontFamily: 'var(--font-press-start)' }}>PokéTree</span>
+            </div>
+          )}
         </div>
 
         {/* 우측 버튼 그룹 */}
