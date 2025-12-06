@@ -184,12 +184,12 @@ export default function LetterModal({
         <BaseModal
           isOpen={true}
           onClose={onClose}
-          contentClassName="bg-black rounded-lg w-[352px] max-w-[90vw] max-h-[80vh] relative overflow-hidden"
+          contentClassName="bg-black relative overflow-hidden"
         >
-
+          <div className="flex flex-col">
             {/* 자물쇠 아이콘 (우상단) - isOwner일 때만 표시, is_open가 false일 때 표시 */}
             {isOwner === "true" && letterData?.is_open !== "true" && (
-              <div className="absolute top-6 right-6">
+              <div className="absolute top-2.5 right-3">
                 <Image
                   src={LockIcon}
                   alt="비공개"
@@ -222,9 +222,9 @@ export default function LetterModal({
 
             {/* 편지 데이터 표시 */}
             {letterData && !isLoading && !error && (
-              <div className="p-4 sm:p-8">
+              <div>
                 {/* 헤더: 포켓몬 이미지와 제목 */}
-                <div className="flex items-center gap-6 mb-6">
+                <div className="flex items-center gap-6 mb-6 pt-4">
                   <Image
                     src={getPokemonImage(letterData.letter_pokemon)}
                     alt={`Pokemon ${letterData.letter_pokemon}`}
@@ -239,7 +239,7 @@ export default function LetterModal({
                 </div>
 
                 {/* 편지 내용 */}
-                <div className="bg-white rounded-lg p-4 sm:p-8 min-h-320px mb-6 max-h-[400px] overflow-y-auto">
+                <div className="bg-white rounded-lg px-2 py-5 min-h-320px mb-6 max-h-[400px] overflow-y-auto">
                   <p className="text-black text-lg whitespace-pre-wrap leading-relaxed">
                     {letterData.content}
                   </p>
@@ -252,7 +252,7 @@ export default function LetterModal({
                     <button
                       onClick={handleDeleteClick}
                       disabled={isDeleting}
-                      className="w-20 mx-1 h-12 bg-transparent border border-white text-white rounded-sm font-bold hover:bg-white hover:text-black transition-colors"
+                      className="w-20 mx-1 h-11 bg-transparent border border-white text-white rounded-sm font-bold hover:bg-white hover:text-black transition-colors"
                     >
                       {isDeleting ? translate("letterModal.deleting") : translate("letterModal.delete")}
                     </button>
@@ -289,6 +289,7 @@ export default function LetterModal({
                 )}
               </div>
             )}
+          </div>
           </BaseModal>
       )}
 
