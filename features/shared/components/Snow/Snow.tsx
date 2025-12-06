@@ -3,9 +3,9 @@
 import { useState } from "react";
 
 // 눈 설정 상수
-const SNOW_COUNT = 20; // 화면에 존재하는 눈송이 개수
-const LEFT_SWINGS = 2; // 왼쪽으로 흔들리는 횟수
-const RIGHT_SWINGS = 2; // 오른쪽으로 흔들리는 횟수
+const SNOW_COUNT = 50; // 화면에 존재하는 눈송이 개수
+const LEFT_SWINGS = 3; // 왼쪽으로 흔들리는 횟수
+const RIGHT_SWINGS = 3; // 오른쪽으로 흔들리는 횟수
 const STEP_INTERVAL = 1; // 각 스텝당 지속 시간
 
 // 애니메이션 계산
@@ -35,7 +35,7 @@ export function Snow() {
   )
 
   return (
-    <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
+    <div className="fixed inset-0 pointer-events-none z-20 overflow-hidden">
       {snowflakes.map((flake) => (
         <div
           key={flake.id}
