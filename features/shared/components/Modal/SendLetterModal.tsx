@@ -73,15 +73,6 @@ export default function SendLetterModal({
       setIsLoading(true);
       setError(null);
 
-      // Analytics 이벤트 전송
-      trackEvent("button_click_send_letter", {
-        sender_name: senderName,
-        message_content: content,
-        message_length: content.length,
-        receiver_name: receiverName,
-        receiver_id: receiverId,
-      });
-
       const response = await sendLetter({
         sender_name: senderName,
         content: content,
@@ -89,9 +80,22 @@ export default function SendLetterModal({
       });
       // 응답 성공 시 포켓몬 ID 추출 후 완료 모달 표시
       if (response.message === "success" && response.data?.letter_pokemon) {
-        setReceivedPokemonId(response.data.letter_pokemon);
+        const pokemonId = response.data.letter_pokemon;
+
+        setReceivedPokemonId(pokemonId);
         setShowCompleteModal(true);
-        notifySendLetter(senderName, content, receiverName, receiverId);
+
+        // Analytics 이벤트 전송 (포켓몬 정보 포함)
+        trackEvent("button_click_send_letter", {
+          sender_name: senderName,
+          message_content: content,
+          message_length: content.length,
+          receiver_name: receiverName,
+          receiver_id: receiverId,
+          pokemon_id: pokemonId,
+        });
+
+        notifySendLetter(senderName, content, receiverName, receiverId, pokemonId);
       } else {
         // 포켓몬 정보 없으면 바로 닫기
         handleClose();

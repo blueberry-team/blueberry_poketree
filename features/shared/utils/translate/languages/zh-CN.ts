@@ -25,6 +25,8 @@ export const zhCN = {
     yourTree: "你的树叫什么名字？",
     password: "密码（4位数字）",
     confirmInput: "确认",
+    charCount: "{current} / {max} 字符",
+    passwordLength: "{current} / {max} 字符",
     wrongPassword: "密码错误",
     accountExists: "账户已存在",
   },
@@ -54,7 +56,7 @@ export const zhCN = {
   },
   visitor: {
     makeMessage: "写消息",
-    makeTree: "查看我的宝可树",
+    makeTree: "创建宝可树",
     send: "发送消息",
   },
   sendLetter: {

@@ -25,6 +25,8 @@ export const es = {
     yourTree: "¿Cómo se llama tu árbol?",
     password: "Contraseña (4 dígitos)",
     confirmInput: "Confirmar",
+    charCount: "{current} / {max} caracteres",
+    passwordLength: "{current} / {max} caracteres",
     wrongPassword: "Contraseña incorrecta",
     accountExists: "La cuenta ya existe",
   },
@@ -54,7 +56,7 @@ export const es = {
   },
   visitor: {
     makeMessage: "Escribir mensaje",
-    makeTree: "Ver mi PokéTree",
+    makeTree: "Crear PokéTree",
     send: "Enviar mensaje",
   },
   sendLetter: {
