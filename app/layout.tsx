@@ -69,6 +69,8 @@ const pixelMplus = localFont({
 
 export const metadata: Metadata = {
   title: "PokéTree",
+  applicationName: "PokéTree",
+  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
   description: "Christmas Event with Pokémon",
   icons: {
     icon: "/icon.webp",
