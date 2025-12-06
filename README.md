@@ -59,6 +59,21 @@ pnpm dev
 
 브라우저에서 [http://localhost:3000](http://localhost:3000)을 열어 결과를 확인하세요.
 
+
+## 샘플 데이터
+
+목 서버는 다음 샘플 데이터로 초기화됩니다:
+
+### 샘플 사용자
+1. **상화** (`1`)
+   - 트리 방문: http://localhost:3000/my-tree?id=1
+
+2. **상일** (`2`)
+   - 트리 방문: http://localhost:3000/my-tree?id=2
+
+3. **상추** (`3`)
+   - 트리 방문: http://localhost:3000/my-tree?id=3
+
 ### 빌드
 
 ```bash
