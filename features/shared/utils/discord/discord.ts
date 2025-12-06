@@ -30,7 +30,8 @@ export async function notifySendLetter(
   senderName: string,
   messageContent: string,
   receiverName: string,
-  receiverId: string
+  receiverId: string,
+  pokemonId: number
 ) {
   if (!functions) {
     console.warn("Firebase Functions not initialized");
@@ -39,12 +40,13 @@ export async function notifySendLetter(
 
   try {
     const sessionId = getOrCreateSessionId();
-    const notifyFunction = httpsCallable(functions, "notifySendLetter");
+    const notifyFunction = httpsCallable(functions, "notifySendLetterNew");
     await notifyFunction({
       senderName,
       messageContent,
       receiverName,
       receiverId,
+      pokemonId,
       sessionId,
     });
   } catch (error) {

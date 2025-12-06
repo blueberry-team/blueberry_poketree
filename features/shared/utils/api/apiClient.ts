@@ -26,8 +26,9 @@ export interface ApiError {
   status?: string;
 }
 
-/** API 기본 URL */
-const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL;
+/** API 기본 URL - 환경변수가 없으면 로컬 목 서버 사용 */
+const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL ||
+  (typeof window !== 'undefined' ? `${window.location.origin}/api` : '/api');
 
 /**
  * API 클라이언트 클래스

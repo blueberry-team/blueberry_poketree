@@ -25,6 +25,8 @@ export const zhTW = {
     yourTree: "你的樹叫什麼名字？",
     password: "密碼（4位數字）",
     confirmInput: "確認",
+    charCount: "{current} / {max} 字元",
+    passwordLength: "{current} / {max} 字元",
     wrongPassword: "密碼錯誤",
     accountExists: "帳戶已存在",
   },
@@ -54,7 +56,7 @@ export const zhTW = {
   },
   visitor: {
     makeMessage: "寫訊息",
-    makeTree: "查看我的寶可樹",
+    makeTree: "創建寶可樹",
     send: "發送訊息",
   },
   sendLetter: {

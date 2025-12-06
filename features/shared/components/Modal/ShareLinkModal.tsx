@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { useState, useEffect } from "react";
+import { QRCodeSVG } from "qrcode.react";
 import ShareIcon from "@/assets/icon/shareIcon.svg";
 import ButtonBigGreen from "@/assets/images/components/button_big_green.webp";
 import { BaseModal } from "@/features/shared/components/Modal/BaseModal";
@@ -63,6 +64,16 @@ export function ShareLinkModal({
           <h2 className="whitespace-pre-line text-lg font-bold text-center text-black pb-4">
             {translate("share.title")}
           </h2>
+
+          {/* QR 코드 */}
+          <div className="flex justify-center pb-4">
+            <QRCodeSVG
+              value={shareUrl}
+              size={200}
+              level="H"
+              includeMargin={true}
+            />
+          </div>
 
           {/* 링크 내용 */}
           <div className="px-4 py-4 rounded transition-all flex bg-[#f5f5f5] items-center">

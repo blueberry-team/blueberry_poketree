@@ -25,6 +25,8 @@ export const vi = {
     yourTree: "Ten cay cua ban la gi?",
     password: "Mat khau (4 chu so)",
     confirmInput: "Xac nhan",
+    charCount: "{current} / {max} ky tu",
+    passwordLength: "{current} / {max} ky tu",
     wrongPassword: "Mat khau sai",
     accountExists: "Tai khoan da ton tai",
   },
@@ -54,7 +56,7 @@ export const vi = {
   },
   visitor: {
     makeMessage: "Viet tin nhan",
-    makeTree: "Xem PokéTree cua toi",
+    makeTree: "Tao PokéTree",
     send: "Gui tin nhan",
   },
   sendLetter: {

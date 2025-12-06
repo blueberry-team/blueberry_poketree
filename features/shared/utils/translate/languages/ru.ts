@@ -25,6 +25,8 @@ export const ru = {
     yourTree: "Как называется ваше дерево?",
     password: "Пароль (4 цифры)",
     confirmInput: "Подтвердить",
+    charCount: "{current} / {max} символов",
+    passwordLength: "{current} / {max} символов",
     wrongPassword: "Неверный пароль",
     accountExists: "Аккаунт уже существует",
   },
@@ -54,7 +56,7 @@ export const ru = {
   },
   visitor: {
     makeMessage: "Написать сообщение",
-    makeTree: "Посмотреть моё PokéTree",
+    makeTree: "Создать PokéTree",
     send: "Отправить сообщение",
   },
   sendLetter: {
