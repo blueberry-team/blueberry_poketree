@@ -7,10 +7,10 @@ import type { NextRequest } from 'next/server';
 import type { ApiResponse, ApiError } from './types';
 
 /**
- * 랜덤 포켓몬 ID 생성 (1-1025)
+ * 랜덤 포켓몬 ID 생성 (1-80)
  */
 export function getRandomPokemonId(): number {
-  return Math.floor(Math.random() * 1025) + 1;
+  return Math.floor(Math.random() * 80) + 1;
 }
 
 /**
