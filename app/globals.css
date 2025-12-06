@@ -21,6 +21,7 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: var(--font-pf-stardust), -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  word-break: keep-all;
 }
 
 body.font-ja {

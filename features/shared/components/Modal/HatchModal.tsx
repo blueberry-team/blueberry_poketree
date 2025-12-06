@@ -52,10 +52,10 @@ function HatchModalContent({
       <BaseModal
         isOpen={true}
         onClose={handleClose}
-        contentClassName="bg-black rounded-lg w-[352px] max-w-[90vw] relative flex flex-col items-center justify-center gap-6 sm:gap-8 py-8 sm:py-12 px-4 sm:px-8"
+        contentClassName="bg-black relative flex flex-col items-center justify-center gap-4"
         closeOnOverlayClick={false}
       >
-        <p className="text-white text-2xl font-bold">
+        <p className="text-white text-[20px] font-bold">
           {senderName}{translate("letterModal.pokemonReceived")}
         </p>
         <Image
@@ -68,8 +68,7 @@ function HatchModalContent({
         />
         <button
           onClick={onClose}
-          className="relative flex items-center justify-center"
-          style={{ width: "300px", height: "56px" }}
+          className="relative flex items-center justify-center w-full max-w-[280px] h-14"
         >
           <Image
             src={ButtonLargeGreen}
@@ -90,7 +89,7 @@ function HatchModalContent({
     <BaseModal
       isOpen={true}
       onClose={handleClose}
-      contentClassName="bg-black rounded-lg w-[352px] max-w-[90vw] relative flex items-center justify-center py-8 sm:py-12 px-4 sm:px-8"
+      contentClassName="bg-black relative flex items-center justify-center"
       closeOnOverlayClick={false}
     >
       <Image

@@ -34,7 +34,7 @@ export function LanguageModal({ isOpen, onClose }: LanguageModalProps) {
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      contentClassName="bg-white rounded-3xl px-4 sm:px-6 pt-8 sm:pt-10 pb-12 sm:pb-16 w-[360px] max-w-[90vw]"
+      contentClassName="bg-white"
     >
           <div className="flex flex-col gap-3">
             {languages.map((lang) => (

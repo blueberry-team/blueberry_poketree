@@ -32,17 +32,18 @@ export default function SendLetterCompleteModal({
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      contentClassName="bg-black rounded-lg p-4 sm:p-6 w-[352px] max-w-[90vw]"
+      contentClassName="bg-black"
     >
-          {/* 제목 (~~님께 포켓 메시지를 보냈습니다) */}
-          <h2 className="whitespace-pre-line text-lg font-bold text-center text-white pt-4 pb-3 text-[24px]">
-            {translate("sendCompleteModal.title").replace(
-              "{name}",
-              reveicerName
-            )}
-          </h2>
+          <div className="flex flex-col items-center justify-center flex-1">
+            {/* 제목 (~~님께 포켓 메시지를 보냈습니다) */}
+            <h2 className="whitespace-pre-line text-lg font-bold text-center text-white pt-4 pb-3 text-[24px]">
+              {translate("sendCompleteModal.title").replace(
+                "{name}",
+                reveicerName
+              )}
+            </h2>
 
-          <div className="relative w-full flex justify-center items-center">
+            <div className="relative w-full flex justify-center items-center">
             {/* 포켓몬 이미지 */}
             <Image
               src={receivedPokemon}
@@ -78,6 +79,7 @@ export default function SendLetterCompleteModal({
               </span>
             </span>
           </button>
+          </div>
     </BaseModal>
   );
 }

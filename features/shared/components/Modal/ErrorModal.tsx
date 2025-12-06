@@ -34,20 +34,22 @@ export default function ErrorModal({
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      contentClassName="bg-black rounded-2xl w-full max-w-[min(500px,90vw)] p-4 sm:p-8"
+      contentClassName="bg-black"
     >
-          {/* 에러 메시지 */}
-          <div className="text-white text-xl font-medium text-center mb-8 whitespace-pre-line min-h-[100px] flex items-center justify-center">
-            {message}
-          </div>
+          <div className="flex flex-col items-center justify-center flex-1">
+            {/* 에러 메시지 */}
+            <div className="text-white text-xl font-medium text-center mb-8 whitespace-pre-line min-h-[100px] flex items-center justify-center">
+              {message}
+            </div>
 
-          {/* 확인 버튼 */}
-          <button
-            onClick={onClose}
-            className="w-full h-14 bg-white text-black rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors"
-          >
-            {confirmText}
-          </button>
+            {/* 확인 버튼 */}
+            <button
+              onClick={onClose}
+              className="w-full h-14 bg-white text-black rounded-lg font-bold text-lg hover:bg-gray-100 transition-colors"
+            >
+              {confirmText}
+            </button>
+          </div>
     </BaseModal>
   );
 }
