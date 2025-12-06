@@ -153,15 +153,16 @@ export default function SendLetterModal({
     <BaseModal
       isOpen={isModalOpen}
       onClose={handleClose}
-      contentClassName="bg-black rounded-2xl w-full max-w-[352px] p-4"
+      contentClassName="bg-black"
     >
-          {/* 헤더 */}
-          <h1 className="text-white text-lg font-bold text-center mb-4 whitespace-pre-line">
-            {translate("sendLetter.title").replace("{name}", receiverName)}
-          </h1>
+          <div className="flex flex-col">
+            {/* 헤더 */}
+            <h1 className="text-white text-lg font-bold text-center mb-4 whitespace-pre-line">
+              {translate("sendLetter.title").replace("{name}", receiverName)}
+            </h1>
 
-          {/* 작성자 닉네임 */}
-          <div className="mb-4">
+            {/* 작성자 닉네임 */}
+            <div className="mb-4">
             <div className="flex items-center gap-2 mb-2">
               <Image
                 src={TrainerIcon}
@@ -235,6 +236,7 @@ export default function SendLetterModal({
                 {isLoading ? translate("sendLetter.sending") : translate("sendLetter.sendButton")}
               </span>
             </div>
+          </div>
           </div>
     </BaseModal>
   );

@@ -9,7 +9,6 @@ import LockIcon from "@/assets/icon/lockIcon.svg";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { ChristmasGift } from "./ChristmasGift";
 import { Letter } from "../models/res/GetUserTreeResponse";
-import { Snow } from "@/features/shared/components/Snow/Snow";
 
 /**
  * Tree 컴포넌트
@@ -62,9 +61,6 @@ export function Tree({
           priority
         />
       </div>
-
-      {/* 눈 내리는 효과 */}
-      <Snow />
 
       {/* 메시지 획득 개수 */}
       <div className="absolute top-4 left-4 z-10">

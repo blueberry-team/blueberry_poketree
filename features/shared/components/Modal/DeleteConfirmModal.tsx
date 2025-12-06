@@ -25,18 +25,19 @@ export default function DeleteConfirmModal({
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      contentClassName="bg-black rounded-2xl w-full max-w-[min(500px,90vw)] p-4 sm:p-8"
+      contentClassName="bg-black"
     >
-          {/* 제목 */}
-          <h2 className="text-white text-2xl font-bold text-center mb-8 whitespace-pre-line">
-            {title}
-          </h2>
+          <div className="flex flex-col items-center justify-center flex-1">
+            {/* 제목 */}
+            <h2 className="text-white text-2xl font-bold text-center mb-8 whitespace-pre-line">
+              {title}
+            </h2>
 
-          {/* 확인 버튼 */}
-          <div
-            className="relative cursor-pointer flex items-center justify-center"
-            onClick={onConfirm}
-          >
+            {/* 확인 버튼 */}
+            <div
+              className="relative cursor-pointer flex items-center justify-center"
+              onClick={onConfirm}
+            >
             <Image
               src={ButtonLetterDelete}
               alt="확인"
@@ -49,6 +50,7 @@ export default function DeleteConfirmModal({
                 {confirmText}
               </span>
             </div>
+          </div>
           </div>
     </BaseModal>
   );

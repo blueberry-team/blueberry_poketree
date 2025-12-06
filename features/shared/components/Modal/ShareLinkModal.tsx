@@ -58,15 +58,16 @@ export function ShareLinkModal({
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      contentClassName="bg-white rounded-lg p-4 sm:p-6 w-[320px] max-w-[90vw]"
+      contentClassName="bg-white"
     >
-          {/* 모달 헤더 */}
-          <h2 className="whitespace-pre-line text-lg font-bold text-center text-black pb-4">
-            {translate("share.title")}
-          </h2>
+          <div className="flex flex-col">
+            {/* 모달 헤더 */}
+            <h2 className="whitespace-pre-line text-lg font-bold text-center text-black pb-4">
+              {translate("share.title")}
+            </h2>
 
-          {/* QR 코드 */}
-          <div className="flex justify-center pb-4">
+            {/* QR 코드 */}
+            <div className="flex justify-center pb-4">
             <QRCodeSVG
               value={shareUrl}
               size={200}
@@ -110,6 +111,7 @@ export function ShareLinkModal({
                 : translate("share.copyError")}
             </div>
           )}
+          </div>
     </BaseModal>
   );
 }

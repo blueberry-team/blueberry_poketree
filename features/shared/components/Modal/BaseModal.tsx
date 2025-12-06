@@ -81,7 +81,7 @@ export function BaseModal({
 
         {/* 모달 내용 */}
         <div
-          className={contentClassName}
+          className={`w-[80vw] md:w-[312px] min-h-[10vh] max-h-[70vh] overflow-y-auto px-4.5 py-4 rounded-lg flex flex-col ${contentClassName}`}
           onClick={(e) => e.stopPropagation()}
         >
           {children}

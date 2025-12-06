@@ -22,13 +22,14 @@ export function HelpModal({ isOpen, onClose }: HelpModalProps) {
     <BaseModal
       isOpen={isOpen}
       onClose={onClose}
-      contentClassName="bg-white rounded-2xl p-4 sm:p-6 w-[360px] max-w-[90vw] max-h-[80vh] overflow-y-auto"
+      contentClassName="bg-white"
     >
-          <h2 className="text-[32px] font-bold mb-4 text-black">
-            {translate("help.title")}
-          </h2>
+          <div className="flex flex-col">
+            <h2 className="text-[32px] font-bold mb-4 text-black">
+              {translate("help.title")}
+            </h2>
 
-          <div className="flex flex-col gap-4 text-black">
+            <div className="flex flex-col gap-4 text-black">
             {/* 섹션 1: 친구들과 공유하기 */}
             <div>
               <div className="flex gap-3 items-center mb-1">
@@ -64,6 +65,7 @@ export function HelpModal({ isOpen, onClose }: HelpModalProps) {
               </div>
               <p className="text-[15px]">{translate("help.tip.description")}</p>
             </div>
+          </div>
           </div>
     </BaseModal>
   );
