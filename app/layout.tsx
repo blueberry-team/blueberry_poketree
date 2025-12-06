@@ -71,13 +71,13 @@ export const metadata: Metadata = {
   title: "PokéTree",
   applicationName: "PokéTree",
   metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
-  description: "Christmas Event with Pokémon",
+  description: "Send Pokémon. Share your heart",
   icons: {
     icon: "/icon.webp",
   },
   openGraph: {
     title: "PokéTree",
-    description: "Christmas Event with Pokémon",
+    description: "Send Pokémon. Share your heart",
     images: [
       {
         url: "/og-image.webp", // 또는 원하는 이미지 경로
@@ -90,7 +90,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "PokéTree",
-    description: "Christmas Event with Pokémon",
+    description: "Send Pokémon. Share your heart",
     images: ["/og-image.webp"],
   },
 };
