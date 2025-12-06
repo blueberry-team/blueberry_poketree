@@ -58,12 +58,15 @@ NODE_ENV="dev"
 ### 샘플 사용자
 1. **상화** (`1`)
    - 비밀번호: `1234`
+   - 트리 방문: http://localhost:3000/my-tree?id=1
 
 2. **상일** (`2`)
    - 비밀번호: `1234`
+   - 트리 방문: http://localhost:3000/my-tree?id=2
 
 3. **상추** (`3`)
    - 비밀번호: `1234`
+   - 트리 방문: http://localhost:3000/my-tree?id=3
 
 ## 특징
 
