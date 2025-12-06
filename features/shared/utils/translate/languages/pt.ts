@@ -25,6 +25,8 @@ export const pt = {
     yourTree: "Qual é o nome da sua árvore?",
     password: "Senha (4 dígitos)",
     confirmInput: "Confirmar",
+    charCount: "{current} / {max} caracteres",
+    passwordLength: "{current} / {max} caracteres",
     wrongPassword: "Senha incorreta",
     accountExists: "A conta já existe",
   },
@@ -54,7 +56,7 @@ export const pt = {
   },
   visitor: {
     makeMessage: "Escrever mensagem",
-    makeTree: "Ver minha PokéTree",
+    makeTree: "Criar PokéTree",
     send: "Enviar mensagem",
   },
   sendLetter: {

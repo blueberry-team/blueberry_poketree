@@ -56,7 +56,7 @@ export const en = {
   },
   visitor: {
     makeMessage: "Send a message",
-    makeTree: "View my PokéTree",
+    makeTree: "Make PokéTree",
     send: "send Message",
   },
   sendLetter: {
