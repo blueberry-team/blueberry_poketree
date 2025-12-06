@@ -17,11 +17,13 @@ import PokedexDot from "@/assets/images/background/pokedex_dot.webp";
 import { LanguageModal } from "../Modal/LanguageModal";
 import { SettingModal } from "../Modal/SettingModal";
 import { useTranslation } from "../../utils/translate/useLanguage";
+import { useAuth } from "@/features/signup-or-go/stores/useAuth";
 
 function HeaderContent() {
   const pathname = usePathname();
   const router = useRouter();
   const { translate } = useTranslation();
+  const { isLoggedIn } = useAuth();
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
 
@@ -37,6 +39,13 @@ function HeaderContent() {
 
   const handleBack = () => {
     router.back();
+  };
+
+  const handleLogoClick = () => {
+    // 로그인 상태일 때는 홈으로 이동하지 않음
+    if (!isLoggedIn.value) {
+      router.push('/');
+    }
   };
 
   return (
@@ -65,8 +74,8 @@ function HeaderContent() {
           )}
 {!showBackButton && (
             <button
-              onClick={() => router.push('/')}
-              className="flex items-center gap-2 cursor-pointer"
+              onClick={handleLogoClick}
+              className={`flex items-center gap-2 ${isLoggedIn.value ? 'cursor-default' : 'cursor-pointer'}`}
             >
               <Image
                 src={LogoIcon}
