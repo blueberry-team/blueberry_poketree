@@ -255,7 +255,7 @@ export function UserGuideModal({ isOpen, onClose }: UserGuideModalProps) {
             className="fixed inset-0 pointer-events-none"
             style={{
               zIndex: 1000,
-              backgroundColor: "rgba(0, 0, 0, 0.8)",
+              backgroundColor: "rgba(0, 0, 0, 0.6)",
             }}
           />
           {/* 하이라이트 영역 위에 투명한 레이어로 터치 막기 */}
@@ -267,7 +267,6 @@ export function UserGuideModal({ isOpen, onClose }: UserGuideModalProps) {
               width: `${spotlightRect.width}px`,
               height: `${spotlightRect.height}px`,
               zIndex: 1001,
-              boxShadow: `0 0 0 9999px rgba(0, 0, 0, 0.8)`,
             }}
           />
         </>
@@ -277,7 +276,7 @@ export function UserGuideModal({ isOpen, onClose }: UserGuideModalProps) {
           className="fixed inset-0 pointer-events-none"
           style={{
             zIndex: 1000,
-            backgroundColor: "rgba(0, 0, 0, 0.8)",
+            backgroundColor: "rgba(0, 0, 0, 0.6)",
           }}
         />
       )}
