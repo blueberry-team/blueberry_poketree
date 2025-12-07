@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import BackgroundDay from "@/assets/images/background/background.webp";
 import BackgroundNight from "@/assets/images/background/background_night.webp";
 import TreeDay from "@/assets/images/background/tree.webp";
-import TreeNight from "@/assets/images/background/tree_night.webp";
+import TreeNight from "@/assets/images/background/tree_night.png";
 import MonsterBallClose from "@/assets/images/components/monster_ball_close.webp";
 import { ALL_POKEMON_IMAGES } from "@/features/shared/data/pokemonData";
 import { getTimeOfDay, TimeOfDay } from "@/features/shared/utils/time/getTimeOfDay";
