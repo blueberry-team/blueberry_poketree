@@ -26,6 +26,7 @@ body {
 
 body.font-ja {
   font-family: var(--font-pixel-mplus), -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  word-break: normal;
 }
 
 /* 스크롤바 숨기기 */
