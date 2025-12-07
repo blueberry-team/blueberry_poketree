@@ -83,7 +83,7 @@ export function Tree({
       </div>
 
       {/* 메시지 획득 개수 */}
-      <div className="absolute top-4 left-4 z-10">
+      <div className="absolute top-4 left-4 z-20">
         <div className="flex items-center gap-2 bg-black/50 rounded-lg px-3 py-2">
           <Image
             src={MonsterBallClose}
@@ -103,15 +103,18 @@ export function Tree({
 
       {/* 트리 이미지 */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative" style={{ width: "min(350px, 80vw)", height: "min(500px, 70vh)" }}>
+        <div className="relative max-w-[370px] max-h-[500px] w-[90vw] h-[90vh]">
           {/* 트리 이미지 */}
-          <Image
+          <div className="relative w-full h-full">
+           <Image
             src={TreeImage}
             alt="크리스마스 트리"
             fill
             className="object-contain"
             priority
-          />
+           />
+          </div>
+
 
           {/* 트리 위의 몬스터볼(편지) 표시 */}
           {currentPageMessageCount > 0 && (
@@ -173,8 +176,8 @@ export function Tree({
                       <Image
                         src={isRead ? MonsterBallOpen : MonsterBallClose}
                         alt="몬스터볼"
-                        width={48}
-                        height={48}
+                        width={43}
+                        height={43}
                         className="object-contain"
                       />
                     </button>

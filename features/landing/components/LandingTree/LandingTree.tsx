@@ -59,27 +59,29 @@ export function LandingTree() {
 
       {/* 트리 이미지 */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative" style={{ width: "min(350px, 80vw)", height: "min(500px, 70vh)" }}>
+        <div className="relative max-w-[370px] max-h-[500px] w-[90vw] h-[90vh]">
           {/* 트리 이미지 */}
-          <Image
+          <div className="relative w-full h-full">
+           <Image
             src={TreeImage}
             alt="크리스마스 트리"
             fill
             className="object-contain"
             priority
-          />
+           />
+          </div>
 
           {/* 트리 위의 몬스터볼(편지) 표시 - 정적, 인터랙션 없음 */}
           {Array.from({ length: displayMessageCount }).map((_, index) => {
             // 7개 몬스터볼 위치
             const positions = [
-              { top: "20%", left: "48%", transform: "translateX(-50%)" },  // 꼭대기
-              { top: "30%", left: "58%", transform: "translateX(-50%)" },  // 2층 오른쪽
-              { top: "35%", left: "39%", transform: "translateX(-50%)" },  // 2층 왼쪽
-              { top: "40%", left: "70%", transform: "translateX(-50%)" },  // 3층 오른쪽
-              { top: "50%", left: "32%", transform: "translateX(-50%)" },  // 3층 왼쪽
-              { top: "45%", left: "52%", transform: "translateX(-50%)" },  // 4층 가운데
-              { top: "52%", left: "68%", transform: "translateX(-50%)" },  // 4층 오른쪽
+              { top: "22%", left: "48%", transform: "translateX(-50%)" },  // 꼭대기
+              { top: "32%", left: "58%", transform: "translateX(-50%)" },  // 2층 오른쪽
+              { top: "37%", left: "39%", transform: "translateX(-50%)" },  // 2층 왼쪽
+              { top: "42%", left: "70%", transform: "translateX(-50%)" },  // 3층 오른쪽
+              { top: "52%", left: "32%", transform: "translateX(-50%)" },  // 3층 왼쪽
+              { top: "47%", left: "52%", transform: "translateX(-50%)" },  // 4층 가운데
+              { top: "55%", left: "68%", transform: "translateX(-50%)" },  // 4층 오른쪽
             ];
             const pos = positions[index];
 
@@ -97,8 +99,8 @@ export function LandingTree() {
                 <Image
                   src={MonsterBallClose}
                   alt="몬스터볼"
-                  width={48}
-                  height={48}
+                  width={43}
+                  height={43}
                   className="object-contain"
                 />
               </div>
