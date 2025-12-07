@@ -266,7 +266,7 @@ export function Tree({
           <Image src={PageIndicatorLeft} alt="이전" width={8} height={12} />
         </button>
         <span className="text-white font-bold text-[12px] font-['Pretendard']">
-          {currentPage + 1}
+          {currentPage + 1}/{totalPages === 0 ? 1 : totalPages}
         </span>
         <button
           onClick={() => currentPage < totalPages - 1 && onPageChange?.(currentPage + 1)}
