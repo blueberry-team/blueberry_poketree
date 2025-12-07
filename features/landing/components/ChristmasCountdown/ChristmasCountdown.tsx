@@ -48,7 +48,7 @@ export function ChristmasCountdown() {
   return (
     <div className="flex flex-col items-center w-full overflow-hidden text-white pt-1">
       {/* 크리스마스 카운트다운 */}
-      <div className="flex items-center gap-2 text-[18px] flex-wrap justify-center px-4">
+      <div className="flex items-center justify-center gap-2 text-[18px] flex-wrap px-4">
         <span className="font-bold">{translate("landing.countdown")}</span>
 
         {/* Days, Hours, Minutes를 하나의 그룹으로 묶어서 함께 줄넘김되도록 */}
@@ -110,8 +110,8 @@ export function ChristmasCountdown() {
         </div>
         <button
           onClick={handleLogin}
-          className="relative flex items-center justify-center shrink-0"
-          style={{ width: "66px", height: "28px" }}
+          className="relative flex items-center justify-center shrink-0 px-2 py-1"
+          style={{ maxWidth: "86px", minWidth: "66px", minHeight: "28px" }}
         >
           <Image
             src={ButtonSmallDark}
