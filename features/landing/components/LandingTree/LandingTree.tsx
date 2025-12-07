@@ -1,10 +1,14 @@
 "use client";
 
 import Image from "next/image";
-import BackgroundImage from "@/assets/images/background/background.webp";
-import TreeImage from "@/assets/images/background/tree.webp";
+import { useState, useEffect } from "react";
+import BackgroundDay from "@/assets/images/background/background.webp";
+import BackgroundNight from "@/assets/images/background/background_night.webp";
+import TreeDay from "@/assets/images/background/tree.webp";
+import TreeNight from "@/assets/images/background/tree_night.webp";
 import MonsterBallClose from "@/assets/images/components/monster_ball_close.webp";
 import { ALL_POKEMON_IMAGES } from "@/features/shared/data/pokemonData";
+import { getTimeOfDay, TimeOfDay } from "@/features/shared/utils/time/getTimeOfDay";
 
 /**
  * LandingTree 컴포넌트
@@ -18,6 +22,22 @@ import { ALL_POKEMON_IMAGES } from "@/features/shared/data/pokemonData";
 const DISPLAYED_POKEMON_INDICES = [3, 33, 23, 10, 2, 68, 67];
 
 export function LandingTree() {
+  // 낮/밤 상태 관리 - 초기값으로 현재 시간 설정
+  const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>(() => getTimeOfDay());
+
+  useEffect(() => {
+    // 1분마다 시간 체크하여 업데이트
+    const interval = setInterval(() => {
+      setTimeOfDay(getTimeOfDay());
+    }, 60000); // 60초마다 체크
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // 시간에 따른 배경 이미지 선택
+  const BackgroundImage = timeOfDay === TimeOfDay.NIGHT ? BackgroundNight : BackgroundDay;
+  const TreeImage = timeOfDay === TimeOfDay.NIGHT ? TreeNight : TreeDay;
+
   // 선택된 포켓몬 이미지
   const displayedPokemons = DISPLAYED_POKEMON_INDICES.map(index => ALL_POKEMON_IMAGES[index]);
 

@@ -20,5 +20,5 @@ export function getTimeOfDay(): TimeOfDay {
     return TimeOfDay.NIGHT;
   }
 
-  return TimeOfDay.DAY;
+  return TimeOfDay.NIGHT;
 }
