@@ -80,7 +80,7 @@ export const metadata: Metadata = {
     description: "Send Pokémon. Share your heart",
     images: [
       {
-        url: "/og-image.webp", // 또는 원하는 이미지 경로
+        url: `${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/og-image.webp`,
         width: 1200,
         height: 630,
         alt: "PokéTree",
@@ -91,7 +91,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "PokéTree",
     description: "Send Pokémon. Share your heart",
-    images: ["/og-image.webp"],
+    images: [`${process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'}/og-image.webp`],
   },
 };
 
