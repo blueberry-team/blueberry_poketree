@@ -90,14 +90,22 @@ export function LandingTree() {
             const pos = positions[index];
 
             return (
-              // 몬스터볼 (정적, 클릭 불가)
+              // 몬스터볼
               <div
                 key={index}
-                className="absolute w-10 h-10"
+                className="absolute w-10 h-10 cursor-pointer"
                 style={{
                   top: pos.top,
                   left: pos.left,
                   transform: pos.transform,
+                }}
+                onClick={(e) => {
+                  const target = e.currentTarget;
+                  target.classList.add('pokeball-shake');
+                  // 애니메이션 완료 후 클래스 제거
+                  setTimeout(() => {
+                    target.classList.remove('pokeball-shake');
+                  }, 400);
                 }}
               >
                 <Image
@@ -131,12 +139,21 @@ export function LandingTree() {
         return (
           <div
             key={index}
-            className="absolute w-22 h-22"
+            className="absolute w-22 h-22 cursor-pointer"
             style={{
               bottom: pos.bottom,
               left: pos.left,
               right: pos.right,
               transform: `scaleX(${pos.scaleX})`,
+              '--pokemon-scale-x': pos.scaleX,
+            } as React.CSSProperties & { '--pokemon-scale-x'?: number }}
+            onClick={(e) => {
+              const target = e.currentTarget;
+              target.classList.add('pokemon-jump');
+              // 애니메이션 완료 후 클래스 제거
+              setTimeout(() => {
+                target.classList.remove('pokemon-jump');
+              }, 400);
             }}
           >
             <Image

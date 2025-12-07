@@ -37,3 +37,45 @@ body.font-ja {
 .scrollbar-hide::-webkit-scrollbar {
   display: none;  /* Chrome, Safari, Opera */
 }
+
+/* 포켓몬 점프 애니메이션 */
+@keyframes pokemon-jump {
+  0% {
+    transform: translateY(0) scaleX(var(--pokemon-scale-x, 1));
+  }
+  50% {
+    transform: translateY(-20px) scaleX(var(--pokemon-scale-x, 1));
+  }
+  100% {
+    transform: translateY(0) scaleX(var(--pokemon-scale-x, 1));
+  }
+}
+
+.pokemon-jump {
+  animation: pokemon-jump 0.4s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* 몬스터볼 좌우 기울임 애니메이션 */
+@keyframes pokeball-shake {
+  0% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-50%) rotate(-15deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(15deg);
+  }
+  75% {
+    transform: translateX(-50%) rotate(-10deg);
+  }
+  100% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+}
+
+.pokeball-shake {
+  animation: pokeball-shake 0.4s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
