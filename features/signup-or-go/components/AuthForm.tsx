@@ -48,15 +48,15 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
     password.length !== PASSWORD_LENGTH;
 
   return (
-    <div className="flex-1 flex items-center justify-center bg-[#F7F7F7]">
+    <div className="bg-[#F7F7F7]">
       {/* 메인 콘텐츠 영역 */}
-      <div className="w-full bg-[#F9F9F9] flex flex-col items-center pt-[2vh] pb-[10vh] min-h-[calc(100vh-92px)]">
+      <div className="bg-[#F9F9F9] flex flex-col items-center pt-[2vh] pb-[10vh]">
       {title && (
-        <div className="w-full text-left px-4">
+        <div className="text-left px-4">
           <span className="text-black text-base font-extrabold">{title}</span>
         </div>
       )}
-        <form onSubmit={handleSubmit} className="w-full flex flex-col pt-[4vh] items-center">
+        <form onSubmit={handleSubmit} className="flex flex-col pt-[4vh] items-center">
           {/* Doctor Oh 이미지 */}
           <div className="mb-[4vh]">
             <Image
