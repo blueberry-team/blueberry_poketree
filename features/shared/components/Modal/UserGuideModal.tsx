@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState, useRef, useMemo, useCallback } from "react";
 import TalkingBoxTop from "@/assets/images/components/talking_box_top.webp";
 import TalkingBoxBottom from "@/assets/images/components/talking_box_bottom.webp";
 import DoctorOh from "@/assets/images/components/doctor_oh_with_shadow.png";
@@ -135,13 +135,35 @@ export function UserGuideModal({ isOpen, onClose }: UserGuideModalProps) {
     return () => {
       clearTimeout(timeoutId);
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage, isOpen]);
 
-  // 리사이즈 및 스크롤 시 스포트라이트 위치 업데이트
+  // 리사이즈 및 스크롤 시 스포트라이트 위치 업데이트 (throttling 적용)
   useEffect(() => {
     if (!isOpen || !targetElement) return;
 
+    let rafId: number | null = null;
+    let lastUpdateTime = 0;
+    const throttleDelay = 16; // ~60fps
+
     const updateSpotlight = () => {
+      const now = Date.now();
+      if (now - lastUpdateTime < throttleDelay) {
+        if (rafId) cancelAnimationFrame(rafId);
+        rafId = requestAnimationFrame(() => {
+          lastUpdateTime = Date.now();
+          const rect = targetElement!.getBoundingClientRect();
+          setSpotlightRect({
+            top: rect.top,
+            left: rect.left,
+            width: rect.width,
+            height: rect.height,
+          });
+        });
+        return;
+      }
+
+      lastUpdateTime = now;
       const rect = targetElement.getBoundingClientRect();
       setSpotlightRect({
         top: rect.top,
@@ -155,35 +177,72 @@ export function UserGuideModal({ isOpen, onClose }: UserGuideModalProps) {
     window.addEventListener("scroll", updateSpotlight, true);
 
     return () => {
+      if (rafId) cancelAnimationFrame(rafId);
       window.removeEventListener("resize", updateSpotlight);
       window.removeEventListener("scroll", updateSpotlight, true);
     };
   }, [isOpen, targetElement]);
 
-  if (!isOpen) return null;
+  // 모든 hooks는 early return 전에 호출되어야 함
+  const currentConfig = useMemo(() => GUIDE_PAGE_CONFIGS[currentPage], [currentPage]);
+  const isLastPage = useMemo(() => currentPage === GUIDE_PAGE_CONFIGS.length - 1, [currentPage]);
 
-  const currentConfig = GUIDE_PAGE_CONFIGS[currentPage];
-  const isLastPage = currentPage === GUIDE_PAGE_CONFIGS.length - 1;
+  // 현재 페이지의 텍스트 가져오기 (메모이제이션)
+  const guidePages = useMemo(
+    () => [
+      translate("guide.page1"),
+      translate("guide.page2"),
+      translate("guide.page3"),
+      translate("guide.page4"),
+      translate("guide.page5"),
+      translate("guide.page6"),
+      translate("guide.page7"),
+    ],
+    [translate]
+  );
+  const currentText = useMemo(() => guidePages[currentPage], [guidePages, currentPage]);
 
-  const handleNext = () => {
+  const handleNext = useCallback(() => {
     if (isLastPage) {
       onClose();
     } else {
       setCurrentPage((prev) => prev + 1);
     }
-  };
+  }, [isLastPage, onClose]);
 
-  // 현재 페이지의 텍스트 가져오기
-  const guidePages = [
-    translate("guide.page1"),
-    translate("guide.page2"),
-    translate("guide.page3"),
-    translate("guide.page4"),
-    translate("guide.page5"),
-    translate("guide.page6"),
-    translate("guide.page7"),
-  ];
-  const currentText = guidePages[currentPage];
+  // 몬스터볼 스타일 메모이제이션
+  const monsterBallStyle = useMemo(() => {
+    if (currentPage !== 3 || !spotlightRect) return null;
+    return {
+      top: `${spotlightRect.top + spotlightRect.height / 2 - 24}px`,
+      left: `${spotlightRect.left + spotlightRect.width / 2 - 24}px`,
+    };
+  }, [currentPage, spotlightRect]);
+
+  // 말풍선 스타일 메모이제이션
+  const talkingBoxStyle = useMemo(() => {
+    const baseStyle: React.CSSProperties = {};
+
+    if (spotlightRect) {
+      if (currentPage === 3) {
+        baseStyle.top = `${spotlightRect.top + spotlightRect.height / 2 - 24 + 60}px`;
+        baseStyle.left = `${spotlightRect.left + spotlightRect.width / 2 - 96 - 70}px`;
+      } else {
+        baseStyle.top = currentConfig.useTopBox
+          ? `${spotlightRect.top - 150}px`
+          : `${spotlightRect.top + spotlightRect.height + 20}px`;
+        baseStyle.left = `${spotlightRect.left + spotlightRect.width / 2 - 86 + (currentConfig.useTopBox ? 80 : -80)}px`;
+      }
+    } else {
+      baseStyle.top = currentConfig.useTopBox
+        ? "calc(45vh - 170px)"
+        : "calc(45vh + 220px)";
+    }
+
+    return baseStyle;
+  }, [spotlightRect, currentPage, currentConfig.useTopBox]);
+
+  if (!isOpen) return null;
 
   return (
     <>
@@ -256,13 +315,10 @@ export function UserGuideModal({ isOpen, onClose }: UserGuideModalProps) {
         )}
 
         {/* page 4일 때 몬스터볼 이미지 표시 */}
-        {currentPage === 3 && spotlightRect && (
+        {monsterBallStyle && (
           <div
             className="absolute pointer-events-auto"
-            style={{
-              top: `${spotlightRect.top + spotlightRect.height / 2 - 24}px`, // 하이라이트 영역 중앙
-              left: `${spotlightRect.left + spotlightRect.width / 2 - 24}px`, // 하이라이트 영역 중앙
-            }}
+            style={monsterBallStyle}
           >
             <Image
               src={MonsterBallClose}
@@ -282,27 +338,7 @@ export function UserGuideModal({ isOpen, onClose }: UserGuideModalProps) {
               ? "left-[calc(15vw+90px)] md:left-[calc((100vw-410px)/2+138.5px)]"
               : ""
           }`}
-          style={{
-            // 하이라이트가 있으면 하이라이트 위치 기준, 없으면 오박사 머리 위쪽
-            // page 4일 때는 몬스터볼 아래쪽에 배치
-            top: spotlightRect
-              ? currentPage === 3
-                ? `${spotlightRect.top + spotlightRect.height / 2 - 24 + 60}px` // 몬스터볼 아래쪽
-                : currentConfig.useTopBox
-                ? `${spotlightRect.top - 150}px`
-                : `${spotlightRect.top + spotlightRect.height + 20}px`
-              : currentConfig.useTopBox
-              ? "calc(45vh - 170px)"
-              : "calc(45vh + 220px)",
-            ...(spotlightRect
-              ? {
-                  // page 4일 때는 몬스터볼 중앙 기준으로 배치, 왼쪽으로 더 이동
-                  left: currentPage === 3
-                    ? `${spotlightRect.left + spotlightRect.width / 2 - 96 - 70}px` // 말풍선 너비의 절반만큼 왼쪽으로 + 추가로 40px 더
-                    : `${spotlightRect.left + spotlightRect.width / 2 - 86 + (currentConfig.useTopBox ? 80 : -80)}px`,
-                }
-              : {}),
-          }}
+          style={talkingBoxStyle}
         >
           <div className="relative w-[192px] min-h-[151px] max-h-[300px]">
             <Image
