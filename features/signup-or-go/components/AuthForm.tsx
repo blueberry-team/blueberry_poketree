@@ -135,7 +135,7 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
             />
             <span
               className="absolute inset-0 flex items-center justify-center text-black font-extrabold text-2xl">
-              {isLoading ? "로딩중 .." : translate("auth.confirmInput")}
+              {isLoading ? translate("auth.loading") : translate("auth.confirmInput")}
             </span>
           </button>
 
@@ -143,15 +143,15 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
             <div className="mt-4 mb-6 flex flex-col gap-2 w-[208px] mx-auto">
             <div className="flex items-start gap-2">
                 <Image src={MonsterBallBasic} alt="" width={14} height={14} className="shrink-0 mt-0.5" />
-                <span className="text-black text-[14px] font-bold">회원가입·로그인 화면은 동일해요!</span>
+                <span className="text-black text-[14px] font-bold">{translate("auth.sameScreen")}</span>
             </div>
             <div className="flex items-start gap-2">
                 <Image src={MonsterBallBasic} alt="" width={14} height={14} className="shrink-0 mt-0.5" />
-                <span className="text-black text-[14px] font-bold">트리는 2~6글자, 비밀번호는 숫자 4자리로 설정해주세요!</span>
+                <span className="text-black text-[14px] font-bold">{translate("auth.treePasswordRule")}</span>
             </div>
             <div className="flex items-start gap-2">
                 <Image src={MonsterBallBasic} alt="" width={14} height={14} className="shrink-0 mt-0.5" />
-                <span className="text-black text-[14px] font-bold">처음 설정한 트리 이름은 이후 변경할 수 없으니 신중히 입력해주세요!</span>
+                <span className="text-black text-[14px] font-bold">{translate("auth.treeNameWarning")}</span>
             </div>
             </div>
         </form>

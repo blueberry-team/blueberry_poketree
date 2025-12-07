@@ -29,6 +29,10 @@ export const zhCN = {
     passwordLength: "{current} / {max} 字符",
     wrongPassword: "密码错误",
     accountExists: "账户已存在",
+    sameScreen: "注册和登录界面是相同的！",
+    treePasswordRule: "树名应为2-6个字符，密码应为4位数字！",
+    treeNameWarning: "首次设置的树名之后无法更改，请仔细输入！",
+    loading: "加载中...",
   },
   share: {
     title: "与朋友分享你的宝可树！",
@@ -126,8 +130,7 @@ export const zhCN = {
     title: "使用方法",
     section1: {
       title: "与朋友分享",
-      description:
-        "使用分享按钮与朋友分享你的树地址。",
+      description: "使用分享按钮与朋友分享你的树地址。",
     },
     section2: {
       title: "收集信件和宝可梦",
@@ -139,8 +142,7 @@ export const zhCN = {
     },
     tip: {
       title: "收集稀有宝可梦！",
-      description:
-        "分享和接收的信件越多，遇到稀有宝可梦的机会就越大！",
+      description: "分享和接收的信件越多，遇到稀有宝可梦的机会就越大！",
     },
   },
 } as const;

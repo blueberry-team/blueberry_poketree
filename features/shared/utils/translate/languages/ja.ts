@@ -29,6 +29,12 @@ export const ja = {
     passwordLength: "{current} / {max}文字",
     wrongPassword: "パスワードが間違っています",
     accountExists: "既に存在するアカウントです",
+    sameScreen: "新規登録・ログイン画面は同じです！",
+    treePasswordRule:
+      "ツリー名は2〜6文字、パスワードは4桁の数字で設定してください！",
+    treeNameWarning:
+      "最初に設定したツリー名は後で変更できませんので、慎重に入力してください！",
+    loading: "読み込み中...",
   },
   share: {
     title: "ともだちに「PokéTree」を\nシェアしましょう！",
@@ -72,7 +78,7 @@ export const ja = {
     sendError: "メッセージの送信に失敗しました。",
   },
   sendCompleteModal: {
-    title: "{name}さんに\nポケットメッセージをおくりました"
+    title: "{name}さんに\nポケットメッセージをおくりました",
   },
   letterModal: {
     title: "{name}のポケットメッセージ",

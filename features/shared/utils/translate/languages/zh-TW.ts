@@ -29,6 +29,10 @@ export const zhTW = {
     passwordLength: "{current} / {max} 字元",
     wrongPassword: "密碼錯誤",
     accountExists: "帳戶已存在",
+    sameScreen: "註冊和登入介面是相同的！",
+    treePasswordRule: "樹名應為2-6個字元，密碼應為4位數字！",
+    treeNameWarning: "首次設定的樹名之後無法更改，請仔細輸入！",
+    loading: "載入中...",
   },
   share: {
     title: "與朋友分享你的寶可樹！",
@@ -126,8 +130,7 @@ export const zhTW = {
     title: "使用方法",
     section1: {
       title: "與朋友分享",
-      description:
-        "使用分享按鈕與朋友分享你的樹地址。",
+      description: "使用分享按鈕與朋友分享你的樹地址。",
     },
     section2: {
       title: "收集信件和寶可夢",
@@ -139,8 +142,7 @@ export const zhTW = {
     },
     tip: {
       title: "收集稀有寶可夢！",
-      description:
-        "分享和接收的信件越多，遇到稀有寶可夢的機會就越大！",
+      description: "分享和接收的信件越多，遇到稀有寶可夢的機會就越大！",
     },
   },
 } as const;

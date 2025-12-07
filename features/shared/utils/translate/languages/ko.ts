@@ -29,6 +29,11 @@ export const ko = {
     passwordLength: "{current} / {max}자",
     wrongPassword: "비밀번호가 틀렸습니다",
     accountExists: "이미 존재하는 계정입니다",
+    sameScreen: "회원가입·로그인 화면은 동일해요!",
+    treePasswordRule: "트리는 2~6글자, 비밀번호는 숫자 4자리로 설정해주세요!",
+    treeNameWarning:
+      "처음 설정한 트리 이름은 이후 변경할 수 없으니 신중히 입력해주세요!",
+    loading: "로딩중 ..",
   },
   share: {
     title: "친구들에게 포케트리를 공유해주세요!",
