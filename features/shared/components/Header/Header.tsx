@@ -113,10 +113,10 @@ function HeaderContent() {
           {/* 설정 버튼 */}
           <button
             onClick={() => setIsSettingModalOpen(true)}
-            className="relative flex items-center justify-center"
-            style={{ width: "53px", height: "37px" }}
+            className="relative flex items-center justify-center px-2 py-1"
+            style={{ maxWidth: "70px", minWidth: "53px", minHeight: "37px" }}
           >
-            <Image src={ButtonSmallBlue} alt="설정 버튼" width={53} height={37} className="absolute inset-0" />
+            <Image src={ButtonSmallBlue} alt="설정 버튼" fill className="object-fill" />
             <span className="relative z-10 text-black text-[12px] font-extrabold">{translate("header.options")}</span>
           </button>
         </div>
