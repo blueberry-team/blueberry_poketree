@@ -87,13 +87,13 @@ function MyPokedexPageContent() {
         </div>
       </div>
 
-      {/* 그리드 영역 - 컨테이너 높이에서 헤더(110px)와 하단여백(10px)을 뺀 높이 */}
-      <div className="h-[calc(100vh-120px)] md:h-[660px] overflow-hidden w-full max-w-full">
+      {/* 그리드 영역 - 내부 스크롤 */}
+      <div className="flex-1 min-h-0 overflow-y-auto">
         <PokedexGrid ownedPokemonIds={ownedPokemonIds} selectedIndex={selectedIndex} />
       </div>
 
-      {/* 하단 여백 */}
-      <div className="h-[10px] shrink-0"></div>
+      {/* 하단 고정 영역 */}
+      <div className="shrink-0 h-[10px] bg-[#BF0120]"></div>
     </div>
   );
 }
