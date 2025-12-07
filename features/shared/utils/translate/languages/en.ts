@@ -154,13 +154,19 @@ export const en = {
     },
   },
   guide: {
-    page1: "Oh, you're a new trainer!\n\nI'm Professor Oak, and I'll guide you through how to use PokéTree!",
-    page2: "This tree you see is your very own PokéTree.\n\nIt's still empty for now.",
+    page1:
+      "Oh, you're a new trainer!\nI'm Professor Oak, and I'll guide you through how to use PokéTree!",
+    page2:
+      "This tree you see is your very own PokéTree.\nIt's still empty for now.",
     page3: "Use this button to share your PokéTree link with friends.",
-    page4: "Click on the Poké Balls to check the Pocket Messages you've received.",
-    page5: "Use this button to view all the Pocket Messages you've received so far.\n\nYou can also make them public for everyone to see!",
-    page6: "Use this button to check the Pokémon you've collected.\n\nCollect all Pokémon to become a Pokémon Master!",
-    page7: "Well, that's all for now.\nI hope you enjoy PokéTree!\n\nMerry Christmas!",
+    page4:
+      "Click on the Poké Balls to check the Pocket Messages you've received.",
+    page5:
+      "Use this button to view all the Pocket Messages you've received so far.\nYou can also make them public for everyone to see!",
+    page6:
+      "Use this button to check the Pokémon you've collected.\nCollect all Pokémon to become a Pokémon Master!",
+    page7:
+      "Well, that's all for now.\nI hope you enjoy PokéTree!\nMerry Christmas!",
     tapToNext: "Tap to continue",
     tapToClose: "Tap to close",
   },
