@@ -12,6 +12,7 @@ import LockIcon from "@/assets/icon/lockIcon.svg";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { ChristmasGift } from "./ChristmasGift";
 import { Letter } from "../models/res/GetUserTreeResponse";
+import { Badge } from "@/features/shared/components/Badge";
 import { getTimeOfDay, TimeOfDay } from "@/features/shared/utils/time/getTimeOfDay";
 
 /**
@@ -32,6 +33,8 @@ interface TreeProps {
   onLetterClick?: (index: number) => void;
   // 페이지 이동 핸들러
   onPageChange?: (page: number) => void;
+  // 마스터 여부
+  isMaster?: boolean;
 }
 
 export function Tree({
@@ -40,6 +43,7 @@ export function Tree({
   currentPage,
   onLetterClick,
   onPageChange,
+  isMaster,
 }: TreeProps) {
   const { translate } = useTranslation();
 
@@ -83,19 +87,18 @@ export function Tree({
       </div>
 
       {/* 메시지 획득 개수 */}
-      <div className="absolute top-4 left-4 z-20">
-        <div className="flex items-center gap-2 bg-black/50 rounded-lg px-3 py-2">
-          <Image
-            src={MonsterBallClose}
-            alt="몬스터볼"
-            width={40}
-            height={20}
-            className="object-contain"
-          />
-          <span className="text-white text-sm font-bold">
-            {totalMessageCount}{translate("tree.messageCount")}
-          </span>
-        </div>
+      <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
+        <Badge
+          size="fixed"
+          icon={<Image src={MonsterBallClose} alt="몬스터볼" width={16} height={16} className="object-contain" />}
+        >
+          {totalMessageCount}{translate("tree.messageCount")}
+        </Badge>
+        {isMaster && (
+          <Badge size="small" icon="⭐" className="bg-black/60">
+            {translate("pokedex.masterBadge")}
+          </Badge>
+        )}
       </div>
 
       {/* 크리스마스 선물 (우상단) */}

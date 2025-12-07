@@ -47,7 +47,7 @@ function BottomButtonsContent({
   const buttonLabel = translate("pokedex.button");
 
   return (
-    <div className="flex justify-between items-end gap-4">
+    <div className="flex justify-between items-start gap-4">
       {/* 왼쪽: 메시지 버튼 + 도감 버튼 (세로 배치) */}
       <div className="flex flex-col gap-4">
         {/* 메시지 확인 버튼 (onCheckMessage가 전달된 경우) */}
@@ -57,8 +57,7 @@ function BottomButtonsContent({
               trackButtonClick("button_click_check_message");
               onCheckMessage();
             }}
-            className="relative flex items-center justify-center"
-            style={{ width: "180px", height: "56px" }}
+            className="relative flex items-center justify-center w-[46vw] max-w-[180px] h-[14vw] max-h-[56px]"
           >
             <Image
               src={ButtonMediumDark}
@@ -66,7 +65,7 @@ function BottomButtonsContent({
               fill
               className="object-fill"
             />
-            <span className="relative z-10 text-white text-base font-bold">
+            <span className="relative z-10 text-white font-bold" style={{ fontSize: "clamp(12px, 3.5vw, 16px)" }}>
               {translate("tree.checkMessage")}
             </span>
           </button>
@@ -79,8 +78,7 @@ function BottomButtonsContent({
               trackButtonClick("button_click_send_pocket_message");
               onSendMessage();
             }}
-            className="relative flex items-center justify-center"
-            style={{ width: "180px", height: "56px" }}
+            className="relative flex items-center justify-center w-[46vw] max-w-[180px] h-[14vw] max-h-[56px]"
           >
             <Image
               src={ButtonMediumDark}
@@ -88,7 +86,7 @@ function BottomButtonsContent({
               fill
               className="object-fill"
             />
-            <span className="relative z-10 text-white text-base font-bold">
+            <span className="relative z-10 text-white font-bold" style={{ fontSize: "clamp(12px, 3.5vw, 16px)" }}>
               {translate("visitor.sendPocketMessage")}
             </span>
           </button>
@@ -97,8 +95,7 @@ function BottomButtonsContent({
         {/* 포켓몬도감/자세히보기 버튼 */}
         <button
           onClick={handleButtonClick}
-          className="relative flex items-center justify-center"
-          style={{ width: "180px", height: "56px" }}
+          className="relative flex items-center justify-center w-[46vw] max-w-[180px] h-[14vw] max-h-[56px]"
         >
           <Image
             src={ButtonMediumSkyblue}
@@ -106,7 +103,7 @@ function BottomButtonsContent({
             fill
             className="object-fill"
           />
-          <span className="relative z-10 text-black text-base font-bold">{buttonLabel}</span>
+          <span className="relative z-10 text-black font-bold" style={{ fontSize: "clamp(12px, 3.5vw, 16px)" }}>{buttonLabel}</span>
         </button>
       </div>
 
@@ -124,11 +121,10 @@ function BottomButtonsContent({
 export function BottomButtons(props: BottomButtonsProps) {
   return (
     <Suspense fallback={
-      <div className="flex justify-between items-end">
+      <div className="flex justify-between items-start">
         <div className="flex flex-col gap-2">
           <button
-            className="relative flex items-center justify-center"
-            style={{ width: "193px", height: "56px" }}
+            className="relative flex items-center justify-center w-[46vw] max-w-[180px] h-[14vw] max-h-[56px]"
           >
             <Image
               src={ButtonMediumSkyblue}

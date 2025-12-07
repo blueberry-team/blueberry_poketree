@@ -11,6 +11,7 @@ import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { getUserTree } from "@/features/my-tree/usecases/getUserTree";
 import { Letter } from "@/features/my-tree/models/res/GetUserTreeResponse";
 import MonsterBallOpen from "@/assets/images/components/monster_ball_open.webp";
+import { Badge } from "@/features/shared/components/Badge";
 
 function MyPoketMessagePageContent() {
   const { translate } = useTranslation();
@@ -21,6 +22,7 @@ function MyPoketMessagePageContent() {
   const [messages, setMessages] = useState<Letter[]>([]);
   const [userName, setUserName] = useState("");
   const [isOwner, setIsOwner] = useState(false);
+  const [isMaster, setIsMaster] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   // 모달 관련 state
@@ -42,6 +44,7 @@ function MyPoketMessagePageContent() {
         setMessages(response.data.letters);
         setUserName(response.data.nickname);
         setIsOwner(response.data.is_owner === "true");
+        setIsMaster(response.data.is_master === "true");
       }
     } catch {
       router.replace("/error?type=load");
@@ -107,10 +110,19 @@ function MyPoketMessagePageContent() {
           <h1 className="text-white text-xl font-extrabold">
             {userName}{translate("message.userMessage")}
           </h1>
-          <button className="flex items-center gap-1 px-3 py-2 bg-black/60 text-white text-sm font-bold w-fit rounded-lg">
-            <Image src={MonsterBallOpen} alt="몬스터볼" width={16} height={16} />
-            <span>{messages.length}{translate("tree.messageCount")}</span>
-          </button>
+          <div className="flex gap-2">
+            <Badge
+              icon={<Image src={MonsterBallOpen} alt="몬스터볼" width={16} height={16} />}
+              className="bg-black/60"
+            >
+              {messages.length}{translate("tree.messageCount")}
+            </Badge>
+            {isMaster && (
+              <Badge size="small" icon="⭐" className="bg-black/60">
+                {translate("pokedex.masterBadge")}
+              </Badge>
+            )}
+          </div>
         </div>
       </div>
 

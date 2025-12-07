@@ -8,6 +8,7 @@ import { getMyPokedex } from "@/features/my-pokedex/usecases/getMyPokedex";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { isApiError } from "@/features/shared/utils/api/apiClient";
 import { POKEMON_DATA } from "@/features/shared/data/pokemonData";
+import { Badge } from "@/features/shared/components/Badge";
 
 // 포켓몬 목록 페이지
 function MyPokedexPageContent() {
@@ -75,14 +76,13 @@ function MyPokedexPageContent() {
           </h1>
           {/* 포켓몬 마스터 배지 */}
           {isMaster ? (
-            <button className="flex items-center gap-1 px-3 py-2 bg-black/60 text-white text-sm font-bold w-fit rounded-lg">
-              <span>⭐</span>
-              <span>{translate("pokedex.masterBadge")}</span>
-            </button>
+            <Badge icon="⭐" className="bg-black/60">
+              {translate("pokedex.masterBadge")}
+            </Badge>
           ) : (
-            <button className="flex items-center gap-1 px-3 py-2 bg-black/60 text-white text-sm font-bold w-fit rounded-lg">
-              <span>{translate("pokedex.ownedStatus").replace("{total}", String(totalCount)).replace("{owned}", String(ownedCount))}</span>
-            </button>
+            <Badge className="bg-black/60">
+              {translate("pokedex.ownedStatus").replace("{total}", String(totalCount)).replace("{owned}", String(ownedCount))}
+            </Badge>
           )}
         </div>
       </div>
