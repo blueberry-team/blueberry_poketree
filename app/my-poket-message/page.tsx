@@ -20,7 +20,7 @@ function MyPoketMessagePageContent() {
 
   const [messages, setMessages] = useState<Letter[]>([]);
   const [userName, setUserName] = useState("");
-  const [isOwner, setIsOwner] = useState("false");
+  const [isOwner, setIsOwner] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   // 모달 관련 state
@@ -41,7 +41,7 @@ function MyPoketMessagePageContent() {
       if (response.message === "success" && response.data) {
         setMessages(response.data.letters);
         setUserName(response.data.nickname);
-        setIsOwner(response.data.is_owner);
+        setIsOwner(response.data.is_owner === "true");
       }
     } catch {
       router.replace("/error?type=load");

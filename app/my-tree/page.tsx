@@ -140,8 +140,7 @@ function MyTreePageContent() {
 
   // API에서 받은 데이터 사용 (메모이제이션) - early return 전에 모든 hooks 호출
   const userName = useMemo(() => treeData?.nickname ?? "", [treeData?.nickname]);
-  const isOwner = useMemo(() => treeData?.is_owner ?? "false", [treeData?.is_owner]);
-  const isOwnerBoolean = useMemo(() => isOwner === "true", [isOwner]);
+  const isOwner = useMemo(() => treeData?.is_owner === "true", [treeData?.is_owner]);
   const letters = useMemo(() => treeData?.letters ?? [], [treeData?.letters]);
 
   /**
@@ -187,11 +186,11 @@ function MyTreePageContent() {
    */
   const handleLetterClick = useCallback((index: number) => {
     // 주인은 모든 편지를 볼 수 있고, 방문자는 오픈된 편지만 볼 수 있음
-    if (isOwnerBoolean || letters[index]?.is_open === "true") {
+    if (isOwner || letters[index]?.is_open === "true") {
       setSelectedLetterIndex(index);
       setIsLetterModalOpen(true);
     }
-  }, [isOwnerBoolean, letters]);
+  }, [isOwner, letters]);
 
   const handleShareLinkClick = useCallback(() => {
     setIsShareLinkModalOpen(true);
@@ -270,7 +269,7 @@ function MyTreePageContent() {
       <div className="px-4 py-3 shrink-0 bg-[#BF0120] flex items-center justify-between gap-2">
         <span className="text-white text-xl font-bold w-[60%] overflow-hidden">{userName}{translate("tree.userTree")}</span>
         {/* is_owner일 때만 공유하기 버튼 표시 */}
-        {isOwnerBoolean && (
+        {isOwner && (
           <button
             onClick={handleShareLinkClick}
             className="relative w-36 flex items-center justify-center shrink-0 px-2 py-1"
@@ -300,7 +299,7 @@ function MyTreePageContent() {
       <div className="px-4 py-4 shrink-0 relative">
         {/* 도감 버튼과 십자 버튼 (메시지 버튼 포함) */}
         {/*is_owner에 따라 바텀컴포넌트 구분*/}
-        {isOwnerBoolean ? (
+        {isOwner ? (
           <BottomButtons
             onUp={handleUp}
             onDown={handleDown}

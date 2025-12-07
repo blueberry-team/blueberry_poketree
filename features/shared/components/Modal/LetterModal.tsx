@@ -26,7 +26,7 @@ interface LetterModalProps {
   isModalOpen: boolean;
   onClose: () => void;
   letterId: string | null;
-  isOwner: string;
+  isOwner: boolean;
   userId: string;
   isRead: string;
   onComplete?: () => void;
@@ -69,7 +69,7 @@ export default function LetterModal({
         setError(null);
 
         // isOwner에 따라 다른 API 호출
-        const response = isOwner === "true"
+        const response = isOwner
           ? await getLetter({ letter_id: letterId })
           : await getVisitorLetter({ letter_id: letterId, user_id: userId });
 
@@ -188,7 +188,7 @@ export default function LetterModal({
         >
           <div className="flex flex-col">
             {/* 자물쇠 아이콘 (우상단) - isOwner일 때만 표시, is_open가 false일 때 표시 */}
-            {isOwner === "true" && letterData?.is_open !== "true" && (
+            {isOwner && letterData?.is_open !== "true" && (
               <div className="absolute top-2.5 right-3">
                 <Image
                   src={LockIcon}
@@ -246,7 +246,7 @@ export default function LetterModal({
                 </div>
 
                 {/* 버튼 그룹 - isOwner일 때만 표시 */}
-                {isOwner === "true" && (
+                {isOwner && (
                   <div className="flex justify-between items-center w-full">
                     {/* 삭제 버튼 */}
                     <button
