@@ -40,9 +40,11 @@ function SettingModalContent({ isOpen, onClose }: SettingModalProps) {
         onClose();
         router.push('/');
       }
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
     } catch (error) {
       // TODO: 에러 처리 필요함
-      console.error('로그아웃 실패:', error);
+      onClose();
+      router.push('/');
     }
   };
 
