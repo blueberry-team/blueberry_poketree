@@ -1,14 +1,18 @@
 "use client";
 
 import Image, { StaticImageData } from "next/image";
-import BackgroundImage from "@/assets/images/background/background.webp";
-import TreeImage from "@/assets/images/background/tree.webp";
+import { useState, useEffect } from "react";
+import BackgroundDay from "@/assets/images/background/background.webp";
+import BackgroundNight from "@/assets/images/background/background_night.webp";
+import TreeDay from "@/assets/images/background/tree.webp";
+import TreeNight from "@/assets/images/background/tree_night.webp";
 import MonsterBallOpen from "@/assets/images/components/monster_ball_open.webp";
 import MonsterBallClose from "@/assets/images/components/monster_ball_close.webp";
 import LockIcon from "@/assets/icon/lockIcon.svg";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { ChristmasGift } from "./ChristmasGift";
 import { Letter } from "../models/res/GetUserTreeResponse";
+import { getTimeOfDay, TimeOfDay } from "@/features/shared/utils/time/getTimeOfDay";
 
 /**
  * Tree 컴포넌트
@@ -38,6 +42,22 @@ export function Tree({
   onPageChange,
 }: TreeProps) {
   const { translate } = useTranslation();
+
+  // 낮/밤 상태 관리 - 초기값으로 현재 시간 설정
+  const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>(() => getTimeOfDay());
+
+  useEffect(() => {
+    // 1분마다 시간 체크하여 업데이트
+    const interval = setInterval(() => {
+      setTimeOfDay(getTimeOfDay());
+    }, 60000); // 60초마다 체크
+
+    return () => clearInterval(interval);
+  }, []);
+
+  // 시간에 따른 배경 이미지 선택
+  const BackgroundImage = timeOfDay === TimeOfDay.NIGHT ? BackgroundNight : BackgroundDay;
+  const TreeImage = timeOfDay === TimeOfDay.NIGHT ? TreeNight : TreeDay;
 
   // 페이지 계산
   const totalMessageCount = letters.length;
