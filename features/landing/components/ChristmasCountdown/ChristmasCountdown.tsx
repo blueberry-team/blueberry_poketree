@@ -101,10 +101,10 @@ export function ChristmasCountdown() {
       </div>
 
       {/* 선물 메시지 + 로그인 버튼 */}
-      <div className="flex items-center justify-around w-full mt-4">
+      <div className="flex items-center justify-around w-full mt-4 px-3">
         <div className="flex items-center gap-1 min-w-0">
-          <Image src={GiftBoxIcon} alt="Gift" width={16} height={16} className="shrink-0" />
-          <p className="font-bold text-[12px] -mb-0.5">
+          <Image src={GiftBoxIcon} alt="Gift" width={16} height={16} className="shrink-0 mr-[2px]" />
+          <p className="font-bold text-[12px] -mb-0.5 mr-[10px]">
             {translate("landing.description1")}
           </p>
         </div>
