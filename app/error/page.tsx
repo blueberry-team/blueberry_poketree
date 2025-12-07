@@ -32,7 +32,7 @@ function ErrorContent() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen gap-4 p-4 bg-[#BF0120]">
+    <div className="min-h-screen flex flex-col items-center gap-4 p-4 pt-32 bg-[#BF0120]">
       <h1 className="text-xl font-bold">{displayTitle}</h1>
       <p>{displayMessage}</p>
       <button
@@ -48,7 +48,7 @@ function ErrorContent() {
 export default function ErrorPage() {
   return (
     <Suspense fallback={
-      <div className="flex flex-col items-center justify-center min-h-screen gap-4 p-4 bg-[#BF0120]">
+      <div className="min-h-screen flex flex-col items-center gap-4 p-4 pt-32 bg-[#BF0120]">
         <div className="w-8 h-8 border-4 border-white border-t-transparent rounded-full animate-spin"></div>
       </div>
     }>
