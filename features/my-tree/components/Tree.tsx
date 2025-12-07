@@ -14,7 +14,6 @@ import PageIndicatorRight from "@/assets/icon/pageIndicatorRight.svg";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { ChristmasGift } from "./ChristmasGift";
 import { Letter } from "../models/res/GetUserTreeResponse";
-import { Badge } from "@/features/shared/components/Badge";
 import { getTimeOfDay, TimeOfDay } from "@/features/shared/utils/time/getTimeOfDay";
 
 /**
@@ -90,16 +89,21 @@ export function Tree({
 
       {/* 메시지 획득 개수 */}
       <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
-        <Badge
-          size="fixed"
-          icon={<Image src={MonsterBallClose} alt="몬스터볼" width={16} height={16} className="object-contain" />}
-        >
-          {totalMessageCount}{translate("tree.messageCount")}
-        </Badge>
+        <div className="flex items-center gap-2 bg-black/50 rounded-[8px] w-[154px] h-[32px] justify-center">
+          <span className="shrink-0">
+            <Image src={MonsterBallClose} alt="몬스터볼" width={16} height={16} className="object-contain" />
+          </span>
+          <span className="text-white text-[12px] font-extrabold">
+            {totalMessageCount}{translate("tree.messageCount")}
+          </span>
+        </div>
         {isMaster && (
-          <Badge size="small" icon="⭐" className="bg-black/60">
-            {translate("pokedex.masterBadge")}
-          </Badge>
+          <div className="flex items-center gap-2 bg-black/60 rounded-[8px] w-[105px] h-[32px] justify-center">
+            <span className="shrink-0">⭐</span>
+            <span className="text-white text-[12px] font-extrabold">
+              {translate("pokedex.masterBadge")}
+            </span>
+          </div>
         )}
       </div>
 

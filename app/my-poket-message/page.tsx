@@ -11,7 +11,6 @@ import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { getUserTree } from "@/features/my-tree/usecases/getUserTree";
 import { Letter } from "@/features/my-tree/models/res/GetUserTreeResponse";
 import MonsterBallOpen from "@/assets/images/components/monster_ball_open.webp";
-import { Badge } from "@/features/shared/components/Badge";
 
 function MyPoketMessagePageContent() {
   const { translate } = useTranslation();
@@ -111,16 +110,21 @@ function MyPoketMessagePageContent() {
             {userName}{translate("message.userMessage")}
           </h1>
           <div className="flex gap-2">
-            <Badge
-              icon={<Image src={MonsterBallOpen} alt="몬스터볼" width={16} height={16} />}
-              className="bg-black/60"
-            >
-              {messages.length}{translate("tree.messageCount")}
-            </Badge>
+            <div className="flex items-center gap-2 bg-black/60 rounded-[8px] px-3 py-2 w-fit">
+              <span className="shrink-0">
+                <Image src={MonsterBallOpen} alt="몬스터볼" width={16} height={16} />
+              </span>
+              <span className="text-white text-[12px] font-extrabold">
+                {messages.length}{translate("tree.messageCount")}
+              </span>
+            </div>
             {isMaster && (
-              <Badge size="small" icon="⭐" className="bg-black/60">
-                {translate("pokedex.masterBadge")}
-              </Badge>
+              <div className="flex items-center gap-2 bg-black/60 rounded-[8px] w-[105px] h-[32px] justify-center">
+                <span className="shrink-0">⭐</span>
+                <span className="text-white text-[12px] font-extrabold">
+                  {translate("pokedex.masterBadge")}
+                </span>
+              </div>
             )}
           </div>
         </div>
