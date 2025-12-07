@@ -21,6 +21,7 @@ function MyPoketMessagePageContent() {
   const [messages, setMessages] = useState<Letter[]>([]);
   const [userName, setUserName] = useState("");
   const [isOwner, setIsOwner] = useState(false);
+  const [isMaster, setIsMaster] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
 
   // 모달 관련 state
@@ -42,6 +43,7 @@ function MyPoketMessagePageContent() {
         setMessages(response.data.letters);
         setUserName(response.data.nickname);
         setIsOwner(response.data.is_owner === "true");
+        setIsMaster(response.data.is_master === "true");
       }
     } catch {
       router.replace("/error?type=load");
@@ -107,10 +109,24 @@ function MyPoketMessagePageContent() {
           <h1 className="text-white text-xl font-extrabold">
             {userName}{translate("message.userMessage")}
           </h1>
-          <button className="flex items-center gap-1 px-3 py-2 bg-black/60 text-white text-sm font-bold w-fit rounded-lg">
-            <Image src={MonsterBallOpen} alt="몬스터볼" width={16} height={16} />
-            <span>{messages.length}{translate("tree.messageCount")}</span>
-          </button>
+          <div className="flex gap-2">
+            <div className="flex items-center gap-2 bg-black/60 rounded-[8px] px-3 py-2 w-fit">
+              <span className="shrink-0">
+                <Image src={MonsterBallOpen} alt="몬스터볼" width={16} height={16} />
+              </span>
+              <span className="text-white text-[12px] font-extrabold">
+                {messages.length}{translate("tree.messageCount")}
+              </span>
+            </div>
+            {isMaster && (
+              <div className="flex items-center gap-2 bg-black/60 rounded-[8px] w-[105px] h-[32px] justify-center">
+                <span className="shrink-0">⭐</span>
+                <span className="text-white text-[12px] font-extrabold">
+                  {translate("pokedex.masterBadge")}
+                </span>
+              </div>
+            )}
+          </div>
         </div>
       </div>
 

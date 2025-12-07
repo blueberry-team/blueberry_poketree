@@ -75,14 +75,18 @@ function MyPokedexPageContent() {
           </h1>
           {/* 포켓몬 마스터 배지 */}
           {isMaster ? (
-            <button className="flex items-center gap-1 px-3 py-2 bg-black/60 text-white text-sm font-bold w-fit rounded-lg">
-              <span>⭐</span>
-              <span>{translate("pokedex.masterBadge")}</span>
-            </button>
+            <div className="flex items-center gap-2 bg-black/60 rounded-[8px] px-3 py-2 w-fit">
+              <span className="shrink-0">⭐</span>
+              <span className="text-white text-[12px] font-extrabold">
+                {translate("pokedex.masterBadge")}
+              </span>
+            </div>
           ) : (
-            <button className="flex items-center gap-1 px-3 py-2 bg-black/60 text-white text-sm font-bold w-fit rounded-lg">
-              <span>{translate("pokedex.ownedStatus").replace("{total}", String(totalCount)).replace("{owned}", String(ownedCount))}</span>
-            </button>
+            <div className="flex items-center gap-2 bg-black/60 rounded-[8px] px-3 py-2 w-fit">
+              <span className="text-white text-[12px] font-extrabold">
+                {translate("pokedex.ownedStatus").replace("{total}", String(totalCount)).replace("{owned}", String(ownedCount))}
+              </span>
+            </div>
           )}
         </div>
       </div>
