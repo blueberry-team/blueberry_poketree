@@ -99,7 +99,7 @@ function HeaderContent() {
         </div>
 
         {/* 우측 버튼 그룹 */}
-        <div className="flex gap-[4vw] items-center">
+        <div className="flex gap-3 items-center">
           {/* 언어 설정 버튼 */}
           <button
             onClick={() => setIsLanguageModalOpen(true)}
