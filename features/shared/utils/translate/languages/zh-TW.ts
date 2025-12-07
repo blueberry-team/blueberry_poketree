@@ -29,6 +29,10 @@ export const zhTW = {
     passwordLength: "{current} / {max} 字元",
     wrongPassword: "密碼錯誤",
     accountExists: "帳戶已存在",
+    sameScreen: "註冊和登入介面是相同的！",
+    treePasswordRule: "樹名應為2-6個字元，密碼應為4位數字！",
+    treeNameWarning: "首次設定的樹名之後無法更改，請仔細輸入！",
+    loading: "載入中...",
   },
   share: {
     title: "與朋友分享你的寶可樹！",
@@ -58,6 +62,7 @@ export const zhTW = {
     makeMessage: "寫訊息",
     makeTree: "創建寶可樹",
     send: "發送訊息",
+    sendPocketMessage: "發送口袋訊息",
   },
   sendLetter: {
     title: "為 {name} 的樹\n寫口袋訊息",
@@ -101,6 +106,7 @@ export const zhTW = {
   common: {
     cancel: "取消",
     confirm: "確認",
+    loading: "載入中...",
   },
   error: {
     title: "錯誤",
@@ -109,6 +115,8 @@ export const zhTW = {
     pokedexNotFound: "未找到圖鑑資訊。",
     treeNotFound: "未找到樹的資訊。",
     loadFailed: "無法載入資料。",
+    invalidAccess: "無效存取。請透過正確的連結存取。",
+    unknownError: "發生了未知錯誤。",
   },
   landing: {
     countdown: "聖誕節",
@@ -126,8 +134,7 @@ export const zhTW = {
     title: "使用方法",
     section1: {
       title: "與朋友分享",
-      description:
-        "使用分享按鈕與朋友分享你的樹地址。",
+      description: "使用分享按鈕與朋友分享你的樹地址。",
     },
     section2: {
       title: "收集信件和寶可夢",
@@ -139,8 +146,7 @@ export const zhTW = {
     },
     tip: {
       title: "收集稀有寶可夢！",
-      description:
-        "分享和接收的信件越多，遇到稀有寶可夢的機會就越大！",
+      description: "分享和接收的信件越多，遇到稀有寶可夢的機會就越大！",
     },
   },
   guide: {

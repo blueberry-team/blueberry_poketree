@@ -23,12 +23,18 @@ export const en = {
     login: "Login",
     signup: "Sign Up",
     yourTree: "What's your tree name?",
-    password: "Password (6 digits)",
+    password: "Password (4 digits)",
     confirmInput: "Confirm",
     charCount: "{current} / {max} chars",
     passwordLength: "{current} / {max} chars",
     wrongPassword: "Wrong password",
     accountExists: "Account already exists",
+    sameScreen: "Sign up and login screens are the same!",
+    treePasswordRule:
+      "Tree name should be 2-6 characters, password should be 4 digits!",
+    treeNameWarning:
+      "The tree name you set first cannot be changed later, so please enter it carefully!",
+    loading: "Loading...",
   },
   share: {
     title: "Share your PokéTree!",
@@ -58,6 +64,7 @@ export const en = {
     makeMessage: "Send a message",
     makeTree: "Make PokéTree",
     send: "send Message",
+    sendPocketMessage: "Send Pocket Message",
   },
   sendLetter: {
     title: "Write a Pockét Message\nfor {name}'s tree",
@@ -101,6 +108,7 @@ export const en = {
   common: {
     cancel: "Cancel",
     confirm: "Confirm",
+    loading: "Loading...",
   },
   error: {
     title: "Error",
@@ -109,6 +117,8 @@ export const en = {
     pokedexNotFound: "Pokédex information not found.",
     treeNotFound: "Tree information not found.",
     loadFailed: "Failed to load data.",
+    invalidAccess: "Invalid access. Please access through the correct link.",
+    unknownError: "An unknown error occurred.",
   },
   landing: {
     countdown: "Christmas",

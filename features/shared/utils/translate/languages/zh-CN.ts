@@ -29,6 +29,10 @@ export const zhCN = {
     passwordLength: "{current} / {max} 字符",
     wrongPassword: "密码错误",
     accountExists: "账户已存在",
+    sameScreen: "注册和登录界面是相同的！",
+    treePasswordRule: "树名应为2-6个字符，密码应为4位数字！",
+    treeNameWarning: "首次设置的树名之后无法更改，请仔细输入！",
+    loading: "加载中...",
   },
   share: {
     title: "与朋友分享你的宝可树！",
@@ -58,6 +62,7 @@ export const zhCN = {
     makeMessage: "写消息",
     makeTree: "创建宝可树",
     send: "发送消息",
+    sendPocketMessage: "发送口袋消息",
   },
   sendLetter: {
     title: "为 {name} 的树\n写口袋消息",
@@ -101,6 +106,7 @@ export const zhCN = {
   common: {
     cancel: "取消",
     confirm: "确认",
+    loading: "加载中...",
   },
   error: {
     title: "错误",
@@ -109,6 +115,8 @@ export const zhCN = {
     pokedexNotFound: "未找到图鉴信息。",
     treeNotFound: "未找到树的信息。",
     loadFailed: "无法加载数据。",
+    invalidAccess: "无效访问。请通过正确的链接访问。",
+    unknownError: "发生了未知错误。",
   },
   landing: {
     countdown: "圣诞节",
@@ -126,8 +134,7 @@ export const zhCN = {
     title: "使用方法",
     section1: {
       title: "与朋友分享",
-      description:
-        "使用分享按钮与朋友分享你的树地址。",
+      description: "使用分享按钮与朋友分享你的树地址。",
     },
     section2: {
       title: "收集信件和宝可梦",
@@ -139,8 +146,7 @@ export const zhCN = {
     },
     tip: {
       title: "收集稀有宝可梦！",
-      description:
-        "分享和接收的信件越多，遇到稀有宝可梦的机会就越大！",
+      description: "分享和接收的信件越多，遇到稀有宝可梦的机会就越大！",
     },
   },
   guide: {

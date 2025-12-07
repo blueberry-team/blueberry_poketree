@@ -33,10 +33,17 @@ export function BaseModal({
     if (isOpen) {
       // 현재 스크롤 위치 저장
       const scrollY = window.scrollY;
+      // 스크롤바 너비 계산 (스크롤바가 있을 때 레이아웃 시프트 방지)
+      const scrollbarWidth = window.innerWidth - document.documentElement.clientWidth;
+
       document.body.style.position = 'fixed';
       document.body.style.top = `-${scrollY}px`;
       document.body.style.width = '100%';
       document.body.style.overflow = 'hidden';
+      // 스크롤바 너비만큼 padding-right 추가하여 레이아웃 시프트 방지
+      if (scrollbarWidth > 0) {
+        document.body.style.paddingRight = `${scrollbarWidth}px`;
+      }
 
       return () => {
         // 모달 닫힐 때 원래 스크롤 위치로 복원
@@ -44,6 +51,7 @@ export function BaseModal({
         document.body.style.top = '';
         document.body.style.width = '';
         document.body.style.overflow = '';
+        document.body.style.paddingRight = '';
         window.scrollTo(0, scrollY);
       };
     }

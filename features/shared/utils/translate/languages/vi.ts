@@ -29,6 +29,11 @@ export const vi = {
     passwordLength: "{current} / {max} ky tu",
     wrongPassword: "Mat khau sai",
     accountExists: "Tai khoan da ton tai",
+    sameScreen: "Man hinh dang ky va dang nhap giong nhau!",
+    treePasswordRule: "Ten cay nen co 2-6 ky tu, mat khau nen co 4 chu so!",
+    treeNameWarning:
+      "Ten cay ban dat lan dau khong the thay doi sau nay, vui long nhap can than!",
+    loading: "Dang tai...",
   },
   share: {
     title: "Chia se PokéTree cua ban voi ban be!",
@@ -58,6 +63,7 @@ export const vi = {
     makeMessage: "Viet tin nhan",
     makeTree: "Tao PokéTree",
     send: "Gui tin nhan",
+    sendPocketMessage: "Gui tin nhan Pocket",
   },
   sendLetter: {
     title: "Viet tin nhan Pocket\ncho cay cua {name}",
@@ -101,6 +107,7 @@ export const vi = {
   common: {
     cancel: "Huy",
     confirm: "Xac nhan",
+    loading: "Dang tai...",
   },
   error: {
     title: "Loi",
@@ -109,6 +116,9 @@ export const vi = {
     pokedexNotFound: "Khong tim thay thong tin Pokedex.",
     treeNotFound: "Khong tim thay thong tin cay.",
     loadFailed: "Khong the tai du lieu.",
+    invalidAccess:
+      "Truy cap khong hop le. Vui long truy cap qua lien ket dung.",
+    unknownError: "Da xay ra loi khong xac dinh.",
   },
   landing: {
     countdown: "Giang sinh",

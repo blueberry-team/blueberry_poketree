@@ -29,6 +29,11 @@ export const ko = {
     passwordLength: "{current} / {max}자",
     wrongPassword: "비밀번호가 틀렸습니다",
     accountExists: "이미 존재하는 계정입니다",
+    sameScreen: "회원가입·로그인 화면은 동일해요!",
+    treePasswordRule: "트리는 2~6글자, 비밀번호는 숫자 4자리로 설정해주세요!",
+    treeNameWarning:
+      "처음 설정한 트리 이름은 이후 변경할 수 없으니 신중히 입력해주세요!",
+    loading: "로딩중 ..",
   },
   share: {
     title: "친구들에게 포케트리를 공유해주세요!",
@@ -58,6 +63,7 @@ export const ko = {
     makeMessage: "메시지 작성하기",
     makeTree: "포케트리 만들기",
     send: "메시지 보내기",
+    sendPocketMessage: "포켓 메시지 보내기",
   },
   sendLetter: {
     title: "{name} 님의 트리에\n포켓 메세지 작성",
@@ -101,14 +107,17 @@ export const ko = {
   common: {
     cancel: "취소",
     confirm: "확인",
+    loading: "로딩 중...",
   },
   error: {
     title: "오류",
     defaultMessage: "정보를 찾을 수 없습니다.",
     goHome: "홈으로 돌아가기",
     pokedexNotFound: "도감 정보를 찾을 수 없습니다.",
-    treeNotFound: "트리 정보를 찾을 수 없습니다.",
+    treeNotFound: "트리 정보를 불러올 수 없습니다.",
     loadFailed: "데이터를 불러오는데 실패했습니다.",
+    invalidAccess: "잘못된 접근입니다. 올바른 링크를 통해 접근해주세요.",
+    unknownError: "알 수 없는 오류가 발생했습니다.",
   },
   landing: {
     countdown: "크리스마스까지",

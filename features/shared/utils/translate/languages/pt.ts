@@ -29,6 +29,12 @@ export const pt = {
     passwordLength: "{current} / {max} caracteres",
     wrongPassword: "Senha incorreta",
     accountExists: "A conta já existe",
+    sameScreen: "As telas de cadastro e login são as mesmas!",
+    treePasswordRule:
+      "O nome da árvore deve ter 2-6 caracteres e a senha deve ter 4 dígitos!",
+    treeNameWarning:
+      "O nome da árvore que você definir primeiro não pode ser alterado depois, então digite com cuidado!",
+    loading: "Carregando...",
   },
   share: {
     title: "Compartilhe sua PokéTree com amigos!",
@@ -58,6 +64,7 @@ export const pt = {
     makeMessage: "Escrever mensagem",
     makeTree: "Criar PokéTree",
     send: "Enviar mensagem",
+    sendPocketMessage: "Enviar mensagem Pocket",
   },
   sendLetter: {
     title: "Escreva uma mensagem Pocket\npara a árvore de {name}",
@@ -101,6 +108,7 @@ export const pt = {
   common: {
     cancel: "Cancelar",
     confirm: "Confirmar",
+    loading: "Carregando...",
   },
   error: {
     title: "Erro",
@@ -109,6 +117,9 @@ export const pt = {
     pokedexNotFound: "Informação da Pokédex não encontrada.",
     treeNotFound: "Informação da árvore não encontrada.",
     loadFailed: "Falha ao carregar dados.",
+    invalidAccess:
+      "Acesso inválido. Por favor, acesse através do link correto.",
+    unknownError: "Ocorreu um erro desconhecido.",
   },
   landing: {
     countdown: "Natal",

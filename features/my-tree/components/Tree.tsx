@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import BackgroundDay from "@/assets/images/background/background.webp";
 import BackgroundNight from "@/assets/images/background/background_night.webp";
 import TreeDay from "@/assets/images/background/tree.webp";
-import TreeNight from "@/assets/images/background/tree_night.webp";
+import TreeNight from "@/assets/images/background/tree_night.png";
 import MonsterBallOpen from "@/assets/images/components/monster_ball_open.webp";
 import MonsterBallClose from "@/assets/images/components/monster_ball_close.webp";
 import LockIcon from "@/assets/icon/lockIcon.svg";
@@ -83,7 +83,7 @@ export function Tree({
       </div>
 
       {/* 메시지 획득 개수 */}
-      <div className="absolute top-4 left-4 z-10">
+      <div className="absolute top-4 left-4 z-20">
         <div className="flex items-center gap-2 bg-black/50 rounded-lg px-3 py-2">
           <Image
             src={MonsterBallClose}
@@ -103,15 +103,18 @@ export function Tree({
 
       {/* 트리 이미지 */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div data-guide="tree-image" className="relative" style={{ width: "min(350px, 80vw)", height: "min(500px, 70vh)" }}>
+        <div data-guide="tree-image" className="relative max-w-[370px] max-h-[500px] w-[90vw] h-[90vh]">
           {/* 트리 이미지 */}
-          <Image
+          <div className="relative w-full h-full">
+           <Image
             src={TreeImage}
             alt="크리스마스 트리"
             fill
             className="object-contain"
             priority
-          />
+           />
+          </div>
+
 
           {/* 트리 위의 몬스터볼(편지) 표시 */}
           {currentPageMessageCount > 0 && (
@@ -166,15 +169,26 @@ export function Tree({
                     </div>
                     {/* 몬스터볼 편지 버튼 */}
                     <button
-                      onClick={() => onLetterClick?.(actualMessageIndex)}
+                      onClick={(e) => {
+                        // 애니메이션 트리거 - 부모 div에 적용
+                        const target = e.currentTarget.parentElement;
+                        if (target) {
+                          target.classList.add('pokeball-shake');
+                          setTimeout(() => {
+                            target.classList.remove('pokeball-shake');
+                          }, 400);
+                        }
+                        // 기존 클릭 핸들러 호출
+                        onLetterClick?.(actualMessageIndex);
+                      }}
                       className="w-10 h-10 cursor-pointer transition-transform"
                       aria-label={`편지 ${actualMessageIndex + 1}`}
                     >
                       <Image
                         src={isRead ? MonsterBallOpen : MonsterBallClose}
                         alt="몬스터볼"
-                        width={48}
-                        height={48}
+                        width={43}
+                        height={43}
                         className="object-contain"
                       />
                     </button>
@@ -204,12 +218,21 @@ export function Tree({
         return (
           <div
             key={index}
-            className="absolute w-22 h-22"
+            className="absolute w-22 h-22 cursor-pointer"
             style={{
               bottom: pos.bottom,
               left: pos.left,
               right: pos.right,
               transform: `scaleX(${pos.scaleX})`,
+              '--pokemon-scale-x': pos.scaleX,
+            } as React.CSSProperties & { '--pokemon-scale-x'?: number }}
+            onClick={(e) => {
+              const target = e.currentTarget;
+              target.classList.add('pokemon-jump');
+              // 애니메이션 완료 후 클래스 제거
+              setTimeout(() => {
+                target.classList.remove('pokemon-jump');
+              }, 400);
             }}
           >
             <Image

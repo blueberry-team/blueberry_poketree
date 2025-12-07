@@ -5,10 +5,11 @@ import { useState, useEffect } from "react";
 import BackgroundDay from "@/assets/images/background/background.webp";
 import BackgroundNight from "@/assets/images/background/background_night.webp";
 import TreeDay from "@/assets/images/background/tree.webp";
-import TreeNight from "@/assets/images/background/tree_night.webp";
+import TreeNight from "@/assets/images/background/tree_night.png";
 import MonsterBallClose from "@/assets/images/components/monster_ball_close.webp";
 import { ALL_POKEMON_IMAGES } from "@/features/shared/data/pokemonData";
 import { getTimeOfDay, TimeOfDay } from "@/features/shared/utils/time/getTimeOfDay";
+import { ChristmasGift } from "@/features/my-tree/components/ChristmasGift";
 
 /**
  * LandingTree 컴포넌트
@@ -57,48 +58,61 @@ export function LandingTree() {
         />
       </div>
 
+      {/* 크리스마스 선물 (우상단) */}
+      <ChristmasGift/>
+
       {/* 트리 이미지 */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative" style={{ width: "min(350px, 80vw)", height: "min(500px, 70vh)" }}>
+        <div className="relative max-w-[370px] max-h-[500px] w-[90vw] h-[90vh]">
           {/* 트리 이미지 */}
-          <Image
+          <div className="relative w-full h-full">
+           <Image
             src={TreeImage}
             alt="크리스마스 트리"
             fill
             className="object-contain"
             priority
-          />
+           />
+          </div>
 
           {/* 트리 위의 몬스터볼(편지) 표시 - 정적, 인터랙션 없음 */}
           {Array.from({ length: displayMessageCount }).map((_, index) => {
             // 7개 몬스터볼 위치
             const positions = [
-              { top: "20%", left: "48%", transform: "translateX(-50%)" },  // 꼭대기
-              { top: "30%", left: "58%", transform: "translateX(-50%)" },  // 2층 오른쪽
-              { top: "35%", left: "39%", transform: "translateX(-50%)" },  // 2층 왼쪽
-              { top: "40%", left: "70%", transform: "translateX(-50%)" },  // 3층 오른쪽
-              { top: "50%", left: "32%", transform: "translateX(-50%)" },  // 3층 왼쪽
-              { top: "45%", left: "52%", transform: "translateX(-50%)" },  // 4층 가운데
-              { top: "52%", left: "68%", transform: "translateX(-50%)" },  // 4층 오른쪽
+              { top: "22%", left: "48%", transform: "translateX(-50%)" },  // 꼭대기
+              { top: "32%", left: "58%", transform: "translateX(-50%)" },  // 2층 오른쪽
+              { top: "37%", left: "39%", transform: "translateX(-50%)" },  // 2층 왼쪽
+              { top: "42%", left: "70%", transform: "translateX(-50%)" },  // 3층 오른쪽
+              { top: "52%", left: "32%", transform: "translateX(-50%)" },  // 3층 왼쪽
+              { top: "47%", left: "52%", transform: "translateX(-50%)" },  // 4층 가운데
+              { top: "55%", left: "68%", transform: "translateX(-50%)" },  // 4층 오른쪽
             ];
             const pos = positions[index];
 
             return (
-              // 몬스터볼 (정적, 클릭 불가)
+              // 몬스터볼
               <div
                 key={index}
-                className="absolute w-10 h-10"
+                className="absolute w-10 h-10 cursor-pointer"
                 style={{
                   top: pos.top,
                   left: pos.left,
                   transform: pos.transform,
                 }}
+                onClick={(e) => {
+                  const target = e.currentTarget;
+                  target.classList.add('pokeball-shake');
+                  // 애니메이션 완료 후 클래스 제거
+                  setTimeout(() => {
+                    target.classList.remove('pokeball-shake');
+                  }, 400);
+                }}
               >
                 <Image
                   src={MonsterBallClose}
                   alt="몬스터볼"
-                  width={48}
-                  height={48}
+                  width={43}
+                  height={43}
                   className="object-contain"
                 />
               </div>
@@ -125,12 +139,21 @@ export function LandingTree() {
         return (
           <div
             key={index}
-            className="absolute w-22 h-22"
+            className="absolute w-22 h-22 cursor-pointer"
             style={{
               bottom: pos.bottom,
               left: pos.left,
               right: pos.right,
               transform: `scaleX(${pos.scaleX})`,
+              '--pokemon-scale-x': pos.scaleX,
+            } as React.CSSProperties & { '--pokemon-scale-x'?: number }}
+            onClick={(e) => {
+              const target = e.currentTarget;
+              target.classList.add('pokemon-jump');
+              // 애니메이션 완료 후 클래스 제거
+              setTimeout(() => {
+                target.classList.remove('pokemon-jump');
+              }, 400);
             }}
           >
             <Image
