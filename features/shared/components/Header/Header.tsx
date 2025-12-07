@@ -61,21 +61,20 @@ function HeaderContent() {
         height={92}
         className="object-cover absolute -top-[20px] left-0 right-0 w-full h-[92px]"
       />
-      <div className="relative z-10 w-full h-full">
+      <div className="relative z-10 w-full h-full flex items-center justify-between pt-4 px-3">
         {/* 좌측: 뒤로가기 버튼 또는 로고 그룹 */}
-        <div className="absolute left-4 bottom-4 flex items-center gap-2">
-          {showBackButton && (
+        <div className="flex items-center gap-2">
+          {showBackButton ? (
             <button
               onClick={handleBack}
-              className="w-9 h-9 rounded flex items-center justify-center"
+              className="w-5 h-5 pr-1 rounded flex items-center justify-center"
             >
               <span className="text-black text-xl font-bold">{"<"}</span>
             </button>
-          )}
-{!showBackButton && (
+          ) : (
             <button
               onClick={handleLogoClick}
-              className={`flex items-center gap-2 ${isLoggedIn.value ? 'cursor-default' : 'cursor-pointer'}`}
+              className={`max-w-[37px] max-h-[36px] w-[10vw] h-[10vw] ${isLoggedIn.value ? 'cursor-default' : 'cursor-pointer'}`}
             >
               <Image
                 src={LogoIcon}
@@ -84,34 +83,23 @@ function HeaderContent() {
                 height={36}
                 className="object-contain"
               />
-              <div className="relative flex items-center">
-                <Image
-                  src={PokedexDot}
-                  alt="도감 신호등"
-                  width={43}
-                  height={10}
-                  className="object-contain absolute -top-3 left-0"
-                />
-                <span className="text-white text-[18px]" style={{ fontFamily: 'var(--font-press-start)' }}>PokéTree</span>
-              </div>
             </button>
           )}
-          {showBackButton && (
-            <div className="relative flex items-center">
-              <Image
-                src={PokedexDot}
-                alt="도감 신호등"
-                width={43}
-                height={10}
-                className="object-contain absolute -top-3 left-0"
-              />
-              <span className="text-white text-[18px]" style={{ fontFamily: 'var(--font-press-start)' }}>PokéTree</span>
-            </div>
-          )}
+          {/* 로고 그룹: 도감 신호등 + PokéTree */}
+          <div className="relative flex items-center max-w-[130px] max-h-[18px] w-[36vw] h-[5vw]">
+            <Image
+              src={PokedexDot}
+              alt="도감 신호등"
+              width={43}
+              height={10}
+              className="object-contain absolute -top-3 left-0"
+            />
+            <span className="text-white text-[15.5px]" style={{ fontFamily: 'var(--font-press-start)' }}>PokéTree</span>
+          </div>
         </div>
 
         {/* 우측 버튼 그룹 */}
-        <div className="absolute right-[16px] bottom-[9px] flex gap-[16px] items-center">
+        <div className="flex gap-[4vw] items-center">
           {/* 언어 설정 버튼 */}
           <button
             onClick={() => setIsLanguageModalOpen(true)}
