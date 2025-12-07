@@ -100,9 +100,9 @@ function MyPoketMessagePageContent() {
   }
 
   return (
-    <div className="flex-1 flex flex-col bg-[#BF0120] overflow-hidden">
-      {/* 헤더 영역 */}
-      <div className="px-4 py-3 shrink-0">
+    <div className="flex flex-col h-screen bg-[#BF0120]">
+      {/* 헤더 영역 - 상단 고정 */}
+      <div className="shrink-0 px-4 py-3 bg-[#BF0120]">
         <div className="flex flex-col gap-2 mb-2">
           <h1 className="text-white text-xl font-extrabold">
             {userName}{translate("message.userMessage")}
@@ -114,8 +114,8 @@ function MyPoketMessagePageContent() {
         </div>
       </div>
 
-      {/* 그리드 영역 */}
-      <div className="flex-1 overflow-hidden">
+      {/* 그리드 영역 - 내부 스크롤 */}
+      <div className="flex-1 min-h-0 overflow-y-auto">
         <MessageGrid
           messages={messages}
           selectedIndex={selectedLetterIndex}
@@ -123,8 +123,8 @@ function MyPoketMessagePageContent() {
         />
       </div>
 
-      {/* 하단 버튼 영역 */}
-      <div className="px-4 py-4 shrink-0 relative bg-[#BF0120] h-[200px] border-t-2 border-black">
+      {/* 하단 버튼 영역 - 하단 고정 */}
+      <div className="shrink-0 px-4 py-4 bg-[#BF0120] h-[310px] border-t-2 border-black">
         <BottomButtons
           onUp={handleUp}
           onDown={handleDown}

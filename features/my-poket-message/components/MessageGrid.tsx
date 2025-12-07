@@ -36,7 +36,7 @@ export function MessageGrid({ messages, selectedIndex, onMessageClick }: Message
       <div
         className="overflow-y-auto overflow-x-hidden [&::-webkit-scrollbar]:hidden [scrollbar-width:none] [-ms-overflow-style:none] bg-[#BF0120] px-4 py-4 border-b-2 border-black h-full"
       >
-        <div className="grid grid-cols-3 gap-3 ">
+        <div className="grid grid-cols-3 gap-[20px]">
           {messages.map((message, index) => {
             const pokemonImage = getPokemonImage(message.letter_pokemon);
             const isSelected = selectedIndex === index;
@@ -46,7 +46,7 @@ export function MessageGrid({ messages, selectedIndex, onMessageClick }: Message
                 key={message.letter_id}
                 ref={(el) => { itemRefs.current[index] = el; }}
                 onClick={() => onMessageClick?.(index)}
-                className={`relative flex flex-col items-center p-3 rounded-lg cursor-pointer transition-colors w-[106px] h-[106px] ${
+                className={`relative flex flex-col items-center p-3 rounded-lg cursor-pointer transition-colors aspect-square ${
                   isSelected
                     ? "border-2 border-[#EEF2F6] bg-[#16A9FE]"
                     : "border-4 border-[#EEF2F6] bg-white"
