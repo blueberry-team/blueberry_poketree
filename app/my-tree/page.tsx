@@ -226,6 +226,7 @@ function MyTreePageContent() {
         {/* is_owner일 때만 공유하기 버튼 표시 */}
         {isOwner === "true" && (
           <button
+            data-guide="share-button"
             onClick={() => handleShareLinkClick()}
             className="relative w-36 h-10 flex items-center justify-center shrink-0"
           >

@@ -70,7 +70,7 @@ export function Tree({
     totalMessageCount - currentPage * messagesPerPage
   );
   return (
-    <div className="relative w-full min-h-[500px] overflow-hidden">
+    <div data-guide="tree-area" className="relative w-full min-h-[500px] overflow-hidden">
       {/* 배경 이미지 */}
       <div className="absolute inset-0">
         <Image
@@ -103,7 +103,7 @@ export function Tree({
 
       {/* 트리 이미지 */}
       <div className="absolute inset-0 flex items-center justify-center">
-        <div className="relative" style={{ width: "min(350px, 80vw)", height: "min(500px, 70vh)" }}>
+        <div data-guide="tree-image" className="relative" style={{ width: "min(350px, 80vw)", height: "min(500px, 70vh)" }}>
           {/* 트리 이미지 */}
           <Image
             src={TreeImage}

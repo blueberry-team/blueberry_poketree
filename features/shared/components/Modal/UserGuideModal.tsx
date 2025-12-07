@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import TalkingBoxTop from "@/assets/images/components/talking_box_top.webp";
 import TalkingBoxBottom from "@/assets/images/components/talking_box_bottom.webp";
-import DoctorOh from "@/assets/images/signuporgo/doctor_oh.webp";
+import DoctorOh from "@/assets/images/components/doctor_oh_with_shadow.png";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 
 interface UserGuideModalProps {
@@ -14,7 +14,7 @@ interface UserGuideModalProps {
 
 interface GuidePageConfig {
   // true면 talking_box_bottom, false/undefined면 talking_box_top
-  useTopBox?: boolean; 
+  useTopBox?: boolean;
 }
 
 const GUIDE_PAGE_CONFIGS: GuidePageConfig[] = [
