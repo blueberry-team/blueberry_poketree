@@ -31,6 +31,7 @@ function SignupOrGoPageContent() {
 
         try {
             const res = await signupOrGo(req);
+            console.log(res);
 
             if (res.message == "success" && res.data) {
                 // 회원가입인 경우에만 알림 및 이벤트 전송
@@ -59,19 +60,21 @@ function SignupOrGoPageContent() {
     };
 
     return (
-        <AuthForm
-            onSubmit={handleSignupOrGo}
-            isLoading={isLoading}
-            error={error}
-            title={isLogin ? translate("auth.login") : translate("auth.signup")}
-            isLogin={isLogin}
-        />
+        <div className="flex-1 flex flex-col">
+            <AuthForm
+                onSubmit={handleSignupOrGo}
+                isLoading={isLoading}
+                error={error}
+                title={isLogin ? translate("auth.login") : translate("auth.signup")}
+                isLogin={isLogin}
+            />
+        </div>
     );
 }
 
 export default function SignupOrGoPage() {
     return (
-        <Suspense fallback={<div className="flex-1 bg-[#F7F7F7]" />}>
+        <Suspense>
             <SignupOrGoPageContent />
         </Suspense>
     );

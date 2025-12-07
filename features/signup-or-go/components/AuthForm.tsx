@@ -48,38 +48,37 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
     password.length !== PASSWORD_LENGTH;
 
   return (
-    <div className="flex-1 bg-[#F7F7F7] flex flex-col">
-      {/* 좌상단 타이틀 */}
+    <div className="flex-1 flex items-center justify-center bg-[#F7F7F7]">
+      {/* 메인 콘텐츠 영역 */}
+      <div className="w-full bg-[#F9F9F9] flex flex-col items-center pt-[2vh] pb-[10vh] min-h-[calc(100vh-92px)]">
       {title && (
-        <div className="w-full text-left mt-4 px-4">
+        <div className="w-full text-left px-4">
           <span className="text-black text-base font-extrabold">{title}</span>
         </div>
       )}
-      <div className="flex flex-col items-center px-8 sm:px-[94px] bg-center justify-center flex-1">
-      {/* Doctor Oh 이미지 */}
-      <div className={title ? "mt-[15px] mb-8" : "mt-[25px] mb-8"}>
-        <Image
-          src={DoctorOhImage}
-          alt="Doctor Oh"
-          width={88}
-          className="object-contain"
-        />
-      </div>
+        <form onSubmit={handleSubmit} className="w-full flex flex-col pt-[4vh] items-center">
+          {/* Doctor Oh 이미지 */}
+          <div className="mb-[4vh]">
+            <Image
+              src={DoctorOhImage}
+              alt="Doctor Oh"
+              width={0}
+              height={0}
+              className="w-[23vw] h-auto max-w-[90px] object-contain"
+            />
+          </div>
 
-      {/* 로그인 폼 */}
-      <form onSubmit={handleSubmit} className="w-full flex flex-col">
-        {/* 아이디 입력 */}
-        <div className="mb-[15px]">
+          {/* 당신의 트리이름은? */}
           <p className="text-black text-base font-extrabold mb-2 text-center">
             {translate("auth.yourTree")}
           </p>
-          <div className="relative w-full">
+
+          {/* 닉네임 입력 필드 */}
+          <div className="relative mb-[3vh]">
             <Image
               src={PixelInputField}
               alt="input field"
-              width={202}
-              height={49}
-              className="w-full h-[42px] sm:h-[49px]"
+              className="w-[51vw] h-auto max-w-[200px]"
             />
             <input
               type="text"
@@ -87,33 +86,23 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
               onChange={(e) => setNickname(e.target.value)}
               placeholder=""
               maxLength={MAX_NICKNAME_LENGTH}
-              className="absolute top-0 left-0 w-full h-[42px] sm:h-[49px] bg-transparent border-none text-transparent text-center text-base font-extrabold outline-none px-4 caret-black"
+              className="absolute inset-0 w-full h-full bg-transparent px-[4vw] text-center text-black font-extrabold focus:outline-none"
             />
-            <div className="absolute top-0 left-0 w-full h-[42px] sm:h-[49px] flex items-center justify-center pointer-events-none overflow-hidden">
-              <span className="text-black text-base font-extrabold text-center">{nickname}</span>
-            </div>
           </div>
-          <div className="text-center mt-1">
-            <span className="text-gray-600 text-xs">
-              {translate("auth.charCount")
-                .replace("{current}", nickname.length.toString())
-                .replace("{max}", MAX_NICKNAME_LENGTH.toString())}
-            </span>
-          </div>
-        </div>
 
-        {/* 비밀번호 입력 */}
-        <div className="mb-[26px]">
+          {/* 비밀번호 (4자리) */}
           <p className="text-black text-base font-extrabold mb-2 text-center">
             {translate("auth.password")}
           </p>
-          <div className="relative w-full">
+
+          {/* 비밀번호 입력 필드 */}
+          <div className="relative mb-[3vh]">
             <Image
               src={PixelInputField}
               alt="input field"
-              width={202}
-              height={49}
-              className="w-full h-[42px] sm:h-[49px]"
+              width={0}
+              height={0}
+              className="w-[51vw] h-auto max-w-[200px]"
             />
             <input
               type="password"
@@ -124,58 +113,48 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
               inputMode="numeric"
               pattern="[0-9]*"
               autoComplete="new-password"
-              className="absolute top-0 left-0 w-full h-[49px] bg-transparent border-none text-black text-center text-base font-normal outline-none px-4"
+              className="absolute inset-0 w-full h-full bg-transparent px-[4vw] text-center text-black font-extrabold focus:outline-none"
             />
           </div>
-          <div className="text-center mt-1">
-            <span className="text-gray-600 text-xs">
-              {translate("auth.passwordLength")
-                .replace("{current}", password.length.toString())
-                .replace("{max}", PASSWORD_LENGTH.toString())}
+
+          {/* 에러 메시지 */}
+          {error && (
+            <p className="text-red-500 text-sm font-bold mb-[2vh]">{error}</p>
+          )}
+
+          {/* 제출버튼 */}
+          <button
+            type="submit"
+            disabled={isButtonDisabled}
+            className="relative disabled:opacity-50 my-[2vh]"
+          >
+            <Image
+              src={ButtonBigBlue}
+              alt="button background"
+              className="w-[51.5vw] h-auto max-w-[201px]"
+            />
+            <span
+              className="absolute inset-0 flex items-center justify-center text-black font-extrabold text-2xl">
+              {isLoading ? "로딩중 .." : translate("auth.confirmInput")}
             </span>
-          </div>
-        </div>
+          </button>
 
-
-        {/* 에러 메시지 */}
-        {error && (
-          <p className="text-red-500 text-sm font-bold text-center mb-2">{error}</p>
-        )}
-
-        {/* 입력 버튼 */}
-        <button
-          type="submit"
-          disabled={isButtonDisabled}
-          className="relative w-[208px] mx-auto disabled:opacity-50"
-        >
-          <Image
-            src={ButtonBigBlue}
-            alt="button background"
-            width={201}
-            height={70}
-            className="w-full h-[60px] sm:h-[70px]"
-          />
-          <span className="absolute inset-0 flex items-center justify-center text-black text-2xl font-extrabold">
-            {isLoading ? "로딩중 .." : translate("auth.confirmInput")}
-          </span>
-        </button>
-
-        {/* 설명 문구 */}
-        <div className="mt-4 flex flex-col gap-2 w-[208px] mx-auto">
-          <div className="flex items-start gap-2">
-            <Image src={MonsterBallBasic} alt="" width={14} height={14} className="shrink-0 mt-0.5" />
-            <span className="text-black text-[14px] font-bold">회원가입·로그인 화면은 동일해요!</span>
-          </div>
-          <div className="flex items-start gap-2">
-            <Image src={MonsterBallBasic} alt="" width={14} height={14} className="shrink-0 mt-0.5" />
-            <span className="text-black text-[14px] font-bold">트리는 2~6글자, 비밀번호는 숫자 4자리로 설정해주세요!</span>
-          </div>
-          <div className="flex items-start gap-2">
-            <Image src={MonsterBallBasic} alt="" width={14} height={14} className="shrink-0 mt-0.5" />
-            <span className="text-black text-[14px] font-bold">처음 설정한 트리 이름은 이후 변경할 수 없으니 신중히 입력해주세요!</span>
-          </div>
-        </div>
-      </form>
+          {/* 설명 3개 */}
+            <div className="mt-4 mb-6 flex flex-col gap-2 w-[208px] mx-auto">
+            <div className="flex items-start gap-2">
+                <Image src={MonsterBallBasic} alt="" width={14} height={14} className="shrink-0 mt-0.5" />
+                <span className="text-black text-[14px] font-bold">회원가입·로그인 화면은 동일해요!</span>
+            </div>
+            <div className="flex items-start gap-2">
+                <Image src={MonsterBallBasic} alt="" width={14} height={14} className="shrink-0 mt-0.5" />
+                <span className="text-black text-[14px] font-bold">트리는 2~6글자, 비밀번호는 숫자 4자리로 설정해주세요!</span>
+            </div>
+            <div className="flex items-start gap-2">
+                <Image src={MonsterBallBasic} alt="" width={14} height={14} className="shrink-0 mt-0.5" />
+                <span className="text-black text-[14px] font-bold">처음 설정한 트리 이름은 이후 변경할 수 없으니 신중히 입력해주세요!</span>
+            </div>
+            </div>
+        </form>
       </div>
     </div>
   );
