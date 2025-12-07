@@ -81,7 +81,7 @@ function MyTreePageContent() {
   // API로부터 데이터 가져오기
   const fetchTreeData = useCallback(async () => {
     if (!publicId) {
-      setError('잘못된 접근입니다. 올바른 링크를 통해 접근해주세요.');
+      setError(translate("error.invalidAccess"));
       setIsLoading(false);
       return;
     }
@@ -97,16 +97,16 @@ function MyTreePageContent() {
       }
     } catch (err) {
       if (isApiError(err)) {
-        setError(err.message || '트리 정보를 불러올 수 없습니다.');
+        setError(err.message || translate("error.treeNotFound"));
       } else if (err instanceof Error) {
         setError(err.message);
       } else {
-        setError('알 수 없는 오류가 발생했습니다.');
+        setError(translate("error.unknownError"));
       }
     } finally {
       setIsLoading(false);
     }
-  }, [publicId]);
+  }, [publicId, translate]);
 
   useEffect(() => {
     fetchTreeData();
@@ -123,7 +123,7 @@ function MyTreePageContent() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-[#E7E9EB]">
-        <p className="text-lg">로딩 중...</p>
+        <p className="text-lg">{translate("common.loading")}</p>
       </div>
     );
   }

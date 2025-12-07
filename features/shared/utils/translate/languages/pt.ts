@@ -64,6 +64,7 @@ export const pt = {
     makeMessage: "Escrever mensagem",
     makeTree: "Criar PokéTree",
     send: "Enviar mensagem",
+    sendPocketMessage: "Enviar mensagem Pocket",
   },
   sendLetter: {
     title: "Escreva uma mensagem Pocket\npara a árvore de {name}",
@@ -107,6 +108,7 @@ export const pt = {
   common: {
     cancel: "Cancelar",
     confirm: "Confirmar",
+    loading: "Carregando...",
   },
   error: {
     title: "Erro",
@@ -115,6 +117,9 @@ export const pt = {
     pokedexNotFound: "Informação da Pokédex não encontrada.",
     treeNotFound: "Informação da árvore não encontrada.",
     loadFailed: "Falha ao carregar dados.",
+    invalidAccess:
+      "Acesso inválido. Por favor, acesse através do link correto.",
+    unknownError: "Ocorreu um erro desconhecido.",
   },
   landing: {
     countdown: "Natal",

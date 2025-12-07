@@ -62,6 +62,7 @@ export const zhCN = {
     makeMessage: "写消息",
     makeTree: "创建宝可树",
     send: "发送消息",
+    sendPocketMessage: "发送口袋消息",
   },
   sendLetter: {
     title: "为 {name} 的树\n写口袋消息",
@@ -105,6 +106,7 @@ export const zhCN = {
   common: {
     cancel: "取消",
     confirm: "确认",
+    loading: "加载中...",
   },
   error: {
     title: "错误",
@@ -113,6 +115,8 @@ export const zhCN = {
     pokedexNotFound: "未找到图鉴信息。",
     treeNotFound: "未找到树的信息。",
     loadFailed: "无法加载数据。",
+    invalidAccess: "无效访问。请通过正确的链接访问。",
+    unknownError: "发生了未知错误。",
   },
   landing: {
     countdown: "圣诞节",

@@ -63,6 +63,7 @@ export const vi = {
     makeMessage: "Viet tin nhan",
     makeTree: "Tao PokéTree",
     send: "Gui tin nhan",
+    sendPocketMessage: "Gui tin nhan Pocket",
   },
   sendLetter: {
     title: "Viet tin nhan Pocket\ncho cay cua {name}",
@@ -106,6 +107,7 @@ export const vi = {
   common: {
     cancel: "Huy",
     confirm: "Xac nhan",
+    loading: "Dang tai...",
   },
   error: {
     title: "Loi",
@@ -114,6 +116,9 @@ export const vi = {
     pokedexNotFound: "Khong tim thay thong tin Pokedex.",
     treeNotFound: "Khong tim thay thong tin cay.",
     loadFailed: "Khong the tai du lieu.",
+    invalidAccess:
+      "Truy cap khong hop le. Vui long truy cap qua lien ket dung.",
+    unknownError: "Da xay ra loi khong xac dinh.",
   },
   landing: {
     countdown: "Giang sinh",

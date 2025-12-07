@@ -64,6 +64,7 @@ export const ru = {
     makeMessage: "Написать сообщение",
     makeTree: "Создать PokéTree",
     send: "Отправить сообщение",
+    sendPocketMessage: "Отправить карманное сообщение",
   },
   sendLetter: {
     title: "Напишите карманное сообщение\nдля дерева {name}",
@@ -107,6 +108,7 @@ export const ru = {
   common: {
     cancel: "Отмена",
     confirm: "Подтвердить",
+    loading: "Загрузка...",
   },
   error: {
     title: "Ошибка",
@@ -115,6 +117,9 @@ export const ru = {
     pokedexNotFound: "Информация о Покедексе не найдена.",
     treeNotFound: "Информация о дереве не найдена.",
     loadFailed: "Не удалось загрузить данные.",
+    invalidAccess:
+      "Неверный доступ. Пожалуйста, перейдите по правильной ссылке.",
+    unknownError: "Произошла неизвестная ошибка.",
   },
   landing: {
     countdown: "Рождество",

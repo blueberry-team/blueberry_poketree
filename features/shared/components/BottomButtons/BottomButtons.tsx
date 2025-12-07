@@ -2,7 +2,7 @@
 
 import { Suspense } from "react";
 import Image from "next/image";
-import { useRouter, usePathname, useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { CrossButton } from "./CrossButton";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import ButtonMediumDark from "@/assets/images/components/button_medium_dark.webp";
@@ -89,7 +89,7 @@ function BottomButtonsContent({
               className="object-fill"
             />
             <span className="relative z-10 text-white text-base font-bold">
-              포켓 메시지 보내기
+              {translate("visitor.sendPocketMessage")}
             </span>
           </button>
         )}

@@ -62,6 +62,7 @@ export const zhTW = {
     makeMessage: "寫訊息",
     makeTree: "創建寶可樹",
     send: "發送訊息",
+    sendPocketMessage: "發送口袋訊息",
   },
   sendLetter: {
     title: "為 {name} 的樹\n寫口袋訊息",
@@ -105,6 +106,7 @@ export const zhTW = {
   common: {
     cancel: "取消",
     confirm: "確認",
+    loading: "載入中...",
   },
   error: {
     title: "錯誤",
@@ -113,6 +115,8 @@ export const zhTW = {
     pokedexNotFound: "未找到圖鑑資訊。",
     treeNotFound: "未找到樹的資訊。",
     loadFailed: "無法載入資料。",
+    invalidAccess: "無效存取。請透過正確的連結存取。",
+    unknownError: "發生了未知錯誤。",
   },
   landing: {
     countdown: "聖誕節",

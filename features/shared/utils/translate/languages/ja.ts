@@ -64,6 +64,7 @@ export const ja = {
     makeMessage: "メッセージをかく",
     makeTree: "ポケツリーを作る",
     send: "メッセージを送信",
+    sendPocketMessage: "ポケットメッセージを送信",
   },
   sendLetter: {
     title: "{name}のツリーに\nポケットメッセージを書く",
@@ -107,6 +108,7 @@ export const ja = {
   common: {
     cancel: "キャンセル",
     confirm: "確認",
+    loading: "読み込み中...",
   },
   error: {
     title: "エラー",
@@ -115,6 +117,8 @@ export const ja = {
     pokedexNotFound: "図鑑情報が見つかりません。",
     treeNotFound: "ツリー情報が見つかりません。",
     loadFailed: "データの読み込みに失敗しました。",
+    invalidAccess: "無効なアクセスです。正しいリンクからアクセスしてください。",
+    unknownError: "不明なエラーが発生しました。",
   },
   landing: {
     countdown: "クリスマスまで",

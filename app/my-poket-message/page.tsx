@@ -94,7 +94,7 @@ function MyPoketMessagePageContent() {
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-[#BF0120]">
-        <p className="text-lg text-white">로딩 중...</p>
+        <p className="text-lg text-white">{translate("common.loading")}</p>
       </div>
     );
   }

@@ -63,6 +63,7 @@ export const ko = {
     makeMessage: "메시지 작성하기",
     makeTree: "포케트리 만들기",
     send: "메시지 보내기",
+    sendPocketMessage: "포켓 메시지 보내기",
   },
   sendLetter: {
     title: "{name} 님의 트리에\n포켓 메세지 작성",
@@ -106,14 +107,17 @@ export const ko = {
   common: {
     cancel: "취소",
     confirm: "확인",
+    loading: "로딩 중...",
   },
   error: {
     title: "오류",
     defaultMessage: "정보를 찾을 수 없습니다.",
     goHome: "홈으로 돌아가기",
     pokedexNotFound: "도감 정보를 찾을 수 없습니다.",
-    treeNotFound: "트리 정보를 찾을 수 없습니다.",
+    treeNotFound: "트리 정보를 불러올 수 없습니다.",
     loadFailed: "데이터를 불러오는데 실패했습니다.",
+    invalidAccess: "잘못된 접근입니다. 올바른 링크를 통해 접근해주세요.",
+    unknownError: "알 수 없는 오류가 발생했습니다.",
   },
   landing: {
     countdown: "크리스마스까지",
