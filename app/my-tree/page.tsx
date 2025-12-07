@@ -11,6 +11,7 @@ import LetterModal from "@/features/shared/components/Modal/LetterModal";
 import SendLetterModal from "@/features/shared/components/Modal/SendLetterModal";
 import { VisitorButtons } from "@/features/shared/components/VisitorButtons/VisitorButtons";
 import { ShareLinkModal } from "@/features/shared/components/Modal/ShareLinkModal";
+import { UserGuideModal } from "@/features/shared/components/Modal/UserGuideModal";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import {
   ALL_POKEMON_IMAGES
@@ -65,6 +66,8 @@ function MyTreePageContent() {
   const [isSendLetterModalOpen, setIsSendLetterModalOpen] = useState(false);
   // 선택 편지 인덱스
   const [selectedLetterIndex, setSelectedLetterIndex] = useState(0);
+  // 사용자 가이드 모달 상태
+  const [isUserGuideModalOpen, setIsUserGuideModalOpen] = useState(false);
 
   /**
    * pokemon_list에서 포켓몬 이미지 섞기
@@ -119,6 +122,13 @@ function MyTreePageContent() {
       updatePokemonDisplay();
     }
   }, [treeData, updatePokemonDisplay]);
+
+  // 처음 로그인한 사용자(받은 편지가 0개)일 때 가이드 모달 표시
+  useEffect(() => {
+    if (treeData && treeData.is_owner === "true" && treeData.letters.length === 0) {
+      setIsUserGuideModalOpen(true);
+    }
+  }, [treeData]);
 
   // 로딩 중
   if (isLoading) {
@@ -301,6 +311,12 @@ function MyTreePageContent() {
           // 편지 전송 성공 후 트리 데이터 새로고침
           fetchTreeData();
         }}
+      />
+
+      {/* 사용자 가이드 모달 */}
+      <UserGuideModal
+        isOpen={isUserGuideModalOpen}
+        onClose={() => setIsUserGuideModalOpen(false)}
       />
     </div>
   );

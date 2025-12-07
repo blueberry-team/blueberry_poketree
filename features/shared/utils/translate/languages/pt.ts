@@ -143,4 +143,15 @@ export const pt = {
         "Quanto mais você compartilhar e receber cartas, maior a chance de encontrar Pokémon raros!",
     },
   },
+  guide: {
+    page1: "Oh, você é um novo treinador!\n\nSou o Professor Oak e vou te guiar sobre como usar PokéTree!",
+    page2: "Esta árvore que você vê é sua própria PokéTree.\n\nAinda está vazia por enquanto.",
+    page3: "Use este botão para compartilhar seu link de PokéTree com amigos.",
+    page4: "Clique nas Poké Bolas para verificar as Mensagens Pocket que você recebeu.",
+    page5: "Use este botão para ver todas as Mensagens Pocket que você recebeu até agora.\n\nVocê também pode torná-las públicas para todos verem!",
+    page6: "Use este botão para verificar os Pokémon que você coletou.\n\nColete todos os Pokémon para se tornar um Mestre Pokémon!",
+    page7: "Bem, isso é tudo por enquanto.\nEspero que você aproveite PokéTree!\n\nFeliz Natal!",
+    tapToNext: "Toque para continuar",
+    tapToClose: "Toque para fechar",
+  },
 } as const;
