@@ -152,4 +152,20 @@ export const vi = {
         "Cang chia se va nhan nhieu thu, co hoi gap Pokemon hiem cang cao!",
     },
   },
+  guide: {
+    page1:
+      "Oh, ban la mot huan luyen vien moi!\nToi la Giao su Oak, va toi se huong dan ban cach su dung PokéTree!",
+    page2:
+      "Cay ban thay day chinh la PokéTree cua ban.\nHien tai no van con trong.",
+    page3: "Su dung nut nay de chia se lien ket PokéTree cua ban voi ban be.",
+    page4: "Nhan vao cac Poké Ball de kiem tra Tin nhan Pocket ban da nhan.",
+    page5:
+      "Su dung nut nay de xem tat ca Tin nhan Pocket ban da nhan cho den bay gio.\nBan cung co the cong khai chung cho moi nguoi xem!",
+    page6:
+      "Su dung nut nay de kiem tra cac Pokemon ban da thu thap.\nThu thap tat ca Pokemon de tro thanh Bac thay Pokemon!",
+    page7:
+      "Vay la tat ca bay gio.\nToi hy vong ban thich PokéTree!\nGiang sinh vui ve!",
+    tapToNext: "Cham de tiep tuc",
+    tapToClose: "Cham de dong",
+  },
 } as const;

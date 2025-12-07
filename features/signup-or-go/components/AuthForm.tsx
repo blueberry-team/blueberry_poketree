@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { SignupOrGoRequest } from "../models/req/SignupOrGoRequest";
-import DoctorOhImage from "@/assets/images/signuporgo/doctor_oh.webp";
+import DoctorOhImage from "@/assets/images/signuporgo/doctor_oh.png";
 import ButtonBigBlue from "@/assets/images/components/button_big_blue.webp";
 import PixelInputField from "@/assets/images/signuporgo/pixel_inputfield.svg";
 import MonsterBallBasic from "@/assets/images/components/monster_ball_basic.png";

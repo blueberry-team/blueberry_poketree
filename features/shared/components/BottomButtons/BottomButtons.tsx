@@ -53,6 +53,7 @@ function BottomButtonsContent({
         {/* 메시지 확인 버튼 (onCheckMessage가 전달된 경우) */}
         {onCheckMessage && (
           <button
+            data-guide="message-list-button"
             onClick={() => {
               trackButtonClick("button_click_check_message");
               onCheckMessage();
@@ -96,6 +97,7 @@ function BottomButtonsContent({
 
         {/* 포켓몬도감/자세히보기 버튼 */}
         <button
+          data-guide="pokedex-button"
           onClick={handleButtonClick}
           className="relative flex items-center justify-center"
           style={{ width: "180px", height: "56px" }}

@@ -11,6 +11,7 @@ import LetterModal from "@/features/shared/components/Modal/LetterModal";
 import SendLetterModal from "@/features/shared/components/Modal/SendLetterModal";
 import { VisitorButtons } from "@/features/shared/components/VisitorButtons/VisitorButtons";
 import { ShareLinkModal } from "@/features/shared/components/Modal/ShareLinkModal";
+import { UserGuideModal } from "@/features/shared/components/Modal/UserGuideModal";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import {
   ALL_POKEMON_IMAGES
@@ -68,6 +69,8 @@ function MyTreePageContent() {
   const [isSendLetterModalOpen, setIsSendLetterModalOpen] = useState(false);
   // 선택 편지 인덱스
   const [selectedLetterIndex, setSelectedLetterIndex] = useState(0);
+  // 사용자 가이드 모달 상태
+  const [isUserGuideModalOpen, setIsUserGuideModalOpen] = useState(false);
 
   /**
    * pokemon_list에서 포켓몬 이미지 섞기
@@ -130,6 +133,13 @@ function MyTreePageContent() {
       updatePokemonDisplay();
     }
   }, [treeData, updatePokemonDisplay]);
+
+  // 처음 로그인한 사용자(받은 편지가 0개)일 때 가이드 모달 표시
+  useEffect(() => {
+    if (treeData && treeData.is_owner === "true" && treeData.letters.length === 0) {
+      setIsUserGuideModalOpen(true);
+    }
+  }, [treeData]);
 
   // my-tree 페이지가 아닐 때 isTreeOwner 초기화
   useEffect(() => {
@@ -271,7 +281,8 @@ function MyTreePageContent() {
         {/* is_owner일 때만 공유하기 버튼 표시 */}
         {isOwner && (
           <button
-            onClick={handleShareLinkClick}
+            data-guide="share-button"
+            onClick={() => handleShareLinkClick()}
             className="relative w-36 flex items-center justify-center shrink-0 px-2 py-1"
             style={{ minHeight: "40px" }}
           >
@@ -345,6 +356,12 @@ function MyTreePageContent() {
         receiverId={publicId!}
         receiverName={userName}
         onSuccess={handleSendLetterSuccess}
+      />
+
+      {/* 사용자 가이드 모달 */}
+      <UserGuideModal
+        isOpen={isUserGuideModalOpen}
+        onClose={() => setIsUserGuideModalOpen(false)}
       />
     </div>
   );
