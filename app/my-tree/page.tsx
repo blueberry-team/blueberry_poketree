@@ -19,6 +19,7 @@ import ButtonBigGreen from "@/assets/images/components/button_big_green.webp";
 import { getUserTree } from "@/features/my-tree/usecases/getUserTree";
 import { UserTreeData } from "@/features/my-tree/models/res/GetUserTreeResponse";
 import { isApiError } from "@/features/shared/utils/api/apiClient";
+import { Snow } from "@/features/shared/components/Snow/Snow";
 
 /**
  * MyTreePage - 내 트리 페이지
@@ -249,7 +250,10 @@ function MyTreePageContent() {
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col relative">
+      {/* 눈 내리는 효과 */}
+      <Snow />
+
       {/* ~님의 포케트리 텍스트, 공유하기 버튼 또는 로그인 버튼 */}
       <div className="px-4 py-3 shrink-0 bg-[#BF0120] flex items-center justify-between gap-2">
         <span className="text-white text-xl font-bold whitespace-nowrap">{userName}{translate("tree.userTree")}</span>
