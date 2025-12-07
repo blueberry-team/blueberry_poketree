@@ -4,11 +4,11 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 import WindowBackgroundDay from "@/assets/images/background/window_background_day.webp";
 import WindowBackgroundNight from "@/assets/images/background/window_background_night.webp";
-import { getTimeOfDay } from "@/features/shared/utils/time/getTimeOfDay";
+import { getTimeOfDay, TimeOfDay } from "@/features/shared/utils/time/getTimeOfDay";
 
 export default function Container({ children }: { children: React.ReactNode }) {
   // 낮/밤 상태 관리 - 초기값으로 현재 시간 설정
-  const [timeOfDay, setTimeOfDay] = useState<'day' | 'night'>(() => getTimeOfDay());
+  const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>(() => getTimeOfDay());
 
   useEffect(() => {
     // 1분마다 시간 체크하여 업데이트
@@ -20,7 +20,7 @@ export default function Container({ children }: { children: React.ReactNode }) {
   }, []);
 
   // 시간에 따른 배경 이미지 선택
-  const WindowBackground = timeOfDay === 'night' ? WindowBackgroundNight : WindowBackgroundDay;
+  const WindowBackground = timeOfDay === TimeOfDay.NIGHT ? WindowBackgroundNight : WindowBackgroundDay;
 
   return (
     <div className="min-h-screen flex items-center justify-center">
