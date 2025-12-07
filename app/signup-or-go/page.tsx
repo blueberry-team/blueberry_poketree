@@ -9,6 +9,8 @@ import { trackEvent } from "@/features/shared/utils/analytics/analytics";
 import { notifyUserCreateSuccess } from "@/features/shared/utils/discord/discord";
 import { resetAuthState } from "@/features/signup-or-go/stores/authStore";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
+import { ApiClientError } from "@/features/shared/utils/api/apiClient";
+import type { TranslationKey } from "@/features/shared/utils/translate/useLanguage";
 
 function SignupOrGoPageContent() {
     const router = useRouter();
@@ -51,8 +53,21 @@ function SignupOrGoPageContent() {
                 router.push(`/my-tree?id=${res.data.public_id}`);
             }
         } catch (err) {
-            if (err instanceof Error) {
+            if (err instanceof ApiClientError) {
+                // ApiClientError인 경우 번역 키가 있으면 번역 시도
+                if (err.translationKey) {
+                    const translatedMessage = translate(err.translationKey as TranslationKey);
+                    // 번역이 실패했으면 (번역 키와 결과가 같으면) 기본 메시지 사용
+                    setError(translatedMessage === err.translationKey ? err.message : translatedMessage);
+                } else {
+                    setError(err.message);
+                }
+            } else if (err instanceof Error) {
+                // 일반 Error인 경우
                 setError(err.message);
+            } else {
+                // 예상치 못한 에러 타입인 경우
+                setError(translate("error.unknownError"));
             }
         } finally {
             setIsLoading(false);

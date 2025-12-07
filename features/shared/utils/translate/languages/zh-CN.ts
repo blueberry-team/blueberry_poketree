@@ -117,6 +117,18 @@ export const zhCN = {
     loadFailed: "无法加载数据。",
     invalidAccess: "无效访问。请通过正确的链接访问。",
     unknownError: "发生了未知错误。",
+    // 错误代码翻译
+    public001: "服务器错误。",
+    auth001: "验证错误。",
+    auth002: "密码错误或用户已存在。",
+    auth003: "未找到用户。",
+    auth004: "意外的令牌。",
+    auth005: "令牌已过期。",
+    auth006: "无效的令牌类型。",
+    auth007: "提交的令牌不匹配。",
+    letter001: "验证错误。",
+    letter003: "未找到信件。",
+    path001: "错误的域名。",
   },
   landing: {
     countdown: "圣诞节",

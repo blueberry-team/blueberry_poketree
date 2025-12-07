@@ -119,6 +119,18 @@ export const vi = {
     invalidAccess:
       "Truy cap khong hop le. Vui long truy cap qua lien ket dung.",
     unknownError: "Da xay ra loi khong xac dinh.",
+    // Bản dịch theo mã lỗi
+    public001: "Da xay ra loi may chu.",
+    auth001: "Loi xac thuc.",
+    auth002: "Mat khau sai hoac nguoi dung da ton tai.",
+    auth003: "Khong tim thay nguoi dung.",
+    auth004: "Token khong mong doi.",
+    auth005: "Token da het han.",
+    auth006: "Loai token khong hop le.",
+    auth007: "Token da gui khong khop.",
+    letter001: "Loi xac thuc.",
+    letter003: "Khong tim thay thu.",
+    path001: "Ten mien sai.",
   },
   landing: {
     countdown: "Giang sinh",
