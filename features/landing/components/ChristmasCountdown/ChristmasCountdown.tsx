@@ -46,69 +46,72 @@ export function ChristmasCountdown() {
   const minutesStr = String(timeLeft.minutes).padStart(2, "0");
 
   return (
-    <div className="flex flex-col items-center w-full overflow-hidden text-white">
+    <div className="flex flex-col items-center w-full overflow-hidden text-white pt-1">
       {/* 크리스마스 카운트다운 */}
-      <div className="flex items-center gap-2 text-[18px] flex-wrap justify-center px-4">
+      <div className="flex items-center justify-center gap-2 text-[18px] flex-wrap px-4">
         <span className="font-bold">{translate("landing.countdown")}</span>
 
-        {/* Days 그룹 */}
-        <div className="flex items-center gap-0.5 shrink-0">
-          <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
-            <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
-              {daysStr[0]}
-            </span>
+        {/* Days, Hours, Minutes를 하나의 그룹으로 묶어서 함께 줄넘김되도록 */}
+        <div className="flex items-center gap-2 shrink-0">
+          {/* Days 그룹 */}
+          <div className="flex items-center gap-0.5 shrink-0">
+            <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
+              <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
+                {daysStr[0]}
+              </span>
+            </div>
+            <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
+              <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
+                {daysStr[1]}
+              </span>
+            </div>
+            <span className="font-bold">{translate("landing.days")}</span>
           </div>
-          <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
-            <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
-              {daysStr[1]}
-            </span>
-          </div>
-          <span className="font-bold">{translate("landing.days")}</span>
-        </div>
 
-        {/* Hours 그룹 */}
-        <div className="flex items-center gap-0.5 shrink-0">
-          <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
-            <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
-              {hoursStr[0]}
-            </span>
+          {/* Hours 그룹 */}
+          <div className="flex items-center gap-0.5 shrink-0">
+            <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
+              <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
+                {hoursStr[0]}
+              </span>
+            </div>
+            <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
+              <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
+                {hoursStr[1]}
+              </span>
+            </div>
+            <span className="font-bold">{translate("landing.hours")}</span>
           </div>
-          <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
-            <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
-              {hoursStr[1]}
-            </span>
-          </div>
-          <span className="font-bold">{translate("landing.hours")}</span>
-        </div>
 
-        {/* Minutes 그룹 */}
-        <div className="flex items-center gap-0.5 shrink-0">
-          <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
-            <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
-              {minutesStr[0]}
-            </span>
+          {/* Minutes 그룹 */}
+          <div className="flex items-center gap-0.5 shrink-0">
+            <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
+              <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
+                {minutesStr[0]}
+              </span>
+            </div>
+            <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
+              <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
+                {minutesStr[1]}
+              </span>
+            </div>
+            <span className="font-bold">{translate("landing.minutes")}</span>
           </div>
-          <div className="bg-white flex items-center justify-center" style={{ width: "22px", height: "34px" }}>
-            <span className="text-black font-bold text-[18px]" style={{ fontFamily: "var(--font-press-start)" }}>
-              {minutesStr[1]}
-            </span>
-          </div>
-          <span className="font-bold">{translate("landing.minutes")}</span>
         </div>
       </div>
 
       {/* 선물 메시지 + 로그인 버튼 */}
-      <div className="flex items-center justify-around w-full mt-2">
+      <div className="flex items-center justify-around w-full mt-4 px-3">
         <div className="flex items-center gap-1 min-w-0">
-          <Image src={GiftBoxIcon} alt="Gift" width={16} height={16} className="shrink-0" />
-          <p className="font-bold text-[12px] -mb-0.5 truncate">
+          <Image src={GiftBoxIcon} alt="Gift" width={16} height={16} className="shrink-0 mr-[2px]" />
+          <p className="font-bold text-[12px] -mb-0.5 mr-[10px]">
             {translate("landing.description1")}
           </p>
         </div>
         <button
           onClick={handleLogin}
-          className="relative flex items-center justify-center shrink-0"
-          style={{ width: "66px", height: "28px" }}
+          className="relative flex items-center justify-center shrink-0 px-2 py-1"
+          style={{ maxWidth: "86px", minWidth: "66px", minHeight: "28px" }}
         >
           <Image
             src={ButtonSmallDark}

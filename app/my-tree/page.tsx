@@ -2,7 +2,7 @@
 
 import { Suspense } from "react";
 import Image, { type StaticImageData } from "next/image";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useMemo } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Tree } from "@/features/my-tree/components/Tree";
 import { BottomButtons } from "@/features/shared/components/BottomButtons/BottomButtons";
@@ -20,6 +20,8 @@ import { getUserTree } from "@/features/my-tree/usecases/getUserTree";
 import { UserTreeData } from "@/features/my-tree/models/res/GetUserTreeResponse";
 import { isApiError } from "@/features/shared/utils/api/apiClient";
 import { Snow } from "@/features/shared/components/Snow/Snow";
+import { setTreeOwner } from "@/features/signup-or-go/stores/authStore";
+import { usePathname } from "next/navigation";
 
 /**
  * MyTreePage - 내 트리 페이지
@@ -41,6 +43,7 @@ import { Snow } from "@/features/shared/components/Snow/Snow";
 function MyTreePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const publicId = searchParams.get('id');
 
   // 다국어화 관련
@@ -77,12 +80,14 @@ function MyTreePageContent() {
       );
       setDisplayedPokemons(pokemonImages);
     }
-  }, [treeData]);
+  }, [treeData?.pokemon_list]);
 
   // API로부터 데이터 가져오기
+  // translate는 language에만 의존하므로 language만 의존성에 포함
+  // translate를 의존성에 포함하면 무한 루프 발생 가능
   const fetchTreeData = useCallback(async () => {
     if (!publicId) {
-      setError('잘못된 접근입니다. 올바른 링크를 통해 접근해주세요.');
+      setError(translate("error.invalidAccess"));
       setIsLoading(false);
       return;
     }
@@ -95,23 +100,29 @@ function MyTreePageContent() {
 
       if (response.message === 'success' && response.data) {
         setTreeData(response.data);
+        // 트리 주인 여부를 전역 signal에 저장
+        setTreeOwner(response.data.is_owner === 'true');
       }
     } catch (err) {
       if (isApiError(err)) {
-        setError(err.message || '트리 정보를 불러올 수 없습니다.');
+        setError(err.message || translate("error.treeNotFound"));
       } else if (err instanceof Error) {
         setError(err.message);
       } else {
-        setError('알 수 없는 오류가 발생했습니다.');
+        setError(translate("error.unknownError"));
       }
     } finally {
       setIsLoading(false);
     }
-  }, [publicId]);
+  // translate는 language에만 의존하지만, translate를 의존성에 포함하면 무한 루프 발생
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [publicId, language]);
 
   useEffect(() => {
-    fetchTreeData();
-  }, [fetchTreeData]);
+    if (publicId) {
+      fetchTreeData();
+    }
+  }, [publicId, fetchTreeData]);
 
   // treeData가 변경되면 포켓몬 이미지 업데이트
   useEffect(() => {
@@ -120,11 +131,115 @@ function MyTreePageContent() {
     }
   }, [treeData, updatePokemonDisplay]);
 
+  // my-tree 페이지가 아닐 때 isTreeOwner 초기화
+  useEffect(() => {
+    if (pathname !== '/my-tree') {
+      setTreeOwner(null);
+    }
+  }, [pathname]);
+
+  // API에서 받은 데이터 사용 (메모이제이션) - early return 전에 모든 hooks 호출
+  const userName = useMemo(() => treeData?.nickname ?? "", [treeData?.nickname]);
+  const isOwner = useMemo(() => treeData?.is_owner === "true", [treeData?.is_owner]);
+  const letters = useMemo(() => treeData?.letters ?? [], [treeData?.letters]);
+
+  /**
+   * 이전 페이지로 이동
+   */
+  const handleLeft = useCallback(() => {
+    setCurrentPage((prev) => (prev > 0 ? prev - 1 : prev));
+  }, []);
+
+  /**
+   * 다음 페이지로 이동
+   */
+  const handleRight = useCallback(() => {
+    const totalPages = Math.ceil(letters.length / 7);
+    setCurrentPage((prev) => (prev < totalPages - 1 ? prev + 1 : prev));
+  }, [letters]);
+
+  /**
+   * 포켓몬 Refresh (상 버튼) - pokemon_list에서 랜덤으로 표시
+   */
+  const handleUp = useCallback(() => {
+    updatePokemonDisplay();
+  }, [updatePokemonDisplay]);
+
+  /**
+   * 포켓몬 Refresh (하 버튼) - pokemon_list에서 랜덤으로 표시
+   */
+  const handleDown = useCallback(() => {
+    updatePokemonDisplay();
+  }, [updatePokemonDisplay]);
+
+  /**
+   * 전체 메시지 페이지로 이동
+   */
+  const handleViewAllMessages = useCallback(() => {
+    if (publicId) {
+      router.push(`/my-poket-message?id=${publicId}`);
+    }
+  }, [publicId, router]);
+
+  /**
+   * 편지(몬스터볼) 클릭 시 모달 열기
+   */
+  const handleLetterClick = useCallback((index: number) => {
+    // 주인은 모든 편지를 볼 수 있고, 방문자는 오픈된 편지만 볼 수 있음
+    if (isOwner || letters[index]?.is_open === "true") {
+      setSelectedLetterIndex(index);
+      setIsLetterModalOpen(true);
+    }
+  }, [isOwner, letters]);
+
+  const handleShareLinkClick = useCallback(() => {
+    setIsShareLinkModalOpen(true);
+  }, []);
+
+  const handleMakePokeTree = useCallback((source: "make_tree" | "login") => {
+    router.push(`/signup-or-go?from=${source}`);
+  }, [router]);
+
+  const handleSendMessage = useCallback(() => {
+    setIsSendLetterModalOpen(true);
+  }, []);
+
+  const handleCloseShareLinkModal = useCallback(() => {
+    setIsShareLinkModalOpen(false);
+  }, []);
+
+  const handleCloseSendLetterModal = useCallback(() => {
+    setIsSendLetterModalOpen(false);
+  }, []);
+
+  const handleCloseLetterModal = useCallback(() => {
+    setIsLetterModalOpen(false);
+    fetchTreeData();
+  }, [fetchTreeData]);
+
+  const handleLetterModalComplete = useCallback(() => {
+    fetchTreeData();
+  }, [fetchTreeData]);
+
+  const handleSendLetterSuccess = useCallback(() => {
+    fetchTreeData();
+  }, [fetchTreeData]);
+
+  const handlePageChange = useCallback((page: number) => {
+    setCurrentPage(page);
+  }, []);
+
+  const selectedLetter = useMemo(() => letters[selectedLetterIndex], [letters, selectedLetterIndex]);
+
+  const handleGoHome = useCallback(() => {
+    router.push('/');
+  }, [router]);
+
   // 로딩 중
   if (isLoading) {
     return (
       <div className="flex items-center justify-center min-h-screen bg-[#E7E9EB]">
-        <p className="text-lg">로딩 중...</p>
+        <p className="text-lg">{translate("common.loading")}</p>
       </div>
     );
   }
@@ -136,7 +251,7 @@ function MyTreePageContent() {
         <h1 className="text-xl font-bold">{translate("error.title")}</h1>
         <p className="text-gray-600">{error || translate("error.treeNotFound")}</p>
         <button
-          onClick={() => router.push('/')}
+          onClick={handleGoHome}
           className="px-4 py-2 bg-blue-500 text-white rounded-lg hover:bg-blue-600"
         >
           {translate("error.goHome")}
@@ -145,66 +260,6 @@ function MyTreePageContent() {
     );
   }
 
-  // API에서 받은 데이터 사용
-  const userName = treeData.nickname;
-  const isOwner = treeData.is_owner;
-  const letters = treeData.letters;
-
-  /**
-   * 이전 페이지로 이동
-   */
-  const handleLeft = () => {
-    setCurrentPage((prev) => (prev > 0 ? prev - 1 : prev));
-  };
-
-  /**
-   * 다음 페이지로 이동
-   */
-  const handleRight = () => {
-    const totalPages = Math.ceil(letters.length / 7);
-    setCurrentPage((prev) => (prev < totalPages - 1 ? prev + 1 : prev));
-  };
-
-  /**
-   * 포켓몬 Refresh (상 버튼) - pokemon_list에서 랜덤으로 표시
-   */
-  const handleUp = () => {
-    updatePokemonDisplay();
-  };
-
-  /**
-   * 포켓몬 Refresh (하 버튼) - pokemon_list에서 랜덤으로 표시
-   */
-  const handleDown = () => {
-    updatePokemonDisplay();
-  };
-
-  /**
-   * 전체 메시지 페이지로 이동
-   */
-  const handleViewAllMessages = () => {
-    router.push(`/my-poket-message?id=${publicId}`);
-  };
-
-  /**
-   * 편지(몬스터볼) 클릭 시 모달 열기
-   */
-  const handleLetterClick = (index: number) => {
-    // 주인은 모든 편지를 볼 수 있고, 방문자는 오픈된 편지만 볼 수 있음
-    if (isOwner === "true" || letters[index].is_open === "true") {
-      setSelectedLetterIndex(index);
-      setIsLetterModalOpen(true);
-    }
-  };
-
-  const handleShareLinkClick = () => {
-    setIsShareLinkModalOpen(true);
-  }
-
-  const handleMakePokeTree = (source: "make_tree" | "login") => {
-    router.push(`/signup-or-go?from=${source}`);
-  };
-
   return (
     <div className="flex flex-col relative">
       {/* 눈 내리는 효과 */}
@@ -212,12 +267,13 @@ function MyTreePageContent() {
 
       {/* ~님의 포케트리 텍스트, 공유하기 버튼 또는 로그인 버튼 */}
       <div className="px-4 py-3 shrink-0 bg-[#BF0120] flex items-center justify-between gap-2">
-        <span className="text-white text-xl font-bold whitespace-nowrap">{userName}{translate("tree.userTree")}</span>
+        <span className="text-white text-xl font-bold w-[60%] overflow-hidden">{userName}{translate("tree.userTree")}</span>
         {/* is_owner일 때만 공유하기 버튼 표시 */}
-        {isOwner === "true" && (
+        {isOwner && (
           <button
-            onClick={() => handleShareLinkClick()}
-            className="relative w-36 h-10 flex items-center justify-center shrink-0"
+            onClick={handleShareLinkClick}
+            className="relative w-36 flex items-center justify-center shrink-0 px-2 py-1"
+            style={{ minHeight: "40px" }}
           >
             <Image
               src={ButtonBigGreen}
@@ -236,16 +292,14 @@ function MyTreePageContent() {
         letters={letters}
         currentPage={currentPage}
         onLetterClick={handleLetterClick}
-        onPageChange={(page) => {
-          setCurrentPage(page);
-        }}
+        onPageChange={handlePageChange}
       />
 
       {/* 하단 영역 */}
       <div className="px-4 py-4 shrink-0 relative">
         {/* 도감 버튼과 십자 버튼 (메시지 버튼 포함) */}
         {/*is_owner에 따라 바텀컴포넌트 구분*/}
-        {isOwner === "true" ? (
+        {isOwner ? (
           <BottomButtons
             onUp={handleUp}
             onDown={handleDown}
@@ -255,7 +309,7 @@ function MyTreePageContent() {
           />
         ) : (
           <VisitorButtons
-            onSendMessage={() => setIsSendLetterModalOpen(true)}
+            onSendMessage={handleSendMessage}
             onMakeTree={handleMakePokeTree}
           />
         )}
@@ -265,7 +319,7 @@ function MyTreePageContent() {
       {publicId && (
         <ShareLinkModal
           isOpen={isShareLinkModalOpen}
-          onClose={() => setIsShareLinkModalOpen(false)}
+          onClose={handleCloseShareLinkModal}
           publicId={publicId}
         />
       )}
@@ -276,31 +330,21 @@ function MyTreePageContent() {
       {/* 편지 모달 */}
       <LetterModal
         isModalOpen={isLetterModalOpen}
-        onClose={() => {
-          setIsLetterModalOpen(false);
-          // 모달 닫을 때 트리 데이터 새로고침
-          fetchTreeData();
-        }}
-        letterId={letters[selectedLetterIndex]?.letter_id || null}
+        onClose={handleCloseLetterModal}
+        letterId={selectedLetter?.letter_id || null}
         isOwner={isOwner}
         userId={publicId!}
-        isRead={letters[selectedLetterIndex]?.is_read || "true"}
-        onComplete={() => {
-          // 편지 삭제 후 트리 데이터 새로고침
-          fetchTreeData();
-        }}
+        isRead={selectedLetter?.is_read || "true"}
+        onComplete={handleLetterModalComplete}
       />
 
       {/* 편지 보내기 모달 */}
       <SendLetterModal
         isModalOpen={isSendLetterModalOpen}
-        onClose={() => setIsSendLetterModalOpen(false)}
+        onClose={handleCloseSendLetterModal}
         receiverId={publicId!}
         receiverName={userName}
-        onSuccess={() => {
-          // 편지 전송 성공 후 트리 데이터 새로고침
-          fetchTreeData();
-        }}
+        onSuccess={handleSendLetterSuccess}
       />
     </div>
   );

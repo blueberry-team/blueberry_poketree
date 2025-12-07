@@ -26,6 +26,7 @@ body {
 
 body.font-ja {
   font-family: var(--font-pixel-mplus), -apple-system, BlinkMacSystemFont, system-ui, Roboto, sans-serif;
+  word-break: normal;
 }
 
 /* 스크롤바 숨기기 */
@@ -35,4 +36,71 @@ body.font-ja {
 }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;  /* Chrome, Safari, Opera */
+}
+
+/* 포켓몬 점프 애니메이션 */
+@keyframes pokemon-jump {
+  0% {
+    transform: translateY(0) scaleX(var(--pokemon-scale-x, 1));
+  }
+  50% {
+    transform: translateY(-20px) scaleX(var(--pokemon-scale-x, 1));
+  }
+  100% {
+    transform: translateY(0) scaleX(var(--pokemon-scale-x, 1));
+  }
+}
+
+.pokemon-jump {
+  animation: pokemon-jump 0.4s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* 몬스터볼 좌우 기울임 애니메이션 */
+@keyframes pokeball-shake {
+  0% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+  25% {
+    transform: translateX(-50%) rotate(-15deg);
+  }
+  50% {
+    transform: translateX(-50%) rotate(15deg);
+  }
+  75% {
+    transform: translateX(-50%) rotate(-10deg);
+  }
+  100% {
+    transform: translateX(-50%) rotate(0deg);
+  }
+}
+
+.pokeball-shake {
+  animation: pokeball-shake 0.4s ease-in-out;
+  transition: transform 0.3s ease-in-out;
+}
+
+/* 크리스마스 선물 하단 중심 좌우 기울임 애니메이션 */
+@keyframes christmas-gift-sway {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-12deg);
+  }
+  50% {
+    transform: rotate(12deg);
+  }
+  75% {
+    transform: rotate(-8deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.christmas-gift-sway {
+  animation: christmas-gift-sway 0.5s ease-in-out;
+  transform-origin: bottom center;
+  transition: transform 0.3s ease-in-out;
 }

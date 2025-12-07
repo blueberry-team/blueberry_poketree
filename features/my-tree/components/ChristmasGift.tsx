@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import GiftBox from "@/assets/images/components/gift_box.webp";
+import ChristmasEgg from "@/assets/images/components/christmas_egg.png";
 
 /**
  * ChristmasGift 컴포넌트
@@ -19,14 +19,22 @@ export function ChristmasGift() {
     <button
       // TODO: 크리스마스 날 기능 오픈 후 주석 해제
       // className="absolute top-4 right-4 z-10 cursor-pointer hover:scale-110 transition-transform"
-      className="absolute top-6 right-6 z-10"
+      className="absolute top-6 right-6 z-10 cursor-pointer"
       aria-label="크리스마스 선물"
+      onClick={(e) => {
+        const target = e.currentTarget;
+        target.classList.add('christmas-gift-sway');
+        // 애니메이션 완료 후 클래스 제거
+        setTimeout(() => {
+          target.classList.remove('christmas-gift-sway');
+        }, 500);
+      }}
     >
       <Image
-        src={GiftBox}
+        src={ChristmasEgg}
         alt="크리스마스 선물"
-        width={68}
-        height={68}
+        width={65}
+        height={65}
         className="object-contain"
       />
     </button>

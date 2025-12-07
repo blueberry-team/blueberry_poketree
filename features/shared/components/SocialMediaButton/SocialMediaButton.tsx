@@ -43,8 +43,8 @@ export function SocialMediaButton() {
   const socialIcon = language === "ja" ? XIcon : InstagramIcon;
 
   return (
-    <div className="w-full bg-[#DC0A2D] py-2">
-      <div className="mx-auto flex max-w-[320px] flex-col items-center gap-4 px-4">
+    <div className="bg-[#DC0A2D] pt-4 pb-8">
+      <div className="flex flex-col items-center gap-4 px-4">
         {/* 상단 텍스트 */}
         <p className="font-pf-stardust font-bold text-center text-[24px] leading-normal tracking-tight text-white">
           {translate("landing.visitSocial")}
@@ -53,23 +53,21 @@ export function SocialMediaButton() {
         {/* 소셜미디어 카드 */}
         <div
           onClick={handleSocialClick}
-          className="flex h-[110px] w-[320px] items-center gap-5 rounded-xl border-2 border-[#EEF2F6] bg-white p-5 shadow-[6px_6px_14px_3px_#0000001A] cursor-pointer hover:opacity-90 transition-opacity"
+          className="flex w-[85vw] max-w-[320px] h-[34.375vw] max-h-[110px] items-center gap-3 rounded-xl bg-white py-3 px-4 shadow-[6px_6px_14px_3px_#0000001A] cursor-pointer hover:opacity-90 transition-opacity"
         >
           {/* 왼쪽: 아이콘 + 텍스트 */}
-          <div className="flex items-center gap-5">
+          <div className="flex items-center gap-3">
             {/* 소셜미디어 아이콘 */}
             <Image
               src={socialIcon}
               alt="Social Icon"
-              width={72}
-              height={72}
-              className="aspect-square"
+              className="aspect-square w-[22vw] h-[22vw] max-w-[72px] max-h-[72px]"
             />
 
             {/* 텍스트 영역 */}
-            <div className="flex flex-col items-start gap-1">
+            <div className="flex flex-col items-start gap-0.5">
               <span
-                className="font-pf-stardust font-bold text-left leading-snug tracking-tight text-black text-[20px]"
+                className="font-pf-stardust font-bold text-left leading-snug tracking-tight text-black text-[24px]"
               >
                 {translate("landing.socialName")}
               </span>
@@ -85,8 +83,7 @@ export function SocialMediaButton() {
           <Image
             src={RightArrowIcon}
             alt="Arrow"
-            width={10}
-            height={17}
+            className="w-[2.5vw] h-[5vw] max-w-[8px] max-h-[16px]"
           />
         </div>
       </div>
