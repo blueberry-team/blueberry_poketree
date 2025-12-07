@@ -256,12 +256,13 @@ function MyTreePageContent() {
 
       {/* ~님의 포케트리 텍스트, 공유하기 버튼 또는 로그인 버튼 */}
       <div className="px-4 py-3 shrink-0 bg-[#BF0120] flex items-center justify-between gap-2">
-        <span className="text-white text-xl font-bold whitespace-nowrap">{userName}{translate("tree.userTree")}</span>
+        <span className="text-white text-xl font-bold w-[60%] overflow-hidden">{userName}{translate("tree.userTree")}</span>
         {/* is_owner일 때만 공유하기 버튼 표시 */}
         {isOwnerBoolean && (
           <button
             onClick={handleShareLinkClick}
-            className="relative w-36 h-10 flex items-center justify-center shrink-0"
+            className="relative w-36 flex items-center justify-center shrink-0 px-2 py-1"
+            style={{ minHeight: "40px" }}
           >
             <Image
               src={ButtonBigGreen}
