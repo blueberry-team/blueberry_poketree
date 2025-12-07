@@ -9,6 +9,8 @@ import TreeNight from "@/assets/images/background/tree_night.png";
 import MonsterBallOpen from "@/assets/images/components/monster_ball_open.webp";
 import MonsterBallClose from "@/assets/images/components/monster_ball_close.webp";
 import LockIcon from "@/assets/icon/lockIcon.svg";
+import PageIndicatorLeft from "@/assets/icon/pageIndicatorLeft.svg";
+import PageIndicatorRight from "@/assets/icon/pageIndicatorRight.svg";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { ChristmasGift } from "./ChristmasGift";
 import { Letter } from "../models/res/GetUserTreeResponse";
@@ -250,25 +252,25 @@ export function Tree({
       })}
 
       {/* 페이지 인디케이터 */}
-      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-3 bg-[#8E8E8E]/80 px-4 py-2 rounded-xl">
+      <div className="absolute bottom-2 left-1/2 -translate-x-1/2 flex items-center justify-between px-3 w-[76px] h-[32px] bg-black/40 rounded-[8px]">
         <button
           onClick={() => currentPage > 0 && onPageChange?.(currentPage - 1)}
-          className="text-white font-bold text-lg hover:opacity-70 transition-opacity"
+          className="hover:opacity-70 transition-opacity"
           aria-label="이전 페이지"
           disabled={totalPages === 0 || currentPage === 0}
         >
-          {"<<"}
+          <Image src={PageIndicatorLeft} alt="이전" width={8} height={12} />
         </button>
-        <span className="text-white font-bold text-sm">
-          {currentPage + 1}/{totalPages === 0 ? 1 : totalPages}
+        <span className="text-white font-bold text-[12px] font-['Pretendard']">
+          {currentPage + 1}
         </span>
         <button
           onClick={() => currentPage < totalPages - 1 && onPageChange?.(currentPage + 1)}
-          className="text-white font-bold text-lg hover:opacity-70 transition-opacity"
+          className="hover:opacity-70 transition-opacity"
           aria-label="다음 페이지"
           disabled={totalPages === 0 || currentPage === totalPages - 1}
         >
-          {">>"}
+          <Image src={PageIndicatorRight} alt="다음" width={8} height={12} />
         </button>
       </div>
     </div>
