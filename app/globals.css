@@ -79,3 +79,28 @@ body.font-ja {
   animation: pokeball-shake 0.4s ease-in-out;
   transition: transform 0.3s ease-in-out;
 }
+
+/* 크리스마스 선물 하단 중심 좌우 기울임 애니메이션 */
+@keyframes christmas-gift-sway {
+  0% {
+    transform: rotate(0deg);
+  }
+  25% {
+    transform: rotate(-12deg);
+  }
+  50% {
+    transform: rotate(12deg);
+  }
+  75% {
+    transform: rotate(-8deg);
+  }
+  100% {
+    transform: rotate(0deg);
+  }
+}
+
+.christmas-gift-sway {
+  animation: christmas-gift-sway 0.5s ease-in-out;
+  transform-origin: bottom center;
+  transition: transform 0.3s ease-in-out;
+}
