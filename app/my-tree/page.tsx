@@ -20,6 +20,8 @@ import { getUserTree } from "@/features/my-tree/usecases/getUserTree";
 import { UserTreeData } from "@/features/my-tree/models/res/GetUserTreeResponse";
 import { isApiError } from "@/features/shared/utils/api/apiClient";
 import { Snow } from "@/features/shared/components/Snow/Snow";
+import { setTreeOwner } from "@/features/signup-or-go/stores/authStore";
+import { usePathname } from "next/navigation";
 
 /**
  * MyTreePage - 내 트리 페이지
@@ -41,6 +43,7 @@ import { Snow } from "@/features/shared/components/Snow/Snow";
 function MyTreePageContent() {
   const router = useRouter();
   const searchParams = useSearchParams();
+  const pathname = usePathname();
   const publicId = searchParams.get('id');
 
   // 다국어화 관련
@@ -97,6 +100,8 @@ function MyTreePageContent() {
 
       if (response.message === 'success' && response.data) {
         setTreeData(response.data);
+        // 트리 주인 여부를 전역 signal에 저장
+        setTreeOwner(response.data.is_owner === 'true');
       }
     } catch (err) {
       if (isApiError(err)) {
@@ -125,6 +130,13 @@ function MyTreePageContent() {
       updatePokemonDisplay();
     }
   }, [treeData, updatePokemonDisplay]);
+
+  // my-tree 페이지가 아닐 때 isTreeOwner 초기화
+  useEffect(() => {
+    if (pathname !== '/my-tree') {
+      setTreeOwner(null);
+    }
+  }, [pathname]);
 
   // API에서 받은 데이터 사용 (메모이제이션) - early return 전에 모든 hooks 호출
   const userName = useMemo(() => treeData?.nickname ?? "", [treeData?.nickname]);

@@ -6,7 +6,7 @@ import { logout } from "../../usecases/logout";
 import { HelpModal } from "./HelpModal";
 import { useState } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { isLoggedIn } from "@/features/signup-or-go/stores/authStore";
+import { isLoggedIn, isTreeOwner } from "@/features/signup-or-go/stores/authStore";
 import { BaseModal } from "@/features/shared/components/Modal/BaseModal";
 
 interface SettingModalProps {
@@ -22,7 +22,15 @@ function SettingModalContent({ isOpen, onClose }: SettingModalProps) {
 
   if (!isOpen && !isHelpModalOpen) return null;
 
-  const shouldHideLogout = pathname === '/' || pathname === '/signup-or-go' || !isLoggedIn.value;
+  // 로그아웃 버튼 숨김 조건:
+  // 1. 랜딩 페이지 또는 회원가입 페이지
+  // 2. 로그인하지 않은 경우
+  // 3. my-tree 페이지에서 방문자인 경우 (isTreeOwner === false)
+  const shouldHideLogout =
+    pathname === '/' ||
+    pathname === '/signup-or-go' ||
+    !isLoggedIn.value ||
+    (pathname === '/my-tree' && isTreeOwner.value === false);
 
   const handleLogout = async () => {
     try {

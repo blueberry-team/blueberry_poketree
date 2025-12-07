@@ -48,9 +48,9 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
     password.length !== PASSWORD_LENGTH;
 
   return (
-    <div className="flex-1 flex flex-col bg-[#F7F7F7] min-h-0">
+    <div className="flex-1 flex items-center justify-center bg-[#F7F7F7]">
       {/* 메인 콘텐츠 영역 */}
-      <div className="w-full bg-[#F9F9F9] flex flex-col items-center pt-[2vh] pb-[10vh] flex-1 justify-center min-h-[calc(100vh-70px)]">
+      <div className="w-full bg-[#F9F9F9] flex flex-col items-center pt-[2vh] pb-[10vh] min-h-[calc(100vh-92px)]">
       {title && (
         <div className="w-full text-left px-4">
           <span className="text-black text-base font-extrabold">{title}</span>
