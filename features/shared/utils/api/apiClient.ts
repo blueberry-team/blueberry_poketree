@@ -2,6 +2,7 @@ import {
   extractErrorCode,
   handleRedirectError,
 } from "@/features/shared/utils/errorHandler";
+import type { ErrorCode } from "@/features/shared/types/errorTypes";
 
 /**
  * API 성공 응답 구조
@@ -26,9 +27,33 @@ export interface ApiError {
   status?: string;
 }
 
+/**
+ * API 에러를 나타내는 커스텀 에러 클래스
+ * 번역 키와 에러 코드 정보를 포함합니다.
+ */
+export class ApiClientError extends Error {
+  public readonly errorCode: ErrorCode | null;
+  public readonly translationKey: string | null;
+  public readonly apiError: ApiError;
+
+  constructor(
+    message: string,
+    errorCode: ErrorCode | null,
+    translationKey: string | null,
+    apiError: ApiError
+  ) {
+    super(message);
+    this.name = "ApiClientError";
+    this.errorCode = errorCode;
+    this.translationKey = translationKey;
+    this.apiError = apiError;
+  }
+}
+
 /** API 기본 URL - 환경변수가 없으면 로컬 목 서버 사용 */
-const BASE_API_URL = process.env.NEXT_PUBLIC_BASE_API_URL ||
-  (typeof window !== 'undefined' ? `${window.location.origin}/api` : '/api');
+const BASE_API_URL =
+  process.env.NEXT_PUBLIC_BASE_API_URL ||
+  (typeof window !== "undefined" ? `${window.location.origin}/api` : "/api");
 
 /**
  * API 클라이언트 클래스
@@ -119,10 +144,10 @@ export class ApiClient {
   /**
    * HTTP 응답을 처리합니다
    * - 응답 헤더에서 새로운 토큰이 있으면 자동으로 갱신
-   * - 에러 응답인 경우 ApiError를 throw
+   * - 에러 응답인 경우 Error 인스턴스를 throw (에러 코드 매핑된 메시지 포함)
    * @param response - Fetch API 응답 객체
    * @returns 파싱된 JSON 응답
-   * @throws ApiError - 응답이 에러인 경우
+   * @throws Error - 응답이 에러인 경우
    */
   private async handleResponse<T>(response: Response): Promise<T> {
     // 토큰 자동 갱신
@@ -133,8 +158,22 @@ export class ApiClient {
 
     // 에러 처리
     if (!response.ok) {
-      const error: ApiError = await response.json();
-      throw error;
+      const errorData: ApiError = await response.json();
+      const errorCode = extractErrorCode(errorData);
+
+      // 에러 코드를 번역 키로 변환 (예: "auth001" -> "error.auth001")
+      // 번역 키가 있으면 번역 키를 메시지로 사용, 없으면 기본 메시지 사용
+      const translationKey = errorCode ? `error.${errorCode}` : null;
+      const errorMessage =
+        translationKey || errorData.message || "An error occurred";
+
+      // 커스텀 에러 클래스로 변환하여 던지기
+      throw new ApiClientError(
+        errorMessage,
+        errorCode,
+        translationKey,
+        errorData
+      );
     }
 
     return response.json();

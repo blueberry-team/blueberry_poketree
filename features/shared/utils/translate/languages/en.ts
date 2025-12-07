@@ -119,6 +119,18 @@ export const en = {
     loadFailed: "Failed to load data.",
     invalidAccess: "Invalid access. Please access through the correct link.",
     unknownError: "An unknown error occurred.",
+    // Error code translations
+    public001: "Server error occurred.",
+    auth001: "Validation error.",
+    auth002: "Wrong password or user exists.",
+    auth003: "User not found.",
+    auth004: "Unexpected token.",
+    auth005: "Expired token.",
+    auth006: "Invalid token type.",
+    auth007: "The submitted token was not matched.",
+    letter001: "Validation error.",
+    letter003: "Letter not found.",
+    path001: "Wrong domain.",
   },
   landing: {
     countdown: "Christmas",

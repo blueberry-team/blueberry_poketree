@@ -100,10 +100,11 @@ export const handleRedirectError = (
  * 에러 응답에서 에러 코드 추출
  * 서버 응답에서 error_code 또는 code 필드를 찾아 반환
  */
-export const extractErrorCode = (error: any): ErrorCode | null => {
+export const extractErrorCode = (error: unknown): ErrorCode | null => {
   if (typeof error === "object" && error !== null) {
-    const code = error.error_code || error.code || error.errorCode;
-    if (code && isValidErrorCode(code)) {
+    const errorObj = error as Record<string, unknown>;
+    const code = errorObj.error_code || errorObj.code || errorObj.errorCode;
+    if (typeof code === "string" && isValidErrorCode(code)) {
       return code as ErrorCode;
     }
   }

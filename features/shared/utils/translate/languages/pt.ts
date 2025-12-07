@@ -120,6 +120,18 @@ export const pt = {
     invalidAccess:
       "Acesso inválido. Por favor, acesse através do link correto.",
     unknownError: "Ocorreu um erro desconhecido.",
+    // Traduções por código de erro
+    public001: "Ocorreu um erro do servidor.",
+    auth001: "Erro de validação.",
+    auth002: "Senha incorreta ou usuário existente.",
+    auth003: "Usuário não encontrado.",
+    auth004: "Token inesperado.",
+    auth005: "Token expirado.",
+    auth006: "Tipo de token inválido.",
+    auth007: "O token enviado não correspondeu.",
+    letter001: "Erro de validação.",
+    letter003: "Carta não encontrada.",
+    path001: "Domínio incorreto.",
   },
   landing: {
     countdown: "Natal",

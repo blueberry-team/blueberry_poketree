@@ -117,6 +117,18 @@ export const zhTW = {
     loadFailed: "無法載入資料。",
     invalidAccess: "無效存取。請透過正確的連結存取。",
     unknownError: "發生了未知錯誤。",
+    // 錯誤代碼翻譯
+    public001: "伺服器錯誤。",
+    auth001: "驗證錯誤。",
+    auth002: "密碼錯誤或使用者已存在。",
+    auth003: "未找到使用者。",
+    auth004: "意外的令牌。",
+    auth005: "令牌已過期。",
+    auth006: "無效的令牌類型。",
+    auth007: "提交的令牌不匹配。",
+    letter001: "驗證錯誤。",
+    letter003: "未找到信件。",
+    path001: "錯誤的網域。",
   },
   landing: {
     countdown: "聖誕節",
