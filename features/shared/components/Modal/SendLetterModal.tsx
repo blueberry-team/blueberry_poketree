@@ -9,7 +9,6 @@ import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { POKEMON_DATA } from "@/features/shared/data/pokemonData";
 import SendLetterCompleteModal from "./SendLetterCompleteModal";
 import { trackEvent } from "@/features/shared/utils/analytics/analytics";
-import { notifySendLetter } from "@/features/shared/utils/discord/discord";
 import { BaseModal } from "@/features/shared/components/Modal/BaseModal";
 
 const MAX_CONTENT_LENGTH = 300;
@@ -88,14 +87,12 @@ export default function SendLetterModal({
         // Analytics 이벤트 전송 (포켓몬 정보 포함)
         trackEvent("button_click_send_letter", {
           sender_name: senderName,
-          message_content: content,
           message_length: content.length,
           receiver_name: receiverName,
           receiver_id: receiverId,
           pokemon_id: pokemonId,
         });
 
-        notifySendLetter(senderName, content, receiverName, receiverId, pokemonId);
       } else {
         // 포켓몬 정보 없으면 바로 닫기
         handleClose();
