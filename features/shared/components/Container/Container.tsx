@@ -3,7 +3,7 @@
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import WindowBackgroundDay from "@/assets/images/background/window_background_day.webp";
-import WindowBackgroundNight from "@/assets/images/background/window_background_night.png";
+import WindowBackgroundNight from "@/assets/images/background/window_background_night.webp";
 import { getTimeOfDay, TimeOfDay } from "@/features/shared/utils/time/getTimeOfDay";
 
 export default function Container({ children }: { children: React.ReactNode }) {
