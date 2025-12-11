@@ -50,11 +50,9 @@ export class ButtonDebouncer {
     return ((...args: unknown[]) => {
       // 이미 처리 중이면 무시
       if (this.isProcessing) {
-        console.log('ButtonDebouncer: Click blocked - already processing');
         return;
       }
 
-      console.log('ButtonDebouncer: Processing click');
       this.isProcessing = true;
 
       // 즉시 실행
@@ -65,7 +63,6 @@ export class ButtonDebouncer {
         .finally(() => {
           // 비동기 작업 완료 여부와 관계없이 1초 후 다시 클릭 가능하도록 설정
           setTimeout(() => {
-            console.log('ButtonDebouncer: Unlocking after delay');
             this.isProcessing = false;
           }, 1000);
         });
