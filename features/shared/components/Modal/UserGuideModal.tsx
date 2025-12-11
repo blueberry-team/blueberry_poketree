@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useEffect, useState, useRef, useMemo, useCallback } from "react";
 import TalkingBoxTop from "@/assets/images/components/talking_box_top.webp";
 import TalkingBoxBottom from "@/assets/images/components/talking_box_bottom.webp";
-import DoctorOh from "@/assets/images/components/doctor_oh_with_shadow.png";
+import DoctorOh from "@/assets/images/components/doctor_oh_with_shadow.webp";
 import MonsterBallClose from "@/assets/images/components/monster_ball_close.webp";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 
