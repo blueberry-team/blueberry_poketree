@@ -1,6 +1,6 @@
 "use client";
 
-import { Suspense } from "react";
+import { Suspense, useMemo } from "react";
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { CrossButton } from "./CrossButton";
@@ -8,6 +8,7 @@ import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import ButtonMediumDark from "@/assets/images/components/button_medium_dark.webp";
 import ButtonMediumSkyblue from "@/assets/images/components/button_medium_skyblue.webp";
 import { trackButtonClick } from "@/features/shared/utils/analytics/analytics";
+import { createButtonDebouncer } from "@/features/shared/utils/debounce/ButtonDebouncer";
 
 interface BottomButtonsProps {
   onUp?: () => void;
@@ -37,12 +38,34 @@ function BottomButtonsContent({
   const searchParams = useSearchParams();
   const publicId = searchParams.get('id');
 
-  const handleButtonClick = () => {
-    trackButtonClick("button_click_pokedex_view", { public_id: publicId });
-    if (publicId) {
-      router.push(`/my-pokedex?id=${publicId}`);
-    }
-  };
+  // 디바운서 생성
+  const debouncer = useMemo(() => createButtonDebouncer(), []);
+
+  const handleButtonClick = useMemo(
+    () => debouncer.debounceLeading(() => {
+      trackButtonClick("button_click_pokedex_view", { public_id: publicId });
+      if (publicId) {
+        router.push(`/my-pokedex?id=${publicId}`);
+      }
+    }),
+    [debouncer, publicId, router]
+  );
+
+  const handleCheckMessage = useMemo(
+    () => onCheckMessage ? debouncer.debounceLeading(() => {
+      trackButtonClick("button_click_check_message");
+      onCheckMessage();
+    }) : undefined,
+    [debouncer, onCheckMessage]
+  );
+
+  const handleSendMessage = useMemo(
+    () => onSendMessage ? debouncer.debounceLeading(() => {
+      trackButtonClick("button_click_send_pocket_message");
+      onSendMessage();
+    }) : undefined,
+    [debouncer, onSendMessage]
+  );
 
   const buttonLabel = translate("pokedex.button");
 
@@ -51,13 +74,10 @@ function BottomButtonsContent({
       {/* 왼쪽: 메시지 버튼 + 도감 버튼 (세로 배치) */}
       <div className="flex flex-col gap-4">
         {/* 메시지 확인 버튼 (onCheckMessage가 전달된 경우) */}
-        {onCheckMessage && (
+        {handleCheckMessage && (
           <button
             data-guide="message-list-button"
-            onClick={() => {
-              trackButtonClick("button_click_check_message");
-              onCheckMessage();
-            }}
+            onClick={handleCheckMessage}
             className="relative flex items-center justify-center"
             style={{ width: "180px", height: "56px" }}
           >
@@ -74,12 +94,9 @@ function BottomButtonsContent({
         )}
 
         {/* 메시지 보내기 버튼 (onSendMessage가 전달된 경우) */}
-        {onSendMessage && (
+        {handleSendMessage && (
           <button
-            onClick={() => {
-              trackButtonClick("button_click_send_pocket_message");
-              onSendMessage();
-            }}
+            onClick={handleSendMessage}
             className="relative flex items-center justify-center"
             style={{ width: "180px", height: "56px" }}
           >

@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo } from "react";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { getPokemonImage } from "@/features/shared/data/pokemonData";
 import { getLetter } from "@/features/my-tree/usecases/getLetter";
@@ -15,6 +15,7 @@ import ButtonLetterUnpublic from "@/assets/images/components/button_letter_unpub
 import { openLetter } from "@/features/my-tree/repositories/letterRepository";
 import HatchModal from "@/features/shared/components/Modal/HatchModal";
 import { BaseModal } from "@/features/shared/components/Modal/BaseModal";
+import { createButtonDebouncer } from "@/features/shared/utils/debounce/ButtonDebouncer";
 
 /**
  * LetterModal - 편지 내용을 보여주는 모달
@@ -59,6 +60,9 @@ export default function LetterModal({
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showHatchModal, setShowHatchModal] = useState(false);
 
+  // 디바운서 생성
+  const debouncer = useMemo(() => createButtonDebouncer(), []);
+
   // 편지 데이터 가져오기
   useEffect(() => {
     if (!isModalOpen || !letterId) return;
@@ -98,67 +102,76 @@ export default function LetterModal({
 
 
   // 편지 삭제 확인 모달 열기
-  const handleDeleteClick = () => {
-    setShowConfirmModal(true);
-  };
+  const handleDeleteClick = useMemo(
+    () => debouncer.debounceLeading(() => {
+      setShowConfirmModal(true);
+    }),
+    [debouncer]
+  );
 
   // 편지 삭제 실행
-  const handleConfirmDelete = async () => {
-    if (!letterId || !letterData) return;
+  const handleConfirmDelete = useMemo(
+    () => debouncer.debounceLeading(async () => {
+      if (!letterId || !letterData) return;
 
-    try {
-      setIsDeleting(true);
-      setShowConfirmModal(false);
-      const response = await deleteLetter({ letter_id: letterData.letter_id });
+      try {
+        setIsDeleting(true);
+        setShowConfirmModal(false);
+        const response = await deleteLetter({ letter_id: letterData.letter_id });
 
-      if (response.message === "success") {
-        alert(translate("letterModal.deleteSuccess"));
-        onComplete?.();
-        onClose();
+        if (response.message === "success") {
+          alert(translate("letterModal.deleteSuccess"));
+          onComplete?.();
+          onClose();
+        }
+      } catch (err) {
+        if (err instanceof Error) {
+          alert(err.message);
+        } else {
+          alert(translate("letterModal.deleteError"));
+        }
+      } finally {
+        setIsDeleting(false);
       }
-    } catch (err) {
-      if (err instanceof Error) {
-        alert(err.message);
-      } else {
-        alert(translate("letterModal.deleteError"));
-      }
-    } finally {
-      setIsDeleting(false);
-    }
-  };
+    }),
+    [debouncer, letterId, letterData, translate, onComplete, onClose]
+  );
 
   // 메시지 공개/비공개 토글
-  const handlePublish = async () => {
-    if (!letterData || isLoading) return;
+  const handlePublish = useMemo(
+    () => debouncer.debounceLeading(async () => {
+      if (!letterData || isLoading) return;
 
-    try {
-      setIsLoading(true);
+      try {
+        setIsLoading(true);
 
-      const response = await openLetter({
-        letter_id: letterData.letter_id,
-        is_open: letterData.is_open === "true" ? "false" : "true",
-      });
-
-      if (response.message === "success") {
-        // 모달 내 상태 즉시 업데이트
-        setLetterData({
-          ...letterData,
+        const response = await openLetter({
+          letter_id: letterData.letter_id,
           is_open: letterData.is_open === "true" ? "false" : "true",
         });
 
-        // 부모 컴포넌트 새로고침 (페이지 상태 업데이트)
-        onComplete?.();
+        if (response.message === "success") {
+          // 모달 내 상태 즉시 업데이트
+          setLetterData({
+            ...letterData,
+            is_open: letterData.is_open === "true" ? "false" : "true",
+          });
+
+          // 부모 컴포넌트 새로고침 (페이지 상태 업데이트)
+          onComplete?.();
+        }
+      } catch (err) {
+        if (err instanceof Error) {
+          alert(err.message);
+        } else {
+          alert(translate("letterModal.updateVisibilityError"));
+        }
+      } finally {
+        setIsLoading(false);
       }
-    } catch (err) {
-      if (err instanceof Error) {
-        alert(err.message);
-      } else {
-        alert(translate("letterModal.updateVisibilityError"));
-      }
-    } finally {
-      setIsLoading(false);
-    }
-  };
+    }),
+    [debouncer, letterData, isLoading, translate, onComplete]
+  );
 
   if (!isModalOpen) return null;
 
