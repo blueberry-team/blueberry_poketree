@@ -349,15 +349,18 @@ export function UserGuideModal({ isOpen, onClose }: UserGuideModalProps) {
             {/* 말풍선 텍스트 - 말풍선과 동일한 크기, 내부는 패딩으로 */}
             {/* useTopBox가 true면 위쪽 말풍선(꼬랑지 아래), false면 아래쪽 말풍선(꼬랑지 위) */}
             <div
-              className="absolute inset-0 flex items-center justify-center px-2"
+              className="absolute inset-0 flex items-center justify-center px-4 overflow-hidden"
               style={{
                 paddingTop: currentConfig.useTopBox ? "12px" : "28px",
                 paddingBottom: currentConfig.useTopBox ? "36px" : "12px",
               }}
             >
-              <span className="text-black text-[12px] font-extrabold text-center whitespace-pre-line leading-relaxed w-full flex items-center justify-center">
+              <p
+                className="text-black text-[12px] font-extrabold text-center whitespace-pre-line leading-relaxed w-full"
+                style={{ overflowWrap: "anywhere", wordBreak: "keep-all" }}
+              >
                 {currentText}
-              </span>
+              </p>
             </div>
           </div>
         </div>
