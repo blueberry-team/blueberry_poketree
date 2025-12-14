@@ -1,14 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Image from "next/image";
 import { SignupOrGoRequest } from "../models/req/SignupOrGoRequest";
-import DoctorOhImage from "@/assets/images/signuporgo/doctor_oh.png";
+import DoctorOhImage from "@/assets/images/signuporgo/doctor_oh.webp";
 import ButtonBigBlue from "@/assets/images/components/button_big_blue.webp";
 import MonsterBallBasic from "@/assets/images/components/monster_ball_basic.png";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { trackEvent } from "@/features/shared/utils/analytics/analytics";
 import { PixelInput } from "./PixelInput";
+import { createButtonDebouncer } from "@/features/shared/utils/debounce/ButtonDebouncer";
 
 const MIN_NICKNAME_LENGTH = 2;
 const MAX_NICKNAME_LENGTH = 6;
@@ -27,17 +28,25 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
   const [password, setPassword] = useState("");
   const { translate } = useTranslation();
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
 
-    // Analytics 이벤트 전송
-    trackEvent("button_click_auth_submit", {
-      tree_name: nickname,
-      tree_name_length: nickname.length,
-    });
+  // 디바운서 생성
+  const debouncer = useMemo(() => createButtonDebouncer(), []);
 
-    await onSubmit({ nickname, password });
-  };
+  const handleSubmit = useMemo(
+    () => debouncer.debounceLeading(async (...args: unknown[]) => {
+      const e = args[0] as React.FormEvent;
+      e.preventDefault();
+
+      // Analytics 이벤트 전송
+      trackEvent("button_click_auth_submit", {
+        tree_name: nickname,
+        tree_name_length: nickname.length,
+      });
+
+      await onSubmit({ nickname, password });
+    }),
+    [debouncer, nickname, password, onSubmit]
+  );
 
   // 버튼 활성화 여부 체크
   const isButtonDisabled =
