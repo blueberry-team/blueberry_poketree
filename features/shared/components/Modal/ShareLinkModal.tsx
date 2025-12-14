@@ -2,11 +2,12 @@
 
 import Image from "next/image";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { QRCodeSVG } from "qrcode.react";
 import ShareIcon from "@/assets/icon/shareIcon.svg";
 import ButtonBigGreen from "@/assets/images/components/button_big_green.webp";
 import { BaseModal } from "@/features/shared/components/Modal/BaseModal";
+import { createButtonDebouncer } from "@/features/shared/utils/debounce/ButtonDebouncer";
 
 // 공유 베이스 url
 const SHARE_BASE_URL = "https://poketrees.com/";
@@ -29,6 +30,25 @@ export function ShareLinkModal({
     "idle"
   );
 
+  // 디바운서 생성
+  const debouncer = useMemo(() => createButtonDebouncer(), []);
+
+  // 공유 URL
+  const shareUrl = SHARE_BASE_URL + 'my-tree?id=' + publicId;
+
+  const handleCopy = useMemo(
+    () => debouncer.debounceLeading(async () => {
+      try {
+        await navigator.clipboard.writeText(shareUrl);
+        setCopyStatus("success");
+      } catch (e) {
+        console.error("링크 복사 실패", e);
+        setCopyStatus("error");
+      }
+    }),
+    [debouncer, shareUrl]
+  );
+
   // 링크 복사 성공이든 실패든 2초 후에는 안내 메시지가 종료되도록 설정
   useEffect(() => {
     if (copyStatus === "idle") return;
@@ -39,20 +59,8 @@ export function ShareLinkModal({
 
     return () => clearTimeout(timer);
   }, [copyStatus]);
-  // 공유 URL
-  const shareUrl = SHARE_BASE_URL + 'my-tree?id=' + publicId;
 
   if (!isOpen) return null;
-
-  const handleCopy = async () => {
-    try {
-      await navigator.clipboard.writeText(shareUrl);
-      setCopyStatus("success");
-    } catch (e) {
-      console.error("링크 복사 실패", e);
-      setCopyStatus("error");
-    }
-  };
 
   return (
     <BaseModal

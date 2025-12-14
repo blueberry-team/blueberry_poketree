@@ -3,9 +3,9 @@
 import Image, { StaticImageData } from "next/image";
 import { useState, useEffect } from "react";
 import BackgroundDay from "@/assets/images/background/background.webp";
-import BackgroundNight from "@/assets/images/background/background_night.png";
+import BackgroundNight from "@/assets/images/background/background_night.webp";
 import TreeDay from "@/assets/images/background/tree.webp";
-import TreeNight from "@/assets/images/background/tree_night.png";
+import TreeNight from "@/assets/images/background/tree_night.webp";
 import MonsterBallOpen from "@/assets/images/components/monster_ball_open.webp";
 import MonsterBallClose from "@/assets/images/components/monster_ball_close.webp";
 import LockIcon from "@/assets/icon/lockIcon.svg";
