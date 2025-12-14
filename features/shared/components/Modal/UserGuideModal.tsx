@@ -39,6 +39,8 @@ interface SpotlightRect {
 
 export function UserGuideModal({ isOpen, onClose }: UserGuideModalProps) {
   const [currentPage, setCurrentPage] = useState(0);
+  // spotlightRect와 동기화된 페이지 (말풍선 위치 계산에 사용)
+  const [displayPage, setDisplayPage] = useState(0);
   const [spotlightRect, setSpotlightRect] = useState<SpotlightRect | null>(null);
   const [targetElement, setTargetElement] = useState<HTMLElement | null>(null);
   const { translate } = useTranslation();
@@ -67,6 +69,7 @@ export function UserGuideModal({ isOpen, onClose }: UserGuideModalProps) {
   useEffect(() => {
     if (!isOpen) {
       setCurrentPage(0);
+      setDisplayPage(0);
       setSpotlightRect(null);
       // z-index 원복
       if (targetElement && originalZIndexRef.current !== null) {
@@ -89,10 +92,33 @@ export function UserGuideModal({ isOpen, onClose }: UserGuideModalProps) {
     }
     setTargetElement(null);
     originalZIndexRef.current = null;
-    setSpotlightRect(null);
 
-    // 하이라이트할 요소가 없으면 리턴
+    // 하이라이트할 요소가 없으면 spotlightRect를 null로 설정
     if (!config.highlightElement) {
+      const isLastGuide = currentPage === GUIDE_PAGE_CONFIGS.length - 1;
+      const scrollY = Math.abs(parseInt(document.body.style.top || "0"));
+
+      // 마지막 가이드면 최상단으로 스크롤
+      if (isLastGuide && scrollY > 0) {
+        // 먼저 말풍선을 기본 위치로 이동
+        setSpotlightRect(null);
+        setDisplayPage(currentPage);
+
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.overflow = "";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        setTimeout(() => {
+          document.body.style.position = "fixed";
+          document.body.style.top = "0px";
+          document.body.style.width = "100%";
+          document.body.style.overflow = "hidden";
+        }, 400);
+      } else {
+        setSpotlightRect(null);
+        setDisplayPage(currentPage);
+      }
       return;
     }
 
@@ -111,14 +137,70 @@ export function UserGuideModal({ isOpen, onClose }: UserGuideModalProps) {
         return;
       }
 
-      // 위치 파악
+      // body가 fixed로 되어있으므로 현재 스크롤 위치 기준으로 계산
+      const scrollY = Math.abs(parseInt(document.body.style.top || "0"));
       const rect = element.getBoundingClientRect();
-      setSpotlightRect({
-        top: rect.top,
-        left: rect.left,
-        width: rect.width,
-        height: rect.height,
-      });
+      const actualTop = rect.top + scrollY;
+      const isLastGuide = currentPage === GUIDE_PAGE_CONFIGS.length - 1;
+      const isOutOfView = actualTop < scrollY || actualTop + rect.height > scrollY + window.innerHeight - 20;
+
+      // 마지막 가이드면 무조건 최상단으로
+      if (isLastGuide && scrollY > 0) {
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.overflow = "";
+        window.scrollTo({ top: 0, behavior: "smooth" });
+
+        setTimeout(() => {
+          document.body.style.position = "fixed";
+          document.body.style.top = "0px";
+          document.body.style.width = "100%";
+          document.body.style.overflow = "hidden";
+
+          const newRect = element.getBoundingClientRect();
+          setSpotlightRect({
+            top: newRect.top,
+            left: newRect.left,
+            width: newRect.width,
+            height: newRect.height,
+          });
+          setDisplayPage(currentPage);
+        }, 400);
+      } else if (isOutOfView) {
+        // 요소가 화면 밖에 있으면 해당 요소로 스크롤
+        document.body.style.position = "";
+        document.body.style.top = "";
+        document.body.style.overflow = "";
+        window.scrollTo(0, scrollY);
+
+        element.scrollIntoView({ behavior: "smooth", block: "center" });
+
+        setTimeout(() => {
+          const newScrollY = window.scrollY;
+          document.body.style.position = "fixed";
+          document.body.style.top = `-${newScrollY}px`;
+          document.body.style.width = "100%";
+          document.body.style.overflow = "hidden";
+
+          const newRect = element.getBoundingClientRect();
+          setSpotlightRect({
+            top: newRect.top,
+            left: newRect.left,
+            width: newRect.width,
+            height: newRect.height,
+          });
+          setDisplayPage(currentPage);
+        }, 400);
+      } else {
+        // 바로 위치 파악
+        setSpotlightRect({
+          top: rect.top,
+          left: rect.left,
+          width: rect.width,
+          height: rect.height,
+        });
+        setDisplayPage(currentPage);
+      }
 
       // 원래 z-index 저장
       const originalZIndex = element.style.zIndex || window.getComputedStyle(element).zIndex;
@@ -184,7 +266,8 @@ export function UserGuideModal({ isOpen, onClose }: UserGuideModalProps) {
   }, [isOpen, targetElement]);
 
   // 모든 hooks는 early return 전에 호출되어야 함
-  const currentConfig = useMemo(() => GUIDE_PAGE_CONFIGS[currentPage], [currentPage]);
+  // 말풍선 위치/모양 계산용 (spotlightRect와 동기화된 config)
+  const displayConfig = useMemo(() => GUIDE_PAGE_CONFIGS[displayPage], [displayPage]);
   const isLastPage = useMemo(() => currentPage === GUIDE_PAGE_CONFIGS.length - 1, [currentPage]);
 
   // 현재 페이지의 텍스트 가져오기 (메모이제이션)
@@ -219,28 +302,38 @@ export function UserGuideModal({ isOpen, onClose }: UserGuideModalProps) {
     };
   }, [currentPage, spotlightRect]);
 
-  // 말풍선 스타일 메모이제이션
+  // 말풍선 스타일 메모이제이션 (displayPage/displayConfig 사용 - spotlightRect와 동기화)
   const talkingBoxStyle = useMemo(() => {
     const baseStyle: React.CSSProperties = {};
+    const BUBBLE_HEIGHT = 151; // 말풍선 높이
+    const MIN_TOP = 10; // 최소 상단 여백
+    const MAX_TOP = typeof window !== "undefined" ? window.innerHeight - BUBBLE_HEIGHT - 10 : 600; // 최대 top 위치
 
     if (spotlightRect) {
-      if (currentPage === 3) {
-        baseStyle.top = `${spotlightRect.top + spotlightRect.height / 2 - 24 + 60}px`;
-        baseStyle.left = `${spotlightRect.left + spotlightRect.width / 2 - 96 - 70}px`;
+      let top: number;
+      let left: number;
+
+      if (displayPage === 3) {
+        top = spotlightRect.top + spotlightRect.height / 2 - 24 + 60;
+        left = spotlightRect.left + spotlightRect.width / 2 - 96 - 70;
       } else {
-        baseStyle.top = currentConfig.useTopBox
-          ? `${spotlightRect.top - 150}px`
-          : `${spotlightRect.top + spotlightRect.height + 20}px`;
-        baseStyle.left = `${spotlightRect.left + spotlightRect.width / 2 - 86 + (currentConfig.useTopBox ? 80 : -80)}px`;
+        top = displayConfig.useTopBox
+          ? spotlightRect.top - 150
+          : spotlightRect.top + spotlightRect.height + 20;
+        left = spotlightRect.left + spotlightRect.width / 2 - 86 + (displayConfig.useTopBox ? 80 : -80);
       }
+
+      // 화면 경계 안에 들어오도록 clamp
+      baseStyle.top = `${Math.max(MIN_TOP, Math.min(MAX_TOP, top))}px`;
+      baseStyle.left = `${Math.max(10, left)}px`;
     } else {
-      baseStyle.top = currentConfig.useTopBox
+      baseStyle.top = displayConfig.useTopBox
         ? "calc(45vh - 170px)"
         : "calc(45vh + 220px)";
     }
 
     return baseStyle;
-  }, [spotlightRect, currentPage, currentConfig.useTopBox]);
+  }, [spotlightRect, displayPage, displayConfig.useTopBox]);
 
   if (!isOpen) return null;
 
@@ -332,7 +425,7 @@ export function UserGuideModal({ isOpen, onClose }: UserGuideModalProps) {
 
         {/* 말풍선 - 하이라이트 위치 따라가거나 오박사 머리 위쪽 */}
         <div
-          className={`absolute pointer-events-auto ${
+          className={`absolute pointer-events-auto transition-all duration-200 ease-out ${
             !spotlightRect
               ? "left-[calc(15vw+90px)] md:left-[calc((100vw-410px)/2+138.5px)]"
               : ""
@@ -341,7 +434,7 @@ export function UserGuideModal({ isOpen, onClose }: UserGuideModalProps) {
         >
           <div className="relative w-[192px] min-h-[151px] max-h-[300px]">
             <Image
-              src={currentConfig.useTopBox ? TalkingBoxTop : TalkingBoxBottom}
+              src={displayConfig.useTopBox ? TalkingBoxTop : TalkingBoxBottom}
               alt="말풍선"
               className="object-contain w-full h-full"
               priority
@@ -349,15 +442,18 @@ export function UserGuideModal({ isOpen, onClose }: UserGuideModalProps) {
             {/* 말풍선 텍스트 - 말풍선과 동일한 크기, 내부는 패딩으로 */}
             {/* useTopBox가 true면 위쪽 말풍선(꼬랑지 아래), false면 아래쪽 말풍선(꼬랑지 위) */}
             <div
-              className="absolute inset-0 flex items-center justify-center px-2"
+              className="absolute inset-0 flex items-center justify-center px-4 overflow-hidden"
               style={{
-                paddingTop: currentConfig.useTopBox ? "12px" : "28px",
-                paddingBottom: currentConfig.useTopBox ? "36px" : "12px",
+                paddingTop: displayConfig.useTopBox ? "12px" : "28px",
+                paddingBottom: displayConfig.useTopBox ? "36px" : "12px",
               }}
             >
-              <span className="text-black text-[12px] font-extrabold text-center whitespace-pre-line leading-relaxed w-full flex items-center justify-center">
+              <p
+                className="text-black text-[12px] font-extrabold text-center whitespace-pre-line leading-relaxed w-full"
+                style={{ overflowWrap: "anywhere", wordBreak: "keep-all" }}
+              >
                 {currentText}
-              </span>
+              </p>
             </div>
           </div>
         </div>
