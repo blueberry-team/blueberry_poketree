@@ -5,10 +5,10 @@ import Image from "next/image";
 import { SignupOrGoRequest } from "../models/req/SignupOrGoRequest";
 import DoctorOhImage from "@/assets/images/signuporgo/doctor_oh.webp";
 import ButtonBigBlue from "@/assets/images/components/button_big_blue.webp";
-import PixelInputField from "@/assets/images/signuporgo/pixel_inputfield.svg";
 import MonsterBallBasic from "@/assets/images/components/monster_ball_basic.webp";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { trackEvent } from "@/features/shared/utils/analytics/analytics";
+import { PixelInput } from "./PixelInput";
 import { createButtonDebouncer } from "@/features/shared/utils/debounce/ButtonDebouncer";
 
 const MIN_NICKNAME_LENGTH = 2;
@@ -27,6 +27,7 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
   const [nickname, setNickname] = useState("");
   const [password, setPassword] = useState("");
   const { translate } = useTranslation();
+
 
   // 디바운서 생성
   const debouncer = useMemo(() => createButtonDebouncer(), []);
@@ -81,19 +82,14 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
           </p>
 
           {/* 닉네임 입력 필드 */}
-          <div className="relative mb-[3vh]">
-            <Image
-              src={PixelInputField}
-              alt="input field"
-              className="w-[51vw] h-auto max-w-[200px]"
-            />
-            <input
-              type="text"
+          <div className="mb-[3vh]">
+            <PixelInput
               value={nickname}
-              onChange={(e) => setNickname(e.target.value)}
-              placeholder=""
+              onChange={setNickname}
               maxLength={MAX_NICKNAME_LENGTH}
-              className="absolute inset-0 w-full h-full bg-transparent px-[4vw] text-center text-black font-extrabold focus:outline-none"
+              type="text"
+              cursorScaleX="2.2"
+              cursorScaleY="180"
             />
           </div>
 
@@ -103,24 +99,17 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
           </p>
 
           {/* 비밀번호 입력 필드 */}
-          <div className="relative mb-[3vh]">
-            <Image
-              src={PixelInputField}
-              alt="input field"
-              width={0}
-              height={0}
-              className="w-[51vw] h-auto max-w-[200px]"
-            />
-            <input
-              type="password"
+          <div className="mb-[3vh]">
+            <PixelInput
               value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder=""
+              onChange={setPassword}
               maxLength={PASSWORD_LENGTH}
+              type="password"
               inputMode="numeric"
               pattern="[0-9]*"
               autoComplete="new-password"
-              className="absolute inset-0 w-full h-full bg-transparent px-[4vw] text-center text-black font-extrabold focus:outline-none"
+              cursorScaleX="1.3"
+              cursorScaleY="180"
             />
           </div>
 
@@ -166,4 +155,3 @@ export function AuthForm({ onSubmit, isLoading, error, title }: AuthFormProps) {
     </div>
   );
 }
-
