@@ -140,6 +140,7 @@ export const ko = {
     description2: "내 포케트리를 만들어 친구에게 공유해보세요!",
     makeTree: "포케트리 만들기",
     visitSocial: "인스타그램 구경 하러가기",
+    socialDescription: "인스타구경하고 새로운 포켓몬을 얻어요!",
     socialName: "인스타그램",
     socialId: "@poketree_kr",
   },

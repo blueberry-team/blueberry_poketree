@@ -139,6 +139,7 @@ export const zhTW = {
     description2: "創建你的寶可樹並分享給朋友！",
     makeTree: "創建寶可樹",
     visitSocial: "造訪我們的Instagram",
+    socialDescription: "造訪Instagram並獲得新的寶可夢！",
     socialName: "Instagram",
     socialId: "@poketree_official",
   },

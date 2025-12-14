@@ -142,6 +142,7 @@ export const pt = {
     description2: "Crie sua PokéTree e compartilhe com amigos!",
     makeTree: "Criar PokéTree",
     visitSocial: "Visite nosso Instagram",
+    socialDescription: "Visite o Instagram e obtenha novos Pokémon!",
     socialName: "Instagram",
     socialId: "@poketree_official",
   },
