@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import ChristmasEgg from "@/assets/images/components/christmas_egg.png";
+import ChristmasEgg from "@/assets/images/components/christmas_egg.webp";
 
 /**
  * ChristmasGift 컴포넌트
