@@ -82,11 +82,12 @@ export function SocialMediaButton() {
               >
                 {translate("landing.socialName")}
               </span>
-              <span
+              {/* TODO: 소셜 포켓몬 관련 표시 추가 예정 */}
+              {/* <span
                 className="font-pf-stardust text-left font-extrabold leading-snug tracking-tight text-[#DC0A2D] text-[16px]"
               >
                 {translate("landing.socialId")}
-              </span>
+              </span> */}
             </div>
           </div>
 
