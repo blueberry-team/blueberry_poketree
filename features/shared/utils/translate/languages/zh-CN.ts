@@ -6,6 +6,7 @@ export const zhCN = {
     language: "Lang",
     help: "帮助",
     options: "选项",
+    feedback: "反馈",
   },
   language: {
     title: "选择语言",

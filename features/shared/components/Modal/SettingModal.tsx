@@ -52,6 +52,11 @@ function SettingModalContent({ isOpen, onClose }: SettingModalProps) {
     setIsHelpModalOpen(true);
   };
 
+  const handleFeedback = () => {
+    // 구글 폼 URL로 이동
+    window.open('https://forms.gle/YOUR_GOOGLE_FORM_ID', '_blank');
+  };
+
   return (
     <>
       {isOpen && (
@@ -77,6 +82,14 @@ function SettingModalContent({ isOpen, onClose }: SettingModalProps) {
                   className="px-4 py-3 rounded bg-[#F5F5F5] transition-all text-black hover:bg-gray-200 w-full"
                 >
                 {translate("header.help")}
+                </button>
+
+                {/* 의견 보내기 버튼 */}
+                <button
+                  onClick={handleFeedback}
+                  className="px-4 py-3 rounded bg-[#F5F5F5] transition-all text-black hover:bg-gray-200 w-full"
+                >
+                {translate("header.feedback")}
                 </button>
               </div>
         </BaseModal>

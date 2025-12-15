@@ -6,6 +6,7 @@ export const ko = {
     language: "Lang",
     help: "도움말",
     options: "설정",
+    feedback: "의견 보내기",
   },
   language: {
     title: "언어 선택",
