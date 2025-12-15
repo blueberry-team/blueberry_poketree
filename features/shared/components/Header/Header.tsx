@@ -7,7 +7,7 @@
 
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState, Suspense, useMemo } from "react";
 import { usePathname, useRouter } from "next/navigation";
 import Image from "next/image";
 import LogoIcon from "@/assets/icon/logo.webp";
@@ -18,6 +18,7 @@ import { LanguageModal } from "../Modal/LanguageModal";
 import { SettingModal } from "../Modal/SettingModal";
 import { useTranslation } from "../../utils/translate/useLanguage";
 import { useAuth } from "@/features/signup-or-go/stores/useAuth";
+import { createButtonDebouncer } from "../../utils/debounce/ButtonDebouncer";
 
 function HeaderContent() {
   const pathname = usePathname();
@@ -26,6 +27,9 @@ function HeaderContent() {
   const { isLoggedIn } = useAuth();
   const [isLanguageModalOpen, setIsLanguageModalOpen] = useState(false);
   const [isSettingModalOpen, setIsSettingModalOpen] = useState(false);
+
+  // 디바운서 생성
+  const debouncer = useMemo(() => createButtonDebouncer(), []);
 
   // 경로별 조건 확인
   const isSignupOrGo = pathname === "/signup-or-go";
@@ -48,6 +52,17 @@ function HeaderContent() {
     }
   };
 
+  // 디바운싱이 적용된 핸들러
+  const handleLanguageClick = useMemo(
+    () => debouncer.debounceLeading(() => setIsLanguageModalOpen(true)),
+    [debouncer]
+  );
+
+  const handleSettingClick = useMemo(
+    () => debouncer.debounceLeading(() => setIsSettingModalOpen(true)),
+    [debouncer]
+  );
+
   return (
     <header
       className={`w-full h-[70px] shrink-0 bg-[#BF0120] overflow-hidden relative ${isFullScrollPage ? '' : 'sticky top-0 z-50'
@@ -59,7 +74,7 @@ function HeaderContent() {
         alt="헤더 배경"
         width={390}
         height={92}
-        className="object-cover absolute -top-[20px] left-0 right-0 w-full h-[92px]"
+        className="object-cover absolute -top-5 left-0 right-0 w-full h-[92px]"
       />
       <div className="relative z-10 w-full h-full flex items-center justify-between pt-4 px-3">
         {/* 좌측: 뒤로가기 버튼 또는 로고 그룹 */}
@@ -74,7 +89,7 @@ function HeaderContent() {
           ) : (
             <button
               onClick={handleLogoClick}
-              className={`max-w-[37px] max-h-[36px] w-[10vw] h-[10vw] ${isLoggedIn.value ? 'cursor-default' : 'cursor-pointer'}`}
+              className={`max-w-[37px] max-h-9 w-[10vw] h-[10vw] ${isLoggedIn.value ? 'cursor-default' : 'cursor-pointer'}`}
             >
               <Image
                 src={LogoIcon}
@@ -102,7 +117,7 @@ function HeaderContent() {
         <div className="flex gap-3 items-center">
           {/* 언어 설정 버튼 */}
           <button
-            onClick={() => setIsLanguageModalOpen(true)}
+            onClick={handleLanguageClick}
             className="relative flex items-center justify-center"
             style={{ width: "53px", height: "37px" }}
           >
@@ -112,7 +127,7 @@ function HeaderContent() {
 
           {/* 설정 버튼 */}
           <button
-            onClick={() => setIsSettingModalOpen(true)}
+            onClick={handleSettingClick}
             className="relative flex items-center justify-center px-2 py-1"
             style={{ maxWidth: "70px", minWidth: "53px", minHeight: "37px" }}
           >
@@ -146,7 +161,7 @@ export function Header() {
           alt="헤더 배경"
           width={390}
           height={92}
-          className="object-cover absolute -top-[20px] left-0 right-0 w-full h-[92px]"
+          className="object-cover absolute -top-5 left-0 right-0 w-full h-[92px]"
         />
       </header>
     }>

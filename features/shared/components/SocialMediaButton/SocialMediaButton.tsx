@@ -1,11 +1,13 @@
 "use client";
 
+import { useMemo } from "react";
 import Image from "next/image";
 import InstagramIcon from "@/assets/icon/instagramIcon.svg";
 import XIcon from "@/assets/icon/xIcon.svg";
 import RightArrowIcon from "@/assets/icon/rightArrowIcon.svg";
 import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 import { trackButtonClick } from "@/features/shared/utils/analytics/analytics";
+import { createButtonDebouncer } from "@/features/shared/utils/debounce/ButtonDebouncer";
 
 /**
  * 소셜미디어 버튼 컴포넌트
@@ -16,39 +18,48 @@ import { trackButtonClick } from "@/features/shared/utils/analytics/analytics";
 export function SocialMediaButton() {
   const { translate, language } = useTranslation();
 
-  const handleSocialClick = () => {
-    const socialUrls = {
-      ko: "https://instagram.com/poketree_kr",
-      en: "https://instagram.com/poketree_official",
-      ja: "https://twitter.com/poketree_jp",
-      es: "https://instagram.com/poketree_official",
-      pt: "https://instagram.com/poketree_official",
-      ru: "https://instagram.com/poketree_official",
-      vi: "https://instagram.com/poketree_official",
-      "zh-CN": "https://instagram.com/poketree_official",
-      "zh-TW": "https://instagram.com/poketree_official",
-    };
+  // 디바운서 생성
+  const debouncer = useMemo(() => createButtonDebouncer(), []);
 
-    const platform = language === "ja" ? "twitter" : "instagram";
-    trackButtonClick("button_click_social_media", {
-      platform,
-      language,
-      url: socialUrls[language],
-    });
+  const handleSocialClick = useMemo(
+    () => debouncer.debounceLeading(() => {
+      const socialUrls = {
+        ko: "https://instagram.com/poketree_kr",
+        en: "https://instagram.com/poketree_official",
+        ja: "https://twitter.com/poketree_jp",
+        es: "https://instagram.com/poketree_official",
+        pt: "https://instagram.com/poketree_official",
+        ru: "https://instagram.com/poketree_official",
+        vi: "https://instagram.com/poketree_official",
+        "zh-CN": "https://instagram.com/poketree_official",
+        "zh-TW": "https://instagram.com/poketree_official",
+      };
 
-    window.open(socialUrls[language], "_blank");
-  };
+      const platform = language === "ja" ? "twitter" : "instagram";
+      trackButtonClick("button_click_social_media", {
+        platform,
+        language,
+        url: socialUrls[language],
+      });
+
+      window.open(socialUrls[language], "_blank");
+    }),
+    [debouncer, language]
+  );
 
   // 언어별 아이콘 선택
   const socialIcon = language === "ja" ? XIcon : InstagramIcon;
 
   return (
     <div className="bg-[#DC0A2D] pt-4 pb-8">
-      <div className="flex flex-col items-center gap-4 px-4">
+      <div className="flex flex-col items-center px-4">
         {/* 상단 텍스트 */}
         <p className="font-pf-stardust font-bold text-center text-[24px] leading-normal tracking-tight text-white">
           {translate("landing.visitSocial")}
         </p>
+        {/* <p className="font-pf-stardust font-bold text-center text-[12px] mt-1 mb-3 leading-normal tracking-tight text-white">
+          {translate("landing.socialDescription")}
+        </p> */}
 
         {/* 소셜미디어 카드 */}
         <div

@@ -3,11 +3,13 @@
 import Image, { StaticImageData } from "next/image";
 import { useState, useEffect } from "react";
 import BackgroundDay from "@/assets/images/background/background.webp";
-import BackgroundNight from "@/assets/images/background/background_night.png";
+import BackgroundNight from "@/assets/images/background/background_night.webp";
 import TreeDay from "@/assets/images/background/tree.webp";
-import TreeNight from "@/assets/images/background/tree_night.png";
+import TreeNight from "@/assets/images/background/tree_night.webp";
 import MonsterBallOpen from "@/assets/images/components/monster_ball_open.webp";
 import MonsterBallClose from "@/assets/images/components/monster_ball_close.webp";
+import MasterBallOpen from "@/assets/images/components/master_ball_open.webp";
+import MasterBallClose from "@/assets/images/components/master_ball_close.webp";
 import LockIcon from "@/assets/icon/lockIcon.svg";
 import PageIndicatorLeft from "@/assets/icon/pageIndicatorLeft.svg";
 import PageIndicatorRight from "@/assets/icon/pageIndicatorRight.svg";
@@ -150,6 +152,8 @@ export function Tree({
                 const isRead = letter?.is_read === "true";
                 // 공개 여부 확인: is_open이 false면 자물쇠 표시
                 const isPublic = letter?.is_open === "true";
+                // 마스터볼 여부 확인: letter_pokemon이 74 이상이면 마스터볼
+                const isMasterBall = (letter?.letter_pokemon ?? 0) >= 74;
 
                 return (
                   <div
@@ -194,8 +198,16 @@ export function Tree({
                       aria-label={`편지 ${actualMessageIndex + 1}`}
                     >
                       <Image
-                        src={isRead ? MonsterBallOpen : MonsterBallClose}
-                        alt="몬스터볼"
+                        src={
+                          isMasterBall
+                            ? isRead
+                              ? MasterBallOpen
+                              : MasterBallClose
+                            : isRead
+                              ? MonsterBallOpen
+                              : MonsterBallClose
+                        }
+                        alt={isMasterBall ? "마스터볼" : "몬스터볼"}
                         width={43}
                         height={43}
                         className="object-contain"
