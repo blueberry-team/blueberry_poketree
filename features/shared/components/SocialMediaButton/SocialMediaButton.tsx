@@ -57,9 +57,9 @@ export function SocialMediaButton() {
         <p className="font-pf-stardust font-bold text-center text-[24px] leading-normal tracking-tight text-white">
           {translate("landing.visitSocial")}
         </p>
-        <p className="font-pf-stardust font-bold text-center text-[12px] mt-1 mb-3 leading-normal tracking-tight text-white">
+        {/* <p className="font-pf-stardust font-bold text-center text-[12px] mt-1 mb-3 leading-normal tracking-tight text-white">
           {translate("landing.socialDescription")}
-        </p>
+        </p> */}
 
         {/* 소셜미디어 카드 */}
         <div
@@ -82,12 +82,11 @@ export function SocialMediaButton() {
               >
                 {translate("landing.socialName")}
               </span>
-              {/* TODO: 소셜 포켓몬 관련 표시 추가 예정 */}
-              {/* <span
+              <span
                 className="font-pf-stardust text-left font-extrabold leading-snug tracking-tight text-[#DC0A2D] text-[16px]"
               >
                 {translate("landing.socialId")}
-              </span> */}
+              </span>
             </div>
           </div>
 
