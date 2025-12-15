@@ -142,6 +142,7 @@ export const ja = {
     description2: "ポケツリーを作って友達にシェアしよう！",
     makeTree: "ポケツリーを作る",
     visitSocial: "Twitterを見る",
+    socialDescription: "Twitterを見て新しいポケモンをゲットしよう！",
     socialName: "Twitter",
     socialId: "@poketree_jp",
   },

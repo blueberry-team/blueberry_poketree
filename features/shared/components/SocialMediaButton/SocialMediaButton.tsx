@@ -52,11 +52,14 @@ export function SocialMediaButton() {
 
   return (
     <div className="bg-[#DC0A2D] pt-4 pb-8">
-      <div className="flex flex-col items-center gap-4 px-4">
+      <div className="flex flex-col items-center px-4">
         {/* 상단 텍스트 */}
         <p className="font-pf-stardust font-bold text-center text-[24px] leading-normal tracking-tight text-white">
           {translate("landing.visitSocial")}
         </p>
+        {/* <p className="font-pf-stardust font-bold text-center text-[12px] mt-1 mb-3 leading-normal tracking-tight text-white">
+          {translate("landing.socialDescription")}
+        </p> */}
 
         {/* 소셜미디어 카드 */}
         <div

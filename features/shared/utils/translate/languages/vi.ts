@@ -141,6 +141,7 @@ export const vi = {
     description2: "Tao PokéTree va chia se voi ban be!",
     makeTree: "Tao PokéTree",
     visitSocial: "Ghe tham Instagram",
+    socialDescription: "Truy cập Instagram và nhận Pokémon mới!",
     socialName: "Instagram",
     socialId: "@poketree_official",
   },
