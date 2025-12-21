@@ -13,6 +13,8 @@ import SpecialPoketmonHatchModal from "../Modal/SpecialPoketmonHatchModal";
 interface SocialMediaButtonProps {
   // 스페셜 포켓몬 받기 함수 (트리 주인일 때만 전달됨)
   onGetSpecialPokemon?: () => Promise<void>;
+  // 모달 완료 시 호출할 함수 (트리 주인일 때만 전달됨)
+  onComplete?: () => void;
 }
 
 /**
@@ -22,7 +24,7 @@ interface SocialMediaButtonProps {
  * - 일본어: Twitter
  * - onGetSpecialPokemon이 전달되면 클릭 시 호출
  */
-export function SocialMediaButton({ onGetSpecialPokemon }: SocialMediaButtonProps = {}) {
+export function SocialMediaButton({ onGetSpecialPokemon, onComplete }: SocialMediaButtonProps = {}) {
   const { translate, language } = useTranslation();
   const [isSpecialPoketmonHatchModalOpen, setIsSpecialPoketmonHatchModalOpen] = useState(false);
 
@@ -72,8 +74,13 @@ export function SocialMediaButton({ onGetSpecialPokemon }: SocialMediaButtonProp
   );
 
   const handleSpecialPoketmonHatchModalComplete = useCallback(() => {
+    // 모달 완료 시 트리 데이터 갱신
+    if (onComplete) {
+      onComplete();
+    }
+    // 소셜미디어 페이지로 이동
     openSocialMedia();
-  }, [openSocialMedia]);
+  }, [onComplete, openSocialMedia]);
 
   const handleSpecialPoketmonHatchModalClose = useCallback(() => {
     setIsSpecialPoketmonHatchModalOpen(false);
