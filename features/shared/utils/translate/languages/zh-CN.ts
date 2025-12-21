@@ -139,6 +139,7 @@ export const zhCN = {
     description2: "创建你的宝可树并分享给朋友！",
     makeTree: "创建宝可树",
     visitSocial: "访问我们的Instagram",
+    socialDescription: "访问Instagram并获得新的宝可梦！",
     socialName: "Instagram",
     socialId: "@poketree_official",
   },
