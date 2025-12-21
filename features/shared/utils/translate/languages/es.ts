@@ -110,6 +110,7 @@ export const es = {
     cancel: "Cancelar",
     confirm: "Confirmar",
     loading: "Cargando...",
+    visit: "Visitar",
   },
   error: {
     title: "Error",

@@ -109,6 +109,7 @@ export const ko = {
     cancel: "취소",
     confirm: "확인",
     loading: "로딩 중...",
+    visit: "방문하기",
   },
   error: {
     title: "오류",
