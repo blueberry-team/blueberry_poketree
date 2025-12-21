@@ -15,7 +15,7 @@ interface SettingModalProps {
 }
 
 function SettingModalContent({ isOpen, onClose }: SettingModalProps) {
-  const { translate } = useTranslation();
+  const { translate, language } = useTranslation();
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
@@ -53,8 +53,22 @@ function SettingModalContent({ isOpen, onClose }: SettingModalProps) {
   };
 
   const handleFeedback = () => {
-    // 구글 폼 URL로 이동
-    window.open('https://forms.gle/YOUR_GOOGLE_FORM_ID', '_blank');
+    // 언어에 따라 다른 구글 폼 URL로 이동
+    let feedbackUrl: string;
+
+    switch (language) {
+      case 'ja':
+        feedbackUrl = 'https://forms.gle/FE4S7wm61q6q5CHU9'; // 일본어
+        break;
+      case 'ko':
+        feedbackUrl = 'https://forms.gle/WFpBjmHn8rEKEvvj8'; // 한국어
+        break;
+      default:
+        feedbackUrl = 'https://forms.gle/wH7LbWN65768vFor8'; // 공통
+        break;
+    }
+
+    window.open(feedbackUrl, '_blank');
   };
 
   return (
