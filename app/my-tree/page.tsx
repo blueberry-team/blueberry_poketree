@@ -23,6 +23,7 @@ import { isApiError } from "@/features/shared/utils/api/apiClient";
 import { Snow } from "@/features/shared/components/Snow/Snow";
 import { setTreeOwner } from "@/features/signup-or-go/stores/authStore";
 import { usePathname } from "next/navigation";
+import { getSpecialPoketmon } from "@/features/my-tree/usecases/getSpecialPoketmon";
 
 /**
  * MyTreePage - 내 트리 페이지
@@ -183,6 +184,16 @@ function MyTreePageContent() {
   }, [updatePokemonDisplay]);
 
   /**
+   * 스페셜 포켓몬 받기
+   * - 소셜 버튼 클릭 시 호출되는 함수
+   */
+  // TODO: 에러처리
+  const handleGetSpecialPokemon = useCallback(async () => {
+    if (!publicId) return;
+    await getSpecialPoketmon({ userId: publicId });
+  }, [publicId]);
+
+  /**
    * 전체 메시지 페이지로 이동
    */
   const handleViewAllMessages = useCallback(() => {
@@ -336,7 +347,9 @@ function MyTreePageContent() {
       )}
 
       {/* 소셜미디어 버튼 */}
-      <SocialMediaButton />
+      <SocialMediaButton
+        onGetSpecialPokemon={isOwner ? handleGetSpecialPokemon : undefined}
+      />
 
       {/* 편지 모달 */}
       <LetterModal
