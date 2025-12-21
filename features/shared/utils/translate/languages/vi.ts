@@ -135,11 +135,11 @@ export const vi = {
     path001: "Ten mien sai.",
   },
   landing: {
-    countdown: "Giang sinh",
+    countdown: "Den khi ket thuc dich vu",
     days: "N",
     hours: "G",
     minutes: "P",
-    description1: "Nhan qua bat ngo vao ngay Giang sinh!",
+    description1: "Dich vu PokéTree se ket thuc vao ngay 31 thang 12. Cac thu da nhan se khong the truy cap sau ngay 31 thang 12. Hen gap lai nam sau!",
     description2: "Tao PokéTree va chia se voi ban be!",
     makeTree: "Tao PokéTree",
     visitSocial: "Ghe tham Instagram",

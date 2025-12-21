@@ -133,11 +133,11 @@ export const zhCN = {
     path001: "错误的域名。",
   },
   landing: {
-    countdown: "圣诞节",
+    countdown: "距离服务结束",
     days: "天",
     hours: "时",
     minutes: "分",
-    description1: "圣诞节当天获得惊喜礼物！",
+    description1: "宝可树服务将于12月31日结束。收到的信件在12月31日之后将无法访问。明年再见！",
     description2: "创建你的宝可树并分享给朋友！",
     makeTree: "创建宝可树",
     visitSocial: "访问我们的Instagram",

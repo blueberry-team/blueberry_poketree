@@ -135,12 +135,12 @@ export const ja = {
     path001: "間違ったドメインです。",
   },
   landing: {
-    countdown: "クリスマスまで",
+    countdown: "サービス終了まで",
     days: "D",
     hours: "H",
     minutes: "M",
     description1:
-      "クリスマス当日にアクセスするとサプライズプレゼントがもらえます！",
+      "ポケツリーサービスは12月31日に終了します。これまで受け取った手紙は12月31日以降は確認できません。また来年お会いしましょう！",
     description2: "ポケツリーを作って友達にシェアしよう！",
     makeTree: "ポケツリーを作る",
     visitSocial: "Twitterを見る",

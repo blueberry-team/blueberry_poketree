@@ -136,11 +136,11 @@ export const ru = {
     path001: "Неверный домен.",
   },
   landing: {
-    countdown: "Рождество",
+    countdown: "До конца сервиса",
     days: "Д",
     hours: "Ч",
     minutes: "М",
-    description1: "Получите сюрприз в день Рождества!",
+    description1: "Сервис PokéTree завершится 31 декабря. Полученные письма не будут доступны после 31 декабря. Увидимся в следующем году!",
     description2: "Создайте свой PokéTree и поделитесь с друзьями!",
     makeTree: "Создать PokéTree",
     visitSocial: "Посетите наш Instagram",

@@ -136,11 +136,11 @@ export const pt = {
     path001: "Domínio incorreto.",
   },
   landing: {
-    countdown: "Natal",
+    countdown: "Até o fim do serviço",
     days: "D",
     hours: "H",
     minutes: "M",
-    description1: "Ganhe um presente surpresa no dia de Natal!",
+    description1: "O serviço PokéTree será encerrado em 31 de dezembro. As cartas recebidas até agora não estarão acessíveis após 31 de dezembro. Até o próximo ano!",
     description2: "Crie sua PokéTree e compartilhe com amigos!",
     makeTree: "Criar PokéTree",
     visitSocial: "Visite nosso Instagram",

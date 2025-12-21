@@ -134,11 +134,11 @@ export const ko = {
     path001: "잘못된 도메인입니다.",
   },
   landing: {
-    countdown: "크리스마스까지",
+    countdown: "서비스 종료까지",
     days: "D",
     hours: "H",
     minutes: "M",
-    description1: "크리스마스 당일 접속하면 깜짝 선물을 받을 수 있어요!",
+    description1: "포케트리 서비스는 12월 31일에 종료돼요. 지금까지 받은 편지는 12월 31일 이후로는 확인할 수 없어요. 내년에 또 만나요!",
     description2: "내 포케트리를 만들어 친구에게 공유해보세요!",
     makeTree: "포케트리 만들기",
     visitSocial: "인스타그램 구경 하러가기",
