@@ -6,6 +6,7 @@ export const es = {
     language: "Lang",
     help: "Ayuda",
     options: "Opciones",
+    feedback: "Comentarios",
   },
   language: {
     title: "Seleccionar idioma",

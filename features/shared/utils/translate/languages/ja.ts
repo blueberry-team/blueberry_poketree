@@ -6,6 +6,7 @@ export const ja = {
     language: "Lang",
     help: "ヘルプ",
     options: "設定",
+    feedback: "フィードバック",
   },
   language: {
     title: "言語を選択",

@@ -6,6 +6,7 @@ export const vi = {
     language: "Lang",
     help: "Tro giup",
     options: "Tuy chon",
+    feedback: "Phan hoi",
   },
   language: {
     title: "Chon ngon ngu",

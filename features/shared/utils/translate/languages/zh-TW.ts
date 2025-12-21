@@ -6,6 +6,7 @@ export const zhTW = {
     language: "Lang",
     help: "幫助",
     options: "選項",
+    feedback: "意見回饋",
   },
   language: {
     title: "選擇語言",

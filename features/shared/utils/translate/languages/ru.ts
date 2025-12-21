@@ -6,6 +6,7 @@ export const ru = {
     language: "Lang",
     help: "Помощь",
     options: "Настройки",
+    feedback: "Обратная связь",
   },
   language: {
     title: "Выберите язык",
