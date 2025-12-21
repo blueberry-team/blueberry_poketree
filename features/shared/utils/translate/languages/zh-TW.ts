@@ -58,6 +58,7 @@ export const zhTW = {
     checkMessage: "查看訊息",
     level: "等級",
     experience: "經驗",
+    christmasGift: "查看你的聖誕禮物！",
   },
   visitor: {
     makeMessage: "寫訊息",

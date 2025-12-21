@@ -60,6 +60,7 @@ export const es = {
     checkMessage: "Ver mensajes",
     level: "Nivel",
     experience: "EXP",
+    christmasGift: "¡Mira tu regalo de Navidad!",
   },
   visitor: {
     makeMessage: "Escribir mensaje",

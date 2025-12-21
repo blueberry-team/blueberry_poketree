@@ -60,6 +60,7 @@ export const ru = {
     checkMessage: "Посмотреть сообщения",
     level: "Уровень",
     experience: "ОПЫТ",
+    christmasGift: "Проверьте рождественский подарок!",
   },
   visitor: {
     makeMessage: "Написать сообщение",

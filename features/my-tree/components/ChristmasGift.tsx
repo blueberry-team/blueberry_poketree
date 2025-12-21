@@ -1,7 +1,8 @@
 "use client";
 
 import Image from "next/image";
-import ChristmasEgg from "@/assets/images/components/christmas_egg.webp";
+import ChristmasEggCracked from "@/assets/images/components/christmas_egg_cracked.webp";
+import { useTranslation } from "@/features/shared/utils/translate/useLanguage";
 
 /**
  * ChristmasGift 컴포넌트
@@ -15,11 +16,17 @@ import ChristmasEgg from "@/assets/images/components/christmas_egg.webp";
 // }
 
 export function ChristmasGift() {
+  const { translate } = useTranslation();
+  
+  const giftText = translate("tree.christmasGift");
+  // 텍스트 길이에 따라 동적 폰트 크기 결정
+  const fontSize = giftText.length > 25 ? "text-[6px]" : giftText.length > 20 ? "text-[7px]" : "text-[8px]";
+  
   return (
     <button
       // TODO: 크리스마스 날 기능 오픈 후 주석 해제
-      // className="absolute top-4 right-4 z-10 cursor-pointer hover:scale-110 transition-transform"
-      className="absolute top-6 right-6 z-10 cursor-pointer"
+      className="absolute top-4 right-4 z-10 cursor-pointer hover:scale-110 transition-transform"
+      // className="absolute top-6 right-6 z-10 cursor-pointer"
       aria-label="크리스마스 선물"
       onClick={(e) => {
         const target = e.currentTarget;
@@ -30,13 +37,20 @@ export function ChristmasGift() {
         }, 500);
       }}
     >
-      <Image
-        src={ChristmasEgg}
-        alt="크리스마스 선물"
-        width={65}
-        height={65}
-        className="object-contain"
-      />
+      <div className="relative w-[72px] h-[75px]">
+        <Image
+          src={ChristmasEggCracked}
+          alt={giftText}
+          width={72}
+          height={75}
+          className="object-contain absolute left-[6.5px] top-0"
+        />
+        <div className="absolute left-[3px] top-[47px] w-[66px] h-[24px] bg-black/60 backdrop-blur-[2px] rounded-[4px] flex items-center justify-center px-1 overflow-hidden">
+          <p className={`text-white ${fontSize} font-semibold leading-[9px] text-center whitespace-wrap`}>
+            {giftText}
+          </p>
+        </div>
+      </div>
     </button>
   );
 }

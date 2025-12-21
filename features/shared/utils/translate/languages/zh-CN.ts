@@ -58,6 +58,7 @@ export const zhCN = {
     checkMessage: "查看消息",
     level: "等级",
     experience: "经验",
+    christmasGift: "查看你的圣诞礼物！",
   },
   visitor: {
     makeMessage: "写消息",

@@ -59,6 +59,7 @@ export const vi = {
     checkMessage: "Xem tin nhan",
     level: "Cap do",
     experience: "EXP",
+    christmasGift: "Kiem tra qua Giang sinh!",
   },
   visitor: {
     makeMessage: "Viet tin nhan",

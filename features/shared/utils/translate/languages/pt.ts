@@ -60,6 +60,7 @@ export const pt = {
     checkMessage: "Ver mensagens",
     level: "Nível",
     experience: "EXP",
+    christmasGift: "Confira seu presente de Natal!",
   },
   visitor: {
     makeMessage: "Escrever mensagem",

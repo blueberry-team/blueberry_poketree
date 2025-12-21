@@ -59,6 +59,7 @@ export const ko = {
     checkMessage: "포켓메세지 확인하기",
     level: "레벨",
     experience: "경험치",
+    christmasGift: "크리스마스 선물을 확인 해보세요!",
   },
   visitor: {
     makeMessage: "메시지 작성하기",

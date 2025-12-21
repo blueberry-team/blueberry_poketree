@@ -60,6 +60,7 @@ export const ja = {
     checkMessage: "メッセージを確認",
     level: "レベル",
     experience: "経験値",
+    christmasGift: "クリスマスプレゼントを確認しよう!",
   },
   visitor: {
     makeMessage: "メッセージをかく",
