@@ -73,12 +73,12 @@ function SpecialPoketmonHatchModalContent({
         >
           <Image
             src={ButtonLargeGreen}
-            alt={translate("letterModal.viewLetter")}
+            alt={translate("common.visit")}
             fill
             className="object-fill"
           />
           <span className="relative z-10 text-black text-xl font-bold">
-            {"방문하기"}
+            {translate("common.visit")}
           </span>
         </button>
       </BaseModal>

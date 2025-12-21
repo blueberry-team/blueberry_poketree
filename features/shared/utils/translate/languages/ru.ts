@@ -109,6 +109,7 @@ export const ru = {
     cancel: "Отмена",
     confirm: "Подтвердить",
     loading: "Загрузка...",
+    visit: "Посетить",
   },
   error: {
     title: "Ошибка",

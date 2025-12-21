@@ -107,6 +107,7 @@ export const zhCN = {
     cancel: "取消",
     confirm: "确认",
     loading: "加载中...",
+    visit: "访问",
   },
   error: {
     title: "错误",

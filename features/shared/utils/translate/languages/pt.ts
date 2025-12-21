@@ -109,6 +109,7 @@ export const pt = {
     cancel: "Cancelar",
     confirm: "Confirmar",
     loading: "Carregando...",
+    visit: "Visitar",
   },
   error: {
     title: "Erro",

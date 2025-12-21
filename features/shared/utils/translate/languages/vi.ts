@@ -108,6 +108,7 @@ export const vi = {
     cancel: "Huy",
     confirm: "Xac nhan",
     loading: "Dang tai...",
+    visit: "Ghe tham",
   },
   error: {
     title: "Loi",
