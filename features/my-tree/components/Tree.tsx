@@ -91,7 +91,7 @@ export function Tree({
 
       {/* 메시지 획득 개수 */}
       <div className="absolute top-4 left-4 z-20 flex flex-col gap-2">
-        <div className="flex items-center gap-2 bg-black/50 rounded-[8px] w-[154px] h-[32px] justify-center">
+        <div className="flex items-center gap-2 bg-black/60 rounded-[8px] px-3 py-2 w-fit">
           <span className="shrink-0">
             <Image src={MonsterBallClose} alt="몬스터볼" width={16} height={16} className="object-contain" />
           </span>
@@ -100,7 +100,7 @@ export function Tree({
           </span>
         </div>
         {isMaster && (
-          <div className="flex items-center gap-2 bg-black/60 rounded-[8px] w-[105px] h-[32px] justify-center">
+          <div className="flex items-center gap-2 bg-black/60 rounded-[8px] px-3 py-2 w-fit">
             <span className="shrink-0">⭐</span>
             <span className="text-white text-[12px] font-extrabold">
               {translate("pokedex.masterBadge")}

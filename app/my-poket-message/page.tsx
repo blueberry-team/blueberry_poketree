@@ -119,7 +119,7 @@ function MyPoketMessagePageContent() {
               </span>
             </div>
             {isMaster && (
-              <div className="flex items-center gap-2 bg-black/60 rounded-[8px] w-[105px] h-[32px] justify-center">
+              <div className="flex items-center gap-2 bg-black/60 rounded-[8px] px-3 py-2 w-fit">
                 <span className="shrink-0">⭐</span>
                 <span className="text-white text-[12px] font-extrabold">
                   {translate("pokedex.masterBadge")}
