@@ -6,6 +6,7 @@ export const vi = {
     language: "Lang",
     help: "Tro giup",
     options: "Tuy chon",
+    feedback: "Phan hoi",
   },
   language: {
     title: "Chon ngon ngu",
@@ -108,6 +109,7 @@ export const vi = {
     cancel: "Huy",
     confirm: "Xac nhan",
     loading: "Dang tai...",
+    visit: "Ghe tham",
   },
   error: {
     title: "Loi",

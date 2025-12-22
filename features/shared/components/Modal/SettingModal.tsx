@@ -15,7 +15,7 @@ interface SettingModalProps {
 }
 
 function SettingModalContent({ isOpen, onClose }: SettingModalProps) {
-  const { translate } = useTranslation();
+  const { translate, language } = useTranslation();
   const [isHelpModalOpen, setIsHelpModalOpen] = useState(false);
   const router = useRouter();
   const pathname = usePathname();
@@ -52,6 +52,25 @@ function SettingModalContent({ isOpen, onClose }: SettingModalProps) {
     setIsHelpModalOpen(true);
   };
 
+  const handleFeedback = () => {
+    // 언어에 따라 다른 구글 폼 URL로 이동
+    let feedbackUrl: string;
+
+    switch (language) {
+      case 'ja':
+        feedbackUrl = 'https://forms.gle/FE4S7wm61q6q5CHU9'; // 일본어
+        break;
+      case 'ko':
+        feedbackUrl = 'https://forms.gle/WFpBjmHn8rEKEvvj8'; // 한국어
+        break;
+      default:
+        feedbackUrl = 'https://forms.gle/wH7LbWN65768vFor8'; // 공통
+        break;
+    }
+
+    window.open(feedbackUrl, '_blank');
+  };
+
   return (
     <>
       {isOpen && (
@@ -77,6 +96,14 @@ function SettingModalContent({ isOpen, onClose }: SettingModalProps) {
                   className="px-4 py-3 rounded bg-[#F5F5F5] transition-all text-black hover:bg-gray-200 w-full"
                 >
                 {translate("header.help")}
+                </button>
+
+                {/* 의견 보내기 버튼 */}
+                <button
+                  onClick={handleFeedback}
+                  className="px-4 py-3 rounded bg-[#F5F5F5] transition-all text-black hover:bg-gray-200 w-full"
+                >
+                {translate("header.feedback")}
                 </button>
               </div>
         </BaseModal>

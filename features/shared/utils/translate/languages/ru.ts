@@ -6,6 +6,7 @@ export const ru = {
     language: "Lang",
     help: "Помощь",
     options: "Настройки",
+    feedback: "Обратная связь",
   },
   language: {
     title: "Выберите язык",
@@ -109,6 +110,7 @@ export const ru = {
     cancel: "Отмена",
     confirm: "Подтвердить",
     loading: "Загрузка...",
+    visit: "Посетить",
   },
   error: {
     title: "Ошибка",

@@ -6,6 +6,7 @@ export const ja = {
     language: "Lang",
     help: "ヘルプ",
     options: "設定",
+    feedback: "フィードバック",
   },
   language: {
     title: "言語を選択",
@@ -109,6 +110,7 @@ export const ja = {
     cancel: "キャンセル",
     confirm: "確認",
     loading: "読み込み中...",
+    visit: "訪問する",
   },
   error: {
     title: "エラー",

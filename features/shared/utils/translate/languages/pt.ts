@@ -6,6 +6,7 @@ export const pt = {
     language: "Lang",
     help: "Ajuda",
     options: "Opções",
+    feedback: "Comentários",
   },
   language: {
     title: "Selecionar idioma",
@@ -109,6 +110,7 @@ export const pt = {
     cancel: "Cancelar",
     confirm: "Confirmar",
     loading: "Carregando...",
+    visit: "Visitar",
   },
   error: {
     title: "Erro",

@@ -6,6 +6,7 @@ export const zhTW = {
     language: "Lang",
     help: "幫助",
     options: "選項",
+    feedback: "意見回饋",
   },
   language: {
     title: "選擇語言",
@@ -107,6 +108,7 @@ export const zhTW = {
     cancel: "取消",
     confirm: "確認",
     loading: "載入中...",
+    visit: "造訪",
   },
   error: {
     title: "錯誤",

@@ -23,6 +23,7 @@ import { isApiError } from "@/features/shared/utils/api/apiClient";
 import { Snow } from "@/features/shared/components/Snow/Snow";
 import { setTreeOwner } from "@/features/signup-or-go/stores/authStore";
 import { usePathname } from "next/navigation";
+import { getSpecialPoketmon } from "@/features/my-tree/usecases/getSpecialPoketmon";
 
 /**
  * MyTreePage - 내 트리 페이지
@@ -152,6 +153,7 @@ function MyTreePageContent() {
   const userName = useMemo(() => treeData?.nickname ?? "", [treeData?.nickname]);
   const isOwner = useMemo(() => treeData?.is_owner === "true", [treeData?.is_owner]);
   const letters = useMemo(() => treeData?.letters ?? [], [treeData?.letters]);
+  const isSpecialPokemonReceived = useMemo(() => treeData?.pokemon_list.includes(80), [treeData?.pokemon_list]);
 
   /**
    * 이전 페이지로 이동
@@ -181,6 +183,23 @@ function MyTreePageContent() {
   const handleDown = useCallback(() => {
     updatePokemonDisplay();
   }, [updatePokemonDisplay]);
+
+  /**
+   * 스페셜 포켓몬 받기
+   * - 소셜 버튼 클릭 시 호출되는 함수
+   */
+  // TODO: 에러처리
+  const handleGetSpecialPokemon = useCallback(async () => {
+    if (!publicId) return;
+    await getSpecialPoketmon({ userId: publicId });
+  }, [publicId]);
+
+  /**
+   * 스페셜 포켓몬 모달 완료 시 트리 데이터 갱신
+   */
+  const handleSpecialPokemonComplete = useCallback(() => {
+    fetchTreeData();
+  }, [fetchTreeData]);
 
   /**
    * 전체 메시지 페이지로 이동
@@ -336,7 +355,10 @@ function MyTreePageContent() {
       )}
 
       {/* 소셜미디어 버튼 */}
-      <SocialMediaButton />
+      <SocialMediaButton
+        onGetSpecialPokemon={isOwner && !isSpecialPokemonReceived ? handleGetSpecialPokemon : undefined}
+        onComplete={isOwner && !isSpecialPokemonReceived ? handleSpecialPokemonComplete : undefined}
+      />
 
       {/* 편지 모달 */}
       <LetterModal
