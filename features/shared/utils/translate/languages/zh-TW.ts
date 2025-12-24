@@ -58,6 +58,7 @@ export const zhTW = {
     checkMessage: "查看訊息",
     level: "等級",
     experience: "經驗",
+    christmasGift: "查看你的聖誕禮物！",
   },
   visitor: {
     makeMessage: "寫訊息",
@@ -99,6 +100,14 @@ export const zhTW = {
     pokemonReceived: " 送給你一隻寶可夢！",
     viewLetter: "查看訊息",
   },
+  christmasModal: {
+    step1Title: "我為聖誕節準備了禮物",
+    step1Button: "查看禮物",
+    step2Title: "你從大木博士那裡獲得了聖誕百變怪！",
+    step2Button: "查看訊息",
+    step3Title: "來自大木博士的口袋訊息",
+    step3Content: "聖誕快樂！\n\n今天是個特別的日子，我有一隻特別的寶可夢要送給你。\n\n聖誕百變怪正在尋找一位新的訓練師！\n\n你被選中了，這不是很神奇嗎？\n\n希望你和這隻寶可夢度過一個美好的聖誕節！",
+  },
   message: {
     title: "口袋訊息",
     userMessage: " 的口袋訊息",
@@ -133,11 +142,11 @@ export const zhTW = {
     path001: "錯誤的網域。",
   },
   landing: {
-    countdown: "聖誕節",
+    countdown: "距離服務結束",
     days: "天",
     hours: "時",
     minutes: "分",
-    description1: "聖誕節當天獲得驚喜禮物！",
+    description1: "寶可樹服務將於12月31日結束。收到的信件在12月31日之後將無法訪問。明年再見！",
     description2: "創建你的寶可樹並分享給朋友！",
     makeTree: "創建寶可樹",
     visitSocial: "造訪我們的Instagram",

@@ -38,6 +38,11 @@ interface TreeProps {
   onPageChange?: (page: number) => void;
   // 마스터 여부
   isMaster?: boolean;
+
+  // 크리스마스 선물 관련
+  hasMetamon: boolean;
+  onGetXmasPokemon?: () => Promise<void>;
+  onComplete?: () => void;
 }
 
 export function Tree({
@@ -47,6 +52,9 @@ export function Tree({
   onLetterClick,
   onPageChange,
   isMaster,
+  hasMetamon,
+  onGetXmasPokemon,
+  onComplete,
 }: TreeProps) {
   const { translate } = useTranslation();
 
@@ -110,7 +118,7 @@ export function Tree({
       </div>
 
       {/* 크리스마스 선물 (우상단) */}
-      <ChristmasGift/>
+      <ChristmasGift hasMetamon={hasMetamon} onGetXmasPokemon={onGetXmasPokemon} onComplete={onComplete} />
 
       {/* 트리 이미지 */}
       <div className="absolute inset-0 flex items-center justify-center">

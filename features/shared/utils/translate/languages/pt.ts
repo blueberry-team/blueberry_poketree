@@ -60,6 +60,7 @@ export const pt = {
     checkMessage: "Ver mensagens",
     level: "Nível",
     experience: "EXP",
+    christmasGift: "Confira seu presente de Natal!",
   },
   visitor: {
     makeMessage: "Escrever mensagem",
@@ -101,6 +102,14 @@ export const pt = {
     pokemonReceived: " enviou um Pokémon para você!",
     viewLetter: "Ver mensagem",
   },
+  christmasModal: {
+    step1Title: "Preparei um presente para o Natal",
+    step1Button: "Ver o presente",
+    step2Title: "Você recebeu um Ditto Papai Noel do Prof. Oak!",
+    step2Button: "Ver a mensagem",
+    step3Title: "Mensagem Pocket do Prof. Oak",
+    step3Content: "Feliz Natal!\n\nComo hoje é um dia especial, tenho um Pokémon especial para você.\n\nO Ditto Papai Noel está procurando um novo treinador para cuidar dele!\n\nNão é incrível que você seja o escolhido?\n\nEspero que você tenha um Natal maravilhoso com este Pokémon!",
+  },
   message: {
     title: "Mensagem Pocket",
     userMessage: " Mensagens Pocket de",
@@ -136,11 +145,11 @@ export const pt = {
     path001: "Domínio incorreto.",
   },
   landing: {
-    countdown: "Natal",
+    countdown: "Até o fim do serviço",
     days: "D",
     hours: "H",
     minutes: "M",
-    description1: "Ganhe um presente surpresa no dia de Natal!",
+    description1: "O serviço PokéTree será encerrado em 31 de dezembro. As cartas recebidas até agora não estarão acessíveis após 31 de dezembro. Até o próximo ano!",
     description2: "Crie sua PokéTree e compartilhe com amigos!",
     makeTree: "Criar PokéTree",
     visitSocial: "Visite nosso Instagram",

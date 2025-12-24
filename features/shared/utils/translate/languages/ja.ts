@@ -60,6 +60,7 @@ export const ja = {
     checkMessage: "メッセージを確認",
     level: "レベル",
     experience: "経験値",
+    christmasGift: "クリスマスプレゼントを確認しよう!",
   },
   visitor: {
     makeMessage: "メッセージをかく",
@@ -101,6 +102,14 @@ export const ja = {
     pokemonReceived: "からポケモンをゲット！",
     viewLetter: "メッセージを確認する",
   },
+  christmasModal: {
+    step1Title: "クリスマスのプレゼントを用意したよ",
+    step1Button: "プレゼントを確認する",
+    step2Title: "オーキド博士からサンタメタモンをゲット！",
+    step2Button: "メッセージを確認する",
+    step3Title: "オーキド博士からのポケットメッセージ",
+    step3Content: "メリークリスマス！\n\n今日は特別な日だから、君にも特別なポケモンを預けようと思うんだ。\n\nサンタメタモンが新しいトレーナーを探しているそうだよ！\n\nそれが君だなんて、本当に素晴らしいことだね。\n\nこのポケモンと素敵なクリスマスを過ごしてね！",
+  },
   message: {
     title: "ポケットメッセージ",
     userMessage: "のポケットメッセージ",
@@ -135,12 +144,12 @@ export const ja = {
     path001: "間違ったドメインです。",
   },
   landing: {
-    countdown: "クリスマスまで",
+    countdown: "サービス終了まで",
     days: "D",
     hours: "H",
     minutes: "M",
     description1:
-      "クリスマス当日にアクセスするとサプライズプレゼントがもらえます！",
+      "ポケツリーサービスは12月31日に終了します。これまで受け取った手紙は12月31日以降は確認できません。また来年お会いしましょう！",
     description2: "ポケツリーを作って友達にシェアしよう！",
     makeTree: "ポケツリーを作る",
     visitSocial: "Twitterを見る",

@@ -81,6 +81,7 @@ import Pokemon77Active from "@/assets/images/pokemon/active/77-active.webp";
 import Pokemon78Active from "@/assets/images/pokemon/active/78-active.webp";
 import Pokemon79Active from "@/assets/images/pokemon/active/79-active.webp";
 import Pokemon80Active from "@/assets/images/pokemon/active/80-active.webp";
+import Pokemon81Active from "@/assets/images/pokemon/active/81-active.webp";
 
 // 포켓몬 Inactive 이미지 import (1-80)
 import Pokemon1Inactive from "@/assets/images/pokemon/inactive/1-inactive.webp";
@@ -163,6 +164,7 @@ import Pokemon77Inactive from "@/assets/images/pokemon/inactive/77-inactive.webp
 import Pokemon78Inactive from "@/assets/images/pokemon/inactive/78-inactive.webp";
 import Pokemon79Inactive from "@/assets/images/pokemon/inactive/79-inactive.webp";
 import Pokemon80Inactive from "@/assets/images/pokemon/inactive/80-inactive.webp";
+import Pokemon81Inactive from "@/assets/images/pokemon/inactive/81-inactive.webp";
 
 // 포켓몬 Base 이미지 import (1-80)
 import Pokemon1Base from "@/assets/images/pokemon/base/1-pokemon.webp";
@@ -245,6 +247,7 @@ import Pokemon77Base from "@/assets/images/pokemon/base/77-pokemon.webp";
 import Pokemon78Base from "@/assets/images/pokemon/base/78-pokemon.webp";
 import Pokemon79Base from "@/assets/images/pokemon/base/79-pokemon.webp";
 import Pokemon80Base from "@/assets/images/pokemon/base/80-pokemon.webp";
+import Pokemon81Base from "@/assets/images/pokemon/base/81-pokemon.webp";
 
 /**
  * 포켓몬 정보 타입 (도감용)
@@ -340,6 +343,7 @@ export const POKEMON_DATA: PokemonInfo[] = [
   { id: 78, imageActive: Pokemon78Active, imageInactive: Pokemon78Inactive, imageBase: Pokemon78Base },
   { id: 79, imageActive: Pokemon79Active, imageInactive: Pokemon79Inactive, imageBase: Pokemon79Base },
   { id: 80, imageActive: Pokemon80Active, imageInactive: Pokemon80Inactive, imageBase: Pokemon80Base },
+  { id: 81, imageActive: Pokemon81Active, imageInactive: Pokemon81Inactive, imageBase: Pokemon81Base },
 ];
 
 /**
@@ -364,6 +368,7 @@ export const ALL_POKEMON_IMAGES: StaticImageData[] = [
   Pokemon66Base, Pokemon67Base, Pokemon68Base, Pokemon69Base, Pokemon70Base,
   Pokemon71Base, Pokemon72Base, Pokemon73Base, Pokemon74Base, Pokemon75Base,
   Pokemon76Base, Pokemon77Base, Pokemon78Base, Pokemon79Base, Pokemon80Base,
+  Pokemon81Base,
 ];
 
 /**
@@ -372,7 +377,7 @@ export const ALL_POKEMON_IMAGES: StaticImageData[] = [
  * @returns 해당 포켓몬 Base 이미지
  */
 export function getPokemonImage(index: number): StaticImageData {
-  const validIndex = Math.max(1, Math.min(80, index));
+  const validIndex = Math.max(1, Math.min(81, index));
   return ALL_POKEMON_IMAGES[validIndex];
 }
 

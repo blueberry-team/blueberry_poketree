@@ -59,6 +59,7 @@ export const ko = {
     checkMessage: "포켓메세지 확인하기",
     level: "레벨",
     experience: "경험치",
+    christmasGift: "크리스마스 선물을 확인 해보세요!",
   },
   visitor: {
     makeMessage: "메시지 작성하기",
@@ -100,6 +101,14 @@ export const ko = {
     pokemonReceived: "님이 보낸 포켓몬 획득!",
     viewLetter: "메세지 확인하기",
   },
+  christmasModal: {
+    step1Title: "크리스마스를 맞이해서 선물을 준비했다네",
+    step1Button: "선물 확인하기",
+    step2Title: "오박사의 산타 메타몽 획득!",
+    step2Button: "메세지 확인하기",
+    step3Title: "오박사 님의 포켓 메세지",
+    step3Content: "메리 크리스마스!\n\n오늘은 특별한 날이니, 너에게도 특별한 포켓몬을 맡기려 하네.\n\n산타 메타몽이 자신을 맡아 줄 새로운 트레이너를 찾고 있다더군!\n\n그 대상이 바로 너라는 사실이 참으로 놀랍지 않니?\n\n이 포켓몬과 함께 멋진 크리스마스를 보내길 바란다네!",
+  },
   message: {
     title: "포켓 메시지",
     userMessage: "님의 포켓 메세지",
@@ -134,11 +143,11 @@ export const ko = {
     path001: "잘못된 도메인입니다.",
   },
   landing: {
-    countdown: "크리스마스까지",
+    countdown: "서비스 종료까지",
     days: "D",
     hours: "H",
     minutes: "M",
-    description1: "크리스마스 당일 접속하면 깜짝 선물을 받을 수 있어요!",
+    description1: "포케트리 서비스는 12월 31일에 종료돼요. 지금까지 받은 편지는 12월 31일 이후로는 확인할 수 없어요. 내년에 또 만나요!",
     description2: "내 포케트리를 만들어 친구에게 공유해보세요!",
     makeTree: "포케트리 만들기",
     visitSocial: "인스타그램 구경 하러가기",

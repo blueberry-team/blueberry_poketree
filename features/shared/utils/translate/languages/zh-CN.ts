@@ -58,6 +58,7 @@ export const zhCN = {
     checkMessage: "查看消息",
     level: "等级",
     experience: "经验",
+    christmasGift: "查看你的圣诞礼物！",
   },
   visitor: {
     makeMessage: "写消息",
@@ -99,6 +100,14 @@ export const zhCN = {
     pokemonReceived: " 送给你一只宝可梦！",
     viewLetter: "查看消息",
   },
+  christmasModal: {
+    step1Title: "我为圣诞节准备了礼物",
+    step1Button: "查看礼物",
+    step2Title: "你从大木博士那里获得了圣诞百变怪！",
+    step2Button: "查看消息",
+    step3Title: "来自大木博士的口袋消息",
+    step3Content: "圣诞快乐！\n\n今天是个特别的日子，我有一只特别的宝可梦要送给你。\n\n圣诞百变怪正在寻找一位新的训练师！\n\n你被选中了，这不是很神奇吗？\n\n希望你和这只宝可梦度过一个美好的圣诞节！",
+  },
   message: {
     title: "口袋消息",
     userMessage: " 的口袋消息",
@@ -133,11 +142,11 @@ export const zhCN = {
     path001: "错误的域名。",
   },
   landing: {
-    countdown: "圣诞节",
+    countdown: "距离服务结束",
     days: "天",
     hours: "时",
     minutes: "分",
-    description1: "圣诞节当天获得惊喜礼物！",
+    description1: "宝可树服务将于12月31日结束。收到的信件在12月31日之后将无法访问。明年再见！",
     description2: "创建你的宝可树并分享给朋友！",
     makeTree: "创建宝可树",
     visitSocial: "访问我们的Instagram",
