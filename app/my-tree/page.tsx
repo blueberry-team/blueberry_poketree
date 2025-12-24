@@ -23,7 +23,7 @@ import { isApiError } from "@/features/shared/utils/api/apiClient";
 import { Snow } from "@/features/shared/components/Snow/Snow";
 import { setTreeOwner } from "@/features/signup-or-go/stores/authStore";
 import { usePathname } from "next/navigation";
-import { getSpecialPoketmon } from "@/features/my-tree/usecases/getSpecialPoketmon";
+import { getSpecialPoketmon, getXmasPoketmon } from "@/features/my-tree/usecases/getSpecialPoketmon";
 
 /**
  * MyTreePage - 내 트리 페이지
@@ -153,7 +153,8 @@ function MyTreePageContent() {
   const userName = useMemo(() => treeData?.nickname ?? "", [treeData?.nickname]);
   const isOwner = useMemo(() => treeData?.is_owner === "true", [treeData?.is_owner]);
   const letters = useMemo(() => treeData?.letters ?? [], [treeData?.letters]);
-  const isSpecialPokemonReceived = useMemo(() => treeData?.pokemon_list.includes(80), [treeData?.pokemon_list]);
+  const isSpecialPokemonReceived = useMemo(() => treeData?.pokemon_list.includes(80) ?? false, [treeData?.pokemon_list]);
+  const hasMetamon = useMemo(() => treeData?.pokemon_list.includes(81) ?? false, [treeData?.pokemon_list]);
 
   /**
    * 이전 페이지로 이동
@@ -194,8 +195,14 @@ function MyTreePageContent() {
     await getSpecialPoketmon({ userId: publicId });
   }, [publicId]);
 
+  const handleGetXmasPokemon = useCallback(async () => {
+    if (!publicId) return;
+    await getXmasPoketmon({ userId: publicId });
+  }, [publicId]);
+
   /**
    * 스페셜 포켓몬 모달 완료 시 트리 데이터 갱신
+   * 소셜버튼, 크리스마스 선물버튼 완료시에 둘다 사용함
    */
   const handleSpecialPokemonComplete = useCallback(() => {
     fetchTreeData();
@@ -323,6 +330,10 @@ function MyTreePageContent() {
         currentPage={currentPage}
         onLetterClick={handleLetterClick}
         onPageChange={handlePageChange}
+        // 크리스마스 선물 관련
+        hasMetamon={hasMetamon}
+        onGetXmasPokemon={isOwner && !hasMetamon ? handleGetXmasPokemon : undefined}
+        onComplete={isOwner && !hasMetamon ? handleSpecialPokemonComplete : undefined}
       />
 
       {/* 하단 영역 */}

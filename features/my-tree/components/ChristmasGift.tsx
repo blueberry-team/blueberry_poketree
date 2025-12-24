@@ -69,7 +69,7 @@ export function ChristmasGift({ hasMetamon, onGetXmasPokemon, onComplete }: Chri
   return (
     <div className="relative">
       <button
-        className={`absolute top-4 right-4 z-10 ${isClickable ? 'cursor-pointer' : 'cursor-default'}`}
+        className={`absolute top-5 right-6 z-10 ${isClickable ? 'cursor-pointer' : 'cursor-default'}`}
         aria-label="크리스마스 선물"
         onClick={handleClick}
       >
@@ -88,7 +88,7 @@ export function ChristmasGift({ hasMetamon, onGetXmasPokemon, onComplete }: Chri
             }}
           >
             <Image
-              src={getPokemonImage(82)}
+              src={getPokemonImage(81)}
               alt={giftText}
               width={72}
               height={75}
