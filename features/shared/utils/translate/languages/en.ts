@@ -60,6 +60,7 @@ export const en = {
     checkMessage: "Check Messages",
     level: "Level",
     experience: "EXP",
+    christmasGift: "Check your Christmas gift!",
   },
   visitor: {
     makeMessage: "Send a message",
@@ -101,6 +102,14 @@ export const en = {
     pokemonReceived: " sent you a Pokémon!",
     viewLetter: "Check the message",
   },
+  christmasModal: {
+    step1Title: "I've prepared a gift for Christmas",
+    step1Button: "Check the gift",
+    step2Title: "You received Santa Ditto from Prof. Oak!",
+    step2Button: "Check the message",
+    step3Title: "Pocket Message from Prof. Oak",
+    step3Content: "Merry Christmas!\n\nSince today is a special day, I have a special Pokémon for you.\n\nSanta Ditto is looking for a new trainer to take care of it!\n\nIsn't it amazing that you're the chosen one?\n\nI hope you have a wonderful Christmas with this Pokémon!",
+  },
   message: {
     title: "Pockét Message",
     userMessage: "'s Pocket Messages",
@@ -135,11 +144,11 @@ export const en = {
     path001: "Wrong domain.",
   },
   landing: {
-    countdown: "Christmas",
+    countdown: "Until Service End",
     days: "D",
     hours: "H",
     minutes: "M",
-    description1: "Get a surprise gift on Christmas Day!",
+    description1: "PokéTree service will end on December 31st. Letters received so far will not be accessible after December 31st. See you next year!",
     description2: "Create your PokéTree and share it with friends!",
     makeTree: "Make PokéTree",
     visitSocial: "Visit our Instagram",

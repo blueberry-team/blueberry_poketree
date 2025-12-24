@@ -20,7 +20,7 @@ export function ChristmasCountdown() {
 
   useEffect(() => {
     const calculateTimeLeft = () => {
-      const christmas = new Date("2025-12-25T00:00:00");
+      const christmas = new Date("2025-12-31T23:59:59");
       const now = new Date();
       const difference = christmas.getTime() - now.getTime();
 
@@ -103,7 +103,6 @@ export function ChristmasCountdown() {
       {/* 선물 메시지 + 로그인 버튼 */}
       <div className="flex items-center justify-around w-full mt-4 px-3">
         <div className="flex items-center gap-1 min-w-0">
-          <Image src={GiftBoxIcon} alt="Gift" width={16} height={16} className="shrink-0 mr-[2px]" />
           <p className="font-bold text-[12px] -mb-0.5 mr-[10px]">
             {translate("landing.description1")}
           </p>

@@ -11,3 +11,13 @@ export async function getSpecialPoketmonGet(
     true
   );
 }
+
+export async function getXmasPoketmonGet(
+  req: GetSpecialPocketMonRequest
+): Promise<GetSpecialPocketmonResponse> {
+  return apiClient.post<GetSpecialPocketmonResponse>(
+    `/pokemon/add-xmas-pokemon`,
+    { userId: req.userId },
+    true
+  );
+}

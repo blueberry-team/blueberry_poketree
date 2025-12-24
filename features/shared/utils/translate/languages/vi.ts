@@ -59,6 +59,7 @@ export const vi = {
     checkMessage: "Xem tin nhan",
     level: "Cap do",
     experience: "EXP",
+    christmasGift: "Kiem tra qua Giang sinh!",
   },
   visitor: {
     makeMessage: "Viet tin nhan",
@@ -100,6 +101,14 @@ export const vi = {
     pokemonReceived: " da gui cho ban mot Pokemon!",
     viewLetter: "Xem tin nhan",
   },
+  christmasModal: {
+    step1Title: "Toi da chuan bi qua tang cho Giang sinh",
+    step1Button: "Xem qua tang",
+    step2Title: "Ban da nhan duoc Ditto Ong gia Noel tu Giao su Oak!",
+    step2Button: "Xem tin nhan",
+    step3Title: "Tin nhan Pocket tu Giao su Oak",
+    step3Content: "Giang sinh vui ve!\n\nVi hom nay la mot ngay dac biet, toi co mot Pokemon dac biet danh cho ban.\n\nDitto Ong gia Noel dang tim kiem mot huan luyen vien moi!\n\nKhong phai tuyet voi khi ban la nguoi duoc chon sao?\n\nToi hy vong ban se co mot Giang sinh tuyet voi voi Pokemon nay!",
+  },
   message: {
     title: "Tin nhan Pocket",
     userMessage: " Tin nhan Pocket cua",
@@ -135,11 +144,11 @@ export const vi = {
     path001: "Ten mien sai.",
   },
   landing: {
-    countdown: "Giang sinh",
+    countdown: "Den khi ket thuc dich vu",
     days: "N",
     hours: "G",
     minutes: "P",
-    description1: "Nhan qua bat ngo vao ngay Giang sinh!",
+    description1: "Dich vu PokéTree se ket thuc vao ngay 31 thang 12. Cac thu da nhan se khong the truy cap sau ngay 31 thang 12. Hen gap lai nam sau!",
     description2: "Tao PokéTree va chia se voi ban be!",
     makeTree: "Tao PokéTree",
     visitSocial: "Ghe tham Instagram",
