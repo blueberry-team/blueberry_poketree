@@ -95,14 +95,6 @@ export function ChristmasGift({ hasMetamon, onGetXmasPokemon, onComplete }: Chri
               className="object-contain absolute left-[6.5px] top-0"
             />
           </div>
-
-            // <Image
-            //   src={getPokemonImage(82)}
-            //   alt={giftText}
-            //   width={72}
-            //   height={75}
-            //   className="object-contain absolute left-[6.5px] top-0"
-            // />
           ) : (
             // 케이스 1, 2: 깨진 알 이미지 + 애니메이션
             <div>
