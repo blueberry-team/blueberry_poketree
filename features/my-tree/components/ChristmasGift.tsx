@@ -31,6 +31,7 @@ export function ChristmasGift({ hasMetamon, onGetXmasPokemon, onComplete }: Chri
   const [isXmasPokemonModalOpen, setIsXmasPokemonModalOpen] = useState(false);
   const giftText = translate("tree.christmasGift");
   
+  // TODO: 동적 폰트사이즈 전역 처리
   // 텍스트 길이에 따라 동적 폰트 크기 결정
   const fontSize = giftText.length > 25 ? "text-[6px]" : giftText.length > 20 ? "text-[7px]" : "text-[8px]";
   
@@ -46,6 +47,7 @@ export function ChristmasGift({ hasMetamon, onGetXmasPokemon, onComplete }: Chri
     target.classList.add('christmas-gift-sway');
     
     // 애니메이션 완료 후 클래스 제거
+    // TODO: 애니메이션 완료 후 클래스 제거 시간 전역 처리
     setTimeout(() => {
       target.classList.remove('christmas-gift-sway');
     }, 500);

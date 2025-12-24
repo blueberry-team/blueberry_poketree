@@ -197,7 +197,7 @@ function MyTreePageContent() {
 
   const handleGetXmasPokemon = useCallback(async () => {
     if (!publicId) return;
-    // await getXmasPoketmon({ userId: publicId });
+    await getXmasPoketmon({ userId: publicId });
   }, [publicId]);
 
   /**
