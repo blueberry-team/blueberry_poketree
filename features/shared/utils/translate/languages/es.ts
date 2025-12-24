@@ -102,6 +102,14 @@ export const es = {
     pokemonReceived: " ¡te envió un Pokémon!",
     viewLetter: "Ver mensaje",
   },
+  christmasModal: {
+    step1Title: "He preparado un regalo para Navidad",
+    step1Button: "Ver el regalo",
+    step2Title: "¡Recibiste un Ditto Santa del Prof. Oak!",
+    step2Button: "Ver el mensaje",
+    step3Title: "Mensaje Pocket del Prof. Oak",
+    step3Content: "¡Feliz Navidad!\n\nComo hoy es un día especial, tengo un Pokémon especial para ti.\n\n¡Ditto Santa está buscando un nuevo entrenador que lo cuide!\n\n¿No es increíble que seas el elegido?\n\n¡Espero que tengas una maravillosa Navidad con este Pokémon!",
+  },
   message: {
     title: "Mensaje Pocket",
     userMessage: " Mensajes Pocket de",

@@ -102,6 +102,14 @@ export const ja = {
     pokemonReceived: "からポケモンをゲット！",
     viewLetter: "メッセージを確認する",
   },
+  christmasModal: {
+    step1Title: "クリスマスのプレゼントを用意したよ",
+    step1Button: "プレゼントを確認する",
+    step2Title: "オーキド博士からサンタメタモンをゲット！",
+    step2Button: "メッセージを確認する",
+    step3Title: "オーキド博士からのポケットメッセージ",
+    step3Content: "メリークリスマス！\n\n今日は特別な日だから、君にも特別なポケモンを預けようと思うんだ。\n\nサンタメタモンが新しいトレーナーを探しているそうだよ！\n\nそれが君だなんて、本当に素晴らしいことだね。\n\nこのポケモンと素敵なクリスマスを過ごしてね！",
+  },
   message: {
     title: "ポケットメッセージ",
     userMessage: "のポケットメッセージ",

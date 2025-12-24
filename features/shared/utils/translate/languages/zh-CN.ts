@@ -100,6 +100,14 @@ export const zhCN = {
     pokemonReceived: " 送给你一只宝可梦！",
     viewLetter: "查看消息",
   },
+  christmasModal: {
+    step1Title: "我为圣诞节准备了礼物",
+    step1Button: "查看礼物",
+    step2Title: "你从大木博士那里获得了圣诞百变怪！",
+    step2Button: "查看消息",
+    step3Title: "来自大木博士的口袋消息",
+    step3Content: "圣诞快乐！\n\n今天是个特别的日子，我有一只特别的宝可梦要送给你。\n\n圣诞百变怪正在寻找一位新的训练师！\n\n你被选中了，这不是很神奇吗？\n\n希望你和这只宝可梦度过一个美好的圣诞节！",
+  },
   message: {
     title: "口袋消息",
     userMessage: " 的口袋消息",

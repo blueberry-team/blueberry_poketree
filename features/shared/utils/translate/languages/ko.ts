@@ -101,6 +101,14 @@ export const ko = {
     pokemonReceived: "님이 보낸 포켓몬 획득!",
     viewLetter: "메세지 확인하기",
   },
+  christmasModal: {
+    step1Title: "크리스마스를 맞이해서 선물을 준비했다네",
+    step1Button: "선물 확인하기",
+    step2Title: "오박사의 산타 메타몽 획득!",
+    step2Button: "메세지 확인하기",
+    step3Title: "오박사 님의 포켓 메세지",
+    step3Content: "메리 크리스마스!\n\n오늘은 특별한 날이니, 너에게도 특별한 포켓몬을 맡기려 하네.\n\n산타 메타몽이 자신을 맡아 줄 새로운 트레이너를 찾고 있다더군!\n\n그 대상이 바로 너라는 사실이 참으로 놀랍지 않니?\n\n이 포켓몬과 함께 멋진 크리스마스를 보내길 바란다네!",
+  },
   message: {
     title: "포켓 메시지",
     userMessage: "님의 포켓 메세지",

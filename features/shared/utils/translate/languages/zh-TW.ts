@@ -100,6 +100,14 @@ export const zhTW = {
     pokemonReceived: " 送給你一隻寶可夢！",
     viewLetter: "查看訊息",
   },
+  christmasModal: {
+    step1Title: "我為聖誕節準備了禮物",
+    step1Button: "查看禮物",
+    step2Title: "你從大木博士那裡獲得了聖誕百變怪！",
+    step2Button: "查看訊息",
+    step3Title: "來自大木博士的口袋訊息",
+    step3Content: "聖誕快樂！\n\n今天是個特別的日子，我有一隻特別的寶可夢要送給你。\n\n聖誕百變怪正在尋找一位新的訓練師！\n\n你被選中了，這不是很神奇嗎？\n\n希望你和這隻寶可夢度過一個美好的聖誕節！",
+  },
   message: {
     title: "口袋訊息",
     userMessage: " 的口袋訊息",
