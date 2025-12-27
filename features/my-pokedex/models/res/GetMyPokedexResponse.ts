@@ -4,7 +4,7 @@ import type { ApiResponse } from "@/features/shared/utils/api/apiClient";
 export interface GetMyPokedexData {
   pokemon_list: number[];
   nickname: string;
-  isMaster: string;
+  is_master: string;
 }
 
 export type GetMyPokedexResponse = ApiResponse<GetMyPokedexData>;
