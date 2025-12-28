@@ -330,6 +330,7 @@ function MyTreePageContent() {
         currentPage={currentPage}
         onLetterClick={handleLetterClick}
         onPageChange={handlePageChange}
+        isMaster={treeData?.is_master === "true"}
         // 크리스마스 선물 관련
         hasMetamon={hasMetamon}
         onGetXmasPokemon={isOwner && !hasMetamon ? handleGetXmasPokemon : undefined}

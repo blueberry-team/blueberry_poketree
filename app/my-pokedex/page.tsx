@@ -39,13 +39,11 @@ function MyPokedexPageContent() {
     const fetchPokemons = async () => {
       try {
         const res = await getMyPokedex({ publicId });
-        const { pokemon_list, nickname, isMaster } = res.data;
+        const { pokemon_list, nickname, is_master } = res.data;
 
         setOwnedPokemonIds(pokemon_list ?? []);
         setUserName(nickname);
-        // 문자열/불리언 모두 대응 (타입 단언으로 비교)
-        const isMasterStr = isMaster as unknown as string;
-        setIsMaster(isMasterStr === "true" || isMasterStr === "1");
+        setIsMaster(is_master === "true");
       } catch (err) {
         // 에러 발생 시 에러 페이지로 리다이렉트 (에러 메시지 전달 시도)
         if (isApiError(err) && err.message) {
