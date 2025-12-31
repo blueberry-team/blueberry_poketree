@@ -11,7 +11,9 @@ export default function LandingPage() {
       {/* 눈 내리는 효과 */}
       <Snow />
 
-      <GoodbyeSection />
+      <div className="py-3 bg-[#BF0120]">
+        <GoodbyeSection />
+      </div>
 
     </div>
   );
