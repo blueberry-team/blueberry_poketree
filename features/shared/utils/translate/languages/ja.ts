@@ -155,7 +155,11 @@ export const ja = {
     visitSocial: "Twitterを見る",
     socialDescription: "Twitterを見て新しいポケモンをゲットしよう！",
     socialName: "Twitter",
-    socialId: "@poketree_jp",
+    socialId: "poketree_jp",
+    goodbyeTitle: "Good Bye 2025!",
+    goodbyeSubtitle: "また来年お会いしましょう！",
+    feedbackDescription: "来年はもっと良いサービスで戻れるように、皆様の貴重なご意見をお聞かせください。",
+    feedbackButton: "フィードバックを送る",
   },
   help: {
     title: "使い方",

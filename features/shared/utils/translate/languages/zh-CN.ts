@@ -152,7 +152,11 @@ export const zhCN = {
     visitSocial: "访问我们的Instagram",
     socialDescription: "访问Instagram并获得新的宝可梦！",
     socialName: "Instagram",
-    socialId: "@poketree_official",
+    socialId: "poketree_official",
+    goodbyeTitle: "Good Bye 2025!",
+    goodbyeSubtitle: "明年再见！",
+    feedbackDescription: "请分享您宝贵的意见，以便我们明年带来更好的服务。",
+    feedbackButton: "留下反馈",
   },
   help: {
     title: "使用方法",

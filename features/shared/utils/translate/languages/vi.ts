@@ -154,7 +154,11 @@ export const vi = {
     visitSocial: "Ghe tham Instagram",
     socialDescription: "Truy cập Instagram và nhận Pokémon mới!",
     socialName: "Instagram",
-    socialId: "@poketree_official",
+    socialId: "poketree_official",
+    goodbyeTitle: "Good Bye 2025!",
+    goodbyeSubtitle: "Hen gap lai nam sau!",
+    feedbackDescription: "Vui long chia se y kien quy gia cua ban de chung toi co the tro lai voi dich vu tot hon vao nam sau.",
+    feedbackButton: "De lai phan hoi",
   },
   help: {
     title: "Cach su dung",

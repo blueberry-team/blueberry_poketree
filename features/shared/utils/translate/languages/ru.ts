@@ -155,7 +155,11 @@ export const ru = {
     visitSocial: "Посетите наш Instagram",
     socialDescription: "Посетите Instagram и получите новых покемонов!",
     socialName: "Instagram",
-    socialId: "@poketree_official",
+    socialId: "poketree_official",
+    goodbyeTitle: "Good Bye 2025!",
+    goodbyeSubtitle: "Увидимся в следующем году!",
+    feedbackDescription: "Пожалуйста, поделитесь своим ценным мнением, чтобы мы могли вернуться с лучшим сервисом в следующем году.",
+    feedbackButton: "Оставить отзыв",
   },
   help: {
     title: "Как использовать",

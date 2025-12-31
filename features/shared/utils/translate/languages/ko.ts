@@ -153,7 +153,11 @@ export const ko = {
     visitSocial: "인스타그램 구경 하러가기",
     socialDescription: "인스타구경하고 새로운 포켓몬을 얻어요!",
     socialName: "인스타그램",
-    socialId: "@poketree_kr",
+    socialId: "poketree_kr",
+    goodbyeTitle: "Good Bye 2025!",
+    goodbyeSubtitle: "내년에 또 만나요!",
+    feedbackDescription: "내년엔 더 좋은 서비스로 돌아올 수 있도록 여러분의 소중한 의견을 남겨주세요.",
+    feedbackButton: "의견 남기러 가기",
   },
   help: {
     title: "이용 방법",
