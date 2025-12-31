@@ -155,7 +155,11 @@ export const es = {
     visitSocial: "Visita nuestro Instagram",
     socialDescription: "¡Visita Instagram y obtén nuevos Pokémon!",
     socialName: "Instagram",
-    socialId: "@poketree_official",
+    socialId: "poketree_official",
+    goodbyeTitle: "Good Bye 2025!",
+    goodbyeSubtitle: "¡Nos vemos el próximo año!",
+    feedbackDescription: "Por favor, comparte tus valiosas opiniones para que podamos volver con un mejor servicio el próximo año.",
+    feedbackButton: "Dejar comentarios",
   },
   help: {
     title: "Cómo usar",

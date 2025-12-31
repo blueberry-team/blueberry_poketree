@@ -152,7 +152,11 @@ export const zhTW = {
     visitSocial: "造訪我們的Instagram",
     socialDescription: "造訪Instagram並獲得新的寶可夢！",
     socialName: "Instagram",
-    socialId: "@poketree_official",
+    socialId: "poketree_official",
+    goodbyeTitle: "Good Bye 2025!",
+    goodbyeSubtitle: "明年再見！",
+    feedbackDescription: "請分享您寶貴的意見，以便我們明年帶來更好的服務。",
+    feedbackButton: "留下回饋",
   },
   help: {
     title: "使用方法",
